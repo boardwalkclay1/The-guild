@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Correct Cloudflare path -->
+  <link rel="stylesheet" href="/guild/guild-style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: system-ui, sans-serif;
+      color: #D4AF37;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("/guild/image/Aurum-Veritas.jpg") center/cover no-repeat;
+      opacity: 0.22;
+      z-index: -3;
+      filter: grayscale(25%);
+    }
+
+    .gold-scroll {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 30px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #8B6B2C;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+
+    .scroll-title {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.8rem;
+      margin: 0;
+      font-family: "Uncial Antiqua", serif;
+    }
+
+    .login-panel {
+      max-width: 420px;
+      margin: 40px auto 60px;
+      padding: 25px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .login-panel input {
+      width: 90%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid #D4AF37;
+      background: rgba(0,0,0,0.6);
+      color: #D4AF37;
+      text-align: center;
+    }
+
+    .login-btn {
+      margin-top: 18px;
+      padding: 12px;
+      width: 90%;
+      border-radius: 10px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      color: #D4AF37;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .login-btn:hover {
+      background: rgba(212,175,55,0.3);
+    }
+
+    .new-here {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .new-here a {
+      color: #D4AF37;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="gold-scroll">
+    <h1 class="scroll-title">Guild Brotherhood & Sisterhood</h1>
+  </div>
+
+  <div class="login-panel">
+    <h2>Member Login</h2>
+
+    <input id="loginUser" type="text" placeholder="Username">
+    <input id="loginPass" type="password" placeholder="Password">
+
+    <button class="login-btn" onclick="login()">Enter the Guild</button>
+
+    <div class="new-here">
+      New to the Guild?<br>
+      <a onclick="go('/guild/guild-entry.html')">Enter the Inner Hall</a>
+    </div>
+  </div>
+
+  <script>
+    function go(page) {
+      window.location.href = page;
+    }
+
+    async function login() {
+      const user = document.getElementById("loginUser").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+
+      if (!user || !pass) {
+        alert("Enter username and password.");
+        return;
+      }
+
+      // Cloudflare Pages: users.json is at /data/users.json
+      const res = await fetch("/data/users.json");
+      const users = await res.json();
+
+      if (!users[user]) {
+        alert("User not found.");
+        return;
+      }
+
+      if (users[user].password !== pass) {
+        alert("Incorrect password.");
+        return;
+      }
+
+      if (Date.now() > users[user].unlockUntil) {
+        alert("Your access has expired. Renew in the Inner Hall.");
+        return;
+      }
+
+      localStorage.setItem("guild_member", "paid");
+      localStorage.setItem("guild_username", user);
+
+      // ⭐ CORRECT CLOUDFLARE REDIRECT ⭐
+      window.location.href = "/guild/guild.html";
+    }
+  </script>
+
+</body>
+</html>
