@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Family Market Oracle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="../guild-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #D4AF37;
+      font-family: system-ui, sans-serif;
+      padding: 24px 12px 60px;
+    }
+    .oracle-section {
+      max-width: 1100px;
+      margin: 16px auto;
+      padding: 16px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid #D4AF37;
+      border-radius: 12px;
+    }
+    .oracle-section h2 {
+      font-family: "Uncial Antiqua", serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #D4AF37;
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+    .item-row {
+      border-bottom: 1px solid rgba(212,175,55,0.25);
+      padding: 6px 0;
+      font-size: 0.9rem;
+    }
+    .small {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <div class="gold-scroll">
+    <h1 class="scroll-title">Guild Family Market Oracle</h1>
+    <p class="small" id="generatedAt"></p>
+  </div>
+
+  <section id="top-news" class="oracle-section">
+    <h2>Top News & Trending</h2>
+    <div id="newsList"></div>
+  </section>
+
+  <section id="biggest-movers" class="oracle-section">
+    <h2>Biggest Movers</h2>
+    <div id="moversList"></div>
+  </section>
+
+  <section id="daily-picks" class="oracle-section">
+    <h2>Top 3 Daily Guild Picks</h2>
+    <div id="picksList"></div>
+  </section>
+
+  <section id="earnings" class="oracle-section">
+    <h2>Earnings Calendar</h2>
+    <div id="earningsWeek"></div>
+    <div id="earningsNextWeek"></div>
+  </section>
+
+  <section id="penny-stocks" class="oracle-section">
+    <h2>Active Penny Stocks</h2>
+    <div id="pennyList"></div>
+  </section>
+
+  <script src="../guild-engine.js"></script>
+  <script>
+    async function loadOracle() {
+      try {
+        const res = await fetch("../data/market-oracle.json");
+        const data = await res.json();
+
+        // Timestamp
+        const gen = document.getElementById("generatedAt");
+        if (data.generatedAt) {
+          const d = new Date(Number(data.generatedAt));
+          gen.textContent = "Last updated: " + d.toLocaleString();
+        }
+
+        // Top news / trending
+        const newsList = document.getElementById("newsList");
+        (data.topNews || []).slice(0, 5).forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item-row";
+          div.innerHTML = `
+            <strong>${item.symbol || ""}</strong> — ${item.shortName || ""}<br>
+            <span class="small">
+              Price: ${item.regularMarketPrice ?? "—"} |
+              Change: ${(item.regularMarketChangePercent ?? 0).toFixed(2)}%
+            </span>
+          `;
+          newsList.appendChild(div);
+        });
+
+        // Biggest movers (gainers/losers/most active)
+        const moversList = document.getElementById("moversList");
+        const sections = [
+          { label: "Top Gainers", key: "gainers" },
+          { label: "Top Losers", key: "losers" },
+          { label: "Most Active", key: "mostActive" }
+        ];
+
+        sections.forEach(sec => {
+          const header = document.createElement("div");
+          header.innerHTML = `<strong>${sec.label}</strong>`;
+          moversList.appendChild(header);
+
+          (data.biggestMovers?.[sec.key] || []).slice(0, 5).forEach(item => {
+            const div = document.createElement("div");
+            div.className = "item-row";
+            div.innerHTML = `
+              <strong>${item.symbol || ""}</strong> — ${item.shortName || ""}<br>
+              <span class="small">
+                Price: ${item.regularMarketPrice ?? "—"} |
+                Change: ${(item.regularMarketChangePercent ?? 0).toFixed(2)}%
+              </span>
+            `;
+            moversList.appendChild(div);
+          });
+        });
+
+        // Daily top 3 picks
+        const picksList = document.getElementById("picksList");
+        (data.dailyTop3 || []).forEach((item, idx) => {
+          const div = document.createElement("div");
+          div.className = "item-row";
+          div.innerHTML = `
+            <strong>#${idx + 1} ${item.symbol || ""}</strong> — ${item.shortName || ""}<br>
+            <span class="small">
+              Price: ${item.regularMarketPrice ?? "—"} |
+              Change: ${(item.regularMarketChangePercent ?? 0).toFixed(2)}%
+            </span>
+          `;
+          picksList.appendChild(div);
+        });
+
+        // Earnings (simple dump)
+        const earningsWeek = document.getElementById("earningsWeek");
+        earningsWeek.innerHTML = "<strong>This Week</strong><br><span class='small'>See upcoming earnings list in data.</span>";
+
+        const earningsNextWeek = document.getElementById("earningsNextWeek");
+        earningsNextWeek.innerHTML = "<strong>Next Week</strong><br><span class='small'>Extend workflow parsing to split by date.</span>";
+
+        // Penny stocks
+        const pennyList = document.getElementById("pennyList");
+        (data.pennyStocks || []).slice(0, 10).forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item-row";
+          div.innerHTML = `
+            <strong>${item.symbol || ""}</strong> — ${item.shortName || ""}<br>
+            <span class="small">
+              Price: ${item.regularMarketPrice ?? "—"} |
+              Volume: ${item.regularMarketVolume ?? "—"}
+            </span>
+          `;
+          pennyList.appendChild(div);
+        });
+
+      } catch (e) {
+        console.error("Failed to load market-oracle.json", e);
+      }
+    }
+
+    loadOracle();
+  </script>
+</body>
+</html>
