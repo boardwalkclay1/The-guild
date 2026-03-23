@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Guild</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ICONS -->
+  <link rel="icon" type="image/png" href="/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/image/the-guild.png" />
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <!-- INDEX CSS ONLY -->
+  <link rel="stylesheet" href="/assets/css/index.css">
+</head>
+
+<body data-bg="/image/Vestry.jpg">
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <a onclick="go('/guild/pages/death-strike.html')">Death Strike</a>
+    <a onclick="go('/guild/pages/colosseum.html')">The Colosseum</a>
+    <a onclick="go('/pages/guild-entry.html')">Inner Hall</a>
+    <a onclick="go('/pages/why-join.html')">Why Join the Guild</a>
+  </nav>
+
+  <!-- MAIN TITLE -->
+  <header class="main-header">
+    <h1 class="main-title">The Guild Brotherhood & Sisterhood</h1>
+  </header>
+
+  <!-- LOGIN PANEL -->
+  <section class="login-panel">
+    <h2 class="panel-title">Member Login</h2>
+
+    <input id="loginUser" type="text" placeholder="Username">
+    <input id="loginPass" type="password" placeholder="Password">
+
+    <button class="login-btn" onclick="login()">Enter</button>
+
+    <p class="new-here">
+      New to the Guild?<br>
+      <a onclick="go('/pages/guild-entry.html')">Enter the Inner Hall</a>
+    </p>
+  </section>
+
+  <!-- QUICK ACCESS -->
+  <section class="quick-links">
+    <button class="login-btn" onclick="go('/guild/pages/death-strike.html')">⚔️ Death Strike</button>
+    <button class="login-btn" onclick="go('/guild/pages/colosseum.html')">🏛️ The Colosseum</button>
+    <button class="login-btn" onclick="go('/pages/guild-entry.html')">🜁 Inner Hall</button>
+    <button class="login-btn" onclick="go('/pages/why-join.html')">✨ Why Join</button>
+  </section>
+
+  <!-- INDEX JS ONLY -->
+  <script src="/assets/js/index.js" defer></script>
+
+</body>
+</html>
