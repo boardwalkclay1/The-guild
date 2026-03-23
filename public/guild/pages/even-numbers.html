@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <title>Even Numbers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="guild-style.css" />
+
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+
   <style>
     body {
       background: #000;
@@ -16,15 +18,17 @@
       position: relative;
       overflow-x: hidden;
     }
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: url("guild-background-gold.png") center/cover no-repeat;
+      background: url("/guild/assets/image/guild-background-gold.png") center/cover no-repeat;
       opacity: 0.18;
       z-index: -1;
       filter: grayscale(40%);
     }
+
     body::after {
       content: "";
       position: fixed;
@@ -35,22 +39,26 @@
       pointer-events: none;
       animation: fogMove 12s ease-in-out infinite alternate;
     }
+
     @keyframes fogMove {
       0% { transform: translateY(0px); opacity: 0.25; }
       100% { transform: translateY(25px); opacity: 0.45; }
     }
+
     h1 {
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       font-size: 1.8rem;
     }
+
     p {
       max-width: 750px;
       margin: 0 auto 20px;
       text-align: left;
       font-size: 1rem;
     }
+
     .divider {
       width: 80%;
       max-width: 500px;
@@ -59,12 +67,14 @@
       margin: 40px auto;
       opacity: 0.7;
     }
+
     .disclaimer {
       margin-top: 30px;
       font-size: 0.85rem;
       opacity: 0.8;
       text-align: center;
     }
+
     a.back {
       display: block;
       margin-top: 40px;
@@ -74,9 +84,11 @@
       letter-spacing: 0.1em;
       font-weight: 600;
     }
+
     a.back:hover { color: #fff; }
   </style>
 </head>
+
 <body class="fade-in">
 
   <h1>Even Numbers</h1>
@@ -104,7 +116,7 @@
     More examples and live reactions will be added.
   </p>
 
-  <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
+  <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
 
 </body>
 </html>
