@@ -5,14 +5,14 @@
   <title>The Guild</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- ICONS (served from /image/) -->
+  <!-- ICONS -->
   <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
   <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- PAGE CSS (served from /pages/) -->
+  <!-- PAGE CSS -->
   <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 
@@ -20,11 +20,8 @@
 
   <!-- TOP NAV -->
   <nav class="top-nav">
-    <!-- LOCKED PAGES -->
     <a onclick="go('/guild/pages/death-strike.html')">Death Strike</a>
     <a onclick="go('/guild/pages/colosseum.html')">The Colosseum</a>
-
-    <!-- PUBLIC PAGES -->
     <a onclick="go('/pages/guild-entry.html')">Inner Hall</a>
     <a onclick="go('/pages/why-join.html')">Why Join the Guild</a>
   </nav>
@@ -57,31 +54,7 @@
     <button class="login-btn" onclick="go('/pages/why-join.html')">✨ Why Join the Guild</button>
   </section>
 
-  <!-- PAGE JS (served from /pages/) -->
-  <script src="/pages/guild-gates.js" defer></script>
-
-</body>
-</html>
-    <input id="loginUser" type="text" placeholder="Username">
-    <input id="loginPass" type="password" placeholder="Password">
-
-    <button class="login-btn" onclick="login()">Enter</button>
-
-    <p class="new-here">
-      New to the Guild?<br>
-      <a onclick="go('/pages/guild-entry.html')">Enter the Inner Hall</a>
-    </p>
-  </section>
-
-  <!-- QUICK ACCESS -->
-  <section class="quick-links">
-    <button class="login-btn" onclick="go('/guild/pages/death-strike.html')">⚔️ Death Strike</button>
-    <button class="login-btn" onclick="go('/guild/pages/colosseum.html')">🏛️ The Colosseum</button>
-    <button class="login-btn" onclick="go('/pages/guild-entry.html')">🜁 Inner Hall</button>
-    <button class="login-btn" onclick="go('/pages/why-join.html')">✨ Why Join</button>
-  </section>
-
-  <!-- INDEX JS ONLY -->
+  <!-- PAGE JS -->
   <script src="/assets/js/index.js" defer></script>
 
 </body>
