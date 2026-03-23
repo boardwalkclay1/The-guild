@@ -1,3 +1,7 @@
+/* =============================== */
+/* ⚔️ GLOBAL MEDIEVAL THEME ⚔️ */
+/* =============================== */
+
 body {
   margin: 0;
   padding: 0;
@@ -5,52 +9,98 @@ body {
   background-size: cover;
   font-family: "Marcellus SC", serif;
   color: #D4AF37;
+  text-shadow: 0 0 6px rgba(0,0,0,0.8);
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Top Bar */
+/* Dark vignette around edges */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+}
+
+/* Floating smoke layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://i.imgur.com/8fK4YcC.png") repeat;
+  opacity: 0.15;
+  animation: smokeMove 22s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes smokeMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-600px); }
+}
+
+/* =============================== */
+/* 🛡️ TOP BAR — Medieval Iron Bar */
+/* =============================== */
+
 .guild-top-bar {
   width: 100%;
-  padding: 20px;
+  padding: 18px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0,0,0,0.55);
+  background: rgba(10,10,10,0.75);
+  border-bottom: 2px solid #8a6b2f;
+  box-shadow: 0 0 25px rgba(0,0,0,0.9);
   backdrop-filter: blur(4px);
+  position: relative;
+  z-index: 5;
 }
 
 .guild-logo-title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.6rem;
+  gap: 12px;
+  font-size: 1.8rem;
+  font-family: "Uncial Antiqua", serif;
 }
 
 .guild-mark {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 6px #D4AF37);
 }
 
 .guild-title {
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
+  font-weight: bold;
 }
 
-/* Nav */
+/* =============================== */
+/* 🗡️ NAV BUTTONS */
+/* =============================== */
+
 .guild-nav-links {
   display: flex;
   gap: 15px;
 }
 
 .nav-btn {
-  background: transparent;
+  background: rgba(0,0,0,0.6);
   border: 1px solid #D4AF37;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 6px;
   color: #D4AF37;
   cursor: pointer;
   transition: 0.2s;
+  font-family: "Marcellus SC", serif;
+  letter-spacing: 0.05em;
 }
 
 .nav-btn:hover {
   background: rgba(212,175,55,0.25);
+  box-shadow: 0 0 12px #D4AF37;
 }
 
 /* Dropdown */
@@ -60,13 +110,15 @@ body {
 
 .nav-dropdown-content {
   position: absolute;
-  top: 40px;
+  top: 42px;
   left: 0;
   background: rgba(0,0,0,0.85);
   border: 1px solid #D4AF37;
   border-radius: 8px;
   display: none;
   flex-direction: column;
+  min-width: 180px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.9);
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
@@ -80,46 +132,80 @@ body {
   padding: 10px 15px;
   text-align: left;
   cursor: pointer;
+  font-family: "Marcellus SC", serif;
 }
 
 .nav-dropdown-content button:hover {
   background: rgba(212,175,55,0.25);
 }
 
-/* Main Stack */
+/* =============================== */
+/* 📜 GOLD SCROLL TITLE */
+/* =============================== */
+
+.gold-scroll {
+  margin: 120px auto 40px;
+  text-align: center;
+  padding: 25px 40px;
+  background: rgba(0,0,0,0.55);
+  border: 2px solid #D4AF37;
+  border-radius: 12px;
+  width: fit-content;
+  box-shadow: 0 0 25px rgba(0,0,0,0.9);
+}
+
+.scroll-title {
+  font-family: "Uncial Antiqua", serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* =============================== */
+/* 🏛️ MAIN BUTTON STACK */
+/* =============================== */
+
 .vertical-stack {
-  margin-top: 200px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
   width: 90%;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 3;
 }
 
 .guild-btn {
   background: rgba(0,0,0,0.65);
-  border: 1px solid #D4AF37;
-  padding: 18px;
-  border-radius: 10px;
+  border: 2px solid #8a6b2f;
+  padding: 20px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "Marcellus SC", serif;
+  letter-spacing: 0.05em;
+  transition: 0.25s;
 }
 
 .guild-btn:hover {
   background: rgba(212,175,55,0.15);
+  box-shadow: 0 0 18px #D4AF37;
 }
 
 .dropdown-panel {
   display: none;
   background: rgba(0,0,0,0.55);
-  border: 1px solid #D4AF37;
-  border-radius: 10px;
-  padding: 15px;
+  border: 2px solid #8a6b2f;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .dropdown-panel.open {
@@ -127,15 +213,17 @@ body {
 }
 
 .enter-btn {
-  margin-top: 10px;
+  margin-top: 12px;
   background: transparent;
   border: 1px solid #D4AF37;
   padding: 8px 14px;
   border-radius: 6px;
   color: #D4AF37;
   cursor: pointer;
+  font-family: "Marcellus SC", serif;
 }
 
 .enter-btn:hover {
   background: rgba(212,175,55,0.25);
+  box-shadow: 0 0 12px #D4AF37;
 }
