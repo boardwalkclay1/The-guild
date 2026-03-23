@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chart Patterns – Guild Training</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: system-ui, sans-serif;
+      color: #D4AF37;
+      overflow-x: hidden;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    /* Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -3;
+      filter: grayscale(40%);
+    }
+
+    /* Fog Layer */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    /* Hero */
+    .hero {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .rune {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid #D4AF37;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 25px rgba(212,175,55,0.6);
+      position: relative;
+    }
+
+    .rune::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.4);
+      animation: pulseRune 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseRune {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.2); opacity: 0; }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
+    /* MODULE BUTTONS */
+    .module-grid {
+      max-width: 800px;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .module-btn {
+      padding: 18px;
+      border-radius: 14px;
+      border: 2px solid #D4AF37;
+      background: rgba(0,0,0,0.75);
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      transition: 0.25s ease;
+      display: block;
+    }
+
+    .module-btn:hover {
+      background: rgba(212,175,55,0.25);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <div class="hero">
+    <div class="rune">Ω</div>
+    <h1>Chart Patterns</h1>
+  </div>
+
+  <p>
+    Chart patterns are the language of the market.  
+    Once you learn to read them, you stop guessing and start recognizing.
+  </p>
+
+  <p>
+    A rounding bottom, a double bottom, a double top, a flag, a trend break —  
+    these are not just shapes.  
+    They are stories about what buyers and sellers are doing.
+  </p>
+
+  <div class="divider"></div>
+
+  <p>
+    Knowing these patterns gives you a huge advantage.  
+    You will be able to see when a move is building, when it is failing,  
+    and when it is breaking out of its trend.
+  </p>
+
+  <!-- MODULE ACCESS -->
+  <div class="module-grid">
+    <a class="module-btn" href="training/patterns/pattern-level1.html">Level 1 – Foundations</a>
+    <a class="module-btn" href="training/patterns/pattern-level2.html">Level 2 – Recognition</a>
+    <a class="module-btn" href="training/patterns/pattern-level3.html">Level 3 – Speed</a>
+    <a class="module-btn" href="training/patterns/pattern-level4.html">Level 4 – Mastery</a>
+  </div>
+
+  <p class="disclaimer">
+    More advanced pattern modules will be added soon.
+  </p>
+
+  <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
+
+</body>
+</html>
