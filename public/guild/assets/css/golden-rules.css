@@ -8,10 +8,11 @@ body {
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
 }
 
+/* Container */
 .rules-container {
   max-width: 900px;
   margin: 120px auto;
-  padding: 20px;
+  padding: 25px;
   background: rgba(0,0,0,0.55);
   border: 2px solid #8a6b2f;
   border-radius: 12px;
@@ -74,7 +75,34 @@ body {
   box-shadow: 0 0 18px #D4AF37;
 }
 
-/* Dropdown container (JS will fill this) */
+/* Dropdown container */
 #rule-details {
   margin-top: 40px;
+}
+
+/* Dropdown panel (injected by JS) */
+.rule-panel {
+  background: rgba(0,0,0,0.75);
+  border: 2px solid #8a6b2f;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  animation: panelOpen 0.45s ease forwards;
+  display: none;
+}
+
+/* Cinematic animation */
+@keyframes panelOpen {
+  0% { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Glossary highlights */
+.glossary {
+  color: #ffdd7a;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
 }
