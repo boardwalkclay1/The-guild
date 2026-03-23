@@ -1,72 +1,71 @@
 // ===============================
-// GUILD SERVICE WORKER — v9
+// GUILD SERVICE WORKER — v10
 // Cloudflare Pages Safe • Static-Only Caching
 // ===============================
 
-const CACHE_NAME = "guild-cache-v9";
+const CACHE_NAME = "guild-cache-v10";
 
-// Only cache STATIC assets.
-// Never cache API, HTML that changes, or dynamic content.
+// STATIC ASSETS ONLY — NEVER HTML ROUTES THAT CHANGE
 const ASSETS = [
-  "/index.html",
-  "/the-guild.png",
-  "/favicon.ico",
-  "/manifest.json",
+  "/GUILD/index.html",
+  "/GUILD/the-guild.png",
+  "/GUILD/favicon.ico",
+  "/GUILD/manifest.json",
 
-  "/guild/guild-style.css",
-  "/guild/guild-engine.js",
+  "/GUILD/guild-style.css",
+  "/GUILD/guild-engine.js",
 
   // Core Guild pages
-  "/guild/guild.html",
-  "/guild/guild-entry.html",
-  "/guild/why-join.html",
-  "/guild/having-second-thoughts.html",
-  "/guild/golden-rules.html",
-  "/guild/guild-discipline.html",
-  "/guild/inside-the-guild.html",
-  "/guild/guild-family.html",
-  "/guild/training-hall.html",
-  "/guild/gf-paywall.html",
-  "/guild/guild-goldenformula.html",
-  "/guild/arena-secrets.html",
+  "/GUILD/guild.html",
+  "/GUILD/guild-entry.html",
+  "/GUILD/why-join.html",
+  "/GUILD/having-second-thoughts.html",
+  "/GUILD/golden-rules.html",
+  "/GUILD/guild-discipline.html",
+  "/GUILD/inside-the-guild.html",
+  "/GUILD/guild-family.html",
+  "/GUILD/training-hall.html",
+  "/GUILD/gf-paywall.html",
+  "/GUILD/guild-goldenformula.html",
+  "/GUILD/arena-secrets.html",
 
   // Training modules
-  "/guild/chart-patterns.html",
-  "/guild/training/patterns/pattern-level1.html",
-  "/guild/training/patterns/pattern-level2.html",
-  "/guild/training/patterns/pattern-level3.html",
-  "/guild/training/patterns/pattern-level4.html",
+  "/GUILD/chart-patterns.html",
+  "/GUILD/training/patterns/pattern-level1.html",
+  "/GUILD/training/patterns/pattern-level2.html",
+  "/GUILD/training/patterns/pattern-level3.html",
+  "/GUILD/training/patterns/pattern-level4.html",
 
-  "/guild/training/accessing-options.html",
-  "/guild/training/accessing-options/banks.html",
-  "/guild/training/accessing-options/brokers.html",
-  "/guild/training/accessing-options/simulator.html",
+  "/GUILD/training/accessing-options.html",
+  "/GUILD/training/accessing-options/banks.html",
+  "/GUILD/training/accessing-options/brokers.html",
+  "/GUILD/training/accessing-options/simulator.html",
 
   // Training JS
-  "/guild/training/js/patterns-level1.js",
-  "/guild/training/js/patterns-level2.js",
-  "/guild/training/js/patterns-level3.js",
-  "/guild/training/js/patterns-level4.js",
-  "/guild/training/js/accessing-options.js",
+  "/GUILD/training/js/patterns-level1.js",
+  "/GUILD/training/js/patterns-level2.js",
+  "/GUILD/training/js/patterns-level3.js",
+  "/GUILD/training/js/patterns-level4.js",
+  "/GUILD/training/js/accessing-options.js",
 
   // Icons
-  "/guild/icons/icon-door.svg",
-  "/guild/icons/icon-dragon.svg",
-  "/guild/icons/icon-arena.svg",
-  "/guild/icons/icon-forge.svg",
-  "/guild/icons/icon-purse.svg",
+  "/GUILD/icons/icon-door.svg",
+  "/GUILD/icons/icon-dragon.svg",
+  "/GUILD/icons/icon-arena.svg",
+  "/GUILD/icons/icon-forge.svg",
+  "/GUILD/icons/icon-purse.svg",
 
-  // Backgrounds
-  "/guild/image/Arcadium.jpg",
-  "/guild/image/Armory.jpeg",
-  "/guild/image/Aurum-Veritas.jpg",
-  "/guild/image/Porta-Imperii.jpg",
-  "/guild/image/Tributum.jpg",
-  "/guild/image/Vestry.jpg",
-  "/guild/image/apotheosis-chamber.jpg",
-  "/guild/image/gladiator-forum.jpg",
-  "/guild/image/strategy-chamber.jpg",
-  "/guild/guild-background-gold.png"
+  // Backgrounds (corrected extensions)
+  "/GUILD/image/Arcadium.jpg",
+  "/GUILD/image/Armory.jpg",
+  "/GUILD/image/Aurum-Veritas.jpg",
+  "/GUILD/image/Porta-Imperii.jpg",
+  "/GUILD/image/Tributum.jpg",
+  "/GUILD/image/Vestry.jpg",
+  "/GUILD/image/apotheosis-chamber.jpg",
+  "/GUILD/image/gladiator-forum.jpg",
+  "/GUILD/image/strategy-chamber.jpg",
+  "/GUILD/guild-background-gold.png"
 ];
 
 // INSTALL — cache static assets
@@ -92,10 +91,8 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // NEVER touch API routes — Pages Functions must handle them
-  if (url.pathname.startsWith("/api/")) {
-    return;
-  }
+  // Never touch API routes
+  if (url.pathname.startsWith("/api/")) return;
 
   // Cache-first for static assets
   if (ASSETS.includes(url.pathname)) {
