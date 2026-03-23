@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brokers – Guild Setup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Guild Stylesheet -->
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <!-- Guild Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #000;
+      font-family: 'Uncial Antiqua', serif;
+      padding: 40px 20px 80px;
+      line-height: 1.65;
+      color: #D4AF37;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("image/coolguild.jpg") center/cover no-repeat;
+      opacity: 0.22;
+      z-index: -1;
+      filter: grayscale(30%);
+    }
+
+    h1, h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      color: #D4AF37;
+      text-align: center;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      color: #D4AF37;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .section {
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    .dropdown-header {
+      max-width: 800px;
+      margin: 18px auto 0;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid #8B6B2C;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .dropdown-header span.label {
+      text-align: left;
+    }
+
+    .dropdown-header span.arrow {
+      font-size: 1.4rem;
+    }
+
+    .dropdown-panel {
+      max-width: 800px;
+      margin: 0 auto 10px;
+      padding: 14px 16px 18px;
+      border-radius: 0 0 12px 12px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #8B6B2C;
+      border-top: none;
+      display: none;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .dropdown-panel.open {
+      display: block;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: #D4AF37;
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: 0.25s ease;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    a.btn:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      text-align: center;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+
+    /* Burger menu */
+    .burger {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      font-size: 2rem;
+      color: #D4AF37;
+      cursor: pointer;
+      z-index: 9999;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .burger-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      border-right: 2px solid #D4AF37;
+      padding: 20px;
+      transition: 0.3s ease;
+      z-index: 9998;
+      overflow-y: auto;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .burger-menu.open {
+      left: 0;
+    }
+
+    .burger-menu h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 1.2rem;
+      color: #D4AF37;
+      text-align: center;
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .burger-menu a {
+      display: block;
+      padding: 8px 0;
+      color: #D4AF37;
+      text-decoration: none;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      font-family: 'Uncial Antiqua', serif;
+    }
+
+    .burger-menu a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding-top: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <!-- Burger -->
+  <div class="burger" onclick="toggleMenu()">☰</div>
+
+  <!-- Burger Menu -->
+  <div id="menu" class="burger-menu">
+    <h3>BANKS</h3>
+    <a href="#chase">🏦 Chase Bank</a>
+    <a href="#boa">🏦 Bank of America</a>
+    <a href="#tda-bank">🏦 TD Ameritrade (Bank + Broker)</a>
+    <a href="#wells">🏦 Wells Fargo</a>
+    <a href="#capone">🏦 Capital One</a>
+  </div>
+
+  <h1>Brokers & Banking Setup</h1>
+
+  <div class="section">
+    <p>
+      To beat the arena, you will need a <strong>banker</strong> and a <strong>broker</strong>.  
+      And you can have more than one.
+    </p>
+    <p>
+      If you don’t already have a bank account, this is your first step.  
+      You will connect your bank account to your broker so you can move money in and out.
+    </p>
+    <p>
+      This is a <strong>small step</strong> and it is <strong>much easier than it feels</strong>.  
+      Do not get intimidated — you’ve signed up for apps before. This is the same thing, just more powerful.
+    </p>
+  </div>
+
+  <!-- BANKING OPTIONS -->
+
+  <!-- CHASE -->
+  <div id="chase" class="dropdown-header" onclick="toggleDrop('bank1')">
+    <span class="label">🏦 Chase Bank (Bank + Broker‑Ready)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank1" class="dropdown-panel">
+    <p>
+      Chase is the Guild’s preferred <strong>funding engine</strong>.  
+      You can deposit money and often use it the same day — fast, simple, reliable.
+    </p>
+    <p>
+      Chase can act as both your <strong>banker and gateway to brokerage</strong>,  
+      making your setup extremely convenient.
+    </p>
+    <p>
+      This is a small, easy signup. Don’t overthink it — follow the prompts and you’re done.
+    </p>
+    <a class="btn" href="https://www.chase.com" target="_blank">Open Chase Account</a>
+  </div>
+
+  <!-- BANK OF AMERICA -->
+  <div id="boa" class="dropdown-header" onclick="toggleDrop('bank2')">
+    <span class="label">🏦 Bank of America</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank2" class="dropdown-panel">
+    <p>
+      A large, stable bank with strong mobile tools and easy broker connections.
+    </p>
+    <p>
+      This is a simple signup — just follow the steps and you’re ready.
+    </p>
+    <a class="btn" href="https://www.bankofamerica.com" target="_blank">Open Bank of America</a>
+  </div>
+
+  <!-- TD AMERITRADE BANK -->
+  <div id="tda-bank" class="dropdown-header" onclick="toggleDrop('bank3')">
+    <span class="label">🏦 TD Ameritrade (Bank + Broker)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank3" class="dropdown-panel">
+    <p>
+      TD Ameritrade can function as both your <strong>banker and broker</strong>.  
+      Everything under one roof — clean, simple, powerful.
+    </p>
+    <p>
+      Don’t let the name intimidate you. It’s just an online form and a login.
+    </p>
+    <a class="btn" href="https://www.tdameritrade.com" target="_blank">Open TD Ameritrade</a>
+  </div>
+
+  <!-- WELLS FARGO -->
+  <div id="wells" class="dropdown-header" onclick="toggleDrop('bank4')">
+    <span class="label">🏦 Wells Fargo</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank4" class="dropdown-panel">
+    <p>
+      A widely available bank that connects easily to most brokers.
+    </p>
+    <a class="btn" href="https://www.wellsfargo.com" target="_blank">Open Wells Fargo</a>
+  </div>
+
+  <!-- CAPITAL ONE -->
+  <div id="capone" class="dropdown-header" onclick="toggleDrop('bank5')">
+    <span class="label">🏦 Capital One</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="bank5" class="dropdown-panel">
+    <p>
+      A strong online bank with easy app‑based control.
+    </p>
+    <a class="btn" href="https://www.capitalone.com" target="_blank">Open Capital One</a>
+  </div>
+
+  <!-- BROKERS SECTION -->
+  <h2>Primary Trading Brokers</h2>
+
+  <!-- ROBINHOOD -->
+  <div class="dropdown-header" onclick="toggleDrop('broker1')">
+    <span class="label">📈 Robinhood</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker1" class="dropdown-panel">
+    <p>
+      Instant $2,000 margin loan.  
+      Same‑day access with debit deposits.  
+      Fast and beginner‑friendly.
+    </p>
+    <a class="btn" href="https://robinhood.com" target="_blank">Open Robinhood</a>
+  </div>
+
+  <!-- WEBULL -->
+  <div class="dropdown-header" onclick="toggleDrop('broker2')">
+    <span class="label">📊 Webull</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker2" class="dropdown-panel">
+    <p>
+      Instant buying power with debit deposits.  
+      Advanced charting tools.
+    </p>
+    <a class="btn" href="https://www.webull.com" target="_blank">Open Webull</a>
+  </div>
+
+  <!-- TRADIER -->
+  <div class="dropdown-header" onclick="toggleDrop('broker3')">
+    <span class="label">⚙️ Tradier</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker3" class="dropdown-panel">
+    <p>
+      Professional‑grade broker with fast fills and clean executions.
+    </p>
+    <a class="btn" href="https://brokerage.tradier.com" target="_blank">Open Tradier</a>
+  </div>
+
+  <!-- TD AMERITRADE BROKER -->
+  <div class="dropdown-header" onclick="toggleDrop('broker4')">
+    <span class="label">🏛️ TD Ameritrade (Broker)</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker4" class="dropdown-panel">
+    <p>
+      One of the most respected brokers in the world.  
+      Deep tools, strong data, stable execution.
+    </p>
+    <a class="btn" href="https://www.tdameritrade.com" target="_blank">Open TD Ameritrade</a>
+  </div>
+
+  <!-- FIDELITY -->
+  <div class="dropdown-header" onclick="toggleDrop('broker5')">
+    <span class="label">🏛️ Fidelity</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="broker5" class="dropdown-panel">
+    <p>
+      Trusted, stable, and excellent for long‑term trading.
+    </p>
+    <a class="btn" href="https://www.fidelity.com" target="_blank">Open Fidelity</a>
+  </div>
+
+  <!-- ACCESSING OPTIONS -->
+  <h2>Next Step: Accessing Options</h2>
+
+  <div class="dropdown-header" onclick="toggleDrop('accessing')">
+    <span class="label">🔐 Accessing Options</span>
+    <span class="arrow">›</span>
+  </div>
+  <div id="accessing" class="dropdown-panel">
+    <p>
+      After your bank and broker are connected,  
+      your next move is unlocking options trading.
+    </p>
+    <a class="btn" href="accessing-options.html">Go to Accessing Options</a>
+  </div>
+
+  <a class="back" href="inside-the-guild.html">← Back to Inside the Guild</a>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("open");
+    }
+
+    function toggleDrop(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
+  </script>
+
+</body>
+</html>
