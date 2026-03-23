@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DEATH STRIKE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      background: #000;
+      font-family: 'Uncial Antiqua', serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("image/coolguild.jpg") center/cover no-repeat;
+      opacity: 0.22;
+      z-index: -1;
+      filter: grayscale(30%);
+    }
+
+    .gold-scroll {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #8B6B2C;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 1.3rem;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+
+    .example-box {
+      max-width: 750px;
+      margin: 25px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #8B6B2C;
+      text-align: left;
+    }
+
+    .example-box h3 {
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 1rem;
+    }
+
+    /* ARENA ENTRY BUTTON */
+    .arena-entry {
+      margin-top: 60px;
+      padding: 30px;
+      background: rgba(0,0,0,0.85);
+      border: 2px solid #D4AF37;
+      border-radius: 16px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .arena-entry-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 24px;
+      background: #D4AF37;
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 12px;
+      transition: 0.25s ease;
+      font-size: 1.1rem;
+    }
+
+    .arena-entry-btn:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
+
+    /* POPUP */
+    #arenaPopup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    #arenaPopup .popup-box {
+      max-width: 500px;
+      padding: 30px;
+      background: rgba(0,0,0,0.95);
+      border: 2px solid #D4AF37;
+      border-radius: 16px;
+      text-align: left;
+    }
+
+    #arenaPopup h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    #arenaPopup p {
+      margin-bottom: 12px;
+    }
+
+    .popup-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #D4AF37;
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .popup-btn:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <div class="gold-scroll">
+    <h1>DEATH STRIKE</h1>
+    <p style="text-align:center; opacity:0.9;">
+      The final teaching scroll before you enter the Arena.
+    </p>
+
+    <p>
+      The Death Strike is the Guild’s sacred technique — the moment when a contract’s price multiplies with violent speed.
+      This is not theory. This is not luck. This is precision, timing, and discipline.
+    </p>
+
+    <p>
+      Before you enter the Arena, you must understand the power you are about to wield.
+      A contract is not the stock — it is the <strong>price of possibility</strong>.
+    </p>
+
+    <h2>Examples of the Death Strike</h2>
+
+    <div class="example-box">
+      <h3>1 Contract → $1 to $10</h3>
+      <p>Your $1 becomes $10. A clean 10× multiplication.</p>
+    </div>
+
+    <div class="example-box">
+      <h3>10 Contracts → $10 to $100</h3>
+      <p>The same move, scaled. The multiplication is identical.</p>
+    </div>
+
+    <div class="example-box">
+      <h3>100 Contracts → $100 to $1,000</h3>
+      <p>Size changes the outcome — not the math.</p>
+    </div>
+
+    <h2>The Truth Behind Explosive Contracts</h2>
+
+    <p>
+      Contracts do not stop at $10. They can explode to $40, $100, $300, even $1,000.
+      These moves happen every single weekday. The only question is whether you can strike at the right moment.
+    </p>
+
+    <p>
+      Inside the Arena, you will learn to buy at the <strong>MID</strong>, sell at the <strong>MID</strong>,
+      and survive the fire timer. You will face real‑time prices, widening spreads, and the pressure of the clock.
+    </p>
+  </div>
+
+  <!-- ARENA ENTRY -->
+  <div class="arena-entry">
+    <h2>Your First Trial Awaits</h2>
+    <p>
+      You will begin in the Calm Market — Level 1 of the Arena Tower.
+      There, you will learn to strike at the MID under time pressure.
+    </p>
+
+    <a class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</a>
+  </div>
+
+  <!-- POPUP -->
+  <div id="arenaPopup">
+    <div class="popup-box">
+      <h2>ARE YOU READY?</h2>
+      <p>You will face real‑time moving prices.</p>
+      <p>You will have 20 seconds to strike.</p>
+      <p>You must buy at the MID. You must sell at the MID.</p>
+      <p>You start with $100. If you hesitate, you fail.</p>
+
+      <!-- FIXED PATH -->
+      <a class="popup-btn" href="arena/arena-level1.html">ENTER LEVEL 1</a>
+
+      <div class="popup-btn" onclick="closeArenaPopup()" style="background:#333; color:#D4AF37; margin-left:10px;">
+        CANCEL
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openArenaPopup() {
+      document.getElementById("arenaPopup").style.display = "flex";
+    }
+    function closeArenaPopup() {
+      document.getElementById("arenaPopup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
