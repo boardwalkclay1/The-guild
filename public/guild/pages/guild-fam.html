@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Guild Family</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- GLOBAL CINEMATIC CSS -->
+  <link rel="stylesheet" href="guild-style.css">
+
+  <!-- GUILD ENGINE -->
+  <script src="guild-engine.js" defer></script>
+
+  <style>
+    body {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* Black overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Darkened pillars ONLY for this page */
+    .pillar-left,
+    .pillar-right {
+      filter: brightness(0.35) contrast(1.1);
+    }
+
+    .family-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 120px 20px 80px;
+      color: #D4AF37;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      z-index: 5;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+
+    p {
+      max-width: 650px;
+      margin: 0 auto 20px;
+      color: #D4AF37;
+      opacity: 0.88;
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+
+    .link-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 18px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      border-radius: 8px;
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: 0.3s ease;
+    }
+
+    .link-button:hover {
+      background: rgba(212,175,55,0.3);
+      color: #fff;
+      text-shadow: 0 0 10px #D4AF37;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: #00ff6a;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #00ff6a;
+    }
+  </style>
+</head>
+
+<body data-bg="meguild.jpg">
+
+  <!-- CINEMATIC LAYERS -->
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
+
+  <div class="family-container">
+
+    <h1>The Guild Family</h1>
+
+    <p>
+      This is the chamber where our bond is forged —  
+      not by accident, but by discipline, purpose, and the fire that brought you here.
+    </p>
+
+    <p>
+      The Guild is a family of gladiators.  
+      Warriors who sharpen each other, rise together,  
+      and prepare to face the great Market Dragon with clarity and courage.
+    </p>
+
+    <p>
+      Inside these halls you will learn the arts of the arena:  
+      reading the battlefield, mastering timing, controlling emotion,  
+      and striking with precision when opportunity reveals itself.
+    </p>
+
+    <p>
+      You will gain access to one‑of‑a‑kind simulators,  
+      crafted to train your eyes, sharpen your instincts,  
+      and prepare you for real combat in the markets.  
+      These tools exist nowhere else — they were built for Guild warriors only.
+    </p>
+
+    <p>
+      You will explore modules that teach discipline,  
+      strategy, psychology, and the Golden Formula itself —  
+      the ancient pattern that reveals the Dragon’s weak points.
+    </p>
+
+    <p>
+      Here, you are not alone.  
+      You are surrounded by others walking the same path,  
+      learning the same lessons, and preparing for the same arena.
+    </p>
+
+    <p>
+      Together, we rise.  
+      Together, we learn.  
+      Together, we conquer the Dragon.
+    </p>
+
+    <!-- NEW: GUILD FAMILY HALL LINK -->
+    <a class="link-button" onclick="go('guild/guild-fam.html')">Enter the Guild Family Hall</a>
+
+    <p style="margin-top: 15px; font-size: 1rem; opacity: 0.85;">
+      The Guild Family Hall is where members gather to talk, learn, grow,  
+      share insights, and communicate with each other.  
+      It is the heart of our community — the chamber of connection.
+    </p>
+
+    <!-- BACK LINK -->
+    <a class="back-link" onclick="go('index.html')">← Back to Hall</a>
+
+  </div>
+
+  <!-- BACKGROUND FIX -->
+  <script>
+    const bg = document.body.getAttribute("data-bg");
+    if (bg) {
+      document.body.style.backgroundImage = `url("image/${bg}")`;
+    }
+  </script>
+
+</body>
+</html>
