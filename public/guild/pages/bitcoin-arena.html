@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guild Live – Bitcoin Arena</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/guild-live.css">
+</head>
+<body>
+
+  <header class="live-header">
+    <h1>Bitcoin Arena</h1>
+    <p>Live Bitcoin and its primary war party.</p>
+  </header>
+
+  <!-- FULL BTC CHART -->
+  <section class="btc-main">
+    <h2>BTCUSDT – Live</h2>
+    <div class="chart-wrap">
+      <iframe
+        src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=5&theme=dark&symboledit=1&saveimage=0&toolbarbg=0&studies=[]&hideideas=1"
+        frameborder="0"
+        class="full-chart">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- BTC‑LINKED GRID -->
+  <section class="btc-linked">
+    <h2>Bitcoin‑Linked Names</h2>
+    <div class="ticker-grid">
+
+      <!-- MSTR -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">MSTR</span>
+          <span class="ticker-name">MicroStrategy</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSTR&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('MSTR')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- COIN -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">COIN</span>
+          <span class="ticker-name">Coinbase</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:COIN&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('COIN')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- MARA -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">MARA</span>
+          <span class="ticker-name">Marathon Digital</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MARA&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('MARA')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- RIOT -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">RIOT</span>
+          <span class="ticker-name">Riot Platforms</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIOT&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('RIOT')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- CLSK -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">CLSK</span>
+          <span class="ticker-name">CleanSpark</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:CLSK&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('CLSK')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- HUT -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">HUT</span>
+          <span class="ticker-name">Hut 8</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HUT&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('HUT')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- BITF -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">BITF</span>
+          <span class="ticker-name">Bitfarms</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol:NASDAQ:BITF&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('BITF')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- HIVE -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">HIVE</span>
+          <span class="ticker-name">HIVE Digital</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HIVE&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('HIVE')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- BTBT -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">BTBT</span>
+          <span class="ticker-name">Bit Digital</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BTBT&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('BTBT')">
+          Options Chain
+        </button>
+      </div>
+
+      <!-- WGMI -->
+      <div class="ticker-card">
+        <div class="ticker-header">
+          <span class="ticker-symbol">WGMI</span>
+          <span class="ticker-name">Bitcoin Miners ETF</span>
+        </div>
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=AMEX:WGMI&interval=5&theme=dark&hideideas=1"
+          frameborder="0"
+          class="mini-chart">
+        </iframe>
+        <button class="options-btn" onclick="openOptions('WGMI')">
+          Options Chain
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function openOptions(symbol) {
+      // Point this to wherever you actually check options.
+      // For now, this is a generic placeholder pattern.
+      const url = "https://www.barchart.com/stocks/quotes/" +
+                  encodeURIComponent(symbol) +
+                  "/options";
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
