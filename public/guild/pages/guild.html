@@ -5,26 +5,22 @@
   <title>THE GUILD HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
-  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <link rel="icon" type="image/png" href="/public/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/public/assets/image/the-guild.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+  <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
   <script src="/guild/assets/js/guild-engine.js" defer></script>
 </head>
 
-<body style="background:url('/guild/assets/image/Hall.jpg') no-repeat center center fixed; background-size:cover;">
+<body>
 
   <header class="guild-top-bar">
-
     <div class="guild-logo-title">
       <span class="guild-mark">⛨</span>
       <span class="guild-title">THE GUILD</span>
     </div>
 
     <nav class="guild-nav-links">
-
       <button class="nav-btn" onclick="go('/guild/pages/golden-rules.html')">Golden Rules</button>
       <button class="nav-btn" onclick="go('/guild/pages/guild-discipline.html')">Guild Discipline</button>
       <button class="nav-btn" onclick="go('/guild/pages/glossary.html')">Glossary</button>
@@ -36,7 +32,6 @@
           <button onclick="go('/guild/pages/training-hall.html')">Formula Training</button>
         </div>
       </div>
-
     </nav>
   </header>
 
@@ -48,11 +43,10 @@
     <h1 class="scroll-title">THE GUILD HALL</h1>
   </div>
 
-  <div class="vertical-stack" style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
+  <div class="vertical-stack">
 
     <div class="guild-btn" onclick="toggleDrop('drop1')">
-      🛡️ Inside the Guild
-      <span class="arrow">›</span>
+      🛡️ Inside the Guild <span class="arrow">›</span>
     </div>
     <div id="drop1" class="dropdown-panel">
       <p>The chamber where your identity is forged.</p>
@@ -60,8 +54,7 @@
     </div>
 
     <div class="guild-btn" onclick="toggleDrop('drop2')">
-      ⚔️ Training Hall
-      <span class="arrow">›</span>
+      ⚔️ Training Hall <span class="arrow">›</span>
     </div>
     <div id="drop2" class="dropdown-panel">
       <p>Your path of mastery begins here.</p>
@@ -69,8 +62,7 @@
     </div>
 
     <div class="guild-btn" onclick="toggleDrop('drop3')">
-      🏛️ Guild Family
-      <span class="arrow">›</span>
+      🏛️ Guild Family <span class="arrow">›</span>
     </div>
     <div id="drop3" class="dropdown-panel">
       <p>The shared hall of all members — your brothers and sisters.</p>
@@ -83,7 +75,6 @@
     function toggleDrop(id) {
       document.getElementById(id).classList.toggle("open");
     }
-
     function go(page) {
       window.location.href = page;
     }
