@@ -32,9 +32,8 @@ async function login() {
     localStorage.setItem("guild_member", "paid");
     localStorage.setItem("guild_username", "Guild Master");
     localStorage.setItem("guild_role", "guild_master");
-    localStorage.setItem("guild_unlock_until", Date.now() + 9999999999);
 
-    go("/pages/guild.html");
+    go("/guild/pages/guild.html");
     return;
   }
 
