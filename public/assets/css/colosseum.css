@@ -1,0 +1,172 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+/* GUILD FONT */
+@font-face {
+  font-family: 'Guild';
+  src: url('fonts/Guild.ttf') format('truetype');
+}
+
+body, #scene-text, #scene-next {
+  font-family: 'Guild', serif;
+}
+
+/* Fullscreen background image */
+#scene-bg {
+  position: fixed;
+  inset: 0;
+  background-size: 110% 110%;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease, transform 22s ease;
+  transform: scale(1.05);
+  z-index: -3;
+}
+
+/* Black overlay */
+#scene-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(0,0,0,0.4), rgba(0,0,0,0.92));
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  z-index: -2;
+}
+
+/* Ember layer */
+#ember-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Ember particle */
+.ember {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffb347;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px rgba(255, 179, 71, 0.9);
+  animation: ember-rise 6s linear infinite;
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-140vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+/* Text container */
+#scene-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.97);
+  width: 82%;
+  max-width: 950px;
+
+  /* FIXED: More room so button never overlaps */
+  max-height: 60vh;
+  padding-bottom: 60px;
+
+  overflow-y: auto;
+  color: #D4AF37;
+  font-size: 1.22rem;
+  line-height: 1.8;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+  opacity: 0;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+#scene-text p {
+  margin: 0 0 14px;
+}
+
+#scene-text p:last-child {
+  margin-bottom: 0;
+}
+
+#scene-text.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Glowing emphasis */
+.glow {
+  color: #ffdd7a;
+  text-shadow: 0 0 14px rgba(255, 221, 122, 0.9);
+  font-weight: 700;
+}
+
+/* Continue button */
+#scene-next {
+  position: absolute;
+
+  /* FIXED: Lowered so it never touches text */
+  bottom: 20px;
+
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 32px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1.2s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 0 0 rgba(212,175,55,0.0);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+#scene-next.show {
+  opacity: 1;
+}
+
+#scene-next:hover {
+  background: rgba(212,175,55,0.18);
+  box-shadow: 0 0 18px rgba(212,175,55,0.7);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(212,175,55,0.0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(212,175,55,0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(212,175,55,0.0);
+  }
+}
+
+/* Finale text */
+#scene-text h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
