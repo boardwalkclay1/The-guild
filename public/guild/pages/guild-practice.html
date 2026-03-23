@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Practice Room</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- GLOBAL GUILD STYLE -->
+  <link rel="stylesheet" href="guild-style.css">
+
+  <!-- PRACTICE PAGE STYLE -->
+  <link rel="stylesheet" href="practice-style.css">
+
+  <!-- GUILD ENGINE -->
+  <script src="guild-engine.js" defer></script>
+</head>
+
+<!-- CORRECT BACKGROUND -->
+<body data-bg="gladiator-forum.jpg">
+
+  <!-- CINEMATIC LAYERS -->
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
+
+  <!-- TOP NAV -->
+  <div class="top-nav">
+    <a onclick="go('guild.html')">Inner Hall</a>
+    <a onclick="go('options-chain.html')">Options Chain</a>
+    <a onclick="go('options-approval-module.html')">Approval Module</a>
+    <a onclick="go('broker-access-simulator.html')">Broker Access</a>
+  </div>
+
+  <h1>Guild Practice Room</h1>
+  <h2>Choose Your Training Module</h2>
+
+  <div class="step-box">
+    <h2>Options Practice Room</h2>
+    <p class="hint">Learn how to enter and exit contracts step-by-step.</p>
+    <a class="nav-btn" onclick="go('options-practice.html')">Start Practice</a>
+  </div>
+
+  <div class="step-box">
+    <h2>Options Approval Module</h2>
+    <p class="hint">Simulate the real options approval form.</p>
+    <a class="nav-btn" onclick="go('options-approval-module.html')">Begin Module</a>
+  </div>
+
+  <div class="step-box">
+    <h2>Broker Access Simulator</h2>
+    <p class="hint">Practice unlocking options on any broker.</p>
+    <a class="nav-btn" onclick="go('broker-access-simulator.html')">Open Simulator</a>
+  </div>
+
+  <div class="step-box">
+    <h2>Options Chain Observatory</h2>
+    <p class="hint">Study the chain like a Guild trader.</p>
+    <a class="nav-btn" onclick="go('options-chain.html')">Enter Observatory</a>
+  </div>
+
+  <div class="step-box">
+    <h2>Even Numbers Training</h2>
+    <p class="hint">Master the Guild’s even-number discipline.</p>
+    <a class="nav-btn" onclick="go('even-numbers.html')">Train Even Levels</a>
+  </div>
+
+  <div class="step-box">
+    <h2>Trade Alive Engine Room</h2>
+    <p class="hint">Watch contracts move in real time.</p>
+    <a class="nav-btn" href="https://boardwalkclay1.github.io/Trade_Alive/" target="_blank">Open Engine Room</a>
+  </div>
+
+</body>
+</html>
