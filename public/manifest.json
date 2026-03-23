@@ -1,0 +1,23 @@
+{
+  "name": "The Guild",
+  "short_name": "Guild",
+  "start_url": "/GUILD/index.html",
+  "scope": "/GUILD/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#D4AF37",
+
+  "icons": [
+    {
+      "src": "/GUILD/the-guild.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/GUILD/the-guild.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
