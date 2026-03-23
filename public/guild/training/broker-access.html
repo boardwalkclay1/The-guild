@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Broker Access Simulator – Guild Training</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../guild-style.css">
+
+<style>
+body {
+  background: #000;
+  color: #e6c37f;
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  padding: 0;
+}
+
+.training-container {
+  width: 92%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.module-card {
+  background: rgba(20,20,20,0.85);
+  border: 1px solid #e6c37f;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 25px 0;
+}
+
+.broker-btn {
+  display: block;
+  background: rgba(40,40,40,0.9);
+  border: 1px solid #e6c37f;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 12px 0;
+  text-decoration: none;
+  color: #e6c37f;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.broker-btn:hover {
+  background: rgba(230,195,127,0.15);
+}
+
+.step {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.expand {
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid #e6c37f;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2 {
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+
+<body>
+
+<div class="training-container">
+  <h1>Broker Access Simulator</h1>
+  <p style="text-align:center; opacity:0.8;">
+    Practice unlocking options trading on real brokers.  
+    This module prepares you for the real world.
+  </p>
+
+  <a class="broker-btn" onclick="loadSim('Chase')">Chase</a>
+  <a class="broker-btn" onclick="loadSim('Webull')">Webull</a>
+  <a class="broker-btn" onclick="loadSim('Robinhood')">Robinhood</a>
+  <a class="broker-btn" onclick="loadSim('TD Ameritrade')">TD Ameritrade</a>
+
+  <div id="simArea"></div>
+</div>
+
+<script>
+const modules = {
+  "Chase": {
+    steps: [
+      "Open Chase → Self‑Directed Investing",
+      "Go to Account Management",
+      "Tap Trading Permissions",
+      "Enable Options Trading",
+      "Fill out approval form",
+      "Submit → Approved"
+    ],
+    notes: "Chase requires a self-directed investing account. Approval is usually instant."
+  },
+
+  "Webull": {
+    steps: [
+      "Open Webull",
+      "Tap Menu → Options Trading",
+      "Fill out questionnaire",
+      "Select Level 2",
+      "Submit → Approved"
+    ],
+    notes: "Webull approvals are fast. Level 2 is required for buying calls and puts."
+  },
+
+  "Robinhood": {
+    steps: [
+      "Open Robinhood",
+      "Tap Investing → Options",
+      "Fill out form",
+      "Submit → Approved"
+    ],
+    notes: "Robinhood approvals depend on your experience and financial profile."
+  },
+
+  "TD Ameritrade": {
+    steps: [
+      "Open TD Ameritrade",
+      "Go to Client Services",
+      "Tap My Profile",
+      "Request Options Approval",
+      "Fill out form",
+      "Submit → Approved"
+    ],
+    notes: "TD Ameritrade may take 24 hours to approve depending on your answers."
+  }
+};
+
+function loadSim(broker) {
+  const mod = modules[broker];
+
+  let html = `
+    <div class='module-card'>
+      <h2>${broker} Simulator</h2>
+
+      <div class='expand' onclick="toggleDetails()">
+        Show Steps ▼
+      </div>
+
+      <div id="details" class="hidden">
+  `;
+
+  mod.steps.forEach(s => {
+    html += `<p class='step'>• ${s}</p>`;
+  });
+
+  html += `
+        <p style='margin-top:20px; opacity:0.8;'>${mod.notes}</p>
+      </div>
+
+      <p style='text-align:center; margin-top:20px;'>You are now approved.</p>
+    </div>
+  `;
+
+  document.getElementById("simArea").innerHTML = html;
+}
+
+function toggleDetails() {
+  const box = document.getElementById("details");
+  box.classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
