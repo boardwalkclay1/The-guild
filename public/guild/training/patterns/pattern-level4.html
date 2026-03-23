@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Training Hall – Chart Patterns Level 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../guild-style.css" />
+  <style>
+    body { background:#000; font-family:'Uncial Antiqua',serif; padding:20px 10px 40px; color:#D4AF37; text-align:center; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; background:url("../../image/coolguild.jpg") center/cover no-repeat; opacity:0.22; z-index:-1; filter:grayscale(30%); }
+    .training-shell { max-width:1000px; margin:0 auto; padding:20px; background:rgba(0,0,0,0.85); border-radius:18px; border:2px solid #8B0000; box-shadow:0 0 30px rgba(255,69,0,0.45); }
+    h1 { text-transform:uppercase; letter-spacing:0.18em; font-size:1.8rem; margin-bottom:8px; }
+    .subtitle { font-size:0.95rem; opacity:0.9; margin-bottom:20px; }
+    .top-row,.bottom-row { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:stretch; margin-bottom:20px; }
+    .canvas-wrap { flex:1 1 260px; min-width:260px; background:#050505; border-radius:14px; border:1px solid #444; padding:10px; position:relative; }
+    #patternCanvas { width:100%; height:260px; background:#050505; border-radius:10px; cursor:pointer; }
+    .info-panel,.status-panel { flex:1 1 260px; min-width:260px; background:rgba(10,10,10,0.95); border-radius:14px; border:1px solid #444; padding:16px; text-align:left; font-size:0.95rem; }
+    .info-title { font-size:1rem; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; }
+    .step-label { font-size:0.85rem; opacity:0.85; margin-bottom:6px; }
+    .controls-row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:10px; }
+    .gold-btn { padding:10px 16px; border-radius:10px; border:none; background:#D4AF37; color:#000; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; font-size:0.8rem; transition:0.2s ease; }
+    .gold-btn:hover { background:#8B6B2C; color:#fff; }
+    .gold-btn.secondary { background:#222; color:#D4AF37; border:1px solid #555; }
+    .gold-btn.secondary:hover { background:#444; }
+    .fire-timer { width:40px; height:220px; border-radius:999px; border:2px solid #FF4500; background:radial-gradient(circle at 50% 0%,#8B0000,#000); position:relative; overflow:hidden; }
+    .fire-fill { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,#FF0000,#FFD700); height:100%; transition:height 0.08s linear; }
+    .fire-label { position:absolute; top:6px; width:100%; text-align:center; font-size:0.6rem; letter-spacing:0.12em; }
+    .status-row { display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem; }
+    .status-label { opacity:0.8; font-size:0.85rem; }
+    .status-value { font-weight:600; }
+    .feedback { margin-top:8px; min-height:40px; font-size:0.9rem; }
+    .nav-link { display:block; margin-top:24px; color:#D4AF37; text-decoration:none; text-transform:uppercase; letter-spacing:0.1em; font-size:0.8rem; }
+    .nav-link:hover { color:#fff; }
+    #tutorialOverlay { position:fixed; inset:0; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; z-index:50; }
+    .tutorial-box { max-width:520px; padding:26px; background:rgba(5,5,5,0.96); border-radius:16px; border:2px solid #FF4500; text-align:left; font-size:0.95rem; }
+    .tutorial-box h2 { margin-top:0; font-size:1.3rem; text-transform:uppercase; letter-spacing:0.12em; }
+    .tutorial-step { margin-bottom:10px; }
+    .tutorial-btn { margin-top:16px; padding:10px 18px; border-radius:10px; border:none; background:#FF4500; color:#000; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; font-size:0.8rem; }
+    .tutorial-btn:hover { background:#8B0000; color:#fff; }
+  </style>
+</head>
+<body class="fade-in">
+
+  <div class="training-shell">
+    <h1>CHART PATTERNS – LEVEL 4</h1>
+    <div class="subtitle">
+      The Pattern Arena. Fast movement, fake patterns, real decisions.
+    </div>
+
+    <div class="top-row">
+      <div class="canvas-wrap">
+        <canvas id="patternCanvas"></canvas>
+      </div>
+
+      <div class="info-panel">
+        <div class="info-title">Arena Rules</div>
+        <p id="patternTask">
+          Patterns will form quickly. Some are real, some are fake. When you see a real pattern complete, click the breakout point.
+        </p>
+        <div class="step-label">Important:</div>
+        <p id="patternDescription">
+          You will not be told which pattern it is. You must recognize the shape, ignore the noise, and strike at the right moment.
+        </p>
+        <div class="controls-row">
+          <button class="gold-btn" id="btnNextPattern">Next Arena Trial</button>
+          <button class="gold-btn secondary" id="btnHint">Hint</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="fire-timer">
+        <div class="fire-fill" id="fireFill"></div>
+        <div class="fire-label">TIME</div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-row">
+          <div class="status-label">Level</div>
+          <div class="status-value">4 – Pattern Arena</div>
+        </div>
+        <div class="status-row">
+          <div class="status-label">Trials Completed</div>
+          <div class="status-value" id="statusCompleted">0 / 4</div>
+        </div>
+        <div class="status-row">
+          <div class="status-label">Accuracy</div>
+          <div class="status-value" id="statusAccuracy">–</div>
+        </div>
+        <div class="feedback" id="feedbackBox">
+          This is the arena. Read fast. Strike clean. Ignore the fakes.
+        </div>
+      </div>
+    </div>
+
+    <a class="nav-link" href="../../training-hall.html">← Back to Training Hall</a>
+  </div>
+
+  <div id="tutorialOverlay">
+    <div class="tutorial-box">
+      <h2>Level 4 – Pattern Arena</h2>
+      <p class="tutorial-step">
+        This is no longer a classroom. Patterns will appear quickly, with noise and fake structures.
+      </p>
+      <p class="tutorial-step">
+        Your job: click the breakout point of real patterns. If you click noise or fake structure, you lose accuracy.
+      </p>
+      <p class="tutorial-step">
+        This is where you prove you can see through chaos and act with precision.
+      </p>
+      <button class="tutorial-btn" id="btnBeginTraining">Enter the Pattern Arena</button>
+    </div>
+  </div>
+
+  <script src="../js/patterns-level4.js"></script>
+</body>
+</html>
