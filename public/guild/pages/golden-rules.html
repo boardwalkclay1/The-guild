@@ -5,161 +5,19 @@
   <title>The Golden Rules</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-
-  <!-- PAGE CSS -->
-  <style>
-    body {
-      margin: 0;
-      background: url("/assets/image/Armory.jpg") center/cover no-repeat fixed;
-      color: #D4AF37;
-      font-family: system-ui, sans-serif;
-      padding: 40px 20px;
-    }
-
-    .rules-container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(0,0,0,0.78);
-      border: 2px solid #D4AF37;
-      border-radius: 14px;
-      padding: 40px;
-    }
-
-    .warning-banner {
-      background: rgba(212,175,55,0.15);
-      border: 1px solid #D4AF37;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 25px;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    .warning-banner a {
-      color: #D4AF37;
-      font-weight: bold;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    .rules-title {
-      font-family: "Uncial Antiqua", serif;
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 20px;
-      letter-spacing: 0.08em;
-    }
-
-    .intro {
-      text-align: center;
-      font-size: 1.1rem;
-      opacity: 0.9;
-      margin-bottom: 35px;
-      line-height: 1.6;
-    }
-
-    .rules-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .rule {
-      background: rgba(212,175,55,0.15);
-      border: 1px solid #D4AF37;
-      padding: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      transition: background 0.2s;
-    }
-
-    .rule:hover {
-      background: rgba(212,175,55,0.3);
-    }
-
-    #rule-details {
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(0,0,0,0.65);
-      border: 1px solid #D4AF37;
-      border-radius: 10px;
-      display: none;
-    }
-
-    #rule-details h2 {
-      font-family: "Marcellus SC", serif;
-      margin-bottom: 10px;
-    }
-
-    #rule-details p {
-      line-height: 1.6;
-      font-size: 1.05rem;
-    }
-  </style>
-
-  <!-- PAGE JS -->
-  <script>
-    const ruleText = {
-      1: {
-        title: "Study Before You Trade",
-        body: "You don’t enter the arena blind. Every ticker has a personality, a rhythm, a history. Study it before you strike."
-      },
-      2: {
-        title: "Respect Even Numbers",
-        body: "Even numbers are magnets. They attract price, volume, and emotion. Never ignore them."
-      },
-      3: {
-        title: "The Trend Is Your Commander",
-        body: "You don’t fight the river. You move with it. The trend is the commander — obey it."
-      },
-      4: {
-        title: "Always Know Your Exit",
-        body: "A trade without an exit is a trap. Define your escape before you enter."
-      },
-      5: {
-        title: "Quantity",
-        body: "Size is a weapon. Too much and it kills you. Too little and it wastes your time. Master your size."
-      },
-      6: {
-        title: "The Weekdays",
-        body: "Every day has a personality. Monday sets tone. Tuesday confirms. Wednesday expands. Thursday tests. Friday punishes the greedy."
-      }
-    };
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const rules = document.querySelectorAll(".rule");
-      const details = document.getElementById("rule-details");
-
-      rules.forEach(rule => {
-        rule.addEventListener("click", () => {
-          const id = rule.dataset.rule;
-          const data = ruleText[id];
-
-          details.innerHTML = `
-            <h2>${data.title}</h2>
-            <p>${data.body}</p>
-          `;
-          details.style.display = "block";
-          details.scrollIntoView({ behavior: "smooth" });
-        });
-      });
-    });
-  </script>
-
+  <link rel="stylesheet" href="/guild/assets/css/golden-rules.css">
+  <script src="/guild/assets/js/golden-rules.js" defer></script>
 </head>
 
 <body>
 
   <div class="rules-container">
 
+    <!-- WARNING HEADER -->
     <div class="warning-banner">
       ⚠️ <strong>WARNING:</strong>  
       These rules are meaningless without  
-      <a href="/guild/pages/guild-discipline.html">Golden Discipline</a>.  
+      <a href="/guild/pages/guild-discipline.html" class="link-discipline">Golden Discipline</a>.  
       Without discipline, these rules may as well not exist.
     </div>
 
@@ -167,19 +25,22 @@
 
     <p class="intro">
       These are the core laws of Guild trading.  
-      They are not suggestions — they are commandments.  
-      Break them, and the market will break you.
+      They are not suggestions — they are commandments.
     </p>
 
+    <!-- RULE LIST (titles only) -->
     <div class="rules-list">
+
       <div class="rule" data-rule="1">1. Study Before You Trade</div>
       <div class="rule" data-rule="2">2. Respect Even Numbers</div>
       <div class="rule" data-rule="3">3. The Trend Is Your Commander</div>
       <div class="rule" data-rule="4">4. Always Know Your Exit</div>
       <div class="rule" data-rule="5">5. Quantity</div>
       <div class="rule" data-rule="6">6. The Weekdays</div>
+
     </div>
 
+    <!-- JS will inject dropdowns here -->
     <div id="rule-details"></div>
 
   </div>
