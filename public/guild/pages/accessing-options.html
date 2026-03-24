@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <title>Accessing Options – Gateway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FAVICON + APP ICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
+  <!-- FONTS + GLOBAL GUILD CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
   <style>
@@ -20,7 +27,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("guild-background-gold.png") center/cover no-repeat;
+      background: url("/assets/image/guild-background-gold.png") center/cover no-repeat;
       opacity: 0.18;
       z-index: -3;
       filter: grayscale(40%);
@@ -285,7 +292,6 @@
 </head>
 
 <body>
-
   <canvas id="matrixCanvas"></canvas>
 
   <div class="hero">
