@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Moving Averages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #000;
+      font-family: "Marcellus SC", serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
+    /* Fog */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    /* Title */
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-family: "Uncial Antiqua", serif;
+    }
+
+    /* Paragraphs */
+    p {
+      max-width: 800px;
+      margin: 0 auto 25px;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+
+    /* Divider */
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
+    /* Module Navigation */
+    .module-nav {
+      margin-top: 60px;
+      padding: 30px;
+      background: rgba(0,0,0,0.65);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .module-nav h2 {
+      font-family: "Uncial Antiqua", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .module-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .module-links a {
+      display: block;
+      padding: 12px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      border-radius: 10px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .module-links a:hover {
+      background: rgba(212,175,55,0.3);
+      color: #fff;
+    }
+
+    /* Back Link */
+    .back {
+      display: block;
+      margin-top: 50px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .back:hover { color: #fff; }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <h1>Moving Averages</h1>
+
+  <p>
+    Moving averages are the cleanest way to see the true direction of the market.  
+    They smooth out the noise and reveal the underlying path price has been traveling.
+  </p>
+
+  <p>
+    When a shorter moving average crosses above a longer one, it forms the  
+    <strong>Golden Cross</strong> — a powerful sign of strength and continuation.  
+    When it crosses below, you get the <strong>Death Cross</strong>, a warning of weakness.
+  </p>
+
+  <div class="divider"></div>
+
+  <p>
+    You will learn to watch how these lines move, how they cross, and how they guide your entries and exits.  
+    They are not magic — they are structure.  
+    And structure is what removes fear and brings clarity.
+  </p>
+
+  <p class="disclaimer">
+    This rule is still under construction.  
+    More visuals, examples, and live chart breakdowns will be added.
+  </p>
+
+  <!-- MODULE NAVIGATION -->
+  <div class="module-nav">
+    <h2>Continue Your Training</h2>
+
+    <div class="module-links">
+      <a href="golden-rules.html">Golden Rules</a>
+      <a href="candlesticks.html">Candlestick Mastery</a>
+      <a href="market-structure.html">Market Structure</a>
+      <a href="timeframes.html">Timeframe Mastery</a>
+      <a href="moving-averages.html">Moving Averages</a>
+      <a href="patterns.html">Chart Patterns</a>
+      <a href="risk-management.html">Risk Management</a>
+    </div>
+  </div>
+
+  <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
+
+</body>
+</html>
