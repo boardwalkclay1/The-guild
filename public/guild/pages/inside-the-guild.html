@@ -5,9 +5,11 @@
   <title>INSIDE THE GUILD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="icon" type="image/png" href="the-guild.png" />
-  <link rel="apple-touch-icon" href="the-guild.png" />
+  <!-- FAVICON + APP ICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
 
+  <!-- FONTS + CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
 </head>
@@ -144,7 +146,7 @@
   <script>
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
-      document.body.style.backgroundImage = `url('image/' + bg)`;
+      document.body.style.backgroundImage = `url('/assets/image/${bg}')`;
     }
   </script>
 
