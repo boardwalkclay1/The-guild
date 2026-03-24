@@ -5,7 +5,14 @@
   <title>DEATH STRIKE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/GUILD/the-guild.png">
+  <link rel="apple-touch-icon" href="/GUILD/the-guild.png">
+  <link rel="manifest" href="/GUILD/manifest.json">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Guild CSS -->
+  <link rel="stylesheet" href="/GUILD/assets/css/guild-style.css" />
 
   <style>
     body {
@@ -17,11 +24,12 @@
       text-align: center;
     }
 
+    /* DRAGON BACKGROUND */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: url("image/coolguild.jpg") center/cover no-repeat;
+      background: url("/GUILD/assets/image/guild-dragon-face.jpg") center/cover no-repeat;
       opacity: 0.22;
       z-index: -1;
       filter: grayscale(30%);
@@ -75,7 +83,7 @@
       font-size: 1rem;
     }
 
-    /* ARENA ENTRY BUTTON */
+    /* ARENA ENTRY */
     .arena-entry {
       margin-top: 60px;
       padding: 30px;
@@ -100,6 +108,7 @@
       border-radius: 12px;
       transition: 0.25s ease;
       font-size: 1.1rem;
+      cursor: pointer;
     }
 
     .arena-entry-btn:hover {
@@ -213,7 +222,7 @@
       There, you will learn to strike at the MID under time pressure.
     </p>
 
-    <a class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</a>
+    <div class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</div>
   </div>
 
   <!-- POPUP -->
@@ -225,8 +234,7 @@
       <p>You must buy at the MID. You must sell at the MID.</p>
       <p>You start with $100. If you hesitate, you fail.</p>
 
-      <!-- FIXED PATH -->
-      <a class="popup-btn" href="arena/arena-level1.html">ENTER LEVEL 1</a>
+      <a class="popup-btn" href="/GUILD/pages/arena/arena-level1.html">ENTER LEVEL 1</a>
 
       <div class="popup-btn" onclick="closeArenaPopup()" style="background:#333; color:#D4AF37; margin-left:10px;">
         CANCEL
