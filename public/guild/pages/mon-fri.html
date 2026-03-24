@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Weekly Decay Room – Mon–Fri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <style>
+    body {
+      background: #000;
+      font-family: "Marcellus SC", serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-family: "Uncial Antiqua", serif;
+    }
+
+    h2 {
+      font-family: "Uncial Antiqua", serif;
+      letter-spacing: 0.12em;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 25px;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+
+    .chart-box {
+      margin: 30px auto;
+      max-width: 500px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #D4AF37;
+      border-radius: 12px;
+      padding: 20px;
+      animation: glowPulse 4s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+      50% { box-shadow: 0 0 25px rgba(212,175,55,0.4); }
+      100% { box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+    }
+
+    .decay-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #D4AF37;
+      font-size: 0.95rem;
+    }
+
+    .decay-table th, .decay-table td {
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      padding: 8px;
+      text-align: center;
+    }
+
+    .decay-table th {
+      background: rgba(212,175,55,0.15);
+    }
+
+    .checklist {
+      max-width: 500px;
+      margin: 0 auto 20px;
+      text-align: left;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .finder-box {
+      max-width: 400px;
+      margin: 20px auto;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #D4AF37;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .finder-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 8px;
+      border: 1px solid #D4AF37;
+      background: #000;
+      color: #D4AF37;
+    }
+
+    .finder-box button {
+      width: 100%;
+      padding: 12px;
+      background: #D4AF37;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .result-box {
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+
+    /* Module Navigation */
+    .module-nav {
+      margin-top: 60px;
+      padding: 30px;
+      background: rgba(0,0,0,0.65);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .module-nav h2 {
+      font-family: "Uncial Antiqua", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .module-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .module-links a {
+      display: block;
+      padding: 12px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      border-radius: 10px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .module-links a:hover {
+      background: rgba(212,175,55,0.3);
+      color: #fff;
+    }
+
+    .back {
+      display: block;
+      margin-top: 50px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .back:hover { color: #fff; }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <h1>The Weekly Decay Room</h1>
+
+  <p class="intro">
+    Welcome to the chamber where you learn one of the most powerful truths in options trading:
+    <strong>contracts lose value every single day of the week.</strong>
+    This decay is predictable, reliable, and exploitable — and the Guild uses it to strike with precision.
+  </p>
+
+  <p>
+    As the week moves from Monday to Friday, options contracts become cheaper and cheaper.
+    And on Friday, they reach their lowest point — the moment the Guild calls
+    <strong>The Million Dollar Window.</strong>
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Why Friday Is Our Strike Day</h2>
+
+  <p>
+    On Friday, contracts are so cheap that traders buy them in massive quantities.
+    When the market moves, it moves <strong>hard</strong> — because thousands of traders are loading up on
+    low‑priced contracts at the same time.
+  </p>
+
+  <p>
+    This is where the Guild finds its opportunity.
+    Contracts worth $5, $4, $3, $2, even $1 become available — and you can buy
+    <strong>hundreds</strong> or even <strong>thousands</strong>.
+  </p>
+
+  <p>
+    When the market makes its move, those cheap contracts multiply fast.
+    This is the foundation of the Million Dollar Move.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Weekly Contract Decay Examples</h2>
+
+  <p>
+    Below are four diagrams showing how a contract’s price typically falls from Monday to Friday.
+    These are examples — not predictions — designed to help you understand the rhythm.
+  </p>
+
+  <!-- EXAMPLE SET 1 -->
+  <div class="chart-box">
+    <h3>Example 1: A $5 Contract</h3>
+    <table class="decay-table">
+      <tr><th>Day</th><th>Price</th></tr>
+      <tr><td>Monday</td><td>$5.00</td></tr>
+      <tr><td>Tuesday</td><td>$4.00</td></tr>
+      <tr><td>Wednesday</td><td>$3.00</td></tr>
+      <tr><td>Thursday</td><td>$2.00</td></tr>
+      <tr><td>Friday</td><td>$1.00</td></tr>
+    </table>
+  </div>
+
+  <div class="chart-box">
+    <h3>Example 2: A $50 Contract</h3>
+    <table class="decay-table">
+      <tr><th>Day</th><th>Price</th></tr>
+      <tr><td>Monday</td><td>$50.00</td></tr>
+      <tr><td>Tuesday</td><td>$40.00</td></tr>
+      <tr><td>Wednesday</td><td>$30.00</td></tr>
+      <tr><td>Thursday</td><td>$20.00</td></tr>
+      <tr><td>Friday</td><td>$10.00</td></tr>
+    </table>
+  </div>
+
+  <!-- EXAMPLE SET 2 -->
+  <div class="chart-box">
+    <h3>Example 3: A $12 Contract</h3>
+    <table class="decay-table">
+      <tr><th>Day</th><th>Price</th></tr>
+      <tr><td>Monday</td><td>$12.00</td></tr>
+      <tr><td>Tuesday</td><td>$9.00</td></tr>
+      <tr><td>Wednesday</td><td>$6.00</td></tr>
+      <tr><td>Thursday</td><td>$4.00</td></tr>
+      <tr><td>Friday</td><td>$2.00</td></tr>
+    </table>
+  </div>
+
+  <div class="chart-box">
+    <h3>Example 4: A $2 Contract</h3>
+    <table class="decay-table">
+      <tr><th>Day</th><th>Price</th></tr>
+      <tr><td>Monday</td><td>$2.00</td></tr>
+      <tr><td>Tuesday</td><td>$1.50</td></tr>
+      <tr><td>Wednesday</td><td>$1.00</td></tr>
+      <tr><td>Thursday</td><td>$0.50</td></tr>
+      <tr><td>Friday</td><td>$0.20</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Friday Strike Checklist</h2>
+
+  <ul class="checklist">
+    <li>✔ Contract is cheap (under $5 preferred)</li>
+    <li>✔ Volume is high</li>
+    <li>✔ Market direction is clear</li>
+    <li>✔ Support or resistance level is nearby</li>
+    <li>✔ You are emotionally calm and disciplined</li>
+    <li>✔ You understand the risk of zeroing out</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>Friday Contract Finder</h2>
+
+  <div class="finder-box">
+    <label>Contract Price ($):</label>
+    <input type="number" id="contractPrice" placeholder="e.g., 1.00" />
+
+    <label>Your Budget ($):</label>
+    <input type="number" id="budget" placeholder="e.g., 200" />
+
+    <button onclick="calculateContracts()">Calculate</button>
+
+    <div id="result" class="result-box"></div>
+  </div>
+
+  <script>
+    function calculateContracts() {
+      const price = parseFloat(document.getElementById("contractPrice").value);
+      const budget = parseFloat(document.getElementById("budget").value);
+
+      if (!price || !budget || price <= 0 || budget <= 0) {
+        document.getElementById("result").innerHTML = "Enter valid numbers.";
+        return;
+      }
+
+      const contracts = Math.floor(budget / price);
+      document.getElementById("result").innerHTML =
+        `You can buy <strong>${contracts}</strong> contracts.`;
+    }
+  </script>
+
+  <div class="divider"></div>
+
+  <h2>Understanding the Pattern</h2>
+
+  <p>
+    • Contracts lose value every day  
+    • The closer you get to expiration, the faster they decay  
+    • Friday contracts are the cheapest  
+    • Cheap contracts = more quantity  
+    • More quantity = more multiplication  
+    • More multiplication = the Million Dollar Move  
+  </p>
+
+  <p>
+    This is the rhythm of the market.  
+    This is the weekly cycle we take advantage of.  
+    This is the window where discipline meets opportunity.
+  </p>
+
+  <!-- MODULE NAVIGATION -->
+  <div class="module-nav">
+    <h2>Continue Your Training</h2>
+
+    <div class="module-links">
+      <a href="golden-rules.html">Golden Rules</a>
+      <a href="moving-averages.html">Moving Averages</a>
+      <a href="candlesticks.html">Candlestick Mastery</a>
+      <a href="market-structure.html">Market Structure</a>
+      <a href="patterns.html">Chart Patterns</a>
+      <a href="risk-management.html">Risk Management</a>
+      <a href="timeframes.html">Timeframe Mastery</a>
+    </div>
+  </div>
+
+  <a class="back" href="guild.html">← Back to Inner Hall</a>
+
+</body>
+</html>
