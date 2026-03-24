@@ -5,11 +5,12 @@
   <title>The Guild Family</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- FAVICON + APP ICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
   <!-- GLOBAL CINEMATIC CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
-
-  <!-- GUILD ENGINE -->
-  <script src="guild-engine.js" defer></script>
 
   <style>
     body {
@@ -154,8 +155,8 @@
       Together, we conquer the Dragon.
     </p>
 
-    <!-- NEW: GUILD FAMILY HALL LINK -->
-    <a class="link-button" onclick="go('guild/guild-fam.html')">Enter the Guild Family Hall</a>
+    <!-- GUILD FAMILY HALL LINK -->
+    <a class="link-button" onclick="go('/guild/pages/guild-fam.html')">Enter the Guild Family Hall</a>
 
     <p style="margin-top: 15px; font-size: 1rem; opacity: 0.85;">
       The Guild Family Hall is where members gather to talk, learn, grow,  
@@ -164,7 +165,7 @@
     </p>
 
     <!-- BACK LINK -->
-    <a class="back-link" onclick="go('index.html')">← Back to Hall</a>
+    <a class="back-link" onclick="go('/guild/pages/index.html')">← Back to Hall</a>
 
   </div>
 
@@ -172,7 +173,13 @@
   <script>
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
-      document.body.style.backgroundImage = `url("image/${bg}")`;
+      document.body.style.backgroundImage = `url('/assets/image/${bg}')`;
+    }
+  </script>
+
+  <script>
+    function go(page) {
+      window.location.href = page;
     }
   </script>
 
