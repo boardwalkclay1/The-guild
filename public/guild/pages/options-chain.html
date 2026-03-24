@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Options Chain – Guild Training</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Guild Stylesheet -->
+  <link rel="stylesheet" href="guild-style.css" />
+
+  <!-- FORCE GOLD BACKGROUND -->
+  <style>
+    body {
+      background: #000;
+      font-family: system-ui, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      text-align: center;
+      color: #D4AF37;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+
+    h1, h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      color: #D4AF37;
+    }
+
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      color: #D4AF37;
+    }
+
+    .chain-box {
+      max-width: 750px;
+      margin: 25px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #8B6B2C;
+      text-align: left;
+    }
+
+    .chain-box h3 {
+      margin-top: 0;
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      color: #D4AF37;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #8B6B2C;
+      text-align: center;
+    }
+
+    th {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      color: #D4AF37;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <h1>The Options Chain</h1>
+
+  <p>
+    The options chain is the **control panel of your trading life**.
+    This is the screen you will use to enter and exit every single trade inside the Guild.
+    Once you learn how to read it, you will understand exactly where the Million Dollar Move begins.
+  </p>
+
+  <p>
+    Every contract you will ever buy — every $1 → $10 move — starts right here.
+    This is the screen you must become familiar with, because you will use it for the rest of your life.
+  </p>
+
+  <h2>What the Options Chain Shows You</h2>
+
+  <p>
+    The chain displays every available contract for a stock:
+  </p>
+
+  <p>
+    • Strike price  
+    • Expiration date  
+    • Bid price  
+    • Ask price  
+    • Last traded price  
+    • Volume  
+    • Open interest  
+    • Implied volatility  
+    • Greeks (Delta, Theta, etc.)  
+  </p>
+
+  <p>
+    But inside the Guild, we simplify everything down to the **contract price** — because that is what multiplies.
+  </p>
+
+  <h2>Example Options Chain (Using Our $1 → $10 Move)</h2>
+
+  <div class="chain-box">
+    <h3>Sample Call Options Chain</h3>
+
+    <table>
+      <tr>
+        <th>Strike</th>
+        <th>Bid</th>
+        <th>Ask</th>
+        <th>Last</th>
+        <th>Volume</th>
+        <th>Open Interest</th>
+      </tr>
+
+      <tr>
+        <td>100</td>
+        <td>$0.95</td>
+        <td>$1.05</td>
+        <td>$1.00</td>
+        <td>1,240</td>
+        <td>3,500</td>
+      </tr>
+
+      <tr>
+        <td>101</td>
+        <td>$0.70</td>
+        <td>$0.80</td>
+        <td>$0.75</td>
+        <td>980</td>
+        <td>2,900</td>
+      </tr>
+
+      <tr style="background: rgba(212,175,55,0.15);">
+        <td><strong>102</strong></td>
+        <td><strong>$0.95</strong></td>
+        <td><strong>$1.05</strong></td>
+        <td><strong>$1.00</strong></td>
+        <td><strong>1,800</strong></td>
+        <td><strong>4,200</strong></td>
+      </tr>
+
+      <tr>
+        <td colspan="6" style="text-align:left; padding-top:10px;">
+          <strong>This is the contract we buy at $1.</strong>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="6" style="text-align:left;">
+          When the stock moves, this contract jumps from <strong>$1 → $10</strong>.
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="6" style="text-align:left;">
+          That is the Million Dollar Move.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Why This Screen Matters</h2>
+
+  <p>
+    This is the screen where:
+  </p>
+
+  <p>
+    • You choose your contract  
+    • You enter your trade  
+    • You exit your trade  
+    • You watch the contract multiply  
+    • You execute the Million Dollar Move  
+  </p>
+
+  <p>
+    You must familiarize yourself with this screen now.
+    This is the interface you will use to make money for the rest of your life.
+  </p>
+
+  <p>
+    Inside the Guild, you will learn how to:
+  </p>
+
+  <p>
+    • Pick the right strike  
+    • Pick the right expiration  
+    • Find the lowest contract price  
+    • Enter at the perfect moment  
+    • Exit at the perfect moment  
+  </p>
+
+  <p>
+    Everything begins with the options chain.
+  </p>
+
+  <a class="back" href="index.html">← Back to Hall</a>
+
+  <!-- GOLD COIN BURST SCRIPT -->
+  <script>
+    document.addEventListener("click", (e) => {
+      for (let i = 0; i < 12; i++) {
+        const coin = document.createElement("div");
+        coin.className = "coin";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 40;
+
+        coin.style.left = e.clientX + "px";
+        coin.style.top = e.clientY + "px";
+
+        coin.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+        coin.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 900);
+      }
+    });
+  </script>
+
+</body>
+</html>
