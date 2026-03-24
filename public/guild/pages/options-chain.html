@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Options Chain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/GUILD/assets/css/guild-page.css">
+</head>
+
+<body style="
+  background: url('/GUILD/assets/image/strategy-chamber.jpg') no-repeat center center fixed;
+  background-size: cover;
+">
+
+  <div class="page-container">
+
+    <h1 class="page-title">Options Chain</h1>
+
+    <div class="tradingview-widget-container">
+      <div id="options-chain"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-options-chain.js" async>
+      {
+        "symbol": "NASDAQ:AAPL",
+        "width": "100%",
+        "height": "600",
+        "locale": "en",
+        "colorTheme": "dark",
+        "isTransparent": false
+      }
+      </script>
+    </div>
+
+  </div>
+
+</body>
+</html>
