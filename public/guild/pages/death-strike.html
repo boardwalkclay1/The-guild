@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FAVICON + PWA -->
-  <link rel="icon" type="image/png" href="/assets/image/the-guild.png">
-  <link rel="apple-touch-icon" href="/assets/image/the-guild.png">
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#000000">
 
@@ -28,58 +28,18 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("/assets/image/coolguild.jpg") center/cover no-repeat;
+      background: url("/guild/assets/image/coolguild.jpg") center/cover no-repeat;
       opacity: 0.22;
       z-index: -1;
       filter: grayscale(30%);
     }
 
-    .gold-scroll {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px;
-      background: rgba(0,0,0,0.75);
-      border: 2px solid #8B6B2C;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(212,175,55,0.4);
-    }
-
-    h1 {
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    h2 {
+    iframe.arena-frame {
+      width: 100%;
+      height: 900px;
+      border: none;
       margin-top: 40px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 1.3rem;
-    }
-
-    p {
-      max-width: 750px;
-      margin: 0 auto 20px;
-      text-align: left;
-      font-size: 1.05rem;
-    }
-
-    .example-box {
-      max-width: 750px;
-      margin: 25px auto;
-      padding: 20px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.7);
-      border: 1px solid #8B6B2C;
-      text-align: left;
-    }
-
-    .example-box h3 {
-      margin-top: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 1rem;
+      display: none;
     }
 
     .arena-entry {
@@ -164,11 +124,10 @@
 
     <p>
       The Death Strike is the Guild’s sacred technique — the moment when a contract’s price multiplies with violent speed.
-      This is not theory. This is not luck. This is precision, timing, and discipline.
+      This is precision, timing, and discipline.
     </p>
 
     <p>
-      Before you enter the Arena, you must understand the power you are about to wield.
       A contract is not the stock — it is the <strong>price of possibility</strong>.
     </p>
 
@@ -192,22 +151,19 @@
     <h2>The Truth Behind Explosive Contracts</h2>
 
     <p>
-      Contracts do not stop at $10. They can explode to $40, $100, $300, even $1,000.
-      These moves happen every single weekday. The only question is whether you can strike at the right moment.
+      Contracts can explode to $40, $100, $300, even $1,000.
+      These moves happen every weekday. The question is whether you can strike at the right moment.
     </p>
 
     <p>
       Inside the Arena, you will learn to buy at the <strong>MID</strong>, sell at the <strong>MID</strong>,
-      and survive the fire timer. You will face real‑time prices, widening spreads, and the pressure of the clock.
+      and survive the fire timer.
     </p>
   </div>
 
   <div class="arena-entry">
     <h2>Your First Trial Awaits</h2>
-    <p>
-      You will begin in the Calm Market — Level 1 of the Arena Tower.
-      There, you will learn to strike at the MID under time pressure.
-    </p>
+    <p>You will begin in the Calm Market — Level 1 of the Arena Tower.</p>
 
     <a class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</a>
   </div>
@@ -220,7 +176,7 @@
       <p>You must buy at the MID. You must sell at the MID.</p>
       <p>You start with $100. If you hesitate, you fail.</p>
 
-      <a class="popup-btn" href="/guild/pages/training/arena/arena-level1.html">ENTER LEVEL 1</a>
+      <div class="popup-btn" onclick="startArena()">ENTER LEVEL 1</div>
 
       <div class="popup-btn" onclick="closeArenaPopup()" style="background:#333; color:#D4AF37; margin-left:10px;">
         CANCEL
@@ -228,12 +184,23 @@
     </div>
   </div>
 
+  <!-- ARENA IFRAMES -->
+  <iframe id="arena1" class="arena-frame" src="/guild/pages/training/arena/arena-level1.html"></iframe>
+  <iframe id="arena2" class="arena-frame" src="/guild/pages/training/arena/arena-level2.html"></iframe>
+  <iframe id="arena3" class="arena-frame" src="/guild/pages/training/arena/arena-level3.html"></iframe>
+  <iframe id="arena4" class="arena-frame" src="/guild/pages/training/arena/arena-level4.html"></iframe>
+
   <script>
     function openArenaPopup() {
       document.getElementById("arenaPopup").style.display = "flex";
     }
     function closeArenaPopup() {
       document.getElementById("arenaPopup").style.display = "none";
+    }
+
+    function startArena() {
+      closeArenaPopup();
+      document.getElementById("arena1").style.display = "block";
     }
   </script>
 
