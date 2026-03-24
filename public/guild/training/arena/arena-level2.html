@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Arena – Level 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="../guild-style.css" />
+  <link rel="stylesheet" href="arena.css" />
+</head>
+
+<body class="fade-in arena-body">
+
+  <div class="fog-layer"></div>
+  <div class="pillar pillar-left"></div>
+  <div class="pillar pillar-right"></div>
+
+  <div class="fire-timer">
+    <div class="fire-fill" id="fireFill"></div>
+    <div class="fire-label">TIME</div>
+  </div>
+
+  <div class="balance-panel">
+    <div class="balance-label">GOLD BALANCE</div>
+    <div class="balance-value" id="balanceValue">$100.00</div>
+    <div class="level-label">LEVEL 2 – REAL MARKET</div>
+  </div>
+
+  <div class="arena-panel">
+    <div class="gold-scroll open arena-title-scroll">
+      <h1 class="scroll-title">THE ARENA – LEVEL 2</h1>
+      <p class="arena-subtitle">
+        The market moves faster now. Spreads widen. Your discipline is tested.
+      </p>
+    </div>
+
+    <div class="price-display">
+      <div class="price-row">
+        <span class="price-label">BID</span>
+        <span class="price-value" id="bidValue">$0.90</span>
+      </div>
+      <div class="price-row mid-row">
+        <span class="price-label">MID</span>
+        <span class="price-value mid" id="midValue">$1.00</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">ASK</span>
+        <span class="price-value" id="askValue">$1.10</span>
+      </div>
+    </div>
+
+    <div class="arena-actions">
+      <button class="gold-bar-btn" id="openTicketBtn">OK — OPEN ORDER TICKET</button>
+    </div>
+
+    <div class="order-module" id="orderModule">
+      <div class="order-header">
+        <span id="orderPhaseLabel">BUY PHASE</span>
+      </div>
+      <div class="order-body">
+        <div class="order-row">
+          <label>Contracts to <span id="orderActionWord">BUY</span></label>
+          <input type="number" id="contractsInput" min="1" step="1" />
+        </div>
+        <div class="order-row">
+          <label>Price per contract</label>
+          <input type="number" id="priceInput" step="0.01" />
+        </div>
+        <div class="order-row order-summary">
+          <span>Total Cost / Proceeds:</span>
+          <span id="orderTotal">$0.00</span>
+        </div>
+        <div class="order-message" id="orderMessage"></div>
+        <button class="gold-bar-btn confirm-btn" id="confirmOrderBtn">
+          CONFIRM ORDER
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="arena-overlay" id="overlay">
+    <div class="overlay-content" id="overlayContent"></div>
+  </div>
+
+  <a class="arena-back-link" href="../inside-the-guild.html">← Back to Inside the Guild</a>
+
+  <script src="arena-level2.js"></script>
+</body>
+</html>
