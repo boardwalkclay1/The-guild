@@ -5,15 +5,19 @@
   <title>TRAINING HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="icon" type="image/png" href="the-guild.png" />
-  <link rel="apple-touch-icon" href="the-guild.png" />
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/GUILD/the-guild.png" />
+  <link rel="apple-touch-icon" href="/GUILD/the-guild.png" />
+  <link rel="manifest" href="/GUILD/manifest.json" />
+  <meta name="theme-color" content="#000000">
 
+  <!-- FONTS + CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+  <link rel="stylesheet" href="/GUILD/assets/css/guild-style.css">
 </head>
 
 <!-- ARCADIUM BACKGROUND -->
-<body data-bg="/assets/image/Arcadium.jpg">
+<body data-bg="/GUILD/assets/image/Arcadium.jpg">
 
   <!-- CINEMATIC LAYERS -->
   <div class="fog-layer"></div>
@@ -36,8 +40,8 @@
 
   <!-- TOP NAV — RULES + DISCIPLINE ONLY -->
   <div class="top-nav">
-    <a onclick="go('golden-rules.html')">📜 Golden Rules</a>
-    <a onclick="go('guild-discipline.html')">⚔️ Discipline</a>
+    <a onclick="go('/GUILD/pages/golden-rules.html')">📜 Golden Rules</a>
+    <a onclick="go('/GUILD/pages/guild-discipline.html')">⚔️ Discipline</a>
   </div>
 
   <!-- PAGE TITLE -->
@@ -55,7 +59,7 @@
     </div>
     <div id="drop1" class="dropdown-panel">
       <p>Learn the major patterns that reveal momentum, reversals, and continuation setups.</p>
-      <button class="enter-btn" onclick="go('chart-patterns.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/chart-patterns.html')">ENTER</button>
     </div>
 
     <!-- MOVING AVERAGES -->
@@ -65,7 +69,7 @@
     </div>
     <div id="drop2" class="dropdown-panel">
       <p>Understand the 9, 20, 50, and 200 — the backbone of trend reading.</p>
-      <button class="enter-btn" onclick="go('moving-averages.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/moving-averages.html')">ENTER</button>
     </div>
 
     <!-- SUPPORT & RESISTANCE -->
@@ -75,7 +79,7 @@
     </div>
     <div id="drop3" class="dropdown-panel">
       <p>Master the levels where battles are won and lost.</p>
-      <button class="enter-btn" onclick="go('support-resistance.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/support-resistance.html')">ENTER</button>
     </div>
 
     <!-- LOOK LEFT -->
@@ -85,7 +89,7 @@
     </div>
     <div id="drop4" class="dropdown-panel">
       <p>The ancient rule of chart reading — the past reveals the future.</p>
-      <button class="enter-btn" onclick="go('look-left.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/look-left.html')">ENTER</button>
     </div>
 
     <!-- EVEN NUMBERS -->
@@ -95,7 +99,7 @@
     </div>
     <div id="drop5" class="dropdown-panel">
       <p>Why whole numbers act like magnets and walls in price action.</p>
-      <button class="enter-btn" onclick="go('even-numbers.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/even-numbers.html')">ENTER</button>
     </div>
 
     <!-- MON-FRI -->
@@ -105,7 +109,7 @@
     </div>
     <div id="drop6" class="dropdown-panel">
       <p>Each day of the week has its own rhythm. Learn the flow.</p>
-      <button class="enter-btn" onclick="go('mon-fri.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/mon-fri.html')">ENTER</button>
     </div>
 
     <!-- NOT GUESSING -->
@@ -115,7 +119,7 @@
     </div>
     <div id="drop7" class="dropdown-panel">
       <p>The Guild’s core philosophy — precision over prediction.</p>
-      <button class="enter-btn" onclick="go('not-guessing.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/not-guessing.html')">ENTER</button>
     </div>
 
     <!-- OPTIONS CHAIN -->
@@ -125,7 +129,7 @@
     </div>
     <div id="drop8" class="dropdown-panel">
       <p>Learn how to read the chain like a Guildmaster.</p>
-      <button class="enter-btn" onclick="go('options-chain.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/options-chain.html')">ENTER</button>
     </div>
 
     <!-- OPTIONS APPROVAL -->
@@ -135,7 +139,7 @@
     </div>
     <div id="drop9" class="dropdown-panel">
       <p>Get approved for options trading the right way.</p>
-      <button class="enter-btn" onclick="go('options-approval-module.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/options-approval-module.html')">ENTER</button>
     </div>
 
     <!-- ACCESSING OPTIONS -->
@@ -145,7 +149,7 @@
     </div>
     <div id="drop10" class="dropdown-panel">
       <p>How to unlock options trading inside your broker.</p>
-      <button class="enter-btn" onclick="go('accessing-options.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/accessing-options.html')">ENTER</button>
     </div>
 
     <!-- BROKERS -->
@@ -155,7 +159,7 @@
     </div>
     <div id="drop11" class="dropdown-panel">
       <p>Choosing the right broker for your journey.</p>
-      <button class="enter-btn" onclick="go('brokers.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/brokers.html')">ENTER</button>
     </div>
 
     <!-- BROKER ACCESS SIMULATOR -->
@@ -165,7 +169,7 @@
     </div>
     <div id="drop12" class="dropdown-panel">
       <p>Practice navigating broker menus before risking real money.</p>
-      <button class="enter-btn" onclick="go('broker-access-simulator.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/broker-access-simulator.html')">ENTER</button>
     </div>
 
     <!-- DEATH STRIKE -->
@@ -175,7 +179,7 @@
     </div>
     <div id="drop13" class="dropdown-panel">
       <p>The advanced strike technique formerly known as the Million Dollar Move.</p>
-      <button class="enter-btn" onclick="go('death-strike.html')">ENTER</button>
+      <button class="enter-btn" onclick="go('/GUILD/pages/death-strike.html')">ENTER</button>
     </div>
 
   </div>
@@ -184,7 +188,7 @@
   <script>
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
-      document.body.style.backgroundImage = `url("image/${bg}")`;
+      document.body.style.backgroundImage = `url("${bg}")`;
     }
   </script>
 
@@ -198,9 +202,9 @@
 
     function openGF() {
       if (localStorage.getItem("gf_subscriber") === "paid") {
-        window.location.href = "Gf/simulator.html";
+        window.location.href = "/GUILD/pages/Gf/simulator.html";
       } else {
-        window.location.href = "gf-paywall.html";
+        window.location.href = "/GUILD/pages/gf-paywall.html";
       }
     }
 
