@@ -24,12 +24,11 @@
       text-align: center;
     }
 
-    /* DRAGON BACKGROUND */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: url("/guild/assets/image/guild-dragon-face.jpg") center/cover no-repeat;
+      background: url("/guild/assets/image/coolguild.jpg") center/cover no-repeat;
       opacity: 0.22;
       z-index: -1;
       filter: grayscale(30%);
@@ -83,7 +82,7 @@
       font-size: 1rem;
     }
 
-    /* ARENA ENTRY */
+    /* ARENA ENTRY BUTTON */
     .arena-entry {
       margin-top: 60px;
       padding: 30px;
@@ -222,7 +221,7 @@
       There, you will learn to strike at the MID under time pressure.
     </p>
 
-    <div class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</div>
+    <a class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</a>
   </div>
 
   <!-- POPUP -->
@@ -234,7 +233,7 @@
       <p>You must buy at the MID. You must sell at the MID.</p>
       <p>You start with $100. If you hesitate, you fail.</p>
 
-      <a class="popup-btn" href="/guild/pages/arena/arena-level1.html">ENTER LEVEL 1</a>
+      <a class="popup-btn" href="/guild/pages/training/arena/arena-level1.html">ENTER LEVEL 1</a>
 
       <div class="popup-btn" onclick="closeArenaPopup()" style="background:#333; color:#D4AF37; margin-left:10px;">
         CANCEL
