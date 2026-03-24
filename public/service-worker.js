@@ -1,5 +1,5 @@
 // ===============================
-// GUILD SERVICE WORKER — v10
+// GUILD SERVICE WORKER — v10 (FIXED)
 // Cloudflare Pages Safe • Static-Only Caching
 // ===============================
 
@@ -7,65 +7,65 @@ const CACHE_NAME = "guild-cache-v10";
 
 // STATIC ASSETS ONLY — NEVER HTML ROUTES THAT CHANGE
 const ASSETS = [
-  "/GUILD/index.html",
-  "/GUILD/the-guild.png",
-  "/GUILD/favicon.ico",
-  "/GUILD/manifest.json",
+  "/guild/index.html",
+  "/the-guild.png",
+  "/favicon.ico",
+  "/manifest.json",
 
-  "/GUILD/guild-style.css",
-  "/GUILD/guild-engine.js",
+  "/guild/assets/css/guild-style.css",
+  "/guild/assets/js/guild-engine.js",
 
   // Core Guild pages
-  "/GUILD/guild.html",
-  "/GUILD/guild-entry.html",
-  "/GUILD/why-join.html",
-  "/GUILD/having-second-thoughts.html",
-  "/GUILD/golden-rules.html",
-  "/GUILD/guild-discipline.html",
-  "/GUILD/inside-the-guild.html",
-  "/GUILD/guild-family.html",
-  "/GUILD/training-hall.html",
-  "/GUILD/gf-paywall.html",
-  "/GUILD/guild-goldenformula.html",
-  "/GUILD/arena-secrets.html",
+  "/guild/pages/guild.html",
+  "/guild/pages/guild-entry.html",
+  "/guild/pages/why-join.html",
+  "/guild/pages/having-second-thoughts.html",
+  "/guild/pages/golden-rules.html",
+  "/guild/pages/guild-discipline.html",
+  "/guild/pages/inside-the-guild.html",
+  "/guild/pages/guild-family.html",
+  "/guild/pages/training-hall.html",
+  "/guild/pages/gf-paywall.html",
+  "/guild/pages/guild-goldenformula.html",
+  "/guild/pages/arena-secrets.html",
 
   // Training modules
-  "/GUILD/chart-patterns.html",
-  "/GUILD/training/patterns/pattern-level1.html",
-  "/GUILD/training/patterns/pattern-level2.html",
-  "/GUILD/training/patterns/pattern-level3.html",
-  "/GUILD/training/patterns/pattern-level4.html",
+  "/guild/pages/chart-patterns.html",
+  "/guild/pages/training/patterns/pattern-level1.html",
+  "/guild/pages/training/patterns/pattern-level2.html",
+  "/guild/pages/training/patterns/pattern-level3.html",
+  "/guild/pages/training/patterns/pattern-level4.html",
 
-  "/GUILD/training/accessing-options.html",
-  "/GUILD/training/accessing-options/banks.html",
-  "/GUILD/training/accessing-options/brokers.html",
-  "/GUILD/training/accessing-options/simulator.html",
+  "/guild/pages/training/accessing-options.html",
+  "/guild/pages/training/accessing-options/banks.html",
+  "/guild/pages/training/accessing-options/brokers.html",
+  "/guild/pages/training/accessing-options/simulator.html",
 
   // Training JS
-  "/GUILD/training/js/patterns-level1.js",
-  "/GUILD/training/js/patterns-level2.js",
-  "/GUILD/training/js/patterns-level3.js",
-  "/GUILD/training/js/patterns-level4.js",
-  "/GUILD/training/js/accessing-options.js",
+  "/guild/assets/js/patterns-level1.js",
+  "/guild/assets/js/patterns-level2.js",
+  "/guild/assets/js/patterns-level3.js",
+  "/guild/assets/js/patterns-level4.js",
+  "/guild/assets/js/accessing-options.js",
 
   // Icons
-  "/GUILD/icons/icon-door.svg",
-  "/GUILD/icons/icon-dragon.svg",
-  "/GUILD/icons/icon-arena.svg",
-  "/GUILD/icons/icon-forge.svg",
-  "/GUILD/icons/icon-purse.svg",
+  "/guild/assets/icons/icon-door.svg",
+  "/guild/assets/icons/icon-dragon.svg",
+  "/guild/assets/icons/icon-arena.svg",
+  "/guild/assets/icons/icon-forge.svg",
+  "/guild/assets/icons/icon-purse.svg",
 
-  // Backgrounds (corrected extensions)
-  "/GUILD/image/Arcadium.jpg",
-  "/GUILD/image/Armory.jpg",
-  "/GUILD/image/Aurum-Veritas.jpg",
-  "/GUILD/image/Porta-Imperii.jpg",
-  "/GUILD/image/Tributum.jpg",
-  "/GUILD/image/Vestry.jpg",
-  "/GUILD/image/apotheosis-chamber.jpg",
-  "/GUILD/image/gladiator-forum.jpg",
-  "/GUILD/image/strategy-chamber.jpg",
-  "/GUILD/guild-background-gold.png"
+  // Backgrounds
+  "/guild/assets/image/Arcadium.jpg",
+  "/guild/assets/image/Armory.jpg",
+  "/guild/assets/image/Aurum-Veritas.jpg",
+  "/guild/assets/image/Porta-Imperii.jpg",
+  "/guild/assets/image/Tributum.jpg",
+  "/guild/assets/image/Vestry.jpg",
+  "/guild/assets/image/apotheosis-chamber.jpg",
+  "/guild/assets/image/gladiator-forum.jpg",
+  "/guild/assets/image/strategy-chamber.jpg",
+  "/guild/assets/image/guild-background-gold.png"
 ];
 
 // INSTALL — cache static assets
