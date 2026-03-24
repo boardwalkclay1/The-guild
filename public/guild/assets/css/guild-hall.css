@@ -5,8 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url("/public/assets/image/the-guild.png") no-repeat center center fixed;
-  background-size: cover;
+  background: black; /* No image — HTML controls the background */
   font-family: "Marcellus SC", serif;
   color: #D4AF37;
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
@@ -24,21 +23,21 @@ body::after {
   z-index: 1;
 }
 
-/* Floating smoke layer */
+/* Soft atmospheric haze (NO IMAGE) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("https://i.imgur.com/8fK4YcC.png") repeat;
-  opacity: 0.15;
-  animation: smokeMove 22s linear infinite;
+  background: rgba(255,255,255,0.03); /* subtle haze */
+  opacity: 0.12;
+  animation: hazeMove 22s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
 
-@keyframes smokeMove {
+@keyframes hazeMove {
   from { transform: translateY(0); }
-  to { transform: translateY(-600px); }
+  to { transform: translateY(-300px); }
 }
 
 /* =============================== */
