@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Support & Resistance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="guild-style.css" />
+  <style>
+    body {
+      background: #000;
+      font-family: system-ui, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.65;
+      color: #D4AF37;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("guild-background-gold.png") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    p {
+      max-width: 750px;
+      margin: 0 auto 20px;
+      text-align: left;
+      font-size: 1rem;
+    }
+    .divider {
+      width: 80%;
+      max-width: 500px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 40px auto;
+      opacity: 0.7;
+    }
+    .disclaimer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    a.back:hover { color: #fff; }
+  </style>
+</head>
+<body class="fade-in">
+
+  <h1>Support & Resistance</h1>
+
+  <p>
+    Support and resistance are the backbone of price movement.  
+    Support is where price tends to stop falling.  
+    Resistance is where price tends to stop rising.
+  </p>
+
+  <p>
+    These levels are where decisions are made — where buyers and sellers fight.  
+    Knowing these levels gives you a map of where price is likely to react.
+  </p>
+
+  <div class="divider"></div>
+
+  <p>
+    When you combine support and resistance with the other Golden Rules,  
+    you stop feeling lost and start seeing structure.  
+    You will know where you are in the move — not just guessing in the dark.
+  </p>
+
+  <p class="disclaimer">
+    This rule is still under construction.  
+    More diagrams and live examples will be added.
+  </p>
+
+  <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
+
+</body>
+</html>
