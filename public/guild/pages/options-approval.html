@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Options Approval Module – The Guild</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="guild-style.css">
+
+<style>
+body {
+  background: #000;
+  color: #e6c37f;
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  width: 92%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+
+.module {
+  background: rgba(20,20,20,0.85);
+  border: 1px solid #e6c37f;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 17px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  background: #111;
+  color: #e6c37f;
+  border: 1px solid #e6c37f;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #e6c37f;
+  color: #000;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #f5dca0;
+}
+
+#resultBox {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(15,15,15,0.9);
+  border: 1px solid #e6c37f;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="section">
+  <h1 style="text-align:center;">Options Approval Module</h1>
+  <p style="text-align:center; opacity:0.8;">This is a real, interactive simulation of the options approval form.</p>
+
+  <div class="module">
+
+    <label>1. Investment Experience</label>
+    <select id="experience">
+      <option value="">Select…</option>
+      <option value="good">Good</option>
+      <option value="extensive">Extensive</option>
+      <option value="limited">Limited</option>
+      <option value="none">None</option>
+    </select>
+
+    <label>2. Trading Frequency</label>
+    <select id="frequency">
+      <option value="">Select…</option>
+      <option value="frequent">Frequently</option>
+      <option value="occasional">Occasionally</option>
+      <option value="rare">Rarely</option>
+    </select>
+
+    <label>3. Risk Tolerance</label>
+    <select id="risk">
+      <option value="">Select…</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+
+    <label>4. Annual Income</label>
+    <select id="income">
+      <option value="">Select…</option>
+      <option value="50">Over $50,000</option>
+      <option value="100">Over $100,000</option>
+      <option value="25">Under $50,000</option>
+    </select>
+
+    <label>5. Net Worth</label>
+    <select id="networth">
+      <option value="">Select…</option>
+      <option value="50">Over $50,000</option>
+      <option value="100">Over $100,000</option>
+      <option value="25">Under $50,000</option>
+    </select>
+
+    <label>6. Liquid Net Worth</label>
+    <select id="liquid">
+      <option value="">Select…</option>
+      <option value="25">Over $25,000</option>
+      <option value="50">Over $50,000</option>
+      <option value="10">Under $25,000</option>
+    </select>
+
+    <label>7. Employment Status</label>
+    <select id="employment">
+      <option value="">Select…</option>
+      <option value="employed">Employed</option>
+      <option value="self">Self‑Employed</option>
+      <option value="unemployed">Unemployed</option>
+    </select>
+
+    <label>8. Why do you want options approval?</label>
+    <select id="reason">
+      <option value="">Select…</option>
+      <option value="hedge">To hedge and manage risk</option>
+      <option value="income">To generate income</option>
+      <option value="speculate">To speculate</option>
+    </select>
+
+    <button onclick="submitForm()">Submit for Approval</button>
+
+    <div id="resultBox"></div>
+
+  </div>
+</div>
+
+<script>
+function submitForm() {
+  const exp = document.getElementById("experience").value;
+  const freq = document.getElementById("frequency").value;
+  const risk = document.getElementById("risk").value;
+  const income = document.getElementById("income").value;
+  const net = document.getElementById("networth").value;
+  const liquid = document.getElementById("liquid").value;
+  const emp = document.getElementById("employment").value;
+  const reason = document.getElementById("reason").value;
+
+  if (!exp || !freq || !risk || !income || !net || !liquid || !emp || !reason) {
+    alert("Complete all fields to continue.");
+    return;
+  }
+
+  let score = 0;
+
+  if (exp === "good" || exp === "extensive") score++;
+  if (freq === "frequent") score++;
+  if (risk === "high") score++;
+  if (income >= 50) score++;
+  if (net >= 50) score++;
+  if (liquid >= 25) score++;
+  if (emp === "employed" || emp === "self") score++;
+  if (reason === "hedge") score++;
+
+  const resultBox = document.getElementById("resultBox");
+  resultBox.style.display = "block";
+
+  if (score >= 6) {
+    resultBox.innerHTML = "<strong>APPROVED</strong><br>You meet the Guild‑grade criteria for options trading.";
+  } else {
+    resultBox.innerHTML = "<strong>NOT APPROVED</strong><br>Your answers do not meet the minimum requirements.";
+  }
+}
+</script>
+
+</body>
+</html>
