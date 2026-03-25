@@ -1,0 +1,199 @@
+/* PAGE BACKGROUND */
+body {
+  margin: 0;
+  background: url("/guild/assets/image/guild-art.jpg") center/cover no-repeat fixed;
+  color: #D4AF37;
+  font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* SOFT DARKEN LAYER TO IMPROVE TEXT READABILITY */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55); /* adjust 0.45–0.65 depending on how bright the art is */
+  z-index: -1;
+}
+
+/* UNIVERSAL CONTENT WRAPPER */
+.guild-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  backdrop-filter: blur(2px); /* subtle blur to separate text from background */
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.rune {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid #D4AF37;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.12em;
+  box-shadow: 0 0 25px rgba(212,175,55,0.6);
+}
+
+.hero-title {
+  font-family: 'Uncial Antiqua', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  opacity: 0.95;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.journey {
+  margin-top: 16px;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFD700;
+}
+
+/* DROPDOWN PANEL */
+.panel {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: rgba(0,0,0,0.65);
+  border-radius: 16px;
+  border: 2px solid #8B6B2C;
+  padding: 16px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.panel-title {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.95rem;
+}
+
+.chevron {
+  transition: transform 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.panel-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.panel-body-inner {
+  padding-top: 8px;
+  border-top: 1px solid rgba(212,175,55,0.25);
+}
+
+.panel-item strong,
+.term {
+  color: #FFD700;
+}
+
+/* EXPLANATION BOX */
+.explain {
+  max-width: 800px;
+  margin: 30px auto 0;
+  background: rgba(0,0,0,0.65);
+  border-radius: 16px;
+  border: 1px solid #444;
+  padding: 20px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.explain h2 {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 1rem;
+  color: #D4AF37;
+}
+
+/* BUTTON ROW */
+.path-row {
+  max-width: 800px;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.path-btn {
+  flex: 1 1 260px;
+  max-width: 360px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 2px solid #D4AF37;
+  background: rgba(0,0,0,0.65);
+  color: #D4AF37;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.path-btn:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255,215,0,0.5);
+}
+
+.path-btn span {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin-top: 6px;
+  text-transform: none;
+}
+
+/* GLOSSARY MODAL */
+#glossaryModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.glossary-box {
+  max-width: 420px;
+  width: 90%;
+  background: rgba(5,5,5,0.96);
+  border-radius: 16px;
+  border: 2px solid #D4AF37;
+  padding: 20px;
+}
