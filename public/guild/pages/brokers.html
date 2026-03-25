@@ -5,8 +5,14 @@
   <title>Brokers – Guild Setup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
+
   <!-- Guild Stylesheet -->
-  <link rel="stylesheet" href="guild-style.css" />
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
   <!-- Guild Font -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
@@ -24,7 +30,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("image/coolguild.jpg") center/cover no-repeat;
+      background: url("/public/assets/image/guild-corky.jpg") center/cover no-repeat;
       opacity: 0.22;
       z-index: -1;
       filter: grayscale(30%);
@@ -129,7 +135,6 @@
       color: #fff;
     }
 
-    /* Burger menu */
     .burger {
       position: fixed;
       top: 16px;
@@ -192,6 +197,7 @@
     }
   </style>
 </head>
+
 
 <body class="fade-in">
 
