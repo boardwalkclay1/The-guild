@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Banks – Setup Module</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PAGE CSS -->
+  <link rel="stylesheet" href="/assets/css/access-options.css">
+
+  <!-- XP + BADGES + BANK LOGIC -->
+  <script src="/assets/js/xp.js" defer></script>
+  <script src="/assets/js/badges.js" defer></script>
+  <script src="/assets/js/banks.js" defer></script>
+</head>
+
+<body style="background:url('/assets/image/guild-art.jpg') center/cover no-repeat fixed;">
+
+  <div class="guild-content">
+
+    <div class="hero">
+      <div class="rune">₿</div>
+      <div class="hero-title">Bank Setup</div>
+      <div class="journey">Choose Your Bank</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Select Your Bank</div>
+      <select id="bankSelect" style="width:100%;padding:12px;border-radius:10px;margin-top:10px;">
+        <option value="">-- Choose a Bank --</option>
+        <option value="https://www.chase.com">Chase</option>
+        <option value="https://www.bankofamerica.com">Bank of America</option>
+        <option value="https://www.wellsfargo.com">Wells Fargo</option>
+        <option value="https://www.regions.com">Regions</option>
+      </select>
+    </div>
+
+    <div id="bankEmbed" style="margin-top:30px;display:none;">
+      <iframe id="bankFrame" style="width:100%;height:600px;border:2px solid #D4AF37;border-radius:12px;"></iframe>
+    </div>
+
+    <div id="directions" style="display:none;margin-top:30px;">
+      <h2 style="text-align:center;">Setup Steps</h2>
+      <ol id="steps" style="line-height:1.8;">
+        <li>Create or log into your bank account</li>
+        <li>Verify your identity</li>
+        <li>Add your debit card or routing number</li>
+        <li>Enable transfers</li>
+        <li>Connect your broker</li>
+        <li>Confirm account activation</li>
+      </ol>
+    </div>
+
+    <button id="completeBtn" style="display:none;margin:30px auto 0;padding:12px 20px;border-radius:10px;border:2px solid #D4AF37;background:black;color:#D4AF37;font-size:1rem;cursor:pointer;">
+      Mark Bank Setup Complete
+    </button>
+
+    <div id="xpMessage" style="margin-top:20px;font-size:1.1rem;text-align:center;display:none;">
+      🎉 You earned <strong>150 XP</strong> and unlocked the <strong>Bank Setup Badge</strong>!
+    </div>
+
+  </div>
+
+</body>
+</html>
