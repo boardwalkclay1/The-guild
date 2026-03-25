@@ -1,30 +1,20 @@
-/* PAGE BACKGROUND */
+/* NO BACKGROUND HERE — HTML controls it */
+
 body {
   margin: 0;
-  background: url("/assets/image/guild-art.jpg") center/cover no-repeat fixed;
   color: #D4AF37;
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
 }
 
-/* SOFT DARKEN LAYER TO IMPROVE TEXT READABILITY */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55); /* adjust 0.45–0.65 depending on how bright the art is */
-  z-index: -1;
-}
-
-/* UNIVERSAL CONTENT WRAPPER */
+/* Content wrapper for readability */
 .guild-content {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
-  backdrop-filter: blur(2px); /* subtle blur to separate text from background */
 }
 
-/* HERO */
+/* Hero */
 .hero {
   text-align: center;
   padding: 80px 20px 40px;
@@ -68,7 +58,7 @@ body::before {
   color: #FFD700;
 }
 
-/* DROPDOWN PANEL */
+/* Panels */
 .panel {
   max-width: 800px;
   margin: 40px auto 0;
@@ -113,12 +103,7 @@ body::before {
   border-top: 1px solid rgba(212,175,55,0.25);
 }
 
-.panel-item strong,
-.term {
-  color: #FFD700;
-}
-
-/* EXPLANATION BOX */
+/* Explanation */
 .explain {
   max-width: 800px;
   margin: 30px auto 0;
@@ -130,15 +115,7 @@ body::before {
   font-size: 0.95rem;
 }
 
-.explain h2 {
-  margin-top: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 1rem;
-  color: #D4AF37;
-}
-
-/* BUTTON ROW */
+/* Buttons */
 .path-row {
   max-width: 800px;
   margin: 30px auto;
@@ -168,32 +145,4 @@ body::before {
   transform: translateY(-2px);
   color: #fff;
   box-shadow: 0 0 25px rgba(255,215,0,0.5);
-}
-
-.path-btn span {
-  display: block;
-  font-size: 0.75rem;
-  opacity: 0.9;
-  margin-top: 6px;
-  text-transform: none;
-}
-
-/* GLOSSARY MODAL */
-#glossaryModal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-}
-
-.glossary-box {
-  max-width: 420px;
-  width: 90%;
-  background: rgba(5,5,5,0.96);
-  border-radius: 16px;
-  border: 2px solid #D4AF37;
-  padding: 20px;
 }
