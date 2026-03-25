@@ -5,9 +5,23 @@
   <title>THE GRAND GLOSSARY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
+
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
 
   <style>
+    body {
+      background: url("/guild/assets/image/guild-background-gold.png") center/cover no-repeat fixed;
+      background-color: #000;
+      color: var(--gold);
+      margin: 0;
+      padding: 0;
+    }
+
     .burger {
       position: fixed;
       top: 18px;
@@ -161,11 +175,6 @@
       margin: 30px auto 40px;
       width: 92%;
       max-width: 900px;
-    }
-
-    body {
-      background-color: #000;
-      color: var(--gold);
     }
   </style>
 </head>
