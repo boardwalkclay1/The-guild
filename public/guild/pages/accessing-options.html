@@ -5,173 +5,61 @@
   <title>Accessing Options – Gateway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- PAGE-SPECIFIC STYLESHEET -->
+  <!-- PAGE CSS -->
   <link rel="stylesheet" href="/assets/css/access-options.css">
 
-  <!-- FAVICON + APP ICON -->
+  <!-- FAVICONS -->
   <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
   <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#000000">
 
-  <!-- FONTS + GLOBAL GUILD CSS -->
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/guild-style.css" />
 </head>
 
-<body>
+<body style="background:url('/assets/image/guild-art.jpg') center/cover no-repeat fixed;">
 
+  <div class="guild-content">
 
-  <div class="hero">
-    <div class="rune">Ω</div>
-    <div class="hero-title">Accessing Options</div>
-    <div class="journey">LET YOUR JOURNEY BEGIN</div>
-    <div class="hero-sub">
-      This is where the myth meets the mechanics.  
-      Learn how to fund, connect, and unlock options in the real world.
-    </div>
-  </div>
-
-  <!-- Dropdown -->
-  <div class="panel" id="panel">
-    <div class="panel-header" id="panelHeader">
-      <div class="panel-title">What This Path Will Teach You</div>
-      <div class="chevron" id="chevron">⌄</div>
-    </div>
-
-    <div class="panel-body" id="panelBody">
-      <div class="panel-body-inner">
-        <div class="panel-item">• How to set up a <strong>bank account</strong> and connect it to a broker.</div>
-        <div class="panel-item">• How to open a <strong>broker account</strong> and request <span class="term" data-term="options-approval">options approval</span>.</div>
-        <div class="panel-item">• The difference between a <span class="term" data-term="cash-account">cash account</span> and a <span class="term" data-term="margin-account">margin account</span>.</div>
-        <div class="panel-item">• How <span class="term" data-term="instant-deposit">instant deposits</span> work vs <span class="term" data-term="ach-transfer">ACH transfers</span>.</div>
-        <div class="panel-item">• How to activate <strong>options trading</strong> inside each broker app.</div>
+    <div class="hero">
+      <div class="rune">Ω</div>
+      <div class="hero-title">Accessing Options</div>
+      <div class="journey">LET YOUR JOURNEY BEGIN</div>
+      <div class="hero-sub">
+        This is where the myth meets the mechanics.  
+        Learn how to fund, connect, and unlock options in the real world.
       </div>
     </div>
-  </div>
 
-  <!-- Explanation -->
-  <div class="explain">
-    <h2>The Bridge Between Your Money and the Market</h2>
-    <p>Your bank holds your cash. Your broker gives you <strong>buying power</strong>. Connecting them unlocks your ability to trade.</p>
-    <p>Some brokers offer <span class="term" data-term="instant-deposit">instant deposits</span>. Others rely on slower <span class="term" data-term="ach-transfer">ACH transfers</span>.</p>
-    <p>Many will ask if you want a <span class="term" data-term="margin-account">margin account</span>, which allows borrowing but adds risk.</p>
-    <p>This path walks you through realistic modules that mirror the actual apps step by step.</p>
-  </div>
+    <div class="panel" id="panel">
+      <div class="panel-header" id="panelHeader">
+        <div class="panel-title">What This Path Will Teach You</div>
+        <div class="chevron" id="chevron">⌄</div>
+      </div>
 
-  <!-- Buttons -->
-  <div class="path-row">
-    <a class="path-btn" href="banks.html">
-      BANKS
-      <span>Learn how to set up and connect your bank account.</span>
-    </a>
-
-    <a class="path-btn" href="brokers.html">
-      BROKERS
-      <span>Learn how to open a broker account and activate options.</span>
-    </a>
-  </div>
-
-  <!-- Glossary Modal -->
-  <div id="glossaryModal">
-    <div class="glossary-box">
-      <div class="glossary-title" id="glossaryTitle"></div>
-      <div class="glossary-body" id="glossaryBody"></div>
-      <div class="glossary-actions">
-        <button class="glossary-btn secondary" id="closeGlossary">Close</button>
-        <button class="glossary-btn primary" onclick="window.location.href='glossary.html'">Full Glossary</button>
+      <div class="panel-body" id="panelBody">
+        <div class="panel-body-inner">
+          <div class="panel-item">• How to set up a <strong>bank account</strong> and connect it to a broker.</div>
+          <div class="panel-item">• How to open a <strong>broker account</strong> and request options approval.</div>
+          <div class="panel-item">• The difference between a cash account and a margin account.</div>
+          <div class="panel-item">• How instant deposits work vs ACH transfers.</div>
+          <div class="panel-item">• How to activate options trading inside each broker app.</div>
+        </div>
       </div>
     </div>
+
+    <div class="explain">
+      <h2>The Bridge Between Your Money and the Market</h2>
+      <p>Your bank holds your cash. Your broker gives you buying power. Connecting them unlocks your ability to trade.</p>
+      <p>This path walks you through realistic modules that mirror the actual apps step by step.</p>
+    </div>
+
+    <div class="path-row">
+      <a class="path-btn" href="banks.html">BANKS <span>Set up and connect your bank account.</span></a>
+      <a class="path-btn" href="brokers.html">BROKERS <span>Open a broker account and activate options.</span></a>
+    </div>
+
   </div>
-
-  <script>
-    /* MATRIX */
-    const canvas = document.getElementById("matrixCanvas");
-    const ctx = canvas.getContext("2d");
-
-    let w, h, cols, drops;
-    const chars = "0123456789ΩΛΞ∑$#/*";
-
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      const fontSize = 16;
-      cols = Math.floor(w / fontSize);
-      drops = Array(cols).fill(0);
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    function draw() {
-      ctx.fillStyle = "rgba(0,0,0,0.15)";
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = "#D4AF37";
-      ctx.font = "16px monospace";
-
-      for (let i = 0; i < cols; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * 16;
-        const y = drops[i] * 16;
-
-        ctx.fillText(char, x, y);
-
-        if (y > h && Math.random() > 0.95) drops[i] = 0;
-        drops[i]++;
-      }
-
-      requestAnimationFrame(draw);
-    }
-    draw();
-
-    /* DROPDOWN */
-    const panelHeader = document.getElementById("panelHeader");
-    const panelBody = document.getElementById("panelBody");
-    const chevron = document.getElementById("chevron");
-
-    let open = false;
-
-    function togglePanel() {
-      open = !open;
-      panelBody.style.maxHeight = open ? panelBody.scrollHeight + "px" : "0px";
-      chevron.classList.toggle("open", open);
-    }
-
-    panelHeader.addEventListener("click", togglePanel);
-
-    setTimeout(() => togglePanel(), 1200);
-
-    /* GLOSSARY */
-    const glossaryModal = document.getElementById("glossaryModal");
-    const glossaryTitle = document.getElementById("glossaryTitle");
-    const glossaryBody = document.getElementById("glossaryBody");
-    const closeGlossary = document.getElementById("closeGlossary");
-
-    const glossary = {
-      "options-approval": "A review process where the broker decides what level of options trading you are allowed to access.",
-      "cash-account": "A brokerage account where you can only trade using the cash you have deposited.",
-      "margin-account": "A brokerage account that allows you to borrow money from the broker to trade.",
-      "instant-deposit": "A feature where the broker gives you immediate buying power before your deposit fully settles.",
-      "ach-transfer": "A bank-to-bank transfer through the Automated Clearing House network, usually taking 1–4 days."
-    };
-
-    document.querySelectorAll(".term").forEach(t => {
-      t.addEventListener("click", () => {
-        const key = t.dataset.term;
-        glossaryTitle.textContent = t.textContent;
-        glossaryBody.textContent = glossary[key];
-        glossaryModal.style.display = "flex";
-      });
-    });
-
-    closeGlossary.addEventListener("click", () => {
-      glossaryModal.style.display = "none";
-    });
-
-    glossaryModal.addEventListener("click", e => {
-      if (e.target === glossaryModal) glossaryModal.style.display = "none";
-    });
-  </script>
 
 </body>
 </html>
