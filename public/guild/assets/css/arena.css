@@ -1,0 +1,321 @@
+/* ARENA BASE */
+
+.arena-body {
+  background: #000;
+  color: #D4AF37;
+  font-family: 'Uncial Antiqua', serif;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background image (you can swap per level if needed) */
+.arena-body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("image/coolguild.jpg") center/cover no-repeat;
+  opacity: 0.22;
+  z-index: -2;
+  filter: grayscale(30%);
+}
+
+/* Fire Timer */
+
+.fire-timer {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 26px;
+  height: 260px;
+  border-radius: 16px;
+  border: 2px solid #D4AF37;
+  overflow: hidden;
+  background: rgba(0,0,0,0.7);
+  z-index: 10;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+
+.fire-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #ff4500, #ffb347);
+  transition: height 0.1s linear;
+}
+
+.fire-label {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+}
+
+/* Balance Panel */
+
+.balance-panel {
+  position: fixed;
+  left: 20px;
+  top: 80px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid #8B6B2C;
+  z-index: 10;
+  max-width: 220px;
+}
+
+.balance-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.balance-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.level-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Arena Panel */
+
+.arena-panel {
+  max-width: 900px;
+  margin: 80px auto 40px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.arena-title-scroll {
+  margin-bottom: 30px;
+}
+
+.arena-subtitle {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Price Display */
+
+.price-display {
+  max-width: 420px;
+  margin: 0 auto 20px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid #8B6B2C;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.price-label {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.price-value {
+  font-size: 1.1rem;
+}
+
+.mid-row .price-value.mid {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+/* Actions */
+
+.arena-actions {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.gold-bar-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #D4AF37;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-family: 'Uncial Antiqua', serif;
+}
+
+.gold-bar-btn:hover {
+  background: #8B6B2C;
+  color: #fff;
+}
+
+/* Order Module */
+
+.order-module {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 16px 18px 20px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.9);
+  border: 1px solid #8B6B2C;
+  display: none;
+}
+
+.order-module.open {
+  display: block;
+}
+
+.order-header {
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.order-body {
+  font-size: 0.9rem;
+}
+
+.order-row {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-row label {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.order-row input {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #8B6B2C;
+  background: rgba(0,0,0,0.7);
+  color: #D4AF37;
+  font-family: 'Uncial Antiqua', serif;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-message {
+  min-height: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #FFD700;
+}
+
+.confirm-btn {
+  width: 100%;
+}
+
+/* Overlay */
+
+.arena-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.arena-overlay.open {
+  display: flex;
+}
+
+.overlay-content {
+  max-width: 520px;
+  padding: 24px 22px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #D4AF37;
+  text-align: left;
+}
+
+.overlay-content h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.overlay-content p {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.overlay-content .overlay-btn {
+  margin-top: 16px;
+  display: inline-block;
+}
+
+/* Back Link */
+
+.arena-back-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: #D4AF37;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.arena-back-link:hover {
+  color: #fff;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .arena-panel {
+    margin-top: 100px;
+    padding: 10px;
+  }
+
+  .balance-panel {
+    top: 60px;
+    left: 10px;
+    max-width: 180px;
+  }
+
+  .fire-timer {
+    top: 60px;
+    right: 10px;
+    height: 220px;
+  }
+
+  .overlay-content {
+    margin: 0 16px;
+  }
+}
