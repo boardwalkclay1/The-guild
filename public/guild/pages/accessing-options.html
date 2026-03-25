@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FAVICON + APP ICON -->
-  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
-  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#000000">
 
   <!-- FONTS + GLOBAL GUILD CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
@@ -27,7 +29,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("/assets/image/guild-dragon-fight.jpg") center/cover no-repeat;
+      background: url("/guild/assets/image/guild-art.jpg") center/cover no-repeat;
       opacity: 0.18;
       z-index: -3;
       filter: grayscale(40%);
@@ -290,6 +292,7 @@
     }
   </style>
 </head>
+
 
 <body>
   <canvas id="matrixCanvas"></canvas>
