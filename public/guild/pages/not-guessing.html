@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <title>Not Guessing, Not Gambling</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
+  <!-- GLOBAL GUILD CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+
   <style>
     body {
       background: #000;
@@ -16,6 +23,8 @@
       position: relative;
       overflow-x: hidden;
     }
+
+    /* DO NOT CHANGE — BACKGROUND PATH IS CORRECT */
     body::before {
       content: "";
       position: fixed;
@@ -25,6 +34,7 @@
       z-index: -1;
       filter: grayscale(40%);
     }
+
     body::after {
       content: "";
       position: fixed;
@@ -35,22 +45,26 @@
       pointer-events: none;
       animation: fogMove 12s ease-in-out infinite alternate;
     }
+
     @keyframes fogMove {
       0% { transform: translateY(0px); opacity: 0.25; }
       100% { transform: translateY(25px); opacity: 0.45; }
     }
+
     h1 {
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       font-size: 1.8rem;
     }
+
     p {
       max-width: 750px;
       margin: 0 auto 20px;
       text-align: left;
       font-size: 1rem;
     }
+
     .divider {
       width: 80%;
       max-width: 500px;
@@ -59,12 +73,14 @@
       margin: 40px auto;
       opacity: 0.7;
     }
+
     .disclaimer {
       margin-top: 30px;
       font-size: 0.85rem;
       opacity: 0.8;
       text-align: center;
     }
+
     a.back {
       display: block;
       margin-top: 40px;
@@ -74,12 +90,45 @@
       letter-spacing: 0.1em;
       font-weight: 600;
     }
+
     a.back:hover { color: #fff; }
+
+    /* XP + BADGE UI */
+    .xp-box {
+      margin: 30px auto;
+      padding: 15px;
+      max-width: 400px;
+      background: rgba(0,0,0,0.65);
+      border: 1px solid #8B6B2C;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .badge-earned {
+      margin-top: 10px;
+      padding: 8px 12px;
+      display: inline-block;
+      background: #D4AF37;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
   </style>
 </head>
+
 <body class="fade-in">
 
   <h1>Not Guessing, Not Gambling</h1>
+
+  <!-- XP + BADGE STATUS -->
+  <div class="xp-box">
+    <div id="xpDisplay">XP: 0</div>
+    <div id="badgeDisplay"></div>
+  </div>
 
   <p>
     This is the first Golden Rule for a reason.  
@@ -114,6 +163,29 @@
   </p>
 
   <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
+
+  <!-- XP + BADGE ENGINE -->
+  <script src="/guild/xp/xp.js"></script>
+  <script src="/guild/xp/badges.js"></script>
+
+  <script>
+    // Pull XP + badges from storage
+    const xp = parseInt(localStorage.getItem("guild_xp") || "0");
+    document.getElementById("xpDisplay").textContent = "XP: " + xp;
+
+    // Badge: Not Guessing Mastery
+    const badgeName = "not_guessing_mastery";
+
+    if (!localStorage.getItem(badgeName)) {
+      // Award badge on first visit
+      localStorage.setItem(badgeName, "earned");
+    }
+
+    if (localStorage.getItem(badgeName) === "earned") {
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">NOT GUESSING BADGE</div>`;
+    }
+  </script>
 
 </body>
 </html>
