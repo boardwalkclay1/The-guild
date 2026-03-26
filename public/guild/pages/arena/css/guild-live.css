@@ -1,0 +1,233 @@
+body.guild-bg {
+  background: url("/assets/image/guild-toon-fight.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: "Marcellus SC", serif;
+  color: #D4AF37;
+}
+
+.live-shell {
+  min-height: 100vh;
+  padding: 20px 16px 90px;
+  backdrop-filter: blur(3px);
+}
+
+/* HEADER */
+.live-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.live-title {
+  font-family: "Uncial Antiqua", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 1.4rem;
+  margin: 0 0 4px;
+}
+
+.live-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.live-user-block {
+  display: flex;
+  gap: 8px;
+}
+
+.live-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #D4AF37;
+  background: transparent;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.live-btn.gold {
+  background: rgba(212,175,55,0.2);
+}
+
+.live-btn:hover {
+  background: rgba(212,175,55,0.35);
+}
+
+/* MAIN GRID */
+.live-main {
+  display: grid;
+  grid-template-columns: 1.1fr 1.6fr 1.1fr;
+  gap: 12px;
+}
+
+.live-panel {
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #D4AF37;
+  border-radius: 14px;
+  padding: 12px 10px;
+  box-shadow: 0 0 18px rgba(212,175,55,0.25);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.panel-header h2 {
+  font-family: "Uncial Antiqua", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.panel-header select {
+  background: #000;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+/* WATCHLISTS */
+.watchlist-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 0.8rem;
+}
+
+/* CENTER */
+.live-center .lead-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.live-tab-btn {
+  border: 1px solid #D4AF37;
+  background: transparent;
+  color: #D4AF37;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.live-tab-btn.active {
+  background: rgba(212,175,55,0.3);
+}
+
+.center-body {
+  margin-top: 8px;
+}
+
+.center-view {
+  min-height: 260px;
+}
+
+.center-view.hidden {
+  display: none;
+}
+
+/* OPTIONS CHAIN */
+.options-chain {
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 0.75rem;
+}
+
+/* ASSISTANT */
+.assistant-feed {
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 0.8rem;
+}
+
+/* MARKET / OTHER SECTIONS */
+.live-market,
+.live-section {
+  margin-top: 16px;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid #D4AF37;
+  border-radius: 14px;
+  padding: 12px 10px;
+  box-shadow: 0 0 18px rgba(212,175,55,0.25);
+}
+
+.live-market.hidden,
+.live-section.hidden {
+  display: none;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr;
+  gap: 10px;
+}
+
+/* PLACEHOLDER BOXES */
+.placeholder-box {
+  border: 1px dashed rgba(212,175,55,0.6);
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.placeholder-box.small {
+  font-size: 0.75rem;
+}
+
+/* BOTTOM NAV */
+.live-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(0,0,0,0.85);
+  border-top: 2px solid #D4AF37;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 20;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #D4AF37;
+  font-family: "Marcellus SC", serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.nav-btn.active {
+  opacity: 1;
+  text-shadow: 0 0 8px #D4AF37;
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .live-main {
+    grid-template-columns: 1fr;
+  }
+  .live-panel {
+    margin-bottom: 10px;
+  }
+}
