@@ -1,12 +1,29 @@
 <div id="arena-app">
 
-  <!-- Screens -->
-  <div id="screen-watchlist" class="arena-screen"></div>
-  <div id="screen-market" class="arena-screen"></div>
-  <div id="screen-live" class="arena-screen"></div>
-  <div id="screen-account" class="arena-screen"></div>
-  <div id="screen-settings" class="arena-screen"></div>
-  <div id="screen-tools" class="arena-screen"></div>
+  <!-- Screens (each loads its own HTML file) -->
+  <div id="screen-watchlist" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/watchlist.html"></div>
+
+  <div id="screen-market" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/market.html"></div>
+
+  <div id="screen-live" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/live.html"></div>
+
+  <div id="screen-account" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/account.html"></div>
+
+  <div id="screen-settings" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/settings.html"></div>
+
+  <div id="screen-tools" 
+       class="arena-screen" 
+       data-src="/guild/pages/arena/tools.html"></div>
 
   <!-- Bottom Navigation -->
   <nav class="arena-nav">
