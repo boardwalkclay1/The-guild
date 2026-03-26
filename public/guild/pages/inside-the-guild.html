@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
 </head>
 
-<!-- BACKGROUND -->
-<body data-bg="/assets/image/me-guild.jpg">
+<!-- FIXED BACKGROUND ATTRIBUTE -->
+<body data-bg="me-guild.jpg">
 
   <!-- CINEMATIC LAYERS -->
   <div class="fog-layer"></div>
@@ -46,6 +46,12 @@
   <!-- PAGE TITLE -->
   <div class="gold-scroll open">
     <h1 class="scroll-title">INSIDE THE GUILD</h1>
+  </div>
+
+  <!-- XP + BADGE BOX -->
+  <div class="xp-box" style="margin: 40px auto; max-width: 400px; text-align:center; background:rgba(0,0,0,0.55); padding:15px; border:1px solid #8B6B2C; border-radius:12px;">
+    <div id="xpDisplay" style="font-size:1rem; margin-bottom:8px;">XP: 0</div>
+    <div id="badgeDisplay"></div>
   </div>
 
   <!-- ROADMAP BUTTONS -->
@@ -135,6 +141,12 @@
       <button class="enter-btn" onclick="go('/guild/pages/training-hall.html')">ENTER</button>
     </div>
 
+    <!-- ⭐ NEW: GUILD LIVE ARENA -->
+    <div class="guild-btn" onclick="go('/guild/pages/guild-live.html')" style="background:rgba(0,255,106,0.15); border:1px solid #00ff6a;">
+      🎥 Guild Live Arena
+      <span class="arrow">›</span>
+    </div>
+
   </div>
 
   <!-- COPYRIGHT -->
@@ -147,6 +159,25 @@
     const bg = document.body.getAttribute("data-bg");
     if (bg) {
       document.body.style.backgroundImage = `url('/assets/image/${bg}')`;
+    }
+  </script>
+
+  <!-- XP + BADGES -->
+  <script src="/guild/xp/xp.js"></script>
+  <script src="/guild/xp/badges.js"></script>
+
+  <script>
+    const xp = parseInt(localStorage.getItem("guild_xp") || "0");
+    document.getElementById("xpDisplay").textContent = "XP: " + xp;
+
+    const badgeName = "inside_guild_complete";
+    if (!localStorage.getItem(badgeName)) {
+      localStorage.setItem(badgeName, "earned");
+    }
+
+    if (localStorage.getItem(badgeName) === "earned") {
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">INSIDE THE GUILD BADGE</div>`;
     }
   </script>
 
