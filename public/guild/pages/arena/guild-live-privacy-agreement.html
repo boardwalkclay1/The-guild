@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Live – Privacy Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
+
+  <!-- GUILD MASTER CSS -->
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #000;
+      font-family: "Marcellus SC", serif;
+      padding: 40px 20px;
+      line-height: 1.7;
+      color: #D4AF37;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("/assets/image/guild-toon.jpg") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: -1;
+      filter: grayscale(40%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+      animation: fogMove 12s ease-in-out infinite alternate;
+    }
+    @keyframes fogMove {
+      0% { transform: translateY(0px); opacity: 0.25; }
+      100% { transform: translateY(25px); opacity: 0.45; }
+    }
+    .legal-frame {
+      background: rgba(0, 0, 0, 0.78);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      padding: 40px 30px;
+      max-width: 1000px;
+      margin: 120px auto 80px;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+      backdrop-filter: blur(3px);
+    }
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      font-size: 2rem;
+      text-align: center;
+      font-family: "Uncial Antiqua", serif;
+    }
+    .legal-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 32px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-family: "Uncial Antiqua", serif;
+    }
+    p {
+      font-size: 0.96rem;
+      margin-bottom: 12px;
+    }
+    ul {
+      margin: 0 0 14px 20px;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .divider {
+      width: 80%;
+      max-width: 520px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 32px auto;
+      opacity: 0.7;
+    }
+    .back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      text-align: center;
+    }
+    .back:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #D4AF37;
+    }
+    .legal-note {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+
+  <div class="legal-frame">
+
+    <h1>Privacy Policy</h1>
+    <p class="legal-subtitle">How Guild Live and The Guild collect, use, and protect your information.</p>
+
+    <p class="legal-note">
+      Last updated: [Insert Date]. This document is for general informational purposes and should be reviewed by legal counsel.
+    </p>
+
+    <div class="divider"></div>
+
+    <h2>1. Overview</h2>
+    <p>
+      This Privacy Policy explains how we collect, use, disclose, and protect information when you use Guild Live, The Guild,
+      and any related services (collectively, the “Platform”). By using the Platform, you consent to the practices described in this Policy.
+    </p>
+
+    <h2>2. Information We Collect</h2>
+
+    <h3>2.1 Account Information</h3>
+    <p>We may collect:</p>
+    <ul>
+      <li>Username;</li>
+      <li>Email address;</li>
+      <li>Password (stored in encrypted form);</li>
+      <li>Basic profile preferences (e.g., theme, layout, watchlist choices).</li>
+    </ul>
+
+    <h3>2.2 Usage Data</h3>
+    <p>We may collect information about how you use the Platform, including:</p>
+    <ul>
+      <li>Pages and modules visited;</li>
+      <li>Buttons clicked and features used (e.g., watchlists, options view, assistant modes);</li>
+      <li>Device type, browser type, and operating system;</li>
+      <li>IP address and general location (city/region level);</li>
+      <li>Time and duration of sessions.</li>
+    </ul>
+
+    <h3>2.3 Trading‑Related Data (When Alpaca Is Connected)</h3>
+    <p>
+      When you connect a brokerage account through Alpaca, we may receive limited trading‑related data from Alpaca, such as:
+    </p>
+    <ul>
+      <li>Linked Alpaca account identifier;</li>
+      <li>Account balances and positions;</li>
+      <li>Orders and executions;</li>
+      <li>Symbol‑level activity used to power watchlists, options views, and analytics.</li>
+    </ul>
+    <p>
+      We do not collect or store your Social Security Number, government ID images, or bank account numbers used for Alpaca onboarding.
+      Those are handled directly by Alpaca.
+    </p>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Operate and maintain the Platform;</li>
+      <li>Provide personalized content, watchlists, and modules;</li>
+      <li>Improve performance, reliability, and user experience;</li>
+      <li>Monitor usage patterns and detect abuse or security issues;</li>
+      <li>Support trading‑related features when Alpaca is connected;</li>
+      <li>Communicate with you about updates, changes, or support matters.</li>
+    </ul>
+    <p>
+      We do not sell your personal information to third‑party advertisers.
+    </p>
+
+    <h2>4. Cookies and Tracking Technologies</h2>
+    <p>
+      We may use cookies and similar technologies to:
+    </p>
+    <ul>
+      <li>Maintain your login session;</li>
+      <li>Remember your preferences and settings;</li>
+      <li>Analyze usage and performance of the Platform.</li>
+    </ul>
+    <p>
+      You can adjust your browser settings to refuse cookies, but some features of the Platform may not function properly.
+    </p>
+
+    <h2>5. Sharing of Information</h2>
+
+    <h3>5.1 With Alpaca</h3>
+    <p>
+      When you choose to connect a brokerage account or use trading features, we may share or receive information with/from Alpaca as needed
+      to enable those features. Your use of Alpaca services is governed by Alpaca’s own terms and privacy policy.
+    </p>
+
+    <h3>5.2 Service Providers</h3>
+    <p>
+      We may share information with third‑party service providers that help us operate the Platform, such as hosting, analytics, and security.
+      These providers are required to protect your information and use it only for the services they perform for us.
+    </p>
+
+    <h3>5.3 Legal and Compliance</h3>
+    <p>
+      We may disclose information if required by law, regulation, subpoena, or legal process, or if we believe disclosure is necessary to:
+    </p>
+    <ul>
+      <li>Comply with applicable laws or regulatory requests;</li>
+      <li>Protect the rights, property, or safety of The Guild, our users, or others;</li>
+      <li>Investigate or prevent fraud, abuse, or security incidents.</li>
+    </ul>
+
+    <h2>6. Data Security</h2>
+    <p>
+      We use reasonable technical and organizational measures to protect your information, including encryption, access controls,
+      and secure hosting environments. However, no system is completely secure, and we cannot guarantee absolute security.
+      You use the Platform at your own risk.
+    </p>
+
+    <h2>7. Data Retention</h2>
+    <p>
+      We retain your information for as long as necessary to operate the Platform, comply with legal obligations, resolve disputes,
+      and enforce our agreements. When information is no longer needed, we may delete or anonymize it.
+    </p>
+
+    <h2>8. Your Rights and Choices</h2>
+    <p>Depending on your jurisdiction, you may have the right to:</p>
+    <ul>
+      <li>Access the personal information we hold about you;</li>
+      <li>Request correction of inaccurate information;</li>
+      <li>Request deletion of your account and associated data (subject to legal and regulatory requirements);</li>
+      <li>Object to or restrict certain types of processing.</li>
+    </ul>
+    <p>
+      Deleting your Guild account does not automatically close or delete your Alpaca brokerage account. You must manage that directly with Alpaca.
+    </p>
+
+    <h2>9. Children’s Privacy</h2>
+    <p>
+      The Platform is not intended for individuals under 18 years of age. We do not knowingly collect personal information from children under 18.
+      If we become aware that we have collected such information, we will take steps to delete it.
+    </p>
+
+    <h2>10. International Users</h2>
+    <p>
+      If you access the Platform from outside the United States, you understand that your information may be transferred to, stored in,
+      and processed in the United States, where data protection laws may differ from those in your jurisdiction.
+    </p>
+
+    <h2>11. Changes to This Privacy Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. When we do, we will revise the “Last updated” date at the top.
+      Your continued use of the Platform after changes become effective constitutes your acceptance of the updated Policy.
+    </p>
+
+    <h2>12. Contact</h2>
+    <p>
+      For questions or requests regarding this Privacy Policy, you may contact us at:  
+      <strong>[Insert Support Email]</strong>
+    </p>
+
+    <a class="back" href="/index.html">← Return to Guild Home</a>
+
+  </div>
+
+</body>
+</html>
