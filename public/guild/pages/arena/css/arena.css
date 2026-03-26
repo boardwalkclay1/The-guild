@@ -1,0 +1,22 @@
+.arena-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(0,0,0,0.75);
+  border-top: 2px solid #D4AF37;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.arena-nav button {
+  background: none;
+  border: none;
+  color: #D4AF37;
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
