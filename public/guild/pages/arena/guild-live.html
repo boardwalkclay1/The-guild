@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Live Arena</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
+
+  <!-- GUILD MASTER CSS -->
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+  <link rel="stylesheet" href="/guild/assets/css/guild-live.css" />
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+</head>
+
+<body class="guild-bg">
+
+  <div id="guild-live-app" class="live-shell">
+
+    <!-- TOP BAR -->
+    <header class="live-header">
+      <div class="live-title-block">
+        <h1 class="live-title">Guild Live Arena</h1>
+        <p class="live-subtitle">Curated Watchlists • Options Chains • Pattern‑Watching Assistants</p>
+      </div>
+
+      <div class="live-user-block">
+        <button class="live-btn ghost" id="live-login-btn">Sign In / Join</button>
+        <button class="live-btn gold" id="live-upgrade-btn">Upgrade Guild Tier</button>
+      </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <main class="live-main">
+
+      <!-- LEFT: WATCHLISTS -->
+      <section class="live-panel live-watchlists">
+        <div class="panel-header">
+          <h2>Watchlists</h2>
+          <select id="watchlist-select"></select>
+        </div>
+
+        <div id="watchlist-list" class="watchlist-list">
+          <!-- Populated by live-watchlists.js -->
+        </div>
+      </section>
+
+      <!-- CENTER: LEAD CHART + OPTIONS CHAIN -->
+      <section class="live-panel live-center">
+        <div class="panel-header">
+          <h2 id="lead-symbol-title">Lead Symbol</h2>
+          <div class="lead-actions">
+            <button class="live-tab-btn active" data-center-tab="chart">Chart</button>
+            <button class="live-tab-btn" data-center-tab="options">Options Chain</button>
+          </div>
+        </div>
+
+        <div class="center-body">
+          <div id="center-chart" class="center-view">
+            <!-- Lead chart embed / canvas / iframe later -->
+            <div class="placeholder-box">Lead Price / Chart Area</div>
+          </div>
+
+          <div id="center-options" class="center-view hidden">
+            <div id="options-chain" class="options-chain">
+              <!-- Populated by live-options.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: ASSISTANT -->
+      <section class="live-panel live-assistant">
+        <div class="panel-header">
+          <h2>Arena Assistant</h2>
+          <select id="assistant-mode-select">
+            <option value="btc">BTC & Correlations</option>
+            <option value="tech">Tech Sector</option>
+            <option value="war">War / Defense</option>
+            <option value="energy">Energy</option>
+          </select>
+        </div>
+
+        <div id="assistant-feed" class="assistant-feed">
+          <!-- Pattern observations, alerts, commentary -->
+          <div class="placeholder-box small">
+            Assistant will watch each chart’s structure and call out potential moves.
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MARKET SECTION (NEWS + STOCKS) -->
+    <section id="live-market-section" class="live-market hidden">
+      <header class="panel-header">
+        <h2>Market Pulse</h2>
+        <p>Big news • Linked tickers • Quick access to chains</p>
+      </header>
+
+      <div class="market-grid">
+        <div id="market-news" class="market-news">
+          <!-- Scraped / fetched headlines later -->
+          <div class="placeholder-box">Top Headlines & Stories</div>
+        </div>
+        <div id="market-linked-stocks" class="market-linked">
+          <!-- Stocks associated with each story -->
+          <div class="placeholder-box">Stocks & Options Linked to News</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCOUNT / SETTINGS / TOOLS SHELLS -->
+    <section id="live-account-section" class="live-section hidden">
+      <div class="placeholder-box">Account • Profile • Guild Tier • Linked Brokerage (later)</div>
+    </section>
+
+    <section id="live-settings-section" class="live-section hidden">
+      <div class="placeholder-box">Theme • Notifications • Layout • Arena Preferences</div>
+    </section>
+
+    <section id="live-tools-section" class="live-section hidden">
+      <div class="placeholder-box">Scanners • Heatmaps • Flow • Premium Tools</div>
+    </section>
+
+    <!-- BOTTOM NAV (WEBULL STYLE) -->
+    <nav class="live-bottom-nav">
+      <button class="nav-btn active" data-nav="watchlists">Watchlists</button>
+      <button class="nav-btn" data-nav="market">Market</button>
+      <button class="nav-btn" data-nav="arena">Arena</button>
+      <button class="nav-btn" data-nav="account">Account</button>
+      <button class="nav-btn" data-nav="settings">Settings</button>
+      <button class="nav-btn" data-nav="tools">Tools</button>
+    </nav>
+
+  </div>
+
+  <!-- CORE LIVE JS -->
+  <script src="/guild/assets/js/live/guild-live-core.js" defer></script>
+  <script src="/guild/assets/js/live/live-watchlists.js" defer></script>
+  <script src="/guild/assets/js/live/live-options.js" defer></script>
+  <script src="/guild/assets/js/live/live-assistant.js" defer></script>
+  <script src="/guild/assets/js/live/live-market.js" defer></script>
+  <script src="/guild/assets/js/live/live-account.js" defer></script>
+  <script src="/guild/assets/js/live/live-settings.js" defer></script>
+  <script src="/guild/assets/js/live/live-tools.js" defer></script>
+
+</body>
+</html>
