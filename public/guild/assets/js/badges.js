@@ -1,12 +1,20 @@
-// BADGES.JS
+// BADGES.JS — localStorage badge engine
+
+function getBadges() {
+  return JSON.parse(localStorage.getItem("guildBadges") || "{}");
+}
 
 function unlockBadge(badgeName) {
-  let badges = JSON.parse(localStorage.getItem("guildBadges") || "{}");
+  const badges = getBadges();
   badges[badgeName] = true;
   localStorage.setItem("guildBadges", JSON.stringify(badges));
 }
 
 function hasBadge(badgeName) {
-  let badges = JSON.parse(localStorage.getItem("guildBadges") || "{}");
+  const badges = getBadges();
   return badges[badgeName] === true;
+}
+
+function resetBadges() {
+  localStorage.setItem("guildBadges", "{}");
 }
