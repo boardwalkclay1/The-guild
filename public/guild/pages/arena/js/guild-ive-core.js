@@ -1,63 +1,60 @@
-// CORE NAV BETWEEN MAIN ARENA + MARKET + ACCOUNT + SETTINGS + TOOLS
-document.addEventListener('DOMContentLoaded', () => {
-  const navButtons = document.querySelectorAll('.live-bottom-nav .nav-btn');
+// GUILD LIVE – ARENA CORE
+// Handles: screen switching + center tab switching
 
-  const mainArena = document.querySelector('.live-main');
-  const marketSection = document.getElementById('live-market-section');
-  const accountSection = document.getElementById('live-account-section');
-  const settingsSection = document.getElementById('live-settings-section');
-  const toolsSection = document.getElementById('live-tools-section');
+document.addEventListener("DOMContentLoaded", () => {
 
-  function showSection(name) {
-    // reset
-    mainArena.style.display = 'none';
-    marketSection.classList.add('hidden');
-    accountSection.classList.add('hidden');
-    settingsSection.classList.add('hidden');
-    toolsSection.classList.add('hidden');
+  // -----------------------------
+  // SCREEN SWITCHING (BOTTOM NAV)
+  // -----------------------------
+  const navButtons = document.querySelectorAll(".arena-nav button");
+  const screens = document.querySelectorAll(".arena-screen");
 
-    if (name === 'watchlists' || name === 'arena') {
-      mainArena.style.display = 'grid';
-    } else if (name === 'market') {
-      marketSection.classList.remove('hidden');
-    } else if (name === 'account') {
-      accountSection.classList.remove('hidden');
-    } else if (name === 'settings') {
-      settingsSection.classList.remove('hidden');
-    } else if (name === 'tools') {
-      toolsSection.classList.remove('hidden');
-    }
+  function showScreen(name) {
+    screens.forEach(screen => {
+      screen.style.display = "none";
+    });
+
+    const target = document.getElementById(`screen-${name}`);
+    if (target) target.style.display = "block";
   }
 
   navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      navButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      showSection(btn.dataset.nav);
+    btn.addEventListener("click", () => {
+      navButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const screenName = btn.dataset.screen;
+      showScreen(screenName);
     });
   });
 
-  // default
-  showSection('watchlists');
+  // Default screen
+  showScreen("watchlist");
 
-  // center tab switching (chart / options)
-  const centerTabs = document.querySelectorAll('.live-tab-btn');
-  const centerChart = document.getElementById('center-chart');
-  const centerOptions = document.getElementById('center-options');
+  // -----------------------------------
+  // CENTER TAB SWITCHING (CHART/CHAIN)
+  // -----------------------------------
+  const centerTabs = document.querySelectorAll("[data-center-tab]");
+  const centerChart = document.getElementById("center-chart");
+  const centerOptions = document.getElementById("center-options");
 
-  centerTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      centerTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+  if (centerTabs.length > 0) {
+    centerTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        centerTabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
 
-      const target = tab.dataset.centerTab;
-      if (target === 'chart') {
-        centerChart.classList.remove('hidden');
-        centerOptions.classList.add('hidden');
-      } else {
-        centerOptions.classList.remove('hidden');
-        centerChart.classList.add('hidden');
-      }
+        const target = tab.dataset.centerTab;
+
+        if (target === "chart") {
+          centerChart?.classList.remove("hidden");
+          centerOptions?.classList.add("hidden");
+        } else {
+          centerOptions?.classList.remove("hidden");
+          centerChart?.classList.add("hidden");
+        }
+      });
     });
-  });
+  }
+
 });
