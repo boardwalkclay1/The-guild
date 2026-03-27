@@ -5,6 +5,11 @@
   <title>Even Numbers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
+  <!-- GLOBAL GUILD CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
   <style>
@@ -86,12 +91,76 @@
     }
 
     a.back:hover { color: #fff; }
+
+    /* XP + BADGE BOX */
+    .xp-box {
+      margin: 25px auto;
+      padding: 12px;
+      max-width: 420px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid #8B6B2C;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #D4AF37;
+    }
+
+    .badge-earned {
+      margin-top: 10px;
+      padding: 8px 12px;
+      display: inline-block;
+      background: #D4AF37;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    /* SIMULATOR ENTRY */
+    .sim-box {
+      margin: 50px auto;
+      padding: 25px;
+      max-width: 650px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #D4AF37;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .sim-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 24px;
+      background: #D4AF37;
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 12px;
+      transition: 0.25s ease;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .sim-btn:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
   </style>
 </head>
 
 <body class="fade-in">
 
   <h1>Even Numbers</h1>
+
+  <!-- XP + BADGE STATUS -->
+  <div class="xp-box">
+    <div id="xpDisplay">XP: 0</div>
+    <div id="badgeDisplay"></div>
+  </div>
 
   <p>
     The world of traders loves even numbers.  
@@ -111,12 +180,68 @@
     You will learn to mark them, respect them, and use them as key decision points in your trades.
   </p>
 
+  <!-- SIMULATOR ENTRY -->
+  <div class="sim-box">
+    <h2 style="margin-bottom:10px;">Even Number Strike Simulator</h2>
+    <p>
+      Enter when price touches <strong>$10.00</strong> coming down from <strong>$10.20</strong>.  
+      Exit when price hits <strong>$10.50</strong> after the bounce.  
+      Earn XP, badges, and rank up.
+    </p>
+
+    <div class="sim-btn" onclick="startEvenNumberSim()">
+      ENTER SIMULATOR
+    </div>
+  </div>
+
   <p class="disclaimer">
     This rule is still under construction.  
     More examples and live reactions will be added.
   </p>
 
   <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
+
+  <!-- XP + BADGES -->
+  <script src="/guild/xp/xp.js"></script>
+  <script src="/guild/xp/badges.js"></script>
+
+  <script>
+    /* INITIAL XP + BADGE DISPLAY */
+    const xp = parseInt(localStorage.getItem("guild_xp") || "0");
+    document.getElementById("xpDisplay").textContent = "XP: " + xp;
+
+    const badgeName = "even_numbers_mastery";
+
+    if (localStorage.getItem(badgeName) === "earned") {
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">EVEN NUMBERS BADGE</div>`;
+    }
+
+    /* SIMULATOR HOOK */
+    function startEvenNumberSim() {
+      // This loads your simulator page/module
+      window.location.href = "/guild/pages/simulators/even-number-sim.html";
+    }
+
+    /* CALLED BY SIMULATOR WHEN USER COMPLETES BOTH ENTRY + EXIT */
+    function completeEvenNumberSim() {
+      let currentXP = parseInt(localStorage.getItem("guild_xp") || "0");
+
+      // XP max 200 for this module
+      const reward = 200;
+      currentXP = Math.min(currentXP + reward, currentXP + reward);
+
+      localStorage.setItem("guild_xp", currentXP);
+
+      // Award badge
+      localStorage.setItem(badgeName, "earned");
+
+      // Update UI instantly
+      document.getElementById("xpDisplay").textContent = "XP: " + currentXP;
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">EVEN NUMBERS BADGE</div>`;
+    }
+  </script>
 
 </body>
 </html>
