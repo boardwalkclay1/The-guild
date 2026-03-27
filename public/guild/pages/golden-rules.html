@@ -5,8 +5,45 @@
   <title>The Golden Rules</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
+  <!-- CSS + JS -->
   <link rel="stylesheet" href="/guild/assets/css/golden-rules.css">
   <script src="/guild/assets/js/golden-rules.js" defer></script>
+
+  <!-- XP + BADGES -->
+  <script src="/guild/xp/xp.js"></script>
+  <script src="/guild/xp/badges.js"></script>
+
+  <style>
+    /* XP BOX */
+    .xp-box {
+      margin: 25px auto;
+      padding: 12px;
+      max-width: 420px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid #8B6B2C;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #D4AF37;
+    }
+
+    .badge-earned {
+      margin-top: 10px;
+      padding: 8px 12px;
+      display: inline-block;
+      background: #D4AF37;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+  </style>
 </head>
 
 <body style="
@@ -15,6 +52,12 @@
 ">
 
   <div class="rules-container">
+
+    <!-- XP + BADGE STATUS -->
+    <div class="xp-box">
+      <div id="xpDisplay">XP: 0</div>
+      <div id="badgeDisplay"></div>
+    </div>
 
     <!-- WARNING HEADER -->
     <div class="warning-banner">
@@ -31,22 +74,58 @@
       They are not suggestions — they are commandments.
     </p>
 
-    <!-- RULE LIST (titles only) -->
+    <!-- RULE LIST -->
     <div class="rules-list">
-
       <div class="rule" data-rule="1">1. Study Before You Trade</div>
       <div class="rule" data-rule="2">2. Respect Even Numbers</div>
       <div class="rule" data-rule="3">3. The Trend Is Your Commander</div>
       <div class="rule" data-rule="4">4. Always Know Your Exit</div>
       <div class="rule" data-rule="5">5. Quantity</div>
       <div class="rule" data-rule="6">6. The Weekdays</div>
-
     </div>
 
-    <!-- JS will inject dropdowns here -->
+    <!-- JS injects dropdowns -->
     <div id="rule-details"></div>
 
   </div>
+
+  <script>
+    /* ------------------------------
+       XP + BADGE INITIALIZATION
+    ------------------------------ */
+
+    // Display XP
+    const xp = parseInt(localStorage.getItem("guild_xp") || "0");
+    document.getElementById("xpDisplay").textContent = "XP: " + xp;
+
+    // Badge name for completing a Golden Rules quiz
+    const badgeName = "golden_rules_mastery";
+
+    // If badge already earned, show it
+    if (localStorage.getItem(badgeName) === "earned") {
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">GOLDEN RULES BADGE</div>`;
+    }
+
+    /* ---------------------------------------------------
+       FUNCTION: Called by your quiz JS when user finishes
+       completeGoldenRulesQuiz();
+    --------------------------------------------------- */
+    function completeGoldenRulesQuiz() {
+      // Award XP
+      let currentXP = parseInt(localStorage.getItem("guild_xp") || "0");
+      currentXP += 100; // You can change this reward
+      localStorage.setItem("guild_xp", currentXP);
+
+      // Award badge
+      localStorage.setItem(badgeName, "earned");
+
+      // Update UI instantly
+      document.getElementById("xpDisplay").textContent = "XP: " + currentXP;
+      document.getElementById("badgeDisplay").innerHTML =
+        `<div class="badge-earned">GOLDEN RULES BADGE</div>`;
+    }
+  </script>
 
 </body>
 </html>
