@@ -1,38 +1,65 @@
-<div id="arena-app">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Arena</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Screens (each loads its own HTML file) -->
-  <div id="screen-watchlist" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/watchlist.html"></div>
+  <!-- FAVICON + PWA -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#000000">
 
-  <div id="screen-market" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/market.html"></div>
+  <!-- GUILD CORE STYLES -->
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
-  <div id="screen-live" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/live.html"></div>
+  <!-- ARENA STYLES -->
+  <link rel="stylesheet" href="/guild/assets/css/arena.css" />
+</head>
 
-  <div id="screen-account" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/account.html"></div>
+<body>
 
-  <div id="screen-settings" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/settings.html"></div>
+  <div id="arena-app">
 
-  <div id="screen-tools" 
-       class="arena-screen" 
-       data-src="/guild/pages/arena/tools.html"></div>
+    <!-- Screens (each loads its own HTML file) -->
+    <div id="screen-watchlist"
+         class="arena-screen"
+         data-src="/guild/pages/arena/watchlist.html"></div>
 
-  <!-- Bottom Navigation -->
-  <nav class="arena-nav">
-    <button data-screen="watchlist">Watchlist</button>
-    <button data-screen="market">Market</button>
-    <button data-screen="live">Arena</button>
-    <button data-screen="account">Account</button>
-    <button data-screen="settings">Settings</button>
-    <button data-screen="tools">More</button>
-  </nav>
+    <div id="screen-market"
+         class="arena-screen"
+         data-src="/guild/pages/arena/market.html"></div>
 
-</div>
+    <div id="screen-live"
+         class="arena-screen"
+         data-src="/guild/pages/arena/live.html"></div>
+
+    <div id="screen-account"
+         class="arena-screen"
+         data-src="/guild/pages/arena/account.html"></div>
+
+    <div id="screen-settings"
+         class="arena-screen"
+         data-src="/guild/pages/arena/settings.html"></div>
+
+    <div id="screen-tools"
+         class="arena-screen"
+         data-src="/guild/pages/arena/tools.html"></div>
+
+    <!-- Bottom Navigation -->
+    <nav class="arena-nav">
+      <button data-screen="watchlist">Watchlist</button>
+      <button data-screen="market">Market</button>
+      <button data-screen="live">Arena</button>
+      <button data-screen="account">Account</button>
+      <button data-screen="settings">Settings</button>
+      <button data-screen="tools">More</button>
+    </nav>
+
+  </div>
+
+  <!-- ARENA LOGIC -->
+  <script src="/guild/assets/js/arena.js" defer></script>
+</body>
+</html>
