@@ -2,10 +2,7 @@ function go(page) {
   window.location.href = page;
 }
 
-// MASTER CREDENTIALS (PLAIN TEXT)
-const MASTER_USER = "Master";
-const MASTER_PASS = "Always/6";
-
+// LOGIN FUNCTION (JSON-POWERED)
 async function login() {
   const username = document.getElementById("loginUser").value.trim();
   const password = document.getElementById("loginPass").value.trim();
@@ -15,15 +12,29 @@ async function login() {
     return;
   }
 
-  // MASTER LOGIN CHECK (PLAIN TEXT)
-  if (username === MASTER_USER && password === MASTER_PASS) {
-    localStorage.setItem("guild_member", "paid");
-    localStorage.setItem("guild_username", "Guild Master");
-    localStorage.setItem("guild_role", "guild_master");
+  try {
+    // Load users.json from your repo
+    const res = await fetch("/data/users.json");
+    const data = await res.json();
 
-    go("/guild/pages/guild.html");
-    return;
+    // Find matching user
+    const user = data.users.find(
+      u => u.email.toLowerCase() === username.toLowerCase() && u.password === password
+    );
+
+    if (user) {
+      // Save session
+      localStorage.setItem("guild_member", "paid");
+      localStorage.setItem("guild_username", user.email);
+      localStorage.setItem("guild_role", user.role || "guild_member");
+
+      go("/guild/pages/guild.html");
+      return;
+    }
+
+    alert("Invalid username or password.");
+  } catch (err) {
+    console.error(err);
+    alert("Login system error.");
   }
-
-  alert("Invalid username or password.");
 }
