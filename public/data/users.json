@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "Master",
+      "password": "Always/6",
+      "role": "guild_master",
+      "created": "2026-04-18T00:00:00Z"
+    },
+    {
+      "email": "Jasminebridges05@gmail.com",
+      "password": "option",
+      "role": "guild_member",
+      "created": "2026-04-18T00:00:00Z"
+    }
+  ]
+}
