@@ -24,7 +24,7 @@ const ASSETS = [
   "/guild/pages/guild-discipline.html",
   "/guild/pages/inside-the-guild.html",
   "/guild/pages/guild-family.html",
-  "/guild/pages/training-hall.html",
+  "/guild/pages/training/training-hall.html",
   "/guild/pages/gf-paywall.html",
   "/guild/pages/guild-goldenformula.html",
   "/guild/pages/arena-secrets.html",
