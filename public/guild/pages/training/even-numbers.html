@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Even Numbers</title>
+  <title>Even Number Strike Simulator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
   <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
 
-  <!-- GLOBAL GUILD CSS -->
+  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
   <style>
@@ -17,72 +17,128 @@
       background: #000;
       font-family: system-ui, sans-serif;
       padding: 40px 20px;
-      line-height: 1.65;
       color: #D4AF37;
       text-align: center;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: url("/assets/image/guild-dragon-battle.jpg") center/cover no-repeat;
-      opacity: 0.18;
+      background: radial-gradient(circle at 50% 10%, rgba(212,175,55,0.18), transparent 70%);
+      opacity: 0.4;
       z-index: -1;
-      filter: grayscale(40%);
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.18), transparent 70%);
-      opacity: 0.35;
-      z-index: -1;
-      pointer-events: none;
-      animation: fogMove 12s ease-in-out infinite alternate;
-    }
-
-    @keyframes fogMove {
-      0% { transform: translateY(0px); opacity: 0.25; }
-      100% { transform: translateY(25px); opacity: 0.45; }
+    .sim-shell {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.8);
+      border-radius: 18px;
+      border: 2px solid #D4AF37;
+      padding: 24px;
+      box-shadow: 0 0 25px rgba(212,175,55,0.4);
     }
 
     h1 {
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.16em;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .sim-sub {
+      font-size: 0.95rem;
+      opacity: 0.9;
       margin-bottom: 20px;
-      font-size: 1.8rem;
     }
 
-    p {
-      max-width: 750px;
-      margin: 0 auto 20px;
-      text-align: left;
-      font-size: 1rem;
+    .price-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
     }
 
-    .divider {
-      width: 80%;
-      max-width: 500px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 40px auto;
-      opacity: 0.7;
+    .price-box {
+      min-width: 140px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #8B6B2C;
     }
 
-    .disclaimer {
-      margin-top: 30px;
-      font-size: 0.85rem;
+    .price-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       opacity: 0.8;
-      text-align: center;
+      margin-bottom: 4px;
     }
 
-    a.back {
+    .price-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .status {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      min-height: 1.4em;
+    }
+
+    .timer {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .btn-row {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .sim-btn {
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      background: #D4AF37;
+      color: #000;
+      transition: 0.2s ease;
+    }
+
+    .sim-btn[disabled] {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .sim-btn:hover:not([disabled]) {
+      background: #8B6B2C;
+      color: #fff;
+    }
+
+    .xp-banner {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .back-link {
       display: block;
-      margin-top: 40px;
+      margin-top: 30px;
       color: #D4AF37;
       text-decoration: none;
       text-transform: uppercase;
@@ -90,63 +146,7 @@
       font-weight: 600;
     }
 
-    a.back:hover { color: #fff; }
-
-    /* XP + BADGE BOX */
-    .xp-box {
-      margin: 25px auto;
-      padding: 12px;
-      max-width: 420px;
-      background: rgba(0,0,0,0.55);
-      border: 1px solid #8B6B2C;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #D4AF37;
-    }
-
-    .badge-earned {
-      margin-top: 10px;
-      padding: 8px 12px;
-      display: inline-block;
-      background: #D4AF37;
-      color: #000;
-      border-radius: 8px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-    }
-
-    /* SIMULATOR ENTRY */
-    .sim-box {
-      margin: 50px auto;
-      padding: 25px;
-      max-width: 650px;
-      background: rgba(0,0,0,0.75);
-      border: 2px solid #D4AF37;
-      border-radius: 16px;
-      text-align: center;
-    }
-
-    .sim-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 24px;
-      background: #D4AF37;
-      color: #000;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 12px;
-      transition: 0.25s ease;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-
-    .sim-btn:hover {
-      background: #8B6B2C;
+    .back-link:hover {
       color: #fff;
     }
   </style>
@@ -154,94 +154,52 @@
 
 <body class="fade-in">
 
-  <h1>Even Numbers</h1>
-
-  <!-- XP + BADGE STATUS -->
-  <div class="xp-box">
-    <div id="xpDisplay">XP: 0</div>
-    <div id="badgeDisplay"></div>
-  </div>
-
-  <p>
-    The world of traders loves even numbers.  
-    Whole numbers. Clean levels. 10, 20, 50, 100.
-  </p>
-
-  <p>
-    When thousands of traders are all watching the same even number,  
-    waiting for price to hit that level before they act,  
-    the market often reacts there — hard.
-  </p>
-
-  <div class="divider"></div>
-
-  <p>
-    We love even numbers because the market loves even numbers.  
-    You will learn to mark them, respect them, and use them as key decision points in your trades.
-  </p>
-
-  <!-- SIMULATOR ENTRY -->
-  <div class="sim-box">
-    <h2 style="margin-bottom:10px;">Even Number Strike Simulator</h2>
-    <p>
-      Enter when price touches <strong>$10.00</strong> coming down from <strong>$10.20</strong>.  
-      Exit when price hits <strong>$10.50</strong> after the bounce.  
-      Earn XP, badges, and rank up.
-    </p>
-
-    <div class="sim-btn" onclick="startEvenNumberSim()">
-      ENTER SIMULATOR
+  <div class="sim-shell">
+    <h1>Even Number Strike</h1>
+    <div class="sim-sub">
+      Enter at <strong>$10.00</strong> as price falls from <strong>$10.20</strong>.  
+      Exit at <strong>$10.50</strong> after the bounce.  
+      You have a 20 second window at the top.
     </div>
+
+    <div class="price-row">
+      <div class="price-box">
+        <div class="price-label">Current Price</div>
+        <div class="price-value" id="priceDisplay">$10.20</div>
+      </div>
+
+      <div class="price-box">
+        <div class="price-label">Phase</div>
+        <div class="price-value" id="phaseDisplay">Waiting for Entry</div>
+      </div>
+
+      <div class="price-box">
+        <div class="price-label">Timer</div>
+        <div class="price-value" id="timerDisplay">--</div>
+      </div>
+    </div>
+
+    <div class="status" id="statusText">
+      Wait for price to touch <strong>$10.00</strong> on the way down, then hit ENTER.
+    </div>
+
+    <div class="btn-row">
+      <button class="sim-btn" id="enterBtn" disabled>Enter at $10.00</button>
+      <button class="sim-btn" id="exitBtn" disabled>Exit at $10.50</button>
+      <button class="sim-btn" id="restartBtn">Restart</button>
+    </div>
+
+    <div class="xp-banner" id="xpBanner"></div>
   </div>
 
-  <p class="disclaimer">
-    This rule is still under construction.  
-    More examples and live reactions will be added.
-  </p>
-
-  <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
+  <a class="back-link" href="/guild/pages/even-numbers.html">← Back to Even Numbers</a>
 
   <!-- XP + BADGES -->
   <script src="/guild/xp/xp.js"></script>
   <script src="/guild/xp/badges.js"></script>
 
-  <script>
-    /* INITIAL XP + BADGE DISPLAY */
-    const xp = parseInt(localStorage.getItem("guild_xp") || "0");
-    document.getElementById("xpDisplay").textContent = "XP: " + xp;
-
-    const badgeName = "even_numbers_mastery";
-
-    if (localStorage.getItem(badgeName) === "earned") {
-      document.getElementById("badgeDisplay").innerHTML =
-        `<div class="badge-earned">EVEN NUMBERS BADGE</div>`;
-    }
-
-    /* SIMULATOR HOOK */
-    function startEvenNumberSim() {
-      // This loads your simulator page/module
-      window.location.href = "/guild/pages/simulators/even-number-sim.html";
-    }
-
-    /* CALLED BY SIMULATOR WHEN USER COMPLETES BOTH ENTRY + EXIT */
-    function completeEvenNumberSim() {
-      let currentXP = parseInt(localStorage.getItem("guild_xp") || "0");
-
-      // XP max 200 for this module
-      const reward = 200;
-      currentXP = Math.min(currentXP + reward, currentXP + reward);
-
-      localStorage.setItem("guild_xp", currentXP);
-
-      // Award badge
-      localStorage.setItem(badgeName, "earned");
-
-      // Update UI instantly
-      document.getElementById("xpDisplay").textContent = "XP: " + currentXP;
-      document.getElementById("badgeDisplay").innerHTML =
-        `<div class="badge-earned">EVEN NUMBERS BADGE</div>`;
-    }
-  </script>
+  <!-- SIM LOGIC -->
+  <script src="/guild/assets/js/even-number-sim.js"></script>
 
 </body>
 </html>
