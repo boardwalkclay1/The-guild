@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Broker Access Simulator – Guild Training</title>
+<title>Broker Access Simulator – Guild Training Simulation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+<script defer src="/guild/assets/js/broker-access.js"></script>
 
 <style>
 body {
@@ -18,29 +19,35 @@ body {
 
 .training-container {
   width: 92%;
-  max-width: 750px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 40px 0;
 }
 
-.module-card {
+h1, h2 {
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.broker-select-box {
   background: rgba(20,20,20,0.85);
   border: 1px solid #e6c37f;
   border-radius: 16px;
   padding: 22px;
-  margin: 25px 0;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .broker-btn {
-  display: block;
+  display: inline-block;
   background: rgba(40,40,40,0.9);
   border: 1px solid #e6c37f;
   border-radius: 14px;
-  padding: 14px;
-  margin: 12px 0;
+  padding: 14px 20px;
+  margin: 12px;
   text-decoration: none;
   color: #e6c37f;
-  text-align: center;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -49,28 +56,84 @@ body {
   background: rgba(230,195,127,0.15);
 }
 
-.step {
-  margin: 10px 0;
-  line-height: 1.6;
-}
-
-.expand {
-  cursor: pointer;
-  padding: 10px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  margin-top: 10px;
+.simulator-box {
+  background: rgba(20,20,20,0.85);
   border: 1px solid #e6c37f;
-  text-align: center;
+  border-radius: 16px;
+  padding: 22px;
+  margin-top: 25px;
 }
 
-.hidden {
-  display: none;
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+  overflow: hidden;
 }
 
-h1, h2 {
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #e6c37f;
+  transition: width 0.4s ease;
+}
+
+.sim-screen {
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #e6c37f;
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.sim-option {
+  background: rgba(40,40,40,0.9);
+  border: 1px solid #e6c37f;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sim-option:hover {
+  background: rgba(230,195,127,0.15);
+}
+
+.feedback {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.success-badge {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #e6c37f;
+  color: #000;
+  border-radius: 10px;
+  font-weight: bold;
   text-align: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.retry-btn {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: rgba(40,40,40,0.9);
+  border: 1px solid #e6c37f;
+  border-radius: 10px;
+  color: #e6c37f;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+}
+
+.retry-btn:hover {
+  background: rgba(230,195,127,0.15);
 }
 </style>
 </head>
@@ -80,100 +143,20 @@ h1, h2 {
 <div class="training-container">
   <h1>Broker Access Simulator</h1>
   <p style="text-align:center; opacity:0.8;">
-    Practice unlocking options trading on real brokers.  
-    This module prepares you for the real world.
+    This is a <strong>Guild Training Simulation</strong>.  
+    You will click through each broker’s interface as if you were unlocking options trading in real life.
   </p>
 
-  <a class="broker-btn" onclick="loadSim('Chase')">Chase</a>
-  <a class="broker-btn" onclick="loadSim('Webull')">Webull</a>
-  <a class="broker-btn" onclick="loadSim('Robinhood')">Robinhood</a>
-  <a class="broker-btn" onclick="loadSim('TD Ameritrade')">TD Ameritrade</a>
+  <div class="broker-select-box">
+    <h2>Select a Broker</h2>
+    <a class="broker-btn" onclick="startSim('Chase')">Chase</a>
+    <a class="broker-btn" onclick="startSim('Webull')">Webull</a>
+    <a class="broker-btn" onclick="startSim('Robinhood')">Robinhood</a>
+    <a class="broker-btn" onclick="startSim('TD')">TD Ameritrade</a>
+  </div>
 
-  <div id="simArea"></div>
+  <div id="simulatorArea"></div>
 </div>
-
-<script>
-const modules = {
-  "Chase": {
-    steps: [
-      "Open Chase → Self‑Directed Investing",
-      "Go to Account Management",
-      "Tap Trading Permissions",
-      "Enable Options Trading",
-      "Fill out approval form",
-      "Submit → Approved"
-    ],
-    notes: "Chase requires a self-directed investing account. Approval is usually instant."
-  },
-
-  "Webull": {
-    steps: [
-      "Open Webull",
-      "Tap Menu → Options Trading",
-      "Fill out questionnaire",
-      "Select Level 2",
-      "Submit → Approved"
-    ],
-    notes: "Webull approvals are fast. Level 2 is required for buying calls and puts."
-  },
-
-  "Robinhood": {
-    steps: [
-      "Open Robinhood",
-      "Tap Investing → Options",
-      "Fill out form",
-      "Submit → Approved"
-    ],
-    notes: "Robinhood approvals depend on your experience and financial profile."
-  },
-
-  "TD Ameritrade": {
-    steps: [
-      "Open TD Ameritrade",
-      "Go to Client Services",
-      "Tap My Profile",
-      "Request Options Approval",
-      "Fill out form",
-      "Submit → Approved"
-    ],
-    notes: "TD Ameritrade may take 24 hours to approve depending on your answers."
-  }
-};
-
-function loadSim(broker) {
-  const mod = modules[broker];
-
-  let html = `
-    <div class='module-card'>
-      <h2>${broker} Simulator</h2>
-
-      <div class='expand' onclick="toggleDetails()">
-        Show Steps ▼
-      </div>
-
-      <div id="details" class="hidden">
-  `;
-
-  mod.steps.forEach(s => {
-    html += `<p class='step'>• ${s}</p>`;
-  });
-
-  html += `
-        <p style='margin-top:20px; opacity:0.8;'>${mod.notes}</p>
-      </div>
-
-      <p style='text-align:center; margin-top:20px;'>You are now approved.</p>
-    </div>
-  `;
-
-  document.getElementById("simArea").innerHTML = html;
-}
-
-function toggleDetails() {
-  const box = document.getElementById("details");
-  box.classList.toggle("hidden");
-}
-</script>
 
 </body>
 </html>
