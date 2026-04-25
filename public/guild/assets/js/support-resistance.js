@@ -1,5 +1,3 @@
-// support-resistance.js
-
 // =========================
 // HINT TICKER
 // =========================
@@ -26,7 +24,7 @@ function startSRHints() {
 }
 
 // =========================
-// QUIZ ENGINE
+// GUILD QUIZ (ONE QUESTION AT A TIME)
 // =========================
 const SR_QUIZ = [
   {
@@ -81,39 +79,59 @@ const SR_QUIZ = [
   }
 ];
 
-function renderQuiz() {
-  const quizEl = document.getElementById("sr-quiz");
-  const resultEl = document.getElementById("quiz-result");
-  if (!quizEl) return;
+let srIndex = 0;
 
-  quizEl.innerHTML = "";
+function loadSRQuestion() {
+  const qBox = document.getElementById("sr-question");
+  const optBox = document.getElementById("sr-options");
+  const nextBtn = document.getElementById("sr-next-btn");
+  const result = document.getElementById("sr-result");
 
-  SR_QUIZ.forEach((item, index) => {
-    const qBox = document.createElement("div");
-    qBox.className = "quiz-question";
+  const item = SR_QUIZ[srIndex];
 
-    qBox.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
+  qBox.textContent = item.q;
+  optBox.innerHTML = "";
+  result.textContent = "";
+  nextBtn.style.display = "none";
 
-    item.options.forEach((opt, i) => {
-      const optEl = document.createElement("div");
-      optEl.className = "quiz-option";
-      optEl.textContent = opt;
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement("div");
+    btn.className = "quiz-option";
+    btn.textContent = opt;
 
-      optEl.addEventListener("click", () => {
-        if (i === item.answer) {
-          resultEl.textContent = "Correct!";
-          resultEl.style.color = "#4CAF50";
-        } else {
-          resultEl.textContent = "Incorrect — review the lesson.";
-          resultEl.style.color = "#FF5252";
-        }
-      });
-
-      qBox.appendChild(optEl);
+    btn.addEventListener("click", () => {
+      if (i === item.answer) {
+        result.textContent = "Correct!";
+        result.style.color = "#4CAF50";
+      } else {
+        result.textContent = "Incorrect — review the lesson above.";
+        result.style.color = "#FF5252";
+      }
+      nextBtn.style.display = "block";
     });
 
-    quizEl.appendChild(qBox);
+    optBox.appendChild(btn);
   });
+}
+
+function nextSRQuestion() {
+  srIndex++;
+
+  const qBox = document.getElementById("sr-question");
+  const optBox = document.getElementById("sr-options");
+  const nextBtn = document.getElementById("sr-next-btn");
+  const result = document.getElementById("sr-result");
+
+  if (srIndex >= SR_QUIZ.length) {
+    qBox.textContent = "Quiz Complete!";
+    optBox.innerHTML = "";
+    nextBtn.style.display = "none";
+    result.textContent = "You’ve completed the Support & Resistance quiz.";
+    result.style.color = "#D4AF37";
+    return;
+  }
+
+  loadSRQuestion();
 }
 
 // =========================
@@ -121,5 +139,8 @@ function renderQuiz() {
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
   startSRHints();
-  renderQuiz();
+  loadSRQuestion();
+
+  const nextBtn = document.getElementById("sr-next-btn");
+  if (nextBtn) nextBtn.addEventListener("click", nextSRQuestion);
 });
