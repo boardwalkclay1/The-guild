@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Moving Averages</title>
+  <title>Moving Averages – Guild Training</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FAVICON + PWA -->
@@ -13,8 +13,9 @@
 
   <!-- GUILD MASTER CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+  <script defer src="/guild/assets/js/moving-averages.js"></script>
 
-  <!-- GUILD FONTS -->
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
   <style>
@@ -29,18 +30,16 @@
       overflow-x: hidden;
     }
 
-    /* Background Image — restored to your original path */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background: url("/assets/image/guild-toon.jpg") center/cover no-repeat;
       opacity: 0.18;
-      z-index: -1;
+      z-index: -2;
       filter: grayscale(40%);
     }
 
-    /* Fog Layer */
     body::after {
       content: "";
       position: fixed;
@@ -57,7 +56,17 @@
       100% { transform: translateY(25px); opacity: 0.45; }
     }
 
-    /* Gold Frame */
+    #ma-hints {
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(212,175,55,0.15);
+      border-bottom: 1px solid rgba(212,175,55,0.4);
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 30px;
+    }
+
     .frame {
       background: rgba(0, 0, 0, 0.65);
       border: 2px solid #D4AF37;
@@ -69,7 +78,6 @@
       backdrop-filter: blur(3px);
     }
 
-    /* Title */
     h1 {
       text-transform: uppercase;
       letter-spacing: 0.18em;
@@ -78,7 +86,6 @@
       font-family: "Uncial Antiqua", serif;
     }
 
-    /* Paragraphs */
     p {
       max-width: 800px;
       margin: 0 auto 25px;
@@ -86,7 +93,6 @@
       font-size: 1.05rem;
     }
 
-    /* Divider */
     .divider {
       width: 80%;
       max-width: 500px;
@@ -96,53 +102,114 @@
       opacity: 0.7;
     }
 
-    /* Module Navigation */
-    .module-nav {
-      margin-top: 60px;
-      padding: 30px;
-      background: rgba(0,0,0,0.65);
+    .section-title {
+      font-size: 1.4rem;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-family: "Uncial Antiqua", serif;
+    }
+
+    .example-img {
+      max-width: 100%;
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .callout {
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.4);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 25px auto;
+      max-width: 750px;
+      text-align: left;
+    }
+
+    .callout strong {
+      color: #fff;
+    }
+
+    .simulator-links {
+      margin-top: 40px;
+      display: grid;
+      gap: 15px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sim-btn {
+      padding: 14px;
+      border-radius: 10px;
       border: 2px solid #D4AF37;
-      border-radius: 14px;
+      background: rgba(0,0,0,0.7);
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      transition: 0.25s;
+      display: block;
+    }
+
+    .sim-btn:hover {
+      background: rgba(212,175,55,0.25);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    #ma-quiz-box {
+      margin-top: 50px;
+      padding: 20px;
+      background: #111;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 12px;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .module-nav h2 {
-      font-family: "Uncial Antiqua", serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    #ma-question {
+      font-size: 1.1rem;
       margin-bottom: 20px;
-      font-size: 1.4rem;
+      text-align: left;
     }
 
-    .module-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .module-links a {
+    .ma-option {
       display: block;
-      padding: 12px;
-      background: rgba(212,175,55,0.15);
-      border: 1px solid #D4AF37;
-      border-radius: 10px;
-      color: #D4AF37;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
+      margin: 8px 0;
+      padding: 10px;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 8px;
+      cursor: pointer;
       transition: 0.2s;
     }
 
-    .module-links a:hover {
-      background: rgba(212,175,55,0.3);
-      color: #fff;
+    .ma-option:hover {
+      background: rgba(212,175,55,0.15);
     }
 
-    /* Back Link */
+    #ma-next-btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #D4AF37;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      display: none;
+    }
+
+    #ma-result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
     .back {
       display: block;
       margin-top: 50px;
@@ -159,47 +226,73 @@
 
 <body class="fade-in">
 
+  <!-- HINT BAR -->
+  <div id="ma-hints"></div>
+
   <div class="frame">
 
     <h1>Moving Averages</h1>
 
     <p>
-      Moving averages are the cleanest way to see the true direction of the market.  
-      They smooth out the noise and reveal the underlying path price has been traveling.
+      Moving averages smooth out price action and reveal the true direction of the market.  
+      They remove noise and show you the underlying trend.
     </p>
 
     <p>
       When a shorter moving average crosses above a longer one, it forms the  
-      <strong>Golden Cross</strong> — a powerful sign of strength and continuation.  
+      <strong>Golden Cross</strong> — a powerful sign of strength.  
       When it crosses below, you get the <strong>Death Cross</strong>, a warning of weakness.
     </p>
 
     <div class="divider"></div>
 
-    <p>
-      You will learn to watch how these lines move, how they cross, and how they guide your entries and exits.  
-      They are not magic — they are structure.  
-      And structure is what removes fear and brings clarity.
-    </p>
+    <h2 class="section-title">Schematic Example</h2>
 
-    <p class="disclaimer">
-      This rule is still under construction.  
-      More visuals, examples, and live chart breakdowns will be added.
-    </p>
+    <img class="example-img"
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png"
+         alt="Moving Average Schematic">
 
-    <!-- MODULE NAVIGATION -->
-    <div class="module-nav">
-      <h2>Continue Your Training</h2>
+    <h2 class="section-title">Real Chart Example</h2>
 
-      <div class="module-links">
-        <a href="/guild/pages/golden-rules.html">Golden Rules</a>
-        <a href="/guild/pages/candlesticks.html">Candlestick Mastery</a>
-        <a href="/guild/pages/market-structure.html">Market Structure</a>
-        <a href="/guild/pages/timeframes.html">Timeframe Mastery</a>
-        <a href="/guild/pages/moving-averages.html">Moving Averages</a>
-        <a href="/guild/pages/patterns.html">Chart Patterns</a>
-        <a href="/guild/pages/risk-management.html">Risk Management</a>
-      </div>
+    <img class="example-img"
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png"
+         alt="Real Moving Average Chart">
+
+    <div class="callout">
+      <strong>Guild Master Notes:</strong><br>
+      • The 20 EMA shows short‑term momentum<br>
+      • The 50 SMA shows medium‑term trend<br>
+      • The 200 SMA shows long‑term direction<br>
+      • Crossovers matter most when volume confirms
+    </div>
+
+    <div class="callout">
+      <strong>Common Mistakes:</strong><br>
+      • Trading every crossover blindly<br>
+      • Using too many moving averages<br>
+      • Ignoring trend context<br>
+      • Entering before confirmation
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="section-title">Practice Simulators</h2>
+
+    <div class="simulator-links">
+      <a class="sim-btn" href="/guild/simulators/ma-trend-test.html">Trend Direction Simulator</a>
+      <a class="sim-btn" href="/guild/simulators/ma-crossover-test.html">Crossover Identification Simulator</a>
+      <a class="sim-btn" href="/guild/simulators/ma-retest-test.html">Retest Entry Simulator</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="section-title">Moving Averages Quiz</h2>
+
+    <div id="ma-quiz-box">
+      <div id="ma-question"></div>
+      <div id="ma-options"></div>
+      <button id="ma-next-btn">Next Question</button>
+      <div id="ma-result"></div>
     </div>
 
     <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
