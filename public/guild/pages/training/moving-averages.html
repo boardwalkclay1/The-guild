@@ -72,7 +72,7 @@
       border: 2px solid #D4AF37;
       border-radius: 14px;
       padding: 40px 30px;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 140px auto 100px;
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
       backdrop-filter: blur(3px);
@@ -87,7 +87,7 @@
     }
 
     p {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto 25px;
       text-align: left;
       font-size: 1.05rem;
@@ -111,11 +111,75 @@
       font-family: "Uncial Antiqua", serif;
     }
 
+    .ma-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .ma-topic-list {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .ma-topic-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .ma-topic-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,0.4);
+      background: rgba(0,0,0,0.8);
+      color: #D4AF37;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: 0.2s;
+    }
+
+    .ma-topic-btn:hover {
+      background: rgba(212,175,55,0.2);
+    }
+
+    .ma-topic-btn.active {
+      background: rgba(212,175,55,0.35);
+      color: #000;
+      border-color: #D4AF37;
+    }
+
+    .ma-detail {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .ma-detail h3 {
+      margin-top: 0;
+      font-family: "Uncial Antiqua", serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .example-img {
       max-width: 100%;
       border: 1px solid rgba(212,175,55,0.4);
       border-radius: 8px;
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
     .callout {
@@ -123,8 +187,7 @@
       border: 1px solid rgba(212,175,55,0.4);
       padding: 15px;
       border-radius: 10px;
-      margin: 25px auto;
-      max-width: 750px;
+      margin: 20px 0;
       text-align: left;
     }
 
@@ -221,6 +284,12 @@
     }
 
     .back:hover { color: #fff; }
+
+    @media (max-width: 800px) {
+      .ma-layout {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -246,32 +315,24 @@
 
     <div class="divider"></div>
 
-    <h2 class="section-title">Schematic Example</h2>
+    <h2 class="section-title">Core Moving Average Concepts</h2>
 
-    <img class="example-img"
-         src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png"
-         alt="Moving Average Schematic">
+    <div class="ma-layout">
+      <!-- LEFT: TOPIC LIST -->
+      <aside class="ma-topic-list">
+        <div class="ma-topic-title">Tap to Learn</div>
+        <button class="ma-topic-btn active" data-topic="20ema">20 EMA – Short-Term Momentum</button>
+        <button class="ma-topic-btn" data-topic="50sma">50 SMA – Swing Trend</button>
+        <button class="ma-topic-btn" data-topic="200sma">200 SMA – Market Regime</button>
+        <button class="ma-topic-btn" data-topic="golden">Golden Cross</button>
+        <button class="ma-topic-btn" data-topic="death">Death Cross</button>
+        <button class="ma-topic-btn" data-topic="dynamic">Dynamic Support & Resistance</button>
+      </aside>
 
-    <h2 class="section-title">Real Chart Example</h2>
-
-    <img class="example-img"
-         src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png"
-         alt="Real Moving Average Chart">
-
-    <div class="callout">
-      <strong>Guild Master Notes:</strong><br>
-      • The 20 EMA shows short‑term momentum<br>
-      • The 50 SMA shows medium‑term trend<br>
-      • The 200 SMA shows long‑term direction<br>
-      • Crossovers matter most when volume confirms
-    </div>
-
-    <div class="callout">
-      <strong>Common Mistakes:</strong><br>
-      • Trading every crossover blindly<br>
-      • Using too many moving averages<br>
-      • Ignoring trend context<br>
-      • Entering before confirmation
+      <!-- RIGHT: DETAIL PANEL -->
+      <section class="ma-detail" id="ma-detail">
+        <!-- JS injects content here -->
+      </section>
     </div>
 
     <div class="divider"></div>
