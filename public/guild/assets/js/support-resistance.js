@@ -40,11 +40,11 @@ const SR_QUIZ = [
     answer: 0
   },
   {
-    q: "What usually confirms a resistance breakout?",
+    q: "What confirms a resistance breakout?",
     options: [
       "Low volume.",
       "A wick above resistance.",
-      "A close above resistance with volume.",
+      "A close above resistance with strong volume.",
       "A random spike."
     ],
     answer: 2
@@ -52,12 +52,32 @@ const SR_QUIZ = [
   {
     q: "What often happens when support breaks?",
     options: [
-      "Price teleports upward.",
       "Support becomes resistance.",
+      "Price teleports upward.",
       "Nothing changes.",
       "Price becomes unpredictable."
     ],
-    answer: 1
+    answer: 0
+  },
+  {
+    q: "Why is support stronger after multiple tests?",
+    options: [
+      "Because buyers have proven they defend that level.",
+      "Because sellers are getting stronger.",
+      "Because indicators say so.",
+      "Because the market is random."
+    ],
+    answer: 0
+  },
+  {
+    q: "What is the biggest mistake traders make with resistance?",
+    options: [
+      "Expecting a breakout without volume.",
+      "Drawing it too wide.",
+      "Drawing it too low.",
+      "Ignoring moving averages."
+    ],
+    answer: 0
   }
 ];
 
