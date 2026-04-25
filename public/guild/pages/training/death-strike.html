@@ -14,6 +14,13 @@
   <!-- Guild CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
+  <!-- XP + BADGES -->
+  <script src="/guild/xp/xp.js"></script>
+  <script src="/guild/xp/badges.js"></script>
+
+  <!-- DEATH STRIKE JS -->
+  <script src="/guild/assets/js/death-strike.js" defer></script>
+
   <style>
     body {
       background: #000;
@@ -22,6 +29,8 @@
       line-height: 1.65;
       color: #D4AF37;
       text-align: center;
+      position: relative;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -34,175 +43,271 @@
       filter: grayscale(30%);
     }
 
-    iframe.arena-frame {
-      width: 100%;
-      height: 900px;
-      border: none;
-      margin-top: 40px;
-      display: none;
-    }
-
-    .arena-entry {
-      margin-top: 60px;
-      padding: 30px;
-      background: rgba(0,0,0,0.85);
+    .ds-wrapper {
+      max-width: 1200px;
+      margin: 40px auto 80px;
+      background: rgba(0,0,0,0.82);
       border: 2px solid #D4AF37;
-      border-radius: 16px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(212,175,55,0.35);
+      display: flex;
+      overflow: hidden;
     }
 
-    .arena-entry-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 24px;
-      background: #D4AF37;
-      color: #000;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 12px;
-      transition: 0.25s ease;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-
-    .arena-entry-btn:hover {
-      background: #8B6B2C;
-      color: #fff;
-    }
-
-    #arenaPopup {
-      position: fixed;
-      inset: 0;
+    .ds-menu {
+      width: 260px;
+      border-right: 2px solid #8B6B2C;
+      padding: 24px 18px;
       background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-    }
-
-    #arenaPopup .popup-box {
-      max-width: 500px;
-      padding: 30px;
-      background: rgba(0,0,0,0.95);
-      border: 2px solid #D4AF37;
-      border-radius: 16px;
       text-align: left;
     }
 
-    .popup-btn {
+    .ds-menu-title {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .ds-menu-item {
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: 1px solid #D4AF37;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      transition: 0.25s ease;
+    }
+
+    .ds-menu-item:hover,
+    .ds-menu-item.active {
+      background: rgba(212,175,55,0.25);
+      text-shadow: 0 0 10px #D4AF37;
+    }
+
+    .ds-panel {
+      flex: 1;
+      padding: 32px 40px;
+      text-align: left;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    h1.ds-title {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .ds-subtitle {
+      text-align: center;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-family: system-ui, sans-serif;
+      font-size: 1rem;
+      opacity: 0.95;
+      margin-bottom: 14px;
+    }
+
+    .example-box {
+      border: 1px solid #8B6B2C;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .ds-callout {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #D4AF37;
+      background: rgba(0,0,0,0.7);
+      font-family: system-ui, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .ds-btn {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 12px 20px;
       background: #D4AF37;
       color: #000;
       text-decoration: none;
       font-weight: 700;
-      border-radius: 10px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      border-radius: 10px;
+      transition: 0.25s ease;
+      font-size: 0.9rem;
       cursor: pointer;
     }
 
-    .popup-btn:hover {
+    .ds-btn:hover {
       background: #8B6B2C;
       color: #fff;
+    }
+
+    .ds-btn-ghost {
+      background: transparent;
+      border: 1px solid #D4AF37;
+      color: #D4AF37;
+    }
+
+    .ds-btn-ghost:hover {
+      background: rgba(212,175,55,0.2);
+      color: #fff;
+    }
+
+    /* XP BOX */
+    .xp-box {
+      margin: 0 auto 20px;
+      padding: 10px 14px;
+      max-width: 420px;
+      background: rgba(0,0,0,0.65);
+      border: 1px solid #8B6B2C;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #D4AF37;
+      font-family: system-ui, sans-serif;
+    }
+
+    .badge-earned {
+      margin-top: 8px;
+      padding: 6px 10px;
+      display: inline-block;
+      background: #D4AF37;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    /* QUIZ */
+    .ds-quiz-q {
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-family: system-ui, sans-serif;
+    }
+
+    .ds-quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .ds-quiz-opt {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #8B6B2C;
+      background: rgba(0,0,0,0.7);
+      color: #D4AF37;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .ds-quiz-opt:hover {
+      background: rgba(212,175,55,0.18);
+    }
+
+    .ds-quiz-progress {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .ds-quiz-result {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .ds-arena-levels {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ds-arena-note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      font-family: system-ui, sans-serif;
+    }
+
+    .back-link {
+      display: block;
+      margin: 30px auto 0;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #D4AF37;
     }
   </style>
 </head>
 
 <body class="fade-in">
 
-  <div class="gold-scroll">
-    <h1>DEATH STRIKE</h1>
-    <p style="text-align:center; opacity:0.9;">
-      The final teaching scroll before you enter the Arena.
-    </p>
+  <h1 class="ds-title">DEATH STRIKE</h1>
+  <p class="ds-subtitle">The final teaching scroll before you enter the Arena.</p>
 
-    <p>
-      The Death Strike is the Guild’s sacred technique — the moment when a contract’s price multiplies with violent speed.
-      This is precision, timing, and discipline.
-    </p>
-
-    <p>
-      A contract is not the stock — it is the <strong>price of possibility</strong>.
-    </p>
-
-    <h2>Examples of the Death Strike</h2>
-
-    <div class="example-box">
-      <h3>1 Contract → $1 to $10</h3>
-      <p>Your $1 becomes $10. A clean 10× multiplication.</p>
-    </div>
-
-    <div class="example-box">
-      <h3>10 Contracts → $10 to $100</h3>
-      <p>The same move, scaled. The multiplication is identical.</p>
-    </div>
-
-    <div class="example-box">
-      <h3>100 Contracts → $100 to $1,000</h3>
-      <p>Size changes the outcome — not the math.</p>
-    </div>
-
-    <h2>The Truth Behind Explosive Contracts</h2>
-
-    <p>
-      Contracts can explode to $40, $100, $300, even $1,000.
-      These moves happen every weekday. The question is whether you can strike at the right moment.
-    </p>
-
-    <p>
-      Inside the Arena, you will learn to buy at the <strong>MID</strong>, sell at the <strong>MID</strong>,
-      and survive the fire timer.
-    </p>
+  <!-- XP + BADGE STATUS -->
+  <div class="xp-box">
+    <div id="xpDisplay">XP: 0</div>
+    <div id="badgeDisplay"></div>
   </div>
 
-  <div class="arena-entry">
-    <h2>Your First Trial Awaits</h2>
-    <p>You will begin in the Calm Market — Level 1 of the Arena Tower.</p>
+  <div class="ds-wrapper">
 
-    <a class="arena-entry-btn" onclick="openArenaPopup()">ENTER THE ARENA — BEGIN LEVEL 1</a>
-  </div>
+    <!-- LEFT MENU -->
+    <div class="ds-menu">
+      <div class="ds-menu-title">Death Strike Module</div>
 
-  <div id="arenaPopup">
-    <div class="popup-box">
-      <h2>ARE YOU READY?</h2>
-      <p>You will face real‑time moving prices.</p>
-      <p>You will have 20 seconds to strike.</p>
-      <p>You must buy at the MID. You must sell at the MID.</p>
-      <p>You start with $100. If you hesitate, you fail.</p>
-
-      <div class="popup-btn" onclick="startArena()">ENTER LEVEL 1</div>
-
-      <div class="popup-btn" onclick="closeArenaPopup()" style="background:#333; color:#D4AF37; margin-left:10px;">
-        CANCEL
-      </div>
+      <div class="ds-menu-item active" data-section="info">Death Strike Knowledge</div>
+      <div class="ds-menu-item" data-section="quiz">Death Strike Quiz</div>
+      <div class="ds-menu-item" data-section="arena">Arena Tower</div>
     </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="ds-panel" id="dsPanel">
+      <!-- JS will inject content here -->
+    </div>
+
   </div>
 
-  <!-- ARENA IFRAMES -->
-  <iframe id="arena1" class="arena-frame" src="/guild/pages/training/arena/arena-level1.html"></iframe>
-  <iframe id="arena2" class="arena-frame" src="/guild/pages/training/arena/arena-level2.html"></iframe>
-  <iframe id="arena3" class="arena-frame" src="/guild/pages/training/arena/arena-level3.html"></iframe>
-  <iframe id="arena4" class="arena-frame" src="/guild/pages/training/arena/arena-level4.html"></iframe>
-
-  <script>
-    function openArenaPopup() {
-      document.getElementById("arenaPopup").style.display = "flex";
-    }
-    function closeArenaPopup() {
-      document.getElementById("arenaPopup").style.display = "none";
-    }
-
-    function startArena() {
-      closeArenaPopup();
-      document.getElementById("arena1").style.display = "block";
-    }
-  </script>
+  <a class="back-link" onclick="window.location.href='/guild/pages/inside-the-guild.html'">
+    ← Return to the Inner Hall
+  </a>
 
 </body>
 </html>
