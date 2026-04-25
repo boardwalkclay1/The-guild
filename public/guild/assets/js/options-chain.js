@@ -1,4 +1,7 @@
-// options-chain.js
+// ======================================================
+//  GUILD OPTIONS CHAIN — TRAINING SIMULATION JS ENGINE
+// ======================================================
+
 
 // =========================
 // TOPIC DATA
@@ -8,8 +11,8 @@ const OC_TOPICS = {
     title: "Reading the Chain",
     text: `
 The options chain is a table of contracts. Each row is one contract.
-You are mainly reading: strike, expiration, bid, ask, last, volume, and open interest.
-In the Guild Simulator, you focus on understanding how the contract price reacts
+You are reading: strike, bid, ask, last, volume, and open interest.
+In the Guild Simulator, you focus on how the contract price reacts
 when the underlying stock moves.
     `,
     notes: [
@@ -22,9 +25,9 @@ when the underlying stock moves.
   callsputs: {
     title: "Calls vs Puts",
     text: `
-Calls are contracts that benefit when price moves up (in the simulator).
-Puts are contracts that benefit when price moves down.
-The chain usually shows calls on one side and puts on the other, or in separate tabs.
+Calls benefit when price moves up (in the simulator).
+Puts benefit when price moves down.
+Real chains show calls on the left and puts on the right.
     `,
     notes: [
       "Calls = bullish exposure in the simulator.",
@@ -35,14 +38,14 @@ The chain usually shows calls on one side and puts on the other, or in separate 
   contract: {
     title: "Contract Price",
     text: `
-The contract price is what you pay per contract (multiplied by the contract size in real markets).
-In the Guild Simulator, you practice recognizing how a small contract price can move
-a large percentage when the underlying stock moves.
+The contract price is what you pay per contract.
+In the Guild Simulator, you practice recognizing how a small contract price
+can move a large percentage when the underlying stock moves.
     `,
     notes: [
-      "Contract price is what you focus on in the simulator.",
-      "Small changes in the stock can create big % moves in the contract.",
-      "You never click without knowing the contract price."
+      "Contract price is the focus of the simulator.",
+      "Small stock moves can create big % contract moves.",
+      "Never click without knowing the contract price."
     ]
   },
   volumeoi: {
@@ -50,7 +53,7 @@ a large percentage when the underlying stock moves.
     text: `
 Volume shows how many contracts traded today.
 Open interest shows how many contracts are currently open.
-In the simulator, you use these to practice spotting which contracts are “active.”
+In the simulator, these help you identify “active” contracts.
     `,
     notes: [
       "High volume = lots of trading activity.",
@@ -62,7 +65,7 @@ In the simulator, you use these to practice spotting which contracts are “acti
     title: "Greeks (Lite)",
     text: `
 Greeks describe how the contract reacts to different forces.
-In the Guild Simulator, you start with Delta and Theta only:
+In the Guild Simulator, you start with Delta and Theta:
 Delta ≈ how much the contract moves when the stock moves.
 Theta ≈ how much the contract decays over time.
     `,
@@ -74,6 +77,10 @@ Theta ≈ how much the contract decays over time.
   }
 };
 
+
+// =========================
+// RENDER TOPIC PANEL
+// =========================
 function renderOCTopic(key) {
   const detailEl = document.getElementById("oc-detail");
   if (!detailEl) return;
@@ -108,83 +115,79 @@ function setupOCTopics() {
   renderOCTopic("reading");
 }
 
+
 // =========================
-// PLATFORM CHAIN VIEWS (SIMULATED)
+// REALISTIC OPTIONS CHAIN LAYOUT
+// CALLS LEFT — STRIKE MIDDLE — PUTS RIGHT
 // =========================
 function getPlatformChainHTML(platform) {
-  // Same data, different presentation emphasis
-  const baseRows = `
-    <tr>
-      <th>Strike</th>
-      <th>Bid</th>
-      <th>Ask</th>
-      <th>Last</th>
-      <th>Volume</th>
-      <th>Open Interest</th>
-    </tr>
-    <tr>
-      <td>100</td>
-      <td>$0.95</td>
-      <td>$1.05</td>
-      <td>$1.00</td>
-      <td>1,240</td>
-      <td>3,500</td>
-    </tr>
-    <tr>
-      <td>101</td>
-      <td>$0.70</td>
-      <td>$0.80</td>
-      <td>$0.75</td>
-      <td>980</td>
-      <td>2,900</td>
-    </tr>
-    <tr class="highlight-row">
-      <td><strong>102</strong></td>
-      <td><strong>$0.95</strong></td>
-      <td><strong>$1.05</strong></td>
-      <td><strong>$1.00</strong></td>
-      <td><strong>1,800</strong></td>
-      <td><strong>4,200</strong></td>
-    </tr>
-    <tr>
-      <td>103</td>
-      <td>$0.55</td>
-      <td>$0.65</td>
-      <td>$0.60</td>
-      <td>720</td>
-      <td>1,900</td>
-    </tr>
+
+  // Simulated rows
+  const rows = [
+    { strike: 100, callBid: 1.05, callAsk: 1.15, callLast: 1.10, callVol: 1240, putVol: 980,  putLast: 1.20, putAsk: 1.25, putBid: 1.15 },
+    { strike: 101, callBid: 0.85, callAsk: 0.95, callLast: 0.90, callVol: 980,  putVol: 1100, putLast: 1.35, putAsk: 1.40, putBid: 1.30 },
+    { strike: 102, callBid: 0.95, callAsk: 1.05, callLast: 1.00, callVol: 1800, putVol: 1400, putLast: 1.50, putAsk: 1.55, putBid: 1.45, highlight: true },
+    { strike: 103, callBid: 0.65, callAsk: 0.75, callLast: 0.70, callVol: 720,  putVol: 1600, putLast: 1.70, putAsk: 1.75, putBid: 1.65 }
+  ];
+
+  const platformLabel = {
+    webull: "Webull‑Style Simulation",
+    robinhood: "Robinhood‑Style Simulation",
+    chase: "Chase‑Style Simulation"
+  }[platform];
+
+  let html = `
+    <p><strong>${platformLabel}:</strong> Calls on the left, strike in the middle, puts on the right.</p>
+
+    <table>
+      <tr>
+        <th colspan="4">CALLS</th>
+        <th>STRIKE</th>
+        <th colspan="4">PUTS</th>
+      </tr>
+
+      <tr>
+        <th>Bid</th>
+        <th>Ask</th>
+        <th>Last</th>
+        <th>Vol</th>
+
+        <th>Price</th>
+
+        <th>Vol</th>
+        <th>Last</th>
+        <th>Ask</th>
+        <th>Bid</th>
+      </tr>
   `;
 
-  if (platform === "webull") {
-    return `
-      <p><strong>Webull‑Style Simulation:</strong> Compact rows, dense data, focus on bid/ask and volume.</p>
-      <table>${baseRows}</table>
-    `;
-  }
+  rows.forEach(r => {
+    html += `
+      <tr class="${r.highlight ? "highlight-row" : ""}">
+        <td>$${r.callBid.toFixed(2)}</td>
+        <td>$${r.callAsk.toFixed(2)}</td>
+        <td>$${r.callLast.toFixed(2)}</td>
+        <td>${r.callVol}</td>
 
-  if (platform === "robinhood") {
-    return `
-      <p><strong>Robinhood‑Style Simulation:</strong> Cleaner spacing, emphasis on contract price and % move.</p>
-      <table>${baseRows}</table>
-      <p style="margin-top:10px;">
-        In many real apps, you also see a column for % change.  
-        In the simulator, imagine the highlighted contract is the one you are tracking.
-      </p>
-    `;
-  }
+        <td><strong>${r.strike}</strong></td>
 
-  // chase
-  return `
-    <p><strong>Chase‑Style Simulation:</strong> More traditional brokerage layout, clear labels, focus on risk.</p>
-    <table>${baseRows}</table>
-    <p style="margin-top:10px;">
-      Traditional broker layouts often emphasize clarity and risk disclosure.  
-      In the simulator, you practice reading the same data regardless of layout.
-    </p>
-  `;
+        <td>${r.putVol}</td>
+        <td>$${r.putLast.toFixed(2)}</td>
+        <td>$${r.putAsk.toFixed(2)}</td>
+        <td>$${r.putBid.toFixed(2)}</td>
+      </tr>
+    `;
+  });
+
+  html += `</table>`;
+
+  return html;
 }
 
+
+// =========================
+// RENDER PLATFORM CHAIN
+// =========================
 function renderPlatformChain() {
   const select = document.getElementById("platformSelect");
   const container = document.getElementById("platformChain");
@@ -196,6 +199,7 @@ function renderPlatformChain() {
     container.innerHTML = getPlatformChainHTML(select.value);
   });
 }
+
 
 // =========================
 // QUIZ ENGINE
@@ -307,6 +311,7 @@ function nextOCQuestion() {
 
   loadOCQuestion();
 }
+
 
 // =========================
 // INIT
