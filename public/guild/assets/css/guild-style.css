@@ -57,7 +57,7 @@ body {
   to { transform: translateX(-600px); }
 }
 
-/* PILLARS (PURE CSS) */
+/* PILLARS */
 .pillar {
   position: fixed;
   top: 0;
@@ -123,7 +123,7 @@ body {
   -webkit-text-stroke: 1px rgba(255,215,0,0.7);
 }
 
-/* REMOVE SIDE TEXT COMPLETELY */
+/* REMOVE SIDE TEXT */
 .side-text { display: none !important; }
 
 /* TOP NAV */
@@ -157,131 +157,23 @@ body {
   text-shadow: 0 0 12px var(--gold);
 }
 
-/* ============================================
-   GUILD OVAL BUTTONS (STYLE A)
-   ============================================ */
-
+/* GUILD BUTTONS */
 .guild-btn {
   width: 90%;
   max-width: 600px;
   margin: 20px auto;
   padding: 18px 22px;
-
-  background: rgba(0,0,0,0.75);
-  border: 3px solid var(--gold);
-  border-radius: 40px;
-
-  color: var(--gold);
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 1.4rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 12px var(--gold-glow);
-}
-
-.guild-btn:hover {
-  background: rgba(212,175,55,0.18);
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px var(--gold-glow);
-}
-
-.arrow {
-  font-size: 1.4rem;
-  color: var(--gold);
-}
-
-/* DROPDOWN PANEL */
-.dropdown-panel {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-
-  background: rgba(0,0,0,0.75);
-  border: 2px solid var(--gold);
-  border-radius: 14px;
-
-  padding: 18px;
-  display: none;
-
-  box-shadow: 0 0 12px var(--gold-glow);
-}
-
-.dropdown-panel.open {
-  display: block;
-}
-
-.slogan {
-  font-size: 1.1rem;
-  color: var(--gold-soft);
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-/* ENTER BUTTON */
-.enter-btn {
-  margin-top: 12px;
-  width: 100%;
-  padding: 14px;
-
-  background: rgba(0,0,0,0.85);
-  border: 3px solid var(--gold);
-  border-radius: 30px;
-
-  color: var(--gold);
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.enter-btn:hover {
-  background: rgba(212,175,55,0.2);
-  box-shadow: 0 0 18px var(--gold-glow);
-  transform: translateY(-2px);
-}
-
-/* MOBILE FIXES */
-@media (max-width: 600px) {
-  .scroll-title { font-size: 2.2rem; }
-  .guild-btn { font-size: 1.2rem; padding: 16px 20px; }
-  .arrow { font-size: 1.2rem; }
-  .enter-btn { font-size: 1.1rem; }
-}
-/* ============================================
-   GUILD DROPDOWN PANELS — OVAL GOLD STYLE
-   ============================================ */
-
-/* BUTTON (Style A) — already correct but reinforced */
-.guild-btn {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 18px 22px;
-
   background: rgba(0,0,0,0.78);
   border: 3px solid var(--gold);
   border-radius: 40px;
-
   color: var(--gold);
   font-family: 'Uncial Antiqua', serif;
   font-size: 1.4rem;
   font-weight: 900;
   letter-spacing: 0.08em;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   cursor: pointer;
   transition: 0.3s ease;
   box-shadow: 0 0 14px var(--gold-glow);
@@ -299,125 +191,25 @@ body {
   pointer-events: none;
 }
 
-/* ============================================
-   DROPDOWN PANEL — FIXED (NO WHITE BOXES)
-   ============================================ */
-
-.dropdown-panel {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-
-  background: rgba(0,0,0,0.82);
-  border: 3px solid var(--gold);
-  border-radius: 28px;
-
-  padding: 20px;
-  display: none;
-
-  box-shadow: 0 0 18px var(--gold-glow);
-  animation: dropdownFade 0.35s ease;
-}
-
-.dropdown-panel.open {
-  display: block;
-}
-
-@keyframes dropdownFade {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* SLOGAN */
-.slogan {
-  font-size: 1.15rem;
-  color: var(--gold-soft);
-  margin-bottom: 12px;
-  font-weight: 700;
-  text-shadow: 0 0 6px rgba(0,0,0,0.6);
-}
-
-/* TEXT INSIDE PANEL */
-.dropdown-panel p {
-  font-size: 1.05rem;
-  line-height: 1.45;
-  color: var(--gold);
-  margin-bottom: 14px;
-  font-weight: 700;
-}
-
-/* ENTER BUTTON */
-.enter-btn {
-  width: 100%;
-  padding: 14px;
-
-  background: rgba(0,0,0,0.9);
-  border: 3px solid var(--gold);
-  border-radius: 30px;
-
-  color: var(--gold);
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 0 12px var(--gold-glow);
-}
-
-.enter-btn:hover {
-  background: rgba(212,175,55,0.22);
-  box-shadow: 0 0 20px var(--gold-glow);
-  transform: translateY(-2px);
-}
-/* ============================
-   FORCE ALL DROPDOWNS CLOSED
-   ============================ */
-
-.dropdown-panel,
-.gf-dropdown {
-  display: none;
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* When opened */
-.dropdown-panel.open,
-.gf-dropdown.open {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-/* ============================================
-   MAIN CHARACTER DROPDOWN PANELS — CINEMATIC
-   ============================================ */
-
+/* DROPDOWN PANELS */
 .dropdown-panel,
 .gf-dropdown {
   display: none;
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.35s ease, transform 0.35s ease;
-
-  /* MAIN CHARACTER LOOK */
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(0,0,0,0.88);
   border: 3px solid var(--gold);
   border-radius: 22px;
-
   padding: 22px;
   margin-top: 10px;
-
   box-shadow:
     0 0 18px rgba(212,175,55,0.45),
     inset 0 0 18px rgba(212,175,55,0.25),
     0 0 40px rgba(0,0,0,0.9);
-
   backdrop-filter: blur(4px);
 }
 
-/* When opened */
 .dropdown-panel.open,
 .gf-dropdown.open {
   display: block;
@@ -425,7 +217,6 @@ body {
   transform: translateY(0);
 }
 
-/* TEXT INSIDE — HERO ENERGY */
 .dropdown-panel p,
 .gf-dropdown p {
   color: var(--gold-soft);
@@ -435,7 +226,6 @@ body {
   text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* SLOGAN — CINEMATIC */
 .slogan,
 .gf-title {
   font-size: 1.35rem;
@@ -447,24 +237,20 @@ body {
     0 0 20px rgba(212,175,55,0.3);
 }
 
-/* ENTER BUTTON — HERO BUTTON */
+/* ENTER BUTTON */
 .enter-btn {
   width: 100%;
   padding: 14px;
-
   background: rgba(0,0,0,0.9);
   border: 3px solid var(--gold);
   border-radius: 30px;
-
   color: var(--gold);
   font-family: 'Uncial Antiqua', serif;
   font-size: 1.25rem;
   font-weight: 900;
   letter-spacing: 0.1em;
-
   cursor: pointer;
   transition: 0.3s ease;
-
   box-shadow:
     0 0 12px rgba(212,175,55,0.45),
     inset 0 0 12px rgba(212,175,55,0.25);
@@ -477,10 +263,8 @@ body {
     inset 0 0 18px rgba(212,175,55,0.35);
   transform: translateY(-2px);
 }
-/* ============================================
-   GOLDEN FORMULA — MAIN CHARACTER GOLD BAR
-   ============================================ */
 
+/* GOLDEN FORMULA BUTTON */
 .gf-btn {
   background: linear-gradient(
       to bottom,
@@ -489,22 +273,17 @@ body {
     );
   border: 3px solid var(--gold);
   border-radius: 40px;
-
   padding: 14px 26px;
   margin-right: 20px;
-
   font-family: 'Uncial Antiqua', serif;
   font-size: 1.25rem;
   font-weight: 900;
   letter-spacing: 0.08em;
-
   color: #3a2a00;
   text-shadow: 0 0 6px rgba(255,255,255,0.4);
-
   box-shadow:
     0 0 18px rgba(212,175,55,0.65),
     inset 0 0 12px rgba(255,255,255,0.35);
-
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -516,46 +295,42 @@ body {
     inset 0 0 18px rgba(255,255,255,0.45);
 }
 
-/* Make it BIGGER than the other nav items */
-.gf-wrapper {
-  display: flex;
-  align-items: center;
-}
+/* ============================================
+   ⭐ GLOBAL XP + BADGE HUD (ADDED)
+   ============================================ */
 
-/* Dropdown panel matches Guild cinematic style */
-.gf-dropdown {
-  background: rgba(0,0,0,0.88);
-  border: 3px solid var(--gold);
-  border-radius: 22px;
-  padding: 22px;
-  margin-top: 10px;
-
-  box-shadow:
-    0 0 18px rgba(212,175,55,0.45),
-    inset 0 0 18px rgba(212,175,55,0.25),
-    0 0 40px rgba(0,0,0,0.9);
-
-  backdrop-filter: blur(4px);
-
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.gf-dropdown.open {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Title inside dropdown */
-.gf-title {
-  font-size: 1.35rem;
-  font-weight: 900;
+.guild-hud {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.65);
+  border: 1px solid var(--gold);
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-align: right;
   color: var(--gold);
-  margin-bottom: 12px;
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.6),
-    0 0 20px rgba(212,175,55,0.3);
+  font-size: 0.9rem;
+  z-index: 99999;
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.guild-badge {
+  margin-top: 6px;
+  padding: 4px 8px;
+  background: var(--gold);
+  color: #000;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  .scroll-title { font-size: 2.2rem; }
+  .guild-btn { font-size: 1.2rem; padding: 16px 20px; }
+  .arrow { font-size: 1.2rem; }
+  .enter-btn { font-size: 1.1rem; }
 }
