@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Not Guessing, Not Gambling</title>
+  <title>Not Guessing, Not Gambling – Guild Training</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- FAVICON -->
@@ -11,6 +11,7 @@
 
   <!-- GLOBAL GUILD CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+  <script defer src="/guild/assets/js/not-guessing.js"></script>
 
   <style>
     body {
@@ -55,11 +56,11 @@
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
     }
 
     p {
-      max-width: 750px;
+      max-width: 850px;
       margin: 0 auto 20px;
       text-align: left;
       font-size: 1rem;
@@ -73,25 +74,6 @@
       margin: 40px auto;
       opacity: 0.7;
     }
-
-    .disclaimer {
-      margin-top: 30px;
-      font-size: 0.85rem;
-      opacity: 0.8;
-      text-align: center;
-    }
-
-    a.back {
-      display: block;
-      margin-top: 40px;
-      color: #D4AF37;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-
-    a.back:hover { color: #fff; }
 
     /* XP + BADGE UI */
     .xp-box {
@@ -116,6 +98,188 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       font-size: 0.75rem;
+    }
+
+    /* LAYOUT */
+    .ng-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .ng-topic-list {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .ng-topic-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .ng-topic-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,0.4);
+      background: rgba(0,0,0,0.8);
+      color: #D4AF37;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      transition: 0.2s;
+    }
+
+    .ng-topic-btn:hover {
+      background: rgba(212,175,55,0.2);
+    }
+
+    .ng-topic-btn.active {
+      background: rgba(212,175,55,0.35);
+      color: #000;
+      border-color: #D4AF37;
+    }
+
+    .ng-detail {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .ng-detail h3 {
+      margin-top: 0;
+      font-family: "Uncial Antiqua", serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .example-img {
+      max-width: 100%;
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .callout {
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.4);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .callout strong {
+      color: #fff;
+    }
+
+    /* SIMULATORS */
+    .simulator-links {
+      margin-top: 40px;
+      display: grid;
+      gap: 15px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sim-btn {
+      padding: 14px;
+      border-radius: 10px;
+      border: 2px solid #D4AF37;
+      background: rgba(0,0,0,0.7);
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      transition: 0.25s;
+      display: block;
+    }
+
+    .sim-btn:hover {
+      background: rgba(212,175,55,0.25);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    #ng-quiz-box {
+      margin-top: 50px;
+      padding: 20px;
+      background: #111;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #ng-question {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .ng-option {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .ng-option:hover {
+      background: rgba(212,175,55,0.15);
+    }
+
+    #ng-next-btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #D4AF37;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      display: none;
+    }
+
+    #ng-result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 50px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    a.back:hover { color: #fff; }
+
+    @media (max-width: 800px) {
+      .ng-layout {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -144,23 +308,46 @@
 
   <div class="divider"></div>
 
-  <p>
-    Never guess.  
-    Never gamble.  
-    If you cannot explain your trade in clear, simple logic, you have no business taking it.
-  </p>
+  <h2 class="section-title">Core Anti‑Gambling Concepts</h2>
 
-  <p>
-    The Guild is a community of disciplined traders.  
-    We do not chase.  
-    We do not hope.  
-    We execute.
-  </p>
+  <div class="ng-layout">
+    <!-- LEFT: TOPIC LIST -->
+    <aside class="ng-topic-list">
+      <div class="ng-topic-title">Tap to Learn</div>
+      <button class="ng-topic-btn active" data-topic="plan">Having a Plan</button>
+      <button class="ng-topic-btn" data-topic="levels">Knowing Your Levels</button>
+      <button class="ng-topic-btn" data-topic="confirmation">Waiting for Confirmation</button>
+      <button class="ng-topic-btn" data-topic="risk">Defined Risk</button>
+      <button class="ng-topic-btn" data-topic="chasing">Not Chasing</button>
+      <button class="ng-topic-btn" data-topic="emotion">Removing Emotion</button>
+    </aside>
 
-  <p class="disclaimer">
-    This rule is still under construction.  
-    More examples and deeper logic will be added.
-  </p>
+    <!-- RIGHT: DETAIL PANEL -->
+    <section class="ng-detail" id="ng-detail">
+      <!-- JS injects content -->
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title">Practice Simulators</h2>
+
+  <div class="simulator-links">
+    <a class="sim-btn" href="/guild/simulators/logic-test.html">Logic‑Based Entry Simulator</a>
+    <a class="sim-btn" href="/guild/simulators/confirmation-test.html">Confirmation Simulator</a>
+    <a class="sim-btn" href="/guild/simulators/risk-test.html">Risk Management Simulator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title">Not Guessing Quiz</h2>
+
+  <div id="ng-quiz-box">
+    <div id="ng-question"></div>
+    <div id="ng-options"></div>
+    <button id="ng-next-btn">Next Question</button>
+    <div id="ng-result"></div>
+  </div>
 
   <a class="back" href="golden-rules.html">← Back to Golden Rules</a>
 
@@ -169,18 +356,13 @@
   <script src="/guild/xp/badges.js"></script>
 
   <script>
-    // Pull XP + badges from storage
     const xp = parseInt(localStorage.getItem("guild_xp") || "0");
     document.getElementById("xpDisplay").textContent = "XP: " + xp;
 
-    // Badge: Not Guessing Mastery
     const badgeName = "not_guessing_mastery";
-
     if (!localStorage.getItem(badgeName)) {
-      // Award badge on first visit
       localStorage.setItem(badgeName, "earned");
     }
-
     if (localStorage.getItem(badgeName) === "earned") {
       document.getElementById("badgeDisplay").innerHTML =
         `<div class="badge-earned">NOT GUESSING BADGE</div>`;
