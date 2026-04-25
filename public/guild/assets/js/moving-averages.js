@@ -26,46 +26,237 @@ function startMAHints() {
 }
 
 // =========================
+// TOPIC DETAIL DATA
+// =========================
+const MA_TOPICS = {
+  "20ema": {
+    title: "20 EMA – Short-Term Momentum",
+    text: `
+The 20-period Exponential Moving Average (20 EMA) reacts quickly to price.
+It shows short-term momentum and is often used to trail stops or time entries
+in the direction of the current move.
+
+When price rides above the 20 EMA in an uptrend, pullbacks into it often act
+as dynamic support. When price rides below it in a downtrend, it often acts
+as dynamic resistance.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
+        alt: "20 EMA Schematic"
+      }
+    ],
+    notes: [
+      "Best used on intraday and swing timeframes.",
+      "Works well when the market is already trending.",
+      "Avoid using it alone in choppy, sideways markets."
+    ]
+  },
+  "50sma": {
+    title: "50 SMA – Swing Trend",
+    text: `
+The 50-period Simple Moving Average (50 SMA) is a classic swing-trend filter.
+It smooths out more noise than the 20 EMA and shows the medium-term direction.
+
+In strong trends, price will often respect the 50 SMA on pullbacks.
+Many traders watch this level, which makes reactions around it more meaningful.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png",
+        alt: "50 SMA on Real Chart"
+      }
+    ],
+    notes: [
+      "Commonly used on daily charts for swing trading.",
+      "Pullbacks to the 50 SMA in an uptrend can be high-probability entries.",
+      "Losing the 50 SMA with volume can signal trend weakening."
+    ]
+  },
+  "200sma": {
+    title: "200 SMA – Market Regime",
+    text: `
+The 200-period Simple Moving Average (200 SMA) defines the long-term regime.
+Institutions and funds watch this line. Price above it is generally considered
+bullish; price below it is generally considered bearish.
+
+It does not give fast signals, but it tells you which side of the market
+you should prefer for higher-probability trades.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
+        alt: "200 SMA Schematic"
+      }
+    ],
+    notes: [
+      "Used heavily on daily and weekly charts.",
+      "Major breaks of the 200 SMA often mark big shifts in trend.",
+      "Best used as a bias filter, not a precise entry tool."
+    ]
+  },
+  "golden": {
+    title: "Golden Cross",
+    text: `
+A Golden Cross occurs when a shorter moving average crosses above a longer one.
+The classic version is the 50 SMA crossing above the 200 SMA.
+
+It signals that momentum has shifted from bearish to bullish on a higher timeframe.
+It is more powerful when it happens after a long downtrend or base, and when volume
+expands on the move up.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
+        alt: "Golden Cross Schematic"
+      }
+    ],
+    notes: [
+      "Best used as confirmation, not an early entry.",
+      "Stronger when aligned with improving market breadth and volume.",
+      "False signals are common in choppy markets."
+    ]
+  },
+  "death": {
+    title: "Death Cross",
+    text: `
+A Death Cross is the opposite of a Golden Cross: a shorter moving average
+crosses below a longer one. The classic version is the 50 SMA crossing below
+the 200 SMA.
+
+It signals that momentum has shifted from bullish to bearish. Like the Golden Cross,
+it is more meaningful after a long uptrend, especially if volume expands on the way down.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
+        alt: "Death Cross Schematic"
+      }
+    ],
+    notes: [
+      "Often lags the actual top — it is a confirmation, not a prediction.",
+      "Useful for risk management and de-risking long-term positions.",
+      "Can whipsaw in sideways markets."
+    ]
+  },
+  "dynamic": {
+    title: "Dynamic Support & Resistance",
+    text: `
+Moving averages can act as dynamic support and resistance. In an uptrend,
+price may repeatedly bounce off the 20 EMA or 50 SMA. In a downtrend,
+those same averages can cap rallies.
+
+The key is context: moving averages are not walls, but zones where many
+traders are watching and reacting.
+    `,
+    images: [
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png",
+        alt: "Dynamic Support/Resistance with MAs"
+      }
+    ],
+    notes: [
+      "Look for multiple touches with clear reactions.",
+      "Combine with volume and structure (higher highs / lower lows).",
+      "Avoid forcing trades just because price touches an MA once."
+    ]
+  }
+};
+
+function renderTopic(topicKey) {
+  const detailEl = document.getElementById("ma-detail");
+  if (!detailEl) return;
+
+  const topic = MA_TOPICS[topicKey];
+  if (!topic) return;
+
+  const notesHtml = topic.notes
+    .map(n => `<li>${n}</li>`)
+    .join("");
+
+  const imagesHtml = topic.images
+    .map(img => `<img class="example-img" src="${img.src}" alt="${img.alt}">`)
+    .join("");
+
+  detailEl.innerHTML = `
+    <h3>${topic.title}</h3>
+    <p>${topic.text}</p>
+    ${imagesHtml}
+    <div class="callout">
+      <strong>Key Points:</strong>
+      <ul>${notesHtml}</ul>
+    </div>
+  `;
+}
+
+function setupTopicInteractions() {
+  const buttons = document.querySelectorAll(".ma-topic-btn");
+  if (!buttons.length) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const key = btn.dataset.topic;
+      renderTopic(key);
+    });
+  });
+
+  // initial
+  renderTopic("20ema");
+}
+
+// =========================
 // QUIZ ENGINE
 // =========================
 const MA_QUIZ = [
   {
-    q: "What does the 20 EMA represent?",
-    options: [
-      "Short-term momentum",
-      "Long-term trend",
-      "Market volatility",
-      "Support and resistance"
-    ],
-    answer: 0
-  },
-  {
-    q: "What is a Golden Cross?",
-    options: [
-      "20 EMA crossing below 50 EMA",
-      "50 SMA crossing below 200 SMA",
-      "Shorter MA crossing above a longer MA",
-      "A bullish candlestick pattern"
-    ],
-    answer: 2
-  },
-  {
-    q: "Which MA is best for long-term trend direction?",
+    q: "Which moving average is best for short-term momentum?",
     options: [
       "20 EMA",
       "50 SMA",
       "200 SMA",
-      "9 EMA"
+      "9 EMA only on weekly charts"
+    ],
+    answer: 0
+  },
+  {
+    q: "What is the classic Golden Cross?",
+    options: [
+      "20 EMA crossing above 50 SMA",
+      "50 SMA crossing above 200 SMA",
+      "200 SMA crossing above 50 SMA",
+      "Any MA crossing any other MA"
+    ],
+    answer: 1
+  },
+  {
+    q: "What does the 200 SMA primarily tell you?",
+    options: [
+      "Exact entry points",
+      "Short-term volatility",
+      "Long-term market regime",
+      "Only intraday scalps"
     ],
     answer: 2
   },
   {
-    q: "What confirms a moving average crossover?",
+    q: "When do moving averages work best?",
     options: [
-      "Low volume",
-      "Volume expansion",
-      "Random spikes",
-      "A single candle wick"
+      "In strong trends",
+      "In random chop",
+      "Only during news events",
+      "Only on 1-minute charts"
+    ],
+    answer: 0
+  },
+  {
+    q: "What confirms a crossover signal?",
+    options: [
+      "Low volume and small candles",
+      "Volume expansion and trend context",
+      "One random wick",
+      "A single doji candle"
     ],
     answer: 1
   }
@@ -78,6 +269,8 @@ function loadQuestion() {
   const optBox = document.getElementById("ma-options");
   const nextBtn = document.getElementById("ma-next-btn");
   const result = document.getElementById("ma-result");
+
+  if (!qBox || !optBox || !nextBtn || !result) return;
 
   const item = MA_QUIZ[currentQuestion];
 
@@ -96,10 +289,9 @@ function loadQuestion() {
         result.textContent = "Correct!";
         result.style.color = "#4CAF50";
       } else {
-        result.textContent = "Incorrect — review the lesson.";
+        result.textContent = "Incorrect — review the lesson above.";
         result.style.color = "#FF5252";
       }
-
       nextBtn.style.display = "block";
     });
 
@@ -109,12 +301,22 @@ function loadQuestion() {
 
 function nextQuestion() {
   currentQuestion++;
+  const qBox = document.getElementById("ma-question");
+  const optBox = document.getElementById("ma-options");
+  const nextBtn = document.getElementById("ma-next-btn");
+  const result = document.getElementById("ma-result");
+
   if (currentQuestion >= MA_QUIZ.length) {
-    document.getElementById("ma-question").textContent = "Quiz Complete!";
-    document.getElementById("ma-options").innerHTML = "";
-    document.getElementById("ma-next-btn").style.display = "none";
+    if (qBox) qBox.textContent = "Quiz Complete!";
+    if (optBox) optBox.innerHTML = "";
+    if (nextBtn) nextBtn.style.display = "none";
+    if (result) {
+      result.textContent = "You’ve completed the Moving Averages quiz.";
+      result.style.color = "#D4AF37";
+    }
     return;
   }
+
   loadQuestion();
 }
 
@@ -123,6 +325,8 @@ function nextQuestion() {
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
   startMAHints();
+  setupTopicInteractions();
   loadQuestion();
-  document.getElementById("ma-next-btn").addEventListener("click", nextQuestion);
+  const nextBtn = document.getElementById("ma-next-btn");
+  if (nextBtn) nextBtn.addEventListener("click", nextQuestion);
 });
