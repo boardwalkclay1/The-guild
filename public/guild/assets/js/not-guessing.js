@@ -1,145 +1,91 @@
 // not-guessing.js
 
 // =========================
-// HINT TICKER
-// =========================
-const NG_HINTS = [
-  "If you cannot explain the trade, you cannot take the trade.",
-  "Guessing is gambling. Structure is safety.",
-  "A trader without a plan is prey.",
-  "Confirmation protects you from emotional entries.",
-  "Risk defines survival.",
-  "Chasing is the fastest way to lose money.",
-  "Logic beats emotion every time."
-];
-
-function startNGHints() {
-  const el = document.getElementById("ll-hints");
-  if (!el) return;
-
-  function setHint() {
-    el.textContent = NG_HINTS[Math.floor(Math.random() * NG_HINTS.length)];
-  }
-
-  setHint();
-  setInterval(setHint, 6000);
-}
-
-// =========================
 // TOPIC DATA
 // =========================
 const NG_TOPICS = {
-  "plan": {
+  plan: {
     title: "Having a Plan",
     text: `
-A trader with no plan is a gambler. A plan tells you exactly what you are
-looking for: the setup, the trigger, the stop, the target, and the reason.
+Guessing is what happens when you enter a trade without a written plan.
+A real plan answers three things before you ever click:
+what you are entering, where you are entering, and why you are entering.
+In the Guild, you train to make every entry a deliberate execution, not a coin flip.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png",
-        alt: "Trading Plan Example"
-      }
-    ],
     notes: [
-      "Your plan must be written before the trade.",
-      "Your plan must include invalidation.",
-      "Your plan must be repeatable."
+      "You know your entry, target, and stop before you enter.",
+      "You can explain your trade in one or two clear sentences.",
+      "If you cannot explain it, you do not take it."
     ]
   },
-  "levels": {
+  levels: {
     title: "Knowing Your Levels",
     text: `
-If you don’t know where support and resistance are, you are trading blind.
-Looking left reveals the true levels where price has reacted before.
+Random entries are gambling. Planned entries are built around levels.
+You mark support, resistance, and key zones first — then you wait for price to come to you.
+You are not chasing candles; you are reacting to structure you already mapped.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Support_and_resistance.svg/640px-Support_and_resistance.svg.png",
-        alt: "Support and Resistance"
-      }
-    ],
     notes: [
-      "Levels come from past reactions.",
-      "Higher timeframe levels override lower ones.",
-      "Never enter without knowing your nearest level."
+      "Levels come from past price action, not feelings.",
+      "You know where price is on the map before you act.",
+      "If price is in the middle of nowhere, you wait."
     ]
   },
-  "confirmation": {
+  confirmation: {
     title: "Waiting for Confirmation",
     text: `
-Confirmation protects you from emotional entries. A level is not broken
-until it closes beyond it. A trend is not reversed until structure shifts.
+Gambling is acting on the first impulse. Discipline is waiting for confirmation.
+Confirmation can be a candle close, a retest, volume, or a pattern completing.
+In the Guild, you train to let the market prove your idea before you commit.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Candlestick_chart_scheme_03-en.svg/640px-Candlestick_chart_scheme_03-en.svg.png",
-        alt: "Confirmation Example"
-      }
-    ],
     notes: [
-      "Wicks are not confirmation.",
-      "Volume matters.",
-      "Structure must agree with your bias."
+      "You define what confirmation looks like ahead of time.",
+      "You do not enter just because price touched a level once.",
+      "You accept missing a move if it never confirms."
     ]
   },
-  "risk": {
+  risk: {
     title: "Defined Risk",
     text: `
-If you don’t know where you are wrong, you are gambling. Defined risk means
-you know exactly where your stop goes and why.
+If you do not know how much you can lose, you are gambling.
+Defined risk means you know your maximum loss before you enter.
+You size your position so that a losing trade is acceptable, not catastrophic.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
-        alt: "Risk Example"
-      }
-    ],
     notes: [
-      "Your stop must be logical, not emotional.",
-      "Risk small enough to survive losing streaks.",
-      "Never widen your stop."
+      "You know your stop level before entry.",
+      "You size the trade based on risk, not greed.",
+      "One trade can never destroy your account in your plan."
     ]
   },
-  "chasing": {
+  chasing: {
     title: "Not Chasing",
     text: `
-Chasing is emotional trading. When you chase, you enter late, at the worst
-possible price, with no plan and no edge.
+Chasing is entering after the move has already happened because you are afraid of missing out.
+This is pure emotion — not logic.
+In the Guild, you train to let moves go if you were not prepared before they started.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png",
-        alt: "Chasing Example"
-      }
-    ],
     notes: [
-      "If you missed it, you missed it.",
-      "Wait for the next setup.",
-      "Chasing destroys accounts."
+      "If you discover the move on social media, you are probably late.",
+      "You do not enter just because something is moving fast.",
+      "You would rather miss a move than chase into a trap."
     ]
   },
-  "emotion": {
+  emotion: {
     title: "Removing Emotion",
     text: `
-Emotion is the enemy of execution. Fear makes you hesitate. Greed makes you
-chase. Anger makes you revenge trade. Discipline removes emotion.
+Fear and greed are what turn trading into gambling.
+You reduce emotion by having rules, following them, and accepting both wins and losses.
+The Guild mindset: execute the plan, review the result, refine the plan — repeat.
     `,
-    images: [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Candlestick_chart_scheme_03-en.svg/640px-Candlestick_chart_scheme_03-en.svg.png",
-        alt: "Emotion Example"
-      }
-    ],
     notes: [
-      "Follow your plan, not your feelings.",
-      "Detach from the outcome.",
-      "Your job is execution, not prediction."
+      "You do not increase size out of anger or revenge.",
+      "You do not hold losers because you “hope” they come back.",
+      "You judge yourself on following the plan, not on one trade’s outcome."
     ]
   }
 };
 
-function renderTopic(key) {
+function renderNGTopic(key) {
   const detailEl = document.getElementById("ng-detail");
   if (!detailEl) return;
 
@@ -147,5 +93,165 @@ function renderTopic(key) {
   if (!topic) return;
 
   const notesHtml = topic.notes.map(n => `<li>${n}</li>`).join("");
-  const imagesHtml = topic.images
-    .map(img => `<img class="example-img" src="${img.src}" alt="${img
+
+  detailEl.innerHTML = `
+    <h3>${topic.title}</h3>
+    <p>${topic.text}</p>
+    <div class="callout">
+      <strong>Key Points:</strong>
+      <ul>${notesHtml}</ul>
+    </div>
+  `;
+}
+
+function setupNGTopics() {
+  const buttons = document.querySelectorAll(".ng-topic-btn");
+  if (!buttons.length) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderNGTopic(btn.dataset.topic);
+    });
+  });
+
+  // default
+  renderNGTopic("plan");
+}
+
+// =========================
+// QUIZ ENGINE
+// =========================
+const NG_QUIZ = [
+  {
+    q: "What makes a trade a plan instead of a guess?",
+    options: [
+      "Having a clear entry, target, and stop before entering.",
+      "Entering as soon as you feel excited.",
+      "Following what social media says.",
+      "Using the biggest size possible."
+    ],
+    answer: 0
+  },
+  {
+    q: "Why do you mark levels before entering a trade?",
+    options: [
+      "To know where price has reacted before.",
+      "To make the chart look pretty.",
+      "To confuse other traders.",
+      "To avoid using a stop."
+    ],
+    answer: 0
+  },
+  {
+    q: "What is confirmation in this training?",
+    options: [
+      "Evidence from price action that supports your idea.",
+      "A random candle you like.",
+      "A rumor you heard.",
+      "A feeling that something will move."
+    ],
+    answer: 0
+  },
+  {
+    q: "What does defined risk mean?",
+    options: [
+      "You know how much you can lose before you enter.",
+      "You never lose.",
+      "You double down when you are wrong.",
+      "You only trade when you feel lucky."
+    ],
+    answer: 0
+  },
+  {
+    q: "What is chasing?",
+    options: [
+      "Entering late because you are afraid of missing out.",
+      "Entering at your planned level.",
+      "Waiting for confirmation.",
+      "Reducing size after a loss."
+    ],
+    answer: 0
+  },
+  {
+    q: "How do you reduce emotion in trading?",
+    options: [
+      "By following a written plan and accepting both wins and losses.",
+      "By ignoring your rules when you feel confident.",
+      "By increasing size after every loss.",
+      "By trading only when you are angry."
+    ],
+    answer: 0
+  }
+];
+
+let ngIndex = 0;
+
+function loadNGQuestion() {
+  const qBox = document.getElementById("ng-question");
+  const optBox = document.getElementById("ng-options");
+  const nextBtn = document.getElementById("ng-next-btn");
+  const result = document.getElementById("ng-result");
+
+  if (!qBox || !optBox || !nextBtn || !result) return;
+
+  const item = NG_QUIZ[ngIndex];
+
+  qBox.textContent = item.q;
+  optBox.innerHTML = "";
+  result.textContent = "";
+  nextBtn.style.display = "none";
+
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement("div");
+    btn.className = "ng-option";
+    btn.textContent = opt;
+
+    btn.addEventListener("click", () => {
+      if (i === item.answer) {
+        result.textContent = "Correct!";
+        result.style.color = "#4CAF50";
+      } else {
+        result.textContent = "Incorrect — review the concepts above.";
+        result.style.color = "#FF5252";
+      }
+      nextBtn.style.display = "block";
+    });
+
+    optBox.appendChild(btn);
+  });
+}
+
+function nextNGQuestion() {
+  ngIndex++;
+
+  const qBox = document.getElementById("ng-question");
+  const optBox = document.getElementById("ng-options");
+  const nextBtn = document.getElementById("ng-next-btn");
+  const result = document.getElementById("ng-result");
+
+  if (!qBox || !optBox || !nextBtn || !result) return;
+
+  if (ngIndex >= NG_QUIZ.length) {
+    qBox.textContent = "Quiz Complete!";
+    optBox.innerHTML = "";
+    nextBtn.style.display = "none";
+    result.textContent = "You’ve completed the Not Guessing, Not Gambling quiz.";
+    result.style.color = "#D4AF37";
+    return;
+  }
+
+  loadNGQuestion();
+}
+
+// =========================
+// INIT
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  setupNGTopics();
+  loadNGQuestion();
+
+  const nextBtn = document.getElementById("ng-next-btn");
+  if (nextBtn) nextBtn.addEventListener("click", nextNGQuestion);
+});
