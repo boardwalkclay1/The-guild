@@ -1,4 +1,6 @@
-// look-left.js
+// =========================
+// LOOK LEFT — FULL JS ENGINE
+// =========================
 
 // =========================
 // HINT TICKER
@@ -48,6 +50,7 @@ when they align with higher timeframes.
       "1m shows where algorithms and scalpers react."
     ]
   },
+
   "5m": {
     title: "5‑Minute Look Left",
     text: `
@@ -66,6 +69,7 @@ reaction zones, intraday support/resistance, and the structure of the move.
       "Combine 5m with 15m for confirmation."
     ]
   },
+
   "15m": {
     title: "15‑Minute Look Left",
     text: `
@@ -84,6 +88,7 @@ Its levels are respected by both day traders and swing traders.
       "Breakouts on 15m matter more than 1m/5m."
     ]
   },
+
   "1h": {
     title: "1‑Hour Look Left",
     text: `
@@ -102,6 +107,7 @@ often mark the true support/resistance zones for multi‑day moves.
       "Use 1h to determine the direction of the day."
     ]
   },
+
   "4h": {
     title: "4‑Hour Look Left",
     text: `
@@ -120,6 +126,7 @@ These levels are extremely strong and often define the weekly trend.
       "4h breakouts often lead to multi‑day moves."
     ]
   },
+
   "1d": {
     title: "Daily Look Left",
     text: `
@@ -140,6 +147,9 @@ are the most powerful levels on your chart. They define the true trend.
   }
 };
 
+// =========================
+// RENDER TOPIC
+// =========================
 function renderTopic(key) {
   const detailEl = document.getElementById("ll-detail");
   if (!detailEl) return;
@@ -163,6 +173,9 @@ function renderTopic(key) {
   `;
 }
 
+// =========================
+// TOPIC BUTTON INTERACTIONS
+// =========================
 function setupTopicInteractions() {
   const buttons = document.querySelectorAll(".ll-topic-btn");
   if (!buttons.length) return;
@@ -175,6 +188,7 @@ function setupTopicInteractions() {
     });
   });
 
+  // Default load
   renderTopic("1m");
 }
 
@@ -194,3 +208,102 @@ const LL_QUIZ = [
   },
   {
     q: "Which timeframe overrides all intraday levels?",
+    options: [
+      "1‑minute",
+      "5‑minute",
+      "15‑minute",
+      "Daily"
+    ],
+    answer: 3
+  },
+  {
+    q: "Why do traders look left before entering a trade?",
+    options: [
+      "To predict the future",
+      "To see past reactions and real levels",
+      "To find indicators",
+      "To guess direction"
+    ],
+    answer: 1
+  },
+  {
+    q: "Which timeframe shows the strongest support/resistance?",
+    options: [
+      "1m",
+      "5m",
+      "15m",
+      "Daily"
+    ],
+    answer: 3
+  }
+];
+
+// =========================
+// QUIZ RENDER + LOGIC
+// =========================
+function startLLQuiz() {
+  const quizBox = document.getElementById("ll-quiz");
+  if (!quizBox) return;
+
+  let index = 0;
+  let score = 0;
+
+  function renderQuestion() {
+    const q = LL_QUIZ[index];
+    quizBox.innerHTML = `
+      <div class="ll-q">${q.q}</div>
+      <div class="ll-options">
+        ${q.options
+          .map(
+            (opt, i) =>
+              `<button class="ll-opt" data-i="${i}">${opt}</button>`
+          )
+          .join("")}
+      </div>
+      <div class="ll-progress">Question ${index + 1} of ${LL_QUIZ.length}</div>
+    `;
+
+    document.querySelectorAll(".ll-opt").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const choice = parseInt(btn.dataset.i);
+        if (choice === q.answer) score++;
+        index++;
+
+        if (index < LL_QUIZ.length) {
+          renderQuestion();
+        } else {
+          finishQuiz();
+        }
+      });
+    });
+  }
+
+  function finishQuiz() {
+    quizBox.innerHTML = `
+      <div class="ll-result">
+        You scored <strong>${score}</strong> out of <strong>${LL_QUIZ.length}</strong>.
+      </div>
+    `;
+
+    // Award XP + badge if perfect
+    if (score === LL_QUIZ.length) {
+      let xp = parseInt(localStorage.getItem("guild_xp") || "0");
+      xp += 100;
+      localStorage.setItem("guild_xp", xp);
+      localStorage.setItem("look_left_mastery", "earned");
+
+      quizBox.innerHTML += `
+        <div class="ll-reward">+100 XP — Look Left Badge Earned</div>
+      `;
+    }
+  }
+
+  renderQuestion();
+}
+
+// =========================
+// INIT
+// =========================
+startLLHints();
+setupTopicInteractions();
+startLLQuiz();
