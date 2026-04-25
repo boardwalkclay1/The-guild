@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
-  <link rel="stylesheet" href="/guild/assets/css/patterns.css" />
   <script defer src="/guild/assets/js/support-resistance.js"></script>
 
   <style>
@@ -94,6 +93,20 @@
       border: 1px solid rgba(212,175,55,0.4);
       border-radius: 8px;
       margin: 20px 0;
+    }
+
+    .callout {
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.4);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 25px auto;
+      max-width: 750px;
+      text-align: left;
+    }
+
+    .callout strong {
+      color: #fff;
     }
 
     .simulator-links {
@@ -195,26 +208,58 @@
 
   <div class="divider"></div>
 
+  <!-- SUPPORT SECTION -->
   <h2 class="section-title">Support</h2>
+
   <p>
     Support is a price level where buyers consistently step in.  
     When price returns to support, you are watching a battle:  
     <strong>Will buyers defend it again, or will sellers finally break through?</strong>
   </p>
 
-  <img class="example-img" src="/guild/assets/image/patterns/support-example.png" alt="Support Example">
+  <img class="example-img" src="/guild/assets/image/patterns/support-schematic.png" alt="Support Schematic">
+  <img class="example-img" src="/guild/assets/image/patterns/support-real.png" alt="Support Real Chart">
 
+  <div class="callout">
+    <strong>Guild Master Notes:</strong><br>
+    Support is strongest when:<br>
+    • It has been tested 2–4 times<br>
+    • Volume increases on bounces<br>
+    • The level aligns with a trendline or moving average<br>
+    • The market is in an uptrend or sideways phase
+  </div>
+
+  <div class="callout">
+    <strong>Common Mistakes:</strong><br>
+    • Treating support as a perfect line instead of a zone<br>
+    • Entering before confirmation<br>
+    • Ignoring volume<br>
+    • Buying support in a strong downtrend
+  </div>
+
+  <!-- RESISTANCE SECTION -->
   <h2 class="section-title">Resistance</h2>
+
   <p>
     Resistance is where sellers consistently overpower buyers.  
     When price approaches resistance, you are watching for:  
     <strong>Rejection, reversal, or a powerful breakout.</strong>
   </p>
 
-  <img class="example-img" src="/guild/assets/image/patterns/resistance-example.png" alt="Resistance Example">
+  <img class="example-img" src="/guild/assets/image/patterns/resistance-schematic.png" alt="Resistance Schematic">
+  <img class="example-img" src="/guild/assets/image/patterns/resistance-real.png" alt="Resistance Real Chart">
+
+  <div class="callout">
+    <strong>Fast Identification Checklist:</strong><br>
+    • Price stalls or rejects at the same level<br>
+    • Wicks show selling pressure<br>
+    • Volume increases on rejection<br>
+    • Breakouts require strong volume
+  </div>
 
   <div class="divider"></div>
 
+  <!-- SIMULATORS -->
   <h2 class="section-title">Practice Simulators</h2>
 
   <div class="simulator-links">
@@ -225,6 +270,7 @@
 
   <div class="divider"></div>
 
+  <!-- QUIZ -->
   <h2 class="section-title">Support & Resistance Quiz</h2>
 
   <div id="sr-quiz"></div>
