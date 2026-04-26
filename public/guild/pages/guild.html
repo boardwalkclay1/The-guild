@@ -9,6 +9,56 @@
   <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
 
   <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
+
+  <style>
+    /* --- MOBILE FIXES & RESPONSIVE STACKING --- */
+    .vertical-stack {
+      width: 90%;
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .guild-btn {
+      font-size: 1.1rem;
+      padding: 14px 18px;
+      border-radius: 10px;
+    }
+
+    .dropdown-panel {
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+
+    .enter-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+    }
+
+    /* HUD mobile scaling */
+    .guild-hud {
+      transform: scale(0.85);
+      transform-origin: top right;
+      right: 10px;
+      top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .guild-title {
+        font-size: 1.4rem;
+      }
+      .guild-mark {
+        font-size: 1.4rem;
+      }
+      .nav-btn {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </head>
 
 <body style="
@@ -55,6 +105,7 @@
 
   <div class="vertical-stack">
 
+    <!-- Inside the Guild -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
       🛡️ Inside the Guild <span class="arrow">›</span>
     </div>
@@ -63,6 +114,7 @@
       <button class="enter-btn" onclick="go('/guild/pages/inside-the-guild.html')">ENTER</button>
     </div>
 
+    <!-- Training Hall -->
     <div class="guild-btn" onclick="toggleDrop('drop2')">
       ⚔️ Training Hall <span class="arrow">›</span>
     </div>
@@ -71,6 +123,7 @@
       <button class="enter-btn" onclick="go('/guild/pages/training/training-hall.html')">ENTER</button>
     </div>
 
+    <!-- Guild Family -->
     <div class="guild-btn" onclick="toggleDrop('drop3')">
       🏛️ Guild Family <span class="arrow">›</span>
     </div>
@@ -79,12 +132,22 @@
       <button class="enter-btn" onclick="go('/guild/pages/guild-fam.html')">ENTER</button>
     </div>
 
+    <!-- Guild Live Arena -->
     <div class="guild-btn" onclick="toggleDrop('dropLive')">
       📡 Guild Live Arena <span class="arrow">›</span>
     </div>
     <div id="dropLive" class="dropdown-panel">
       <p>The live command center of the Guild — Bitcoin, flow, and real‑time movement.</p>
       <button class="enter-btn" onclick="go('/guild/pages/arena/arena.html')">ENTER</button>
+    </div>
+
+    <!-- NEW: Options Trading Simulator -->
+    <div class="guild-btn" onclick="toggleDrop('dropOptions')">
+      📈 Options Trading Simulator <span class="arrow">›</span>
+    </div>
+    <div id="dropOptions" class="dropdown-panel">
+      <p>Train in the Guild’s financial arena — calls, puts, volatility, and discipline.</p>
+      <button class="enter-btn" onclick="go('/guild/games/options/index.html')">ENTER</button>
     </div>
 
   </div>
