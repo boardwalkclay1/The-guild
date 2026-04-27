@@ -25,9 +25,13 @@
 body {
   background: #000;
   background-image: url("the-guild.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+
+  /* ⭐ FIXED BACKGROUND — FULL IMAGE, NO CROP */
+  background-size: contain;        /* show full image */
+  background-repeat: no-repeat;    /* no tiling */
+  background-position: center top; /* keep same position */
+  background-attachment: fixed;    /* cinematic parallax */
+  background-color: #000;          /* fill below image */
 
   color: var(--gold);
   font-family: 'Uncial Antiqua', serif;
@@ -37,6 +41,19 @@ body {
   transition: opacity 0.6s ease;
   font-weight: 700;
   letter-spacing: 0.5px;
+}
+
+/* OPTIONAL: bottom fade so image blends smoothly */
+body::after {
+  content:"";
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:260px;
+  background:linear-gradient(to bottom, transparent, #000);
+  pointer-events:none;
+  z-index:-1;
 }
 
 /* FOG (PURE CSS) */
@@ -296,7 +313,7 @@ body {
 }
 
 /* ============================================
-   ⭐ GLOBAL XP + BADGE HUD (ADDED)
+   ⭐ GLOBAL XP + BADGE HUD
    ============================================ */
 
 .guild-hud {
