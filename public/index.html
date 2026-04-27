@@ -11,14 +11,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/index.css">
+
+  <style>
+    /* FIX THE BACKGROUND — keep position, extend height */
+    body {
+      background:url('/assets/image/guild-win.jpg') center top no-repeat fixed;
+      background-size: 100% auto; /* keeps width perfect, extends height */
+      margin:0;
+      padding:0;
+    }
+
+    /* Add bottom fade so the image looks naturally longer */
+    body::after {
+      content:"";
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      height:300px; /* extend more or less if needed */
+      background:linear-gradient(to bottom, transparent, #000);
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    /* Black transparent block behind quick links */
+    .quick-links {
+      background: rgba(0,0,0,0.65);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
-<body style="
-  background:url('/assets/image/guild-win.jpg') no-repeat center center fixed;
-  background-size: 100% 100%;
-  margin:0;
-  padding:0;
-">
+<body>
 
   <nav class="top-nav">
     <a onclick="go('/pages/colosseum.html')">The Colosseum</a>
@@ -46,12 +72,13 @@
     </p>
   </section>
 
+  <!-- BLACK TRANSPARENT BLOCK ADDED HERE -->
   <section class="quick-links">
     <button class="login-btn" onclick="go('/pages/colosseum.html')">🏛️ The Colosseum</button>
     <button class="login-btn" onclick="go('/pages/guild-entry.html')">🜁 Inner Hall</button>
     <button class="login-btn" onclick="go('/pages/second-thoughts.html')">✨ Why Join the Guild</button>
 
-    <!-- NEW MARKET TERMINAL BUTTON -->
+    <!-- MARKET TERMINAL BUTTON (KEEP THIS) -->
     <button class="login-btn" onclick="go('/market/index.html')">📈 Guild Market Terminal</button>
 
     <!-- LEGAL BUTTONS -->
