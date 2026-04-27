@@ -4,12 +4,38 @@
   <title>Automotive Stocks – Guild Market</title>
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <style>
-    body { background:#000; color:#fff; }
-    .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
-    iframe { width:100%; border:none; }
-    .chart { height:400px; }
-    .options { height:600px; margin-top:20px; }
-    .back { margin:20px 0; display:inline-block; }
+    body { background:#000; color:#fff; margin:0; padding:0; }
+
+    .ticker-block {
+      margin:40px 0;
+      padding:20px;
+      border:2px solid #D4AF37;
+      border-radius:12px;
+    }
+
+    .scroll-wrap {
+      display:flex;
+      overflow-x:auto;
+      gap:20px;
+      padding-bottom:10px;
+    }
+
+    .chart-box, .options-box {
+      min-width:600px;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    iframe {
+      width:100%;
+      height:500px;
+      border:none;
+    }
+
+    .back {
+      margin:20px 0;
+      display:inline-block;
+    }
   </style>
 </head>
 
@@ -18,74 +44,134 @@
 <a href="/market/index.html" class="guild-btn back">← Back to Categories</a>
 <h1 class="guild-title">Automotive Stocks</h1>
 
-<!-- TSLA -->
-<div class="ticker-block">
-  <h2>TSLA</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:TSLA&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:TSLA&widget=options_chain&theme=dark"></iframe>
-</div>
-
-<!-- F -->
+<!-- 1. F -->
 <div class="ticker-block">
   <h2>F</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:F&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:F&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:F&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:F&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- GM -->
+<!-- 2. GM -->
 <div class="ticker-block">
   <h2>GM</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:GM&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:GM&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:GM&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:GM&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- RIVN -->
-<div class="ticker-block">
-  <h2>RIVN</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIVN&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIVN&widget=options_chain&theme=dark"></iframe>
-</div>
-
-<!-- LCID -->
-<div class="ticker-block">
-  <h2>LCID</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LCID&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LCID&widget=options_chain&theme=dark"></iframe>
-</div>
-
-<!-- TM -->
-<div class="ticker-block">
-  <h2>TM</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TM&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TM&widget=options_chain&theme=dark"></iframe>
-</div>
-
-<!-- HMC -->
-<div class="ticker-block">
-  <h2>HMC</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HMC&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HMC&widget=options_chain&theme=dark"></iframe>
-</div>
-
-<!-- STLA -->
+<!-- 3. STLA -->
 <div class="ticker-block">
   <h2>STLA</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:STLA&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:STLA&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:STLA&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:STLA&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- NIO -->
+<!-- 4. TM -->
+<div class="ticker-block">
+  <h2>TM</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TM&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TM&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- 5. HMC -->
+<div class="ticker-block">
+  <h2>HMC</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HMC&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HMC&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- 6. RIVN -->
+<div class="ticker-block">
+  <h2>RIVN</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIVN&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIVN&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- 7. LCID -->
+<div class="ticker-block">
+  <h2>LCID</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LCID&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LCID&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- 8. NIO -->
 <div class="ticker-block">
   <h2>NIO</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:NIO&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:NIO&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:NIO&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:NIO&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- BYDDF -->
+<!-- 9. LI -->
 <div class="ticker-block">
-  <h2>BYDDF</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=OTC:BYDDF&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=OTC:BYDDF&widget=options_chain&theme=dark"></iframe>
+  <h2>LI</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LI&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LI&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- 10. FSR -->
+<div class="ticker-block">
+  <h2>FSR</h2>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:FSR&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:FSR&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
 </body>
