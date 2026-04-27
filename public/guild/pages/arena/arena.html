@@ -16,13 +16,38 @@
 
   <!-- ARENA STYLES -->
   <link rel="stylesheet" href="/guild/assets/css/arena.css" />
+
+  <style>
+    body {
+      margin:0;
+      padding:0;
+
+      /* ⭐ FULL BACKGROUND — NO CROP, NO STRETCH */
+      background: url('/assets/image/guild-art.jpg') center top no-repeat fixed;
+      background-size: cover;
+      background-color: #000;
+    }
+
+    /* Optional bottom fade for cinematic depth */
+    body::after {
+      content:"";
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      height:260px;
+      background:linear-gradient(to bottom, transparent, #000);
+      pointer-events:none;
+      z-index:-1;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="arena-app">
 
-    <!-- Screens (each loads its own HTML file) -->
+    <!-- Screens -->
     <div id="screen-watchlist"
          class="arena-screen"
          data-src="/guild/pages/arena/screen-watchlist.html"></div>
@@ -54,7 +79,7 @@
       <button data-screen="screen-live">Arena</button>
       <button data-screen="screen-account">Account</button>
       <button data-screen="screen-settings">Settings</button>
-      <button data-screen="screentools">More</button>
+      <button data-screen="screen-tools">More</button>
     </nav>
 
   </div>
