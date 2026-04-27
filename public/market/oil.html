@@ -4,89 +4,78 @@
   <title>Oil & Energy – Guild Market</title>
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <style>
-    body { background:#000; color:#fff; }
+    body { background:#000; color:#fff; margin:0; padding:0; }
     .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
-    iframe { width:100%; border:none; }
-    .chart { height:400px; }
-    .options { height:600px; margin-top:20px; }
+    .scroll-wrap { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
+    .chart-box, .options-box { min-width:600px; border-radius:10px; overflow:hidden; }
+    iframe { width:100%; height:500px; border:none; }
     .back { margin:20px 0; display:inline-block; }
   </style>
 </head>
 
 <body class="fade-in">
-
 <a href="/market/index.html" class="guild-btn back">← Back to Categories</a>
 <h1 class="guild-title">Oil & Energy Stocks</h1>
 
-<!-- XOM -->
-<div class="ticker-block">
-  <h2>XOM</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:XOM&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:XOM&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 1. XOM -->
+<div class="ticker-block"><h2>XOM</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=XOM&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=XOM&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- CVX -->
-<div class="ticker-block">
-  <h2>CVX</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:CVX&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:CVX&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 2. CVX -->
+<div class="ticker-block"><h2>CVX</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CVX&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CVX&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- OXY -->
-<div class="ticker-block">
-  <h2>OXY</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:OXY&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:OXY&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 3. BP -->
+<div class="ticker-block"><h2>BP</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=BP&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=BP&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- COP -->
-<div class="ticker-block">
-  <h2>COP</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:COP&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:COP&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 4. SHEL -->
+<div class="ticker-block"><h2>SHEL</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=SHEL&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=SHEL&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- SLB -->
-<div class="ticker-block">
-  <h2>SLB</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:SLB&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:SLB&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 5. COP -->
+<div class="ticker-block"><h2>COP</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=COP&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=COP&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- HAL -->
-<div class="ticker-block">
-  <h2>HAL</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HAL&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:HAL&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 6. PSX -->
+<div class="ticker-block"><h2>PSX</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=PSX&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=PSX&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- BP -->
-<div class="ticker-block">
-  <h2>BP</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:BP&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:BP&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 7. VLO -->
+<div class="ticker-block"><h2>VLO</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=VLO&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=VLO&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- SHEL -->
-<div class="ticker-block">
-  <h2>SHEL</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:SHEL&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:SHEL&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 8. MPC -->
+<div class="ticker-block"><h2>MPC</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=MPC&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=MPC&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- VLO -->
-<div class="ticker-block">
-  <h2>VLO</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:VLO&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:VLO&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 9. OXY -->
+<div class="ticker-block"><h2>OXY</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=OXY&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=OXY&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- MPC -->
-<div class="ticker-block">
-  <h2>MPC</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:MPC&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:MPC&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 10. HAL -->
+<div class="ticker-block"><h2>HAL</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=HAL&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=HAL&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
 </body>
 </html>
