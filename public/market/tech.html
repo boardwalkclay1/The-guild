@@ -4,89 +4,78 @@
   <title>Tech Stocks – Guild Market</title>
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <style>
-    body { background: #000; color: #fff; }
-    .ticker-block { margin: 40px 0; padding: 20px; border: 2px solid #D4AF37; border-radius: 12px; }
-    iframe { width: 100%; border: none; }
-    .options { margin-top: 20px; height: 600px; }
-    .chart { height: 400px; }
-    .back { margin: 20px 0; display: inline-block; }
+    body { background:#000; color:#fff; margin:0; padding:0; }
+    .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
+    .scroll-wrap { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
+    .chart-box, .options-box { min-width:600px; border-radius:10px; overflow:hidden; }
+    iframe { width:100%; height:500px; border:none; }
+    .back { margin:20px 0; display:inline-block; }
   </style>
 </head>
 
 <body class="fade-in">
-
 <a href="/market/index.html" class="guild-btn back">← Back to Categories</a>
 <h1 class="guild-title">Tech Stocks</h1>
 
-<!-- NVDA -->
-<div class="ticker-block">
-  <h2>NVDA</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:NVDA&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:NVDA&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 1. AAPL -->
+<div class="ticker-block"><h2>AAPL</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AAPL&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AAPL&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- AAPL -->
-<div class="ticker-block">
-  <h2>AAPL</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 2. MSFT -->
+<div class="ticker-block"><h2>MSFT</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=MSFT&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=MSFT&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- MSFT -->
-<div class="ticker-block">
-  <h2>MSFT</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSFT&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSFT&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 3. GOOGL -->
+<div class="ticker-block"><h2>GOOGL</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=GOOGL&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=GOOGL&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- AMD -->
-<div class="ticker-block">
-  <h2>AMD</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AMD&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AMD&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 4. AMZN -->
+<div class="ticker-block"><h2>AMZN</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- META -->
-<div class="ticker-block">
-  <h2>META</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:META&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:META&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 5. META -->
+<div class="ticker-block"><h2>META</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=META&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=META&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- GOOGL -->
-<div class="ticker-block">
-  <h2>GOOGL</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:GOOGL&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:GOOGL&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 6. NVDA -->
+<div class="ticker-block"><h2>NVDA</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NVDA&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NVDA&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- INTC -->
-<div class="ticker-block">
-  <h2>INTC</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:INTC&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:INTC&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 7. AMD -->
+<div class="ticker-block"><h2>AMD</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AMD&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AMD&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- QCOM -->
-<div class="ticker-block">
-  <h2>QCOM</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:QCOM&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:QCOM&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 8. NFLX -->
+<div class="ticker-block"><h2>NFLX</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NFLX&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NFLX&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- AVGO -->
-<div class="ticker-block">
-  <h2>AVGO</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AVGO&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AVGO&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 9. INTC -->
+<div class="ticker-block"><h2>INTC</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=INTC&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=INTC&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
-<!-- TSM -->
-<div class="ticker-block">
-  <h2>TSM</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TSM&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:TSM&widget=options_chain&theme=dark"></iframe>
-</div>
+<!-- 10. CRM -->
+<div class="ticker-block"><h2>CRM</h2><div class="scroll-wrap">
+<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CRM&interval=15&theme=dark"></iframe></div>
+<div class="options-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CRM&widget=options_chain&theme=dark"></iframe></div>
+</div></div>
 
 </body>
 </html>
