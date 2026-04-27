@@ -4,12 +4,31 @@
   <title>Bitcoin Stocks – Guild Market</title>
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <style>
-    body { background: #000; color: #fff; }
-    .ticker-block { margin: 40px 0; padding: 20px; border: 2px solid #D4AF37; border-radius: 12px; }
-    iframe { width: 100%; border: none; }
-    .options { margin-top: 20px; height: 600px; }
-    .chart { height: 400px; }
-    .back { margin: 20px 0; display: inline-block; }
+    body { background:#000; color:#fff; margin:0; padding:0; }
+
+    .ticker-block {
+      margin:40px 0;
+      padding:20px;
+      border:2px solid #D4AF37;
+      border-radius:12px;
+    }
+
+    .scroll-wrap {
+      display:flex;
+      overflow-x:auto;
+      gap:20px;
+      padding-bottom:10px;
+    }
+
+    .chart-box, .options-box {
+      min-width:600px;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    iframe { width:100%; height:500px; border:none; }
+
+    .back { margin:20px 0; display:inline-block; }
   </style>
 </head>
 
@@ -18,74 +37,134 @@
 <a href="/market/index.html" class="guild-btn back">← Back to Categories</a>
 <h1 class="guild-title">Bitcoin‑Linked Stocks</h1>
 
-<!-- MARA -->
+<!-- 1. MARA -->
 <div class="ticker-block">
   <h2>MARA</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MARA&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MARA&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MARA&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MARA&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- RIOT -->
+<!-- 2. RIOT -->
 <div class="ticker-block">
   <h2>RIOT</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIOT&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIOT&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIOT&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RIOT&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- COIN -->
+<!-- 3. COIN -->
 <div class="ticker-block">
   <h2>COIN</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:COIN&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:COIN&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:COIN&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:COIN&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- MSTR -->
+<!-- 4. MSTR -->
 <div class="ticker-block">
   <h2>MSTR</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSTR&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSTR&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSTR&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSTR&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- CLSK -->
+<!-- 5. CLSK -->
 <div class="ticker-block">
   <h2>CLSK</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:CLSK&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:CLSK&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:CLSK&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:CLSK&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- HUT -->
+<!-- 6. HUT -->
 <div class="ticker-block">
   <h2>HUT</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HUT&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HUT&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HUT&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HUT&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- BITF -->
+<!-- 7. BITF -->
 <div class="ticker-block">
   <h2>BITF</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BITF&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BITF&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BITF&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BITF&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- BTBT -->
+<!-- 8. BTBT -->
 <div class="ticker-block">
   <h2>BTBT</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BTBT&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BTBT&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BTBT&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:BTBT&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- WULF -->
+<!-- 9. WULF -->
 <div class="ticker-block">
   <h2>WULF</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:WULF&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:WULF&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:WULF&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:WULF&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
-<!-- HIVE -->
+<!-- 10. HIVE -->
 <div class="ticker-block">
   <h2>HIVE</h2>
-  <iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HIVE&interval=15&theme=dark"></iframe>
-  <iframe class="options" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HIVE&widget=options_chain&theme=dark"></iframe>
+  <div class="scroll-wrap">
+    <div class="chart-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HIVE&interval=15&theme=dark"></iframe>
+    </div>
+    <div class="options-box">
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HIVE&widget=options_chain&theme=dark"></iframe>
+    </div>
+  </div>
 </div>
 
 </body>
