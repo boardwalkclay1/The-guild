@@ -57,10 +57,79 @@
       display:inline-block;
       margin-bottom:20px;
     }
+
+    /* Burger Menu */
+    .burger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 32px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    .burger div {
+      height: 6px;
+      background: #D4AF37;
+      margin: 6px 0;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100vh;
+      background: rgba(0,0,0,0.92);
+      border-left: 2px solid #D4AF37;
+      padding: 20px;
+      transition: 0.35s ease;
+      overflow-y: auto;
+      z-index: 9998;
+    }
+
+    .menu-panel.open {
+      right: 0;
+    }
+
+    .menu-title {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color:#D4AF37;
+      text-align:center;
+    }
+
+    .ticker-list div {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 18px;
+    }
+
+    .ticker-list div:hover {
+      background: rgba(212,175,55,0.15);
+    }
   </style>
 </head>
 
 <body class="fade-in">
+
+<!-- BURGER -->
+<div class="burger" onclick="toggleMenu()">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<!-- SLIDE-OUT MENU -->
+<div id="menuPanel" class="menu-panel">
+  <div class="menu-title">📜 All 100 Tickers</div>
+  <div class="ticker-list" id="tickerList"></div>
+</div>
 
 <div class="market-container">
 
@@ -70,45 +139,16 @@
 
   <div class="category-grid">
 
-    <div class="category-card" onclick="go('/market/tech.html')">
-      ⚙️ Tech Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/bitcoin.html')">
-      ₿ Bitcoin‑Linked Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/airlines.html')">
-      ✈️ Airline Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/oil.html')">
-      🛢️ Oil & Energy Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/automotive.html')">
-      🚗 Automotive Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/military.html')">
-      🛡️ Military & Defense Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/schools.html')">
-      🎓 Education Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/retail.html')">
-      🛍️ Retail Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/banks.html')">
-      💰 Banking & Financial Stocks
-    </div>
-
-    <div class="category-card" onclick="go('/market/ev.html')">
-      🔋 EV & Clean Energy Stocks
-    </div>
+    <div class="category-card" onclick="go('/market/tech.html')">⚙️ Tech Stocks</div>
+    <div class="category-card" onclick="go('/market/bitcoin.html')">₿ Bitcoin‑Linked Stocks</div>
+    <div class="category-card" onclick="go('/market/airlines.html')">✈️ Airline Stocks</div>
+    <div class="category-card" onclick="go('/market/oil.html')">🛢️ Oil & Energy Stocks</div>
+    <div class="category-card" onclick="go('/market/automotive.html')">🚗 Automotive Stocks</div>
+    <div class="category-card" onclick="go('/market/military.html')">🛡️ Military & Defense Stocks</div>
+    <div class="category-card" onclick="go('/market/schools.html')">🎓 Education Stocks</div>
+    <div class="category-card" onclick="go('/market/retail.html')">🛍️ Retail Stocks</div>
+    <div class="category-card" onclick="go('/market/banks.html')">💰 Banking & Financial Stocks</div>
+    <div class="category-card" onclick="go('/market/ev.html')">🔋 EV & Clean Energy Stocks</div>
 
   </div>
 
@@ -118,6 +158,31 @@
   function go(path) {
     window.location.href = path;
   }
+
+  function toggleMenu() {
+    document.getElementById("menuPanel").classList.toggle("open");
+  }
+
+  // 100 tickers (placeholder — replace with your real list)
+  const tickers = [
+    "AAPL","MSFT","GOOGL","AMZN","META","NVDA","TSLA","AMD","NFLX","INTC",
+    "JPM","BAC","WFC","C","GS","MS","USB","PNC","COF","SCHW",
+    "LMT","RTX","NOC","GD","BA","HII","LHX","BWXT","KTOS","TDG",
+    "UAL","DAL","AAL","LUV","JBLU","ALK","HA","RYAAY","CPA","AZUL",
+    "XOM","CVX","BP","SHEL","COP","PSX","VLO","MPC","OXY","HAL",
+    "F","GM","STLA","TM","HMC","RIVN","LCID","NIO","LI","FSR",
+    "AMZN","WMT","COST","TGT","HD","LOW","M","JWN","BBY","DG",
+    "UTI","LOPE","STRA","EDU","TAL","LRN","PRDO","APEI","ATGE","NRDY"
+  ];
+
+  const list = document.getElementById("tickerList");
+
+  tickers.forEach(t => {
+    const div = document.createElement("div");
+    div.textContent = t;
+    div.onclick = () => alert("This will jump to the ticker’s category page.");
+    list.appendChild(div);
+  });
 </script>
 
 </body>
