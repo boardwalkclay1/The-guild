@@ -7,9 +7,27 @@
     body { background:#000; color:#fff; margin:0; padding:0; }
     .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
     .scroll-wrap { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
-    .chart-box, .options-box { min-width:600px; border-radius:10px; overflow:hidden; }
+    .chart-box, .options-box { min-width:600px; border-radius:10px; overflow:hidden; background:#050505; }
     iframe { width:100%; height:500px; border:none; }
     .back { margin:20px 0; display:inline-block; }
+
+    .options-box-inner { padding:16px; }
+    .options-title { font-size:1.2rem; margin-bottom:10px; color:#D4AF37; }
+    .options-meta { font-size:0.85rem; color:#aaa; margin-bottom:8px; }
+
+    table.options-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    table.options-table th,
+    table.options-table td {
+      padding:6px 8px;
+      border-bottom:1px solid #222;
+      text-align:right;
+    }
+    table.options-table th { color:#D4AF37; text-align:right; }
+    table.options-table td:first-child,
+    table.options-table th:first-child { text-align:left; }
+
+    .loading { color:#888; font-size:0.9rem; }
+    .error { color:#ff6666; font-size:0.9rem; }
   </style>
 </head>
 
@@ -19,103 +37,309 @@
 
 <!-- 1. AAPL -->
 <div class="ticker-block"><h2>AAPL</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=AAPL&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=AAPL&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=AAPL&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="AAPL">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 2. MSFT -->
 <div class="ticker-block"><h2>MSFT</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=MSFT&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=MSFT&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=MSFT&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="MSFT">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 3. GOOGL -->
 <div class="ticker-block"><h2>GOOGL</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=GOOGL&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=GOOGL&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=GOOGL&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="GOOGL">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 4. AMZN -->
 <div class="ticker-block"><h2>AMZN</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=AMZN&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="AMZN">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 5. META -->
 <div class="ticker-block"><h2>META</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=META&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=META&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=META&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="META">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 6. NVDA -->
 <div class="ticker-block"><h2>NVDA</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=NVDA&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=NVDA&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=NVDA&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="NVDA">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 7. AMD -->
 <div class="ticker-block"><h2>AMD</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMD&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=AMD&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMD&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="AMD">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 8. NFLX -->
 <div class="ticker-block"><h2>NFLX</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=NFLX&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=NFLX&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=NFLX&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="NFLX">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 9. INTC -->
 <div class="ticker-block"><h2>INTC</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=INTC&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=INTC&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=INTC&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="INTC">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
 
 <!-- 10. CRM -->
 <div class="ticker-block"><h2>CRM</h2><div class="scroll-wrap">
-<div class="chart-box">
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=CRM&interval=15&theme=dark"></iframe>
-</div>
-<div class="options-box">
-  <iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=CRM&theme=dark"></iframe>
-</div>
+  <div class="chart-box">
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=CRM&interval=15&theme=dark"></iframe>
+  </div>
+  <div class="options-box" data-symbol="CRM">
+    <div class="options-box-inner">
+      <div class="options-title">Options Chain</div>
+      <div class="options-meta">Source: Yahoo Finance · Calls · Nearest Expiration</div>
+      <div class="loading">Loading options…</div>
+      <table class="options-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Strike</th>
+            <th>Bid</th>
+            <th>Ask</th>
+            <th>Vol</th>
+            <th>OI</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div></div>
+
+<script>
+async function loadOptionsForBox(box) {
+  const symbol = box.getAttribute('data-symbol');
+  const loadingEl = box.querySelector('.loading');
+  const table = box.querySelector('.options-table');
+  const tbody = table.querySelector('tbody');
+
+  try {
+    const res = await fetch(`https://query1.finance.yahoo.com/v7/finance/options/${encodeURIComponent(symbol)}`);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    const chainRoot = data.optionChain && data.optionChain.result && data.optionChain.result[0];
+    if (!chainRoot || !chainRoot.options || !chainRoot.options[0] || !chainRoot.options[0].calls) {
+      loadingEl.textContent = 'No options data.';
+      return;
+    }
+
+    const calls = chainRoot.options[0].calls;
+
+    tbody.innerHTML = '';
+    calls.forEach(c => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${c.strike ?? ''}</td>
+        <td>${c.bid ?? ''}</td>
+        <td>${c.ask ?? ''}</td>
+        <td>${c.volume ?? ''}</td>
+        <td>${c.openInterest ?? ''}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    loadingEl.style.display = 'none';
+    table.style.display = '';
+  } catch (err) {
+    loadingEl.textContent = 'Error loading options.';
+    console.error('Options error for', symbol, err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.options-box').forEach(loadOptionsForBox);
+});
+</script>
 
 </body>
 </html>
