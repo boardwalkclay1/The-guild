@@ -4,67 +4,27 @@
   <title>Airline Stocks – Guild Market</title>
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <style>
-    body { background:#000; color:#fff; margin:0; padding:0; }
+    body { background:#000; color:#fff; }
     .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
-    .scroll-wrap { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
-    .chart-box, .options-box { min-width:600px; border-radius:10px; overflow:hidden; }
-    iframe { width:100%; height:500px; border:none; }
+    iframe { width:100%; border:none; }
+    .chart { height:400px; }
+    .back { margin:20px 0; display:inline-block; }
   </style>
 </head>
 
 <body class="fade-in">
-<a href="/market/index.html" class="guild-btn back">← Back</a>
+<a href="/market/index.html" class="guild-btn back">← Back to Categories</a>
 <h1 class="guild-title">Airline Stocks</h1>
 
-<div class="ticker-block"><h2>UAL</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=UAL&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=UAL&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>DAL</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=DAL&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=DAL&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>AAL</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AAL&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=AAL&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>LUV</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=LUV&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=LUV&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>JBLU</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=JBLU&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=JBLU&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>ALK</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=ALK&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=ALK&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>HA</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=HA&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=HA&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>RYAAY</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=RYAAY&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=RYAAY&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>CPA</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CPA&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=CPA&theme=dark"></iframe></div>
-</div></div>
-
-<div class="ticker-block"><h2>AZUL</h2><div class="scroll-wrap">
-<div class="chart-box"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AZUL&interval=15&theme=dark"></iframe></div>
-<div class="options-box"><iframe src="https://www.tradingview.com/embed-widget/option-chain/?symbol=AZUL&theme=dark"></iframe></div>
-</div></div>
+<div class="ticker-block"><h2>AAL</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAL&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>DAL</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:DAL&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>UAL</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:UAL&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>LUV</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:LUV&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>JBLU</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:JBLU&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>ALK</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:ALK&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>HA</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:HA&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>RYAAY</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:RYAAY&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>BA</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NYSE:BA&interval=15&theme=dark"></iframe></div>
 
 </body>
 </html>
