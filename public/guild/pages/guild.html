@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
   <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
 
+  <!-- MAIN GUILD HALL CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
 
   <style>
@@ -25,25 +26,37 @@
       font-size: 1.1rem;
       padding: 14px 18px;
       border-radius: 10px;
+      cursor: pointer;
     }
 
     .dropdown-panel {
       padding: 12px;
       font-size: 0.95rem;
+      display: none;
+    }
+
+    .dropdown-panel.open {
+      display: block;
     }
 
     .enter-btn {
       width: 100%;
       padding: 12px;
       font-size: 1rem;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
     /* HUD mobile scaling */
     .guild-hud {
+      position: fixed;
+      top: 10px;
+      right: 10px;
       transform: scale(0.85);
       transform-origin: top right;
-      right: 10px;
-      top: 10px;
+      z-index: 999;
+      text-align: right;
     }
 
     @media (max-width: 480px) {
@@ -62,7 +75,7 @@
 </head>
 
 <body style="
-  background: url('/assets/image/the-guild.png') no-repeat center center fixed;
+  background: url('/guild/assets/image/the-guild.png') no-repeat center center fixed;
   background-size: cover;
 ">
 
@@ -74,6 +87,7 @@
 
   <script src="/guild/xp/guild-progress.js"></script>
 
+  <!-- TOP NAV BAR -->
   <header class="guild-top-bar">
     <div class="guild-logo-title">
       <span class="guild-mark">⛨</span>
@@ -95,6 +109,7 @@
     </nav>
   </header>
 
+  <!-- DECOR -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
@@ -103,6 +118,7 @@
     <h1 class="scroll-title">THE GUILD HALL</h1>
   </div>
 
+  <!-- MAIN MENU STACK -->
   <div class="vertical-stack">
 
     <!-- Inside the Guild -->
@@ -141,13 +157,22 @@
       <button class="enter-btn" onclick="go('/guild/pages/arena/arena.html')">ENTER</button>
     </div>
 
-    <!-- NEW: Options Trading Simulator -->
+    <!-- Options Trading Simulator -->
     <div class="guild-btn" onclick="toggleDrop('dropOptions')">
       📈 Options Trading Simulator <span class="arrow">›</span>
     </div>
     <div id="dropOptions" class="dropdown-panel">
       <p>Train in the Guild’s financial arena — calls, puts, volatility, and discipline.</p>
       <button class="enter-btn" onclick="go('/guild/games/options/index.html')">ENTER</button>
+    </div>
+
+    <!-- ⭐ NEW: Guild Market Terminal Dashboard -->
+    <div class="guild-btn" onclick="toggleDrop('dropDashboard')">
+      🧭 Guild Market Terminal <span class="arrow">›</span>
+    </div>
+    <div id="dropDashboard" class="dropdown-panel">
+      <p>The Guild’s full market command center — signals, gainers, losers, watchlists, and multi‑timeframe analysis.</p>
+      <button class="enter-btn" onclick="go('/guild/pages/dashboard/dashboard.html')">ENTER</button>
     </div>
 
   </div>
