@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guild Market Terminal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
+  <script src="/guild/assets/js/guild-dashboard.js" defer></script>
+</head>
+
+<body>
+
+  <!-- TICKER -->
+  <div id="guildTicker" class="guild-ticker">
+    <div id="guildTickerInner" class="guild-ticker-inner"></div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <div class="dashboard-wrapper">
+
+    <!-- QUICK ACTIONS -->
+    <h2 class="section-title">Quick Actions</h2>
+    <div class="card-grid">
+      <div class="guild-card" onclick="go('/guild/pages/Gf/simulator.html')">Golden Formula</div>
+      <div class="guild-card" onclick="go('/guild/pages/arena/arena-home.html')">Arena</div>
+      <div class="guild-card" onclick="go('/guild/pages/signals/guild-signals.html')">Signals</div>
+      <div class="guild-card" onclick="go('/guild/pages/watchlist/watchlist-full.html')">Watchlist</div>
+      <div class="guild-card" onclick="go('/guild/pages/notes/notes-full.html')">Notes</div>
+      <div class="guild-card" onclick="go('/guild/pages/training/training-progress.html')">Training</div>
+    </div>
+
+    <!-- MARKET SNAPSHOTS -->
+    <h2 class="section-title">Market Snapshots</h2>
+    <div class="card-grid">
+      <div class="guild-card" onclick="go('/guild/pages/dashboard/gainers-full.html')">Biggest Gainers</div>
+      <div class="guild-card" onclick="go('/guild/pages/dashboard/losers-full.html')">Biggest Losers</div>
+    </div>
+
+    <!-- HIGH / LOW PANEL -->
+    <h2 class="section-title">Highs & Lows</h2>
+    <div id="highLowPanel" class="info-panel"></div>
+
+    <!-- MULTI-TIMEFRAME VIEWER -->
+    <h2 class="section-title">Multi‑Timeframe Viewer</h2>
+    <button class="add-tf-btn" onclick="addTimeframe()">+ Add Timeframe</button>
+
+    <div id="timeframeGrid" class="timeframe-grid"></div>
+
+    <!-- GUILD METER -->
+    <h2 class="section-title">Guild Rank</h2>
+    <div id="guildMeter" class="guild-meter">
+      <div id="guildMeterFill" class="guild-meter-fill"></div>
+    </div>
+    <div id="guildRankLabel" class="guild-rank-label"></div>
+
+  </div>
+
+</body>
+</html>
