@@ -5,8 +5,16 @@
   <title>Guild Market Terminal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
-  <script src="/guild/assets/js/guild-dashboard.js" defer></script>
+  <link rel="stylesheet" href="css/guild-dashboard.css">
+
+  <script src="js/guild-dashboard.js" defer></script>
+  <script src="js/guild-ticker.js" defer></script>
+  <script src="js/guild-timeframes.js" defer></script>
+  <script src="js/guild-gainers.js" defer></script>
+  <script src="js/guild-losers.js" defer></script>
+  <script src="js/guild-data.js" defer></script>
+  <script src="js/guild-signals.js" defer></script>
+  <script src="js/guild-news.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +33,7 @@
       <div class="guild-card" onclick="go('/guild/pages/Gf/simulator.html')">Golden Formula</div>
       <div class="guild-card" onclick="go('/guild/pages/arena/arena-home.html')">Arena</div>
       <div class="guild-card" onclick="go('/guild/pages/signals/guild-signals.html')">Signals</div>
-      <div class="guild-card" onclick="go('/guild/pages/watchlist/watchlist-full.html')">Watchlist</div>
+      <div class="guild-card" onclick="go('watchlist-full.html')">Watchlist</div>
       <div class="guild-card" onclick="go('/guild/pages/notes/notes-full.html')">Notes</div>
       <div class="guild-card" onclick="go('/guild/pages/training/training-progress.html')">Training</div>
     </div>
@@ -33,8 +41,8 @@
     <!-- MARKET SNAPSHOTS -->
     <h2 class="section-title">Market Snapshots</h2>
     <div class="card-grid">
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/gainers-full.html')">Biggest Gainers</div>
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/losers-full.html')">Biggest Losers</div>
+      <div class="guild-card" onclick="go('gainers-full.html')">Biggest Gainers</div>
+      <div class="guild-card" onclick="go('losers-full.html')">Biggest Losers</div>
     </div>
 
     <!-- HIGH / LOW PANEL -->
