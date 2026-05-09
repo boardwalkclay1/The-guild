@@ -2,21 +2,176 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Guild Watchlist</title>
+  <title>Guild Watchlist — Full View</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Guild Styles -->
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
-  <script src="js/guild-data.js" defer></script>
+
+  <!-- Master Tools JS -->
+  <script src="watchlist-master.js" defer></script>
+
+  <style>
+    body {
+      background: url('/public/assets/image/the-guild.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .fullpage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .back-btn {
+      background: #D4AF37;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .sector-dropdown {
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #D4AF37;
+      padding: 12px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .main-chart {
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #D4AF37;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .tools-panel {
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #D4AF37;
+      padding: 20px;
+      border-radius: 12px;
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+
+    .tools-panel h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #D4AF37;
+    }
+
+    .tool-section {
+      margin-bottom: 20px;
+    }
+
+    .tool-section h3 {
+      color: #D4AF37;
+      margin-bottom: 8px;
+    }
+
+    .tool-section ul {
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 
-<body class="fullpage-body">
+<body>
 
-  <div class="fullpage-header">
-    <h1>Guild Watchlist</h1>
-    <button onclick="history.back()" class="back-btn">← Back</button>
+  <div class="dashboard-wrapper">
+
+    <!-- HEADER -->
+    <div class="fullpage-header">
+      <h1>Guild Watchlist — Full View</h1>
+      <button onclick="history.back()" class="back-btn">← Back</button>
+    </div>
+
+    <!-- SECTOR DROPDOWN -->
+    <select class="sector-dropdown" onchange="go(this.value)">
+      <option value="">Select a Sector…</option>
+
+      <option value="watchlist/tech.html">Tech</option>
+      <option value="watchlist/bitcoin.html">Bitcoin / Crypto</option>
+      <option value="watchlist/gas.html">Oil & Gas</option>
+      <option value="watchlist/ai.html">AI</option>
+      <option value="watchlist/holdings.html">Holding Companies</option>
+
+      <option value="watchlist/banking.html">Banking</option>
+      <option value="watchlist/airlines.html">Airlines</option>
+      <option value="watchlist/energy.html">Energy</option>
+      <option value="watchlist/semiconductors.html">Semiconductors</option>
+      <option value="watchlist/retail.html">Retail</option>
+
+      <option value="watchlist/healthcare.html">Healthcare</option>
+      <option value="watchlist/defense.html">Defense</option>
+      <option value="watchlist/realestate.html">Real Estate</option>
+      <option value="watchlist/metals.html">Metals & Mining</option>
+      <option value="watchlist/utilities.html">Utilities</option>
+    </select>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+
+      <!-- MAIN CHART PREVIEW -->
+      <div class="main-chart">
+        <h2>Main Chart Preview</h2>
+        <p>Select a sector above to view its full watchlist.</p>
+
+        <iframe
+          id="previewFrame"
+          src="https://s.tradingview.com/widgetembed/?symbol=SPY&interval=1h"
+          style="width:100%;height:500px;border:none;border-radius:12px;"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- TOOLS PANEL -->
+      <div class="tools-panel">
+        <h2>Guild Tools</h2>
+
+        <div class="tool-section">
+          <h3>Candlestick Patterns</h3>
+          <ul id="candlestickList"></ul>
+        </div>
+
+        <div class="tool-section">
+          <h3>Chart Patterns</h3>
+          <ul id="chartPatternList"></ul>
+        </div>
+
+        <div class="tool-section">
+          <h3>Trendline Guidance</h3>
+          <ul id="trendlineAdvice"></ul>
+        </div>
+
+        <div class="tool-section">
+          <h3>Guild Notes</h3>
+          <ul id="guildNotes"></ul>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <div id="watchlistContainer" class="fullpage-container"></div>
+  <script>
+    function go(page) {
+      if (page) window.location.href = page;
+    }
+  </script>
 
 </body>
 </html>
