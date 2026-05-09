@@ -5,10 +5,25 @@
   <title>Guild Market Terminal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- YOUR CSS PATH -->
+  <!-- SOCIAL PREVIEW -->
+  <meta property="og:title" content="Guild Market Terminal">
+  <meta property="og:description" content="Your full cinematic trading command center — charts, signals, gainers, losers, tools, and more.">
+  <meta property="og:image" content="/assets/image/the-guild.png">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guild Market Terminal">
+  <meta name="twitter:description" content="Your full cinematic trading command center.">
+  <meta name="twitter:image" content="/assets/image/the-guild.png">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/image/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/image/favicon.png">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
 
-  <!-- YOUR JS PATHS -->
+  <!-- JS -->
   <script src="/guild/pages/dashboard/js/guild-dashboard.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-ticker.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-timeframes.js" defer></script>
@@ -17,12 +32,65 @@
   <script src="/guild/pages/dashboard/js/guild-data.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-signals.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-news.js" defer></script>
+
+  <style>
+    /* NAV BAR */
+    .guild-nav {
+      width: 100%;
+      background: rgba(0,0,0,0.75);
+      border-bottom: 2px solid #D4AF37;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .guild-nav .nav-left {
+      display: flex;
+      gap: 20px;
+    }
+
+    .guild-nav a {
+      color: #D4AF37;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: 0.2s;
+    }
+
+    .guild-nav a:hover {
+      color: white;
+    }
+
+    .guild-logo {
+      height: 40px;
+    }
+  </style>
 </head>
 
 <body style="
   background: url('/assets/image/the-guild.png') no-repeat center center fixed;
   background-size: cover;
 ">
+
+  <!-- FULL NAVIGATION -->
+  <div class="guild-nav">
+    <div class="nav-left">
+      <a href="/guild/index.html">Home</a>
+      <a href="/guild/pages/dashboard/dashboard.html">Dashboard</a>
+      <a href="/guild/pages/dashboard/pages/watchlist-full.html">Watchlist</a>
+      <a href="/guild/pages/dashboard/pages/signals.html">Signals</a>
+      <a href="/guild/pages/dashboard/pages/gainers.html">Gainers</a>
+      <a href="/guild/pages/dashboard/pages/losers.html">Losers</a>
+      <a href="/guild/pages/notes/notes-full.html">Notes</a>
+      <a href="/guild/pages/training/training-progress.html">Training</a>
+    </div>
+
+    <img src="/assets/image/the-guild.png" class="guild-logo" alt="Guild Logo">
+  </div>
 
   <!-- TICKER -->
   <div id="guildTicker" class="guild-ticker">
@@ -38,7 +106,7 @@
       <div class="guild-card" onclick="go('/guild/pages/Gf/simulator.html')">Golden Formula</div>
       <div class="guild-card" onclick="go('/guild/pages/arena/arena-home.html')">Arena</div>
       <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/signals.html')">Signals</div>
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/gainers.html')">Watchlist</div>
+      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/watchlist-full.html')">Watchlist</div>
       <div class="guild-card" onclick="go('/guild/pages/notes/notes-full.html')">Notes</div>
       <div class="guild-card" onclick="go('/guild/pages/training/training-progress.html')">Training</div>
     </div>
