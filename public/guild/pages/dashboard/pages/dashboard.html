@@ -5,19 +5,24 @@
   <title>Guild Market Terminal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
+  <!-- Correct CSS path -->
+  <link rel="stylesheet" href="css/guild-dashboard.css">
 
-  <script src="/guild/pages/dashboard/js/guild-dashboard.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-ticker.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-timeframes.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-gainers.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-losers.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-data.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-signals.js" defer></script>
-  <script src="/guild/pages/dashboard/js/guild-news.js" defer></script>
+  <!-- Correct JS paths (NO MIME ERRORS) -->
+  <script src="js/guild-dashboard.js" defer></script>
+  <script src="js/guild-ticker.js" defer></script>
+  <script src="js/guild-timeframes.js" defer></script>
+  <script src="js/guild-gainers.js" defer></script>
+  <script src="js/guild-losers.js" defer></script>
+  <script src="js/guild-data.js" defer></script>
+  <script src="js/guild-signals.js" defer></script>
+  <script src="js/guild-news.js" defer></script>
 </head>
 
-<body>
+<body style="
+  background: url('/public/assets/image/the-guild.png') no-repeat center center fixed;
+  background-size: cover;
+">
 
   <!-- TICKER -->
   <div id="guildTicker" class="guild-ticker">
