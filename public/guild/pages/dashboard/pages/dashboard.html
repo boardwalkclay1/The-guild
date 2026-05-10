@@ -38,14 +38,16 @@
     body {
       background: url('/assets/image/the-guild.png') center center / cover no-repeat fixed;
       background-color: black;
+      margin: 0;
+      padding: 0;
     }
 
-    /* NAV BAR */
+    /* SLIM NAV BAR */
     .guild-nav {
       width: 100%;
       background: rgba(0,0,0,0.75);
       border-bottom: 2px solid #D4AF37;
-      padding: 12px 20px;
+      padding: 6px 16px; /* REDUCED HEIGHT */
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,16 +58,17 @@
 
     .guild-nav .nav-left {
       display: flex;
-      gap: 18px;
+      gap: 14px; /* EVEN SPACING */
     }
 
     .guild-nav a {
       color: #D4AF37;
-      font-weight: bold;
+      font-weight: 600;
       text-decoration: none;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       transition: 0.2s;
-      font-size: 0.95rem;
+      font-size: 0.9rem; /* SLIMMER TEXT */
+      padding: 4px 0; /* REDUCED HEIGHT */
     }
 
     .guild-nav a:hover {
@@ -73,15 +76,15 @@
     }
 
     .guild-logo {
-      height: 38px;
+      height: 32px; /* SMALLER LOGO */
     }
 
     /* SLIMMER BUTTONS */
     .guild-card {
-      padding: 10px 14px !important;
-      font-size: 0.95rem !important;
+      padding: 8px 12px !important;
+      font-size: 0.9rem !important;
       border-radius: 10px !important;
-      min-height: 40px !important;
+      min-height: 36px !important;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -89,8 +92,15 @@
     }
 
     .card-grid {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
-      gap: 14px !important;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+      gap: 12px !important;
+    }
+
+    /* EVEN TEXT SPACING */
+    .section-title {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
@@ -127,10 +137,7 @@
       <div class="guild-card" onclick="go('/guild/pages/Gf/simulator.html')">Golden Formula</div>
       <div class="guild-card" onclick="go('/guild/pages/arena/arena-home.html')">Arena</div>
       <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/signals.html')">Signals</div>
-
-      <!-- FIXED WATCHLIST PATH -->
       <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/watchlist-full.html')">Watchlist</div>
-
       <div class="guild-card" onclick="go('/guild/pages/notes/notes-full.html')">Notes</div>
       <div class="guild-card" onclick="go('/guild/pages/training/training-progress.html')">Training</div>
     </div>
