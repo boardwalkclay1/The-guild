@@ -13,10 +13,16 @@
 
   <style>
     body {
-      background: url('/public/assets/image/the-guild.png') no-repeat center center fixed;
-      background-size: cover;
+      background: url('/public/assets/image/the-guild.png') center center / cover no-repeat fixed;
+      margin: 0;
+      padding: 0;
     }
 
+    .dashboard-wrapper {
+      padding: 20px;
+    }
+
+    /* HEADER */
     .fullpage-header {
       display: flex;
       justify-content: space-between;
@@ -27,12 +33,14 @@
     .back-btn {
       background: #D4AF37;
       border: none;
-      padding: 10px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.9rem;
     }
 
+    /* SECTOR DROPDOWN */
     .sector-dropdown {
       background: rgba(0,0,0,0.7);
       border: 2px solid #D4AF37;
@@ -44,47 +52,54 @@
       margin-bottom: 20px;
     }
 
-    .main-layout {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
-
-    .main-chart {
-      background: rgba(0,0,0,0.6);
+    /* FLOATING TOOLS PANEL (collapsed by default) */
+    .tools-floating {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.75);
       border: 2px solid #D4AF37;
-      padding: 20px;
       border-radius: 12px;
+      padding: 12px;
+      width: 220px;
+      cursor: pointer;
+      transition: 0.25s;
+      z-index: 999;
     }
 
-    .tools-panel {
-      background: rgba(0,0,0,0.7);
-      border: 2px solid #D4AF37;
-      padding: 20px;
-      border-radius: 12px;
-      position: sticky;
-      top: 20px;
-      height: fit-content;
-    }
-
-    .tools-panel h2 {
-      text-align: center;
-      margin-top: 0;
+    .tools-floating h3 {
+      margin: 0;
+      font-size: 1rem;
       color: #D4AF37;
+      text-align: center;
+    }
+
+    .tools-expanded {
+      height: auto;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .tools-collapsed {
+      height: 40px;
+      overflow: hidden;
     }
 
     .tool-section {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .tool-section h3 {
+    .tool-section h4 {
       color: #D4AF37;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
     }
 
     .tool-section ul {
-      padding-left: 20px;
-      line-height: 1.6;
+      padding-left: 18px;
+      line-height: 1.5;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -122,54 +137,55 @@
       <option value="watchlist/utilities.html">Utilities</option>
     </select>
 
-    <!-- MAIN LAYOUT -->
-    <div class="main-layout">
+  </div>
 
-      <!-- MAIN CHART PREVIEW -->
-      <div class="main-chart">
-        <h2>Main Chart Preview</h2>
-        <p>Select a sector above to view its full watchlist.</p>
+  <!-- FLOATING TOOLS PANEL -->
+  <div id="toolsPanel" class="tools-floating tools-collapsed" onclick="toggleTools()">
+    <h3>Guild Tools</h3>
 
-        <iframe
-          id="previewFrame"
-          src="https://s.tradingview.com/widgetembed/?symbol=SPY&interval=1h"
-          style="width:100%;height:500px;border:none;border-radius:12px;"
-          loading="lazy"
-        ></iframe>
+    <div id="toolsContent" style="display:none;">
+
+      <div class="tool-section">
+        <h4>Candlestick Patterns</h4>
+        <ul id="candlestickList"></ul>
       </div>
 
-      <!-- TOOLS PANEL -->
-      <div class="tools-panel">
-        <h2>Guild Tools</h2>
+      <div class="tool-section">
+        <h4>Chart Patterns</h4>
+        <ul id="chartPatternList"></ul>
+      </div>
 
-        <div class="tool-section">
-          <h3>Candlestick Patterns</h3>
-          <ul id="candlestickList"></ul>
-        </div>
+      <div class="tool-section">
+        <h4>Trendline Guidance</h4>
+        <ul id="trendlineAdvice"></ul>
+      </div>
 
-        <div class="tool-section">
-          <h3>Chart Patterns</h3>
-          <ul id="chartPatternList"></ul>
-        </div>
-
-        <div class="tool-section">
-          <h3>Trendline Guidance</h3>
-          <ul id="trendlineAdvice"></ul>
-        </div>
-
-        <div class="tool-section">
-          <h3>Guild Notes</h3>
-          <ul id="guildNotes"></ul>
-        </div>
+      <div class="tool-section">
+        <h4>Guild Notes</h4>
+        <ul id="guildNotes"></ul>
       </div>
 
     </div>
-
   </div>
 
   <script>
     function go(page) {
       if (page) window.location.href = page;
+    }
+
+    function toggleTools() {
+      const panel = document.getElementById("toolsPanel");
+      const content = document.getElementById("toolsContent");
+
+      if (panel.classList.contains("tools-collapsed")) {
+        panel.classList.remove("tools-collapsed");
+        panel.classList.add("tools-expanded");
+        content.style.display = "block";
+      } else {
+        panel.classList.add("tools-collapsed");
+        panel.classList.remove("tools-expanded");
+        content.style.display = "none";
+      }
     }
   </script>
 
