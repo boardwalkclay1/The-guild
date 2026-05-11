@@ -7,13 +7,13 @@
 
   <!-- SOCIAL PREVIEW -->
   <meta property="og:title" content="Guild Market Terminal">
-  <meta property="og:description" content="Your cinematic trading command center — charts, signals, gainers, losers, tools, sentiment, and more.">
+  <meta property="og:description" content="Your cinematic trading command center — live BTC, NASDAQ, S&P, sentiment, earnings, and news explained.">
   <meta property="og:image" content="/assets/image/the-guild.png">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guild Market Terminal">
-  <meta name="twitter:description" content="Your cinematic trading command center.">
+  <meta name="twitter:description" content="Your cinematic trading command center — every signal and sentiment explained in plain language.">
   <meta name="twitter:image" content="/assets/image/the-guild.png">
 
   <!-- FAVICON -->
@@ -23,7 +23,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
 
-  <!-- JS -->
+  <!-- JS (existing Guild scripts) -->
   <script src="/guild/pages/dashboard/js/guild-dashboard.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-ticker.js" defer></script>
   <script src="/guild/pages/dashboard/js/guild-timeframes.js" defer></script>
@@ -39,6 +39,8 @@
       background-color: black;
       margin: 0;
       padding: 0;
+      color: white;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     /* BACK BUTTON */
@@ -87,9 +89,23 @@
 
     .guild-logo { height: 32px; }
 
+    /* WRAPPER */
+    .dashboard-wrapper {
+      padding: 10px 16px 40px 16px;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
+    }
+
+    .section-title {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+      color: #D4AF37;
+      font-size: 1.2rem;
+    }
+
     /* LIVE MARKET PANEL */
     .live-market {
-      margin: 20px;
+      margin-top: 10px;
       padding: 20px;
       border: 2px solid #D4AF37;
       border-radius: 12px;
@@ -103,12 +119,31 @@
       letter-spacing: 0.05em;
     }
 
+    .live-subtitle {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 16px;
+    }
+
+    .live-label {
+      color: #D4AF37;
+      margin: 18px 0 6px 0;
+      font-size: 1rem;
+    }
+
     .live-chart {
       width: 100%;
       height: 420px;
       border: none;
       border-radius: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .live-helper {
+      font-size: 0.85rem;
+      color: #ddd;
+      line-height: 1.5;
+      margin-bottom: 8px;
     }
 
     /* SENTIMENT POPUP */
@@ -116,12 +151,12 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       border: 2px solid #D4AF37;
       padding: 16px;
       border-radius: 12px;
       color: white;
-      width: 280px;
+      width: 300px;
       display: none;
       z-index: 9999;
       box-shadow: 0 0 12px rgba(0,0,0,0.6);
@@ -130,6 +165,7 @@
     .sentiment-popup h3 {
       margin: 0 0 8px 0;
       color: #D4AF37;
+      font-size: 1rem;
     }
 
     .sentiment-popup p {
@@ -138,10 +174,10 @@
       line-height: 1.4;
     }
 
-    /* DROPDOWNS */
+    /* EXPLANATION DROPDOWNS */
     .explain-box {
-      margin: 20px;
-      padding: 20px;
+      margin-top: 18px;
+      padding: 16px;
       border: 2px solid #D4AF37;
       border-radius: 12px;
       background: rgba(0,0,0,0.65);
@@ -149,17 +185,47 @@
 
     .explain-title {
       color: #D4AF37;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .explain-title span {
+      font-size: 0.8rem;
+      color: #aaa;
     }
 
     .explain-content {
       display: none;
       color: white;
-      line-height: 1.5;
-      padding-left: 10px;
+      line-height: 1.6;
+      font-size: 0.9rem;
+      padding-top: 6px;
     }
+
+    .explain-content ul {
+      padding-left: 18px;
+      margin: 6px 0;
+    }
+
+    .explain-content li {
+      margin-bottom: 4px;
+    }
+
+    /* SIMPLE TAGS / HIGHLIGHTS */
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      margin-right: 4px;
+    }
+    .tag-bull { background: rgba(0,255,0,0.1); color: #7CFC00; border: 1px solid #7CFC00; }
+    .tag-bear { background: rgba(255,0,0,0.1); color: #FF6B6B; border: 1px solid #FF6B6B; }
+    .tag-neutral { background: rgba(255,255,255,0.05); color: #ccc; border: 1px solid #777; }
   </style>
 </head>
 
@@ -184,49 +250,205 @@
     <img src="/assets/image/the-guild.png" class="guild-logo" alt="Guild Logo">
   </div>
 
-  <!-- LIVE MARKET SECTION -->
-  <div class="live-market">
-    <div class="live-title">Live Market Overview</div>
+  <!-- MAIN WRAPPER -->
+  <div class="dashboard-wrapper">
 
-    <h3 style="color:#D4AF37;">Bitcoin (BTCUSD)</h3>
-    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
+    <!-- LIVE MARKET OVERVIEW -->
+    <div class="live-market">
+      <div class="live-title">Live Market Overview</div>
+      <div class="live-subtitle">
+        Bitcoin, NASDAQ, and S&amp;P 500 are the three main “weather maps” of risk.  
+        Watch their direction, then read the helpers below to understand what that usually means.
+      </div>
 
-    <h3 style="color:#D4AF37;">NASDAQ (NDX)</h3>
-    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=NDX&interval=15&theme=dark"></iframe>
+      <!-- BITCOIN -->
+      <div class="live-label">Bitcoin (BTCUSD)</div>
+      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
+      <div class="live-helper">
+        Bitcoin is the **crypto risk barometer**.  
+        <span class="tag tag-bull">BTC Up</span> often means risk-on, stronger altcoins, and more speculative appetite.  
+        <span class="tag tag-bear">BTC Down</span> often means risk-off, pressure on miners, and higher volatility.
+      </div>
 
-    <h3 style="color:#D4AF37;">S&P 500 (SPX)</h3>
-    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
-  </div>
+      <!-- NASDAQ -->
+      <div class="live-label">NASDAQ (NDX)</div>
+      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=NDX&interval=15&theme=dark"></iframe>
+      <div class="live-helper">
+        NASDAQ is the **tech and growth index**.  
+        <span class="tag tag-bull">NDX Up</span> usually means big tech and growth stocks are leading, risk appetite is healthy.  
+        <span class="tag tag-bear">NDX Down</span> usually means growth is under pressure and money may rotate into safer sectors.
+      </div>
 
-  <!-- SENTIMENT POPUP -->
-  <div id="sentimentPopup" class="sentiment-popup">
-    <h3>Market Sentiment</h3>
-    <p id="sentimentText">Loading...</p>
-  </div>
-
-  <!-- EXPLANATION DROPDOWNS -->
-  <div class="explain-box">
-    <div class="explain-title" onclick="toggleExplain('btcExplain')">Bitcoin — What It Dictates</div>
-    <div id="btcExplain" class="explain-content">
-      • When Bitcoin rises → risk-on, tech strengthens, liquidity increases.<br>
-      • When Bitcoin falls → volatility rises, miners weaken, risk-off behavior increases.
+      <!-- S&P 500 -->
+      <div class="live-label">S&amp;P 500 (SPX)</div>
+      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
+      <div class="live-helper">
+        S&amp;P 500 is the **broad market scoreboard**.  
+        <span class="tag tag-bull">SPX Up</span> = broad strength, institutions are generally confident.  
+        <span class="tag tag-bear">SPX Down</span> = broad weakness, more caution, and often a shift toward defensive names.
+      </div>
     </div>
-  </div>
 
-  <div class="explain-box">
-    <div class="explain-title" onclick="toggleExplain('nasdaqExplain')">NASDAQ — What It Dictates</div>
-    <div id="nasdaqExplain" class="explain-content">
-      • Rising NASDAQ → tech bullish, growth stocks strengthen.<br>
-      • Falling NASDAQ → risk-off, defensive sectors strengthen.
+    <!-- SENTIMENT POPUP (AUTO / RULE-BASED) -->
+    <div id="sentimentPopup" class="sentiment-popup">
+      <h3>Market Sentiment</h3>
+      <p id="sentimentText">Loading...</p>
     </div>
-  </div>
 
-  <div class="explain-box">
-    <div class="explain-title" onclick="toggleExplain('spExplain')">S&P 500 — What It Dictates</div>
-    <div id="spExplain" class="explain-content">
-      • Rising S&P → broad market strength, institutional confidence.<br>
-      • Falling S&P → broad weakness, rotation into safety.
+    <!-- EXPLANATION SECTIONS -->
+
+    <h2 class="section-title">Core Drivers & Sentiment</h2>
+
+    <!-- BITCOIN EXPLAIN -->
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('btcExplain')">
+        Bitcoin — What It Dictates
+        <span>tap to expand</span>
+      </div>
+      <div id="btcExplain" class="explain-content">
+        Bitcoin is the **liquidity and speculation gauge** for crypto and, increasingly, for risk assets in general.
+        <ul>
+          <li><strong>When Bitcoin is rising:</strong> traders are usually more comfortable taking risk. Altcoins, miners, and high‑beta tech often benefit.</li>
+          <li><strong>When Bitcoin is falling:</strong> risk appetite shrinks. Capital may leave speculative assets, volatility rises, and defensive behavior increases.</li>
+          <li><strong>Sharp BTC moves:</strong> can trigger liquidations, forced selling, or sudden rallies across the crypto complex.</li>
+        </ul>
+        Use BTC as a **risk-on / risk-off overlay** when judging aggressive trades.
+      </div>
     </div>
+
+    <!-- NASDAQ EXPLAIN -->
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('nasdaqExplain')">
+        NASDAQ — What It Dictates
+        <span>tap to expand</span>
+      </div>
+      <div id="nasdaqExplain" class="explain-content">
+        NASDAQ tracks **technology, growth, and innovation** names.
+        <ul>
+          <li><strong>When NASDAQ is strong:</strong> growth stocks, software, semiconductors, and high‑multiple names usually have the wind at their back.</li>
+          <li><strong>When NASDAQ is weak:</strong> markets may be questioning growth, valuations, or future earnings. Money can rotate into value, dividends, or defensive sectors.</li>
+          <li><strong>Big NASDAQ drops:</strong> often signal broader risk-off, especially for speculative tech and small caps.</li>
+        </ul>
+        Think of NASDAQ as the **heartbeat of tech and growth sentiment**.
+      </div>
+    </div>
+
+    <!-- S&P EXPLAIN -->
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('spExplain')">
+        S&amp;P 500 — What It Dictates
+        <span>tap to expand</span>
+      </div>
+      <div id="spExplain" class="explain-content">
+        The S&amp;P 500 is the **broad market benchmark**.
+        <ul>
+          <li><strong>When S&amp;P is trending up:</strong> institutions are generally confident, and most sectors can participate in the move.</li>
+          <li><strong>When S&amp;P is trending down:</strong> broad risk-off, more caution, and often higher correlations between stocks.</li>
+          <li><strong>Sideways S&amp;P:</strong> can mean rotation under the surface — some sectors up, others down, but the index looks flat.</li>
+        </ul>
+        Use S&amp;P as your **overall market weather report**.
+      </div>
+    </div>
+
+    <!-- NEWS & SENTIMENT -->
+    <h2 class="section-title">News, Earnings & Sentiment — Explained</h2>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('newsExplain')">
+        News Sentiment — Bullish vs Bearish Headlines
+        <span>tap to expand</span>
+      </div>
+      <div id="newsExplain" class="explain-content">
+        News moves markets when it changes expectations.
+        <ul>
+          <li><strong>Bullish news:</strong> beats on earnings, positive guidance, new product wins, upgrades, or macro data that supports growth.</li>
+          <li><strong>Bearish news:</strong> misses on earnings, lowered guidance, regulatory issues, downgrades, or macro data that signals slowdown.</li>
+          <li><strong>How to read it:</strong> ask “better or worse than expected?” — markets trade expectations, not just the headline.</li>
+        </ul>
+        The Guild will surface **simple labels** like “Bullish Earnings” or “Macro Risk-Off” so you don’t have to decode every article.
+      </div>
+    </div>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('earningsExplain')">
+        Earnings — What Beats, Misses, and Guidance Really Mean
+        <span>tap to expand</span>
+      </div>
+      <div id="earningsExplain" class="explain-content">
+        Earnings season is the market’s **report card**.
+        <ul>
+          <li><strong>Beat:</strong> company reports better numbers than analysts expected. Often bullish, but reaction depends on guidance and valuation.</li>
+          <li><strong>Miss:</strong> company reports worse numbers than expected. Often bearish, especially if guidance is also weak.</li>
+          <li><strong>Guidance:</strong> what the company says about the future. Strong guidance can rescue a weak quarter; weak guidance can crush a strong one.</li>
+        </ul>
+        The key question: “Is the future now priced higher or lower than before this report?”
+      </div>
+    </div>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('macroExplain')">
+        Inflation, Fed & Macro — Why They Matter
+        <span>tap to expand</span>
+      </div>
+      <div id="macroExplain" class="explain-content">
+        Macro data sets the **backdrop** for all risk assets.
+        <ul>
+          <li><strong>Inflation data:</strong> higher than expected can pressure stocks and boost yields; lower than expected can support risk assets.</li>
+          <li><strong>Fed decisions:</strong> rate hikes usually tighten conditions (risk-off), cuts or pauses can support risk-on behavior.</li>
+          <li><strong>Jobs & growth:</strong> strong but not overheating is ideal; too hot or too cold can both create volatility.</li>
+        </ul>
+        Macro is the **stage**; individual stocks are the actors.
+      </div>
+    </div>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('riskExplain')">
+        Risk-On vs Risk-Off — How to Read the Mood
+        <span>tap to expand</span>
+      </div>
+      <div id="riskExplain" class="explain-content">
+        Risk-on and risk-off describe the **overall mood** of the market.
+        <ul>
+          <li><strong>Risk-On:</strong> money flows into growth, tech, small caps, crypto, and higher‑beta names. BTC, NASDAQ, and SPX often trend up together.</li>
+          <li><strong>Risk-Off:</strong> money rotates into bonds, utilities, staples, healthcare, and cash. BTC and NASDAQ often lag or sell off.</li>
+          <li><strong>Mixed:</strong> some pockets risk-on, others risk-off — often during transitions or rotations.</li>
+        </ul>
+        Watch BTC + NASDAQ + S&amp;P together to read the **global risk dial**.
+      </div>
+    </div>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('volExplain')">
+        Volatility & VIX — Calm vs Chaos
+        <span>tap to expand</span>
+      </div>
+      <div id="volExplain" class="explain-content">
+        Volatility measures **how violently prices move**.
+        <ul>
+          <li><strong>Low volatility:</strong> markets are calm, trends can grind higher, options are cheaper.</li>
+          <li><strong>High volatility:</strong> big swings, faster moves, more emotional trading, options more expensive.</li>
+          <li><strong>VIX:</strong> often called the “fear index” — rising VIX usually means more fear and risk-off behavior.</li>
+        </ul>
+        Volatility doesn’t say “up or down” — it says **“how wild”**.
+      </div>
+    </div>
+
+    <div class="explain-box">
+      <div class="explain-title" onclick="toggleExplain('rotationExplain')">
+        Sector Rotation — Who’s in Favor, Who’s Out
+        <span>tap to expand</span>
+      </div>
+      <div id="rotationExplain" class="explain-content">
+        Sector rotation is **money moving from one group to another**.
+        <ul>
+          <li><strong>Into cyclicals:</strong> markets expect growth (industrials, financials, consumer discretionary).</li>
+          <li><strong>Into defensives:</strong> markets want safety (utilities, staples, healthcare).</li>
+          <li><strong>Into tech:</strong> markets are betting on innovation and growth.</li>
+        </ul>
+        Rotation explains why some stocks rise even when the index is flat.
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -235,18 +457,28 @@
       box.style.display = box.style.display === "block" ? "none" : "block";
     }
 
-    // SENTIMENT ENGINE (simple version)
+    // SIMPLE SENTIMENT ENGINE (RULE-BASED DEMO)
+    // In production, you can wire this to real data or signals.
     function showSentiment(text) {
       const popup = document.getElementById("sentimentPopup");
       const msg = document.getElementById("sentimentText");
       msg.innerHTML = text;
       popup.style.display = "block";
-      setTimeout(() => popup.style.display = "none", 6000);
+      setTimeout(() => { popup.style.display = "none"; }, 7000);
     }
 
-    // Example triggers (you will replace with real data later)
-    setTimeout(() => showSentiment("Bitcoin rising → Tech and risk assets strengthening."), 2000);
-    setTimeout(() => showSentiment("NASDAQ falling → Defensive sectors gaining strength."), 9000);
+    // Demo sequence — replace with real triggers later
+    setTimeout(() => {
+      showSentiment("Bitcoin rising → risk-on tilt. Crypto, high-beta tech, and speculative names often get a tailwind.");
+    }, 2500);
+
+    setTimeout(() => {
+      showSentiment("NASDAQ pulling back → growth and tech under pressure. Watch for rotation into value or defensives.");
+    }, 11000);
+
+    setTimeout(() => {
+      showSentiment("S&P 500 stable but news is bearish → surface calm, but under-the-hood positioning may be cautious.");
+    }, 19000);
   </script>
 
 </body>
