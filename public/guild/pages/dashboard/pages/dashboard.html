@@ -7,7 +7,7 @@
 
   <!-- SOCIAL PREVIEW -->
   <meta property="og:title" content="Guild Market Terminal">
-  <meta property="og:description" content="Your cinematic trading command center — charts, signals, gainers, losers, tools, and more.">
+  <meta property="og:description" content="Your cinematic trading command center — charts, signals, gainers, losers, tools, sentiment, and more.">
   <meta property="og:image" content="/assets/image/the-guild.png">
   <meta property="og:type" content="website">
 
@@ -34,7 +34,6 @@
   <script src="/guild/pages/dashboard/js/guild-news.js" defer></script>
 
   <style>
-    /* MOBILE‑SAFE BACKGROUND */
     body {
       background: url('/assets/image/the-guild.png') center center / cover no-repeat fixed;
       background-color: black;
@@ -42,12 +41,28 @@
       padding: 0;
     }
 
-    /* SLIM NAV BAR */
+    /* BACK BUTTON */
+    .back-btn {
+      background: #D4AF37;
+      color: black;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin: 12px 16px;
+      border: 2px solid black;
+      box-shadow: 0 0 8px rgba(0,0,0,0.6);
+      transition: 0.2s;
+    }
+    .back-btn:hover { background: white; color: black; }
+
+    /* NAV BAR */
     .guild-nav {
       width: 100%;
       background: rgba(0,0,0,0.75);
       border-bottom: 2px solid #D4AF37;
-      padding: 6px 16px; /* REDUCED HEIGHT */
+      padding: 6px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,10 +71,7 @@
       z-index: 999;
     }
 
-    .guild-nav .nav-left {
-      display: flex;
-      gap: 14px; /* EVEN SPACING */
-    }
+    .guild-nav .nav-left { display: flex; gap: 14px; }
 
     .guild-nav a {
       color: #D4AF37;
@@ -67,47 +79,96 @@
       text-decoration: none;
       letter-spacing: 0.04em;
       transition: 0.2s;
-      font-size: 0.9rem; /* SLIMMER TEXT */
-      padding: 4px 0; /* REDUCED HEIGHT */
+      font-size: 0.9rem;
+      padding: 4px 0;
     }
 
-    .guild-nav a:hover {
-      color: white;
+    .guild-nav a:hover { color: white; }
+
+    .guild-logo { height: 32px; }
+
+    /* LIVE MARKET PANEL */
+    .live-market {
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.65);
     }
 
-    .guild-logo {
-      height: 32px; /* SMALLER LOGO */
-    }
-
-    /* SLIMMER BUTTONS */
-    .guild-card {
-      padding: 8px 12px !important;
-      font-size: 0.9rem !important;
-      border-radius: 10px !important;
-      min-height: 36px !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: 0.04em;
-    }
-
-    .card-grid {
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
-      gap: 12px !important;
-    }
-
-    /* EVEN TEXT SPACING */
-    .section-title {
-      margin-top: 25px;
+    .live-title {
+      color: #D4AF37;
+      font-size: 1.4rem;
       margin-bottom: 10px;
       letter-spacing: 0.05em;
+    }
+
+    .live-chart {
+      width: 100%;
+      height: 420px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* SENTIMENT POPUP */
+    .sentiment-popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.85);
+      border: 2px solid #D4AF37;
+      padding: 16px;
+      border-radius: 12px;
+      color: white;
+      width: 280px;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+    }
+
+    .sentiment-popup h3 {
+      margin: 0 0 8px 0;
+      color: #D4AF37;
+    }
+
+    .sentiment-popup p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* DROPDOWNS */
+    .explain-box {
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.65);
+    }
+
+    .explain-title {
+      color: #D4AF37;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .explain-content {
+      display: none;
+      color: white;
+      line-height: 1.5;
+      padding-left: 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- FULL NAVIGATION -->
+  <!-- BACK BUTTON -->
+  <a href="/guild/index.html" class="back-btn">← Back</a>
+
+  <!-- NAVIGATION -->
   <div class="guild-nav">
     <div class="nav-left">
       <a href="/guild/index.html">Home</a>
@@ -123,49 +184,70 @@
     <img src="/assets/image/the-guild.png" class="guild-logo" alt="Guild Logo">
   </div>
 
-  <!-- TICKER -->
-  <div id="guildTicker" class="guild-ticker">
-    <div id="guildTickerInner" class="guild-ticker-inner"></div>
+  <!-- LIVE MARKET SECTION -->
+  <div class="live-market">
+    <div class="live-title">Live Market Overview</div>
+
+    <h3 style="color:#D4AF37;">Bitcoin (BTCUSD)</h3>
+    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
+
+    <h3 style="color:#D4AF37;">NASDAQ (NDX)</h3>
+    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=NDX&interval=15&theme=dark"></iframe>
+
+    <h3 style="color:#D4AF37;">S&P 500 (SPX)</h3>
+    <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
   </div>
 
-  <!-- MAIN WRAPPER -->
-  <div class="dashboard-wrapper">
-
-    <!-- QUICK ACTIONS -->
-    <h2 class="section-title">Quick Actions</h2>
-    <div class="card-grid">
-      <div class="guild-card" onclick="go('/guild/pages/Gf/simulator.html')">Golden Formula</div>
-      <div class="guild-card" onclick="go('/guild/pages/arena/arena-home.html')">Arena</div>
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/signals.html')">Signals</div>
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/watchlist-full.html')">Watchlist</div>
-      <div class="guild-card" onclick="go('/guild/pages/notes/notes-full.html')">Notes</div>
-      <div class="guild-card" onclick="go('/guild/pages/training/training-progress.html')">Training</div>
-    </div>
-
-    <!-- MARKET SNAPSHOTS -->
-    <h2 class="section-title">Market Snapshots</h2>
-    <div class="card-grid">
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/gainers.html')">Biggest Gainers</div>
-      <div class="guild-card" onclick="go('/guild/pages/dashboard/pages/losers.html')">Biggest Losers</div>
-    </div>
-
-    <!-- HIGH / LOW PANEL -->
-    <h2 class="section-title">Highs & Lows</h2>
-    <div id="highLowPanel" class="info-panel"></div>
-
-    <!-- MULTI-TIMEFRAME VIEWER -->
-    <h2 class="section-title">Multi‑Timeframe Viewer</h2>
-    <button class="add-tf-btn" onclick="addTimeframe()">+ Add Timeframe</button>
-    <div id="timeframeGrid" class="timeframe-grid"></div>
-
-    <!-- GUILD METER -->
-    <h2 class="section-title">Guild Rank</h2>
-    <div id="guildMeter" class="guild-meter">
-      <div id="guildMeterFill" class="guild-meter-fill"></div>
-    </div>
-    <div id="guildRankLabel" class="guild-rank-label"></div>
-
+  <!-- SENTIMENT POPUP -->
+  <div id="sentimentPopup" class="sentiment-popup">
+    <h3>Market Sentiment</h3>
+    <p id="sentimentText">Loading...</p>
   </div>
+
+  <!-- EXPLANATION DROPDOWNS -->
+  <div class="explain-box">
+    <div class="explain-title" onclick="toggleExplain('btcExplain')">Bitcoin — What It Dictates</div>
+    <div id="btcExplain" class="explain-content">
+      • When Bitcoin rises → risk-on, tech strengthens, liquidity increases.<br>
+      • When Bitcoin falls → volatility rises, miners weaken, risk-off behavior increases.
+    </div>
+  </div>
+
+  <div class="explain-box">
+    <div class="explain-title" onclick="toggleExplain('nasdaqExplain')">NASDAQ — What It Dictates</div>
+    <div id="nasdaqExplain" class="explain-content">
+      • Rising NASDAQ → tech bullish, growth stocks strengthen.<br>
+      • Falling NASDAQ → risk-off, defensive sectors strengthen.
+    </div>
+  </div>
+
+  <div class="explain-box">
+    <div class="explain-title" onclick="toggleExplain('spExplain')">S&P 500 — What It Dictates</div>
+    <div id="spExplain" class="explain-content">
+      • Rising S&P → broad market strength, institutional confidence.<br>
+      • Falling S&P → broad weakness, rotation into safety.
+    </div>
+  </div>
+
+  <script>
+    function toggleExplain(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    // SENTIMENT ENGINE (simple version)
+    function showSentiment(text) {
+      const popup = document.getElementById("sentimentPopup");
+      const msg = document.getElementById("sentimentText");
+      msg.innerHTML = text;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 6000);
+    }
+
+    // Example triggers (you will replace with real data later)
+    setTimeout(() => showSentiment("Bitcoin rising → Tech and risk assets strengthening."), 2000);
+    setTimeout(() => showSentiment("NASDAQ falling → Defensive sectors gaining strength."), 9000);
+  </script>
 
 </body>
 </html>
