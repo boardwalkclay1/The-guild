@@ -58,8 +58,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 10px; /* LOWERED */
-      position: relative; /* NOT sticky */
+      margin-top: 10px;
+      position: relative;
       z-index: 10;
     }
 
@@ -261,13 +261,13 @@
         <span class="tag tag-bear">BTC Down</span> → risk-off, miners weaken, volatility rises.
       </div>
 
-      <!-- NASDAQ -->
-      <div class="live-label">NASDAQ (NDX)</div>
-      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=NDX&interval=15&theme=dark"></iframe>
+      <!-- NASDAQ (FIXED) -->
+      <div class="live-label">NASDAQ (IXIC)</div>
+      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=IXIC&interval=15&theme=dark"></iframe>
       <div class="live-helper">
         NASDAQ is the **tech and growth index**.  
-        <span class="tag tag-bull">NDX Up</span> → tech bullish, growth stocks strengthen.  
-        <span class="tag tag-bear">NDX Down</span> → rotation into safety.
+        <span class="tag tag-bull">NASDAQ Up</span> → tech bullish, growth stocks strengthen.  
+        <span class="tag tag-bear">NASDAQ Down</span> → rotation into safety.
       </div>
 
       <!-- S&P 500 -->
@@ -314,8 +314,8 @@
       <div id="nasdaqExplain" class="explain-content">
         NASDAQ tracks **technology, growth, and innovation**.
         <ul>
-          <li><strong>NDX rising:</strong> tech bullish, growth stocks strengthen.</li>
-          <li><strong>NDX falling:</strong> rotation into value or defensive sectors.</li>
+          <li><strong>NASDAQ rising:</strong> tech bullish, growth stocks strengthen.</li>
+          <li><strong>NASDAQ falling:</strong> rotation into value or defensive sectors.</li>
         </ul>
       </div>
     </div>
@@ -421,4 +421,16 @@
         <ul>
           <li><strong>Into cyclicals:</strong> growth expectations rising.</li>
           <li><strong>Into defensives:</strong> caution rising.</li>
-          <li
+          <li><strong>Into tech:</strong> innovation and growth bets rising.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleExplain(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
