@@ -1,0 +1,64 @@
+<!-- metals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Metals & Mining – Guild Market</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta property="og:title" content="Metals & Mining – Guild Market">
+  <meta property="og:description" content="Live charts, Guild tools, and real‑time signals for Metals and Mining stocks.">
+  <meta property="og:image" content="/assets/image/the-guild.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Metals & Mining – Guild Market">
+  <meta name="twitter:description" content="Live charts, Guild tools, and real‑time signals for Metals and Mining stocks.">
+  <meta name="twitter:image" content="/assets/image/the-guild.png">
+
+  <link rel="icon" type="image/png" href="/assets/image/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/image/favicon.png">
+
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+
+  <style>
+    body { background:#000; color:#fff; margin:0; padding:20px; }
+    .ticker-block { margin:40px 0; padding:20px; border:2px solid #D4AF37; border-radius:12px; }
+    iframe { width:100%; border:none; }
+    .chart { height:400px; }
+    .guild-tool-bubble { position:fixed; top:15px; right:15px; width:48px; height:48px; background:#D4AF37; color:black; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:22px; font-weight:bold; cursor:pointer; z-index:9999; box-shadow:0 0 12px rgba(0,0,0,0.6); }
+    .guild-tools-panel { position:fixed; top:75px; right:15px; width:300px; max-height:80vh; overflow-y:auto; background:rgba(0,0,0,0.85); border:2px solid #D4AF37; border-radius:12px; padding:15px; display:none; z-index:9998; }
+    .guild-tools-panel.open { display:block; }
+    .guild-tools-panel h2 { text-align:center; color:#D4AF37; margin-top:0; }
+    .tool-section h3 { color:#D4AF37; margin-bottom:6px; }
+    .tool-section ul { padding-left:18px; line-height:1.5; }
+  </style>
+</head>
+
+<body>
+<a href="/guild/pages/dashboard/pages/watchlist-full.html" class="guild-btn">← Back</a>
+<h1 class="guild-title">Metals & Mining</h1>
+
+<div class="ticker-block"><h2>GLD</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=GLD&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>SLV</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=SLV&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>NEM</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=NEM&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>GOLD</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=GOLD&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>FCX</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=FCX&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>RIO</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=RIO&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>BHP</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=BHP&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>VALE</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=VALE&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>AA</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=AA&interval=15&theme=dark"></iframe></div>
+<div class="ticker-block"><h2>CLF</h2><iframe class="chart" src="https://s.tradingview.com/widgetembed/?symbol=CLF&interval=15&theme=dark"></iframe></div>
+
+<div id="guildToolBubble" class="guild-tool-bubble" onclick="toggleGuildTools()">☰</div>
+<div id="guildToolsPanel" class="guild-tools-panel">
+  <h2>Guild Tools</h2>
+  <div class="tool-section"><h3>Candlestick Patterns</h3><ul id="candlestickList"></ul></div>
+  <div class="tool-section"><h3>Chart Patterns</h3><ul id="chartPatternList"></ul></div>
+  <div class="tool-section"><h3>Trendline Guidance</h3><ul id="trendlineAdvice"></ul></div>
+  <div class="tool-section"><h3>Guild Notes</h3><ul id="guildNotes"></ul></div>
+</div>
+
+<script src="js/watchlist-master.js" defer></script>
+<script>function toggleGuildTools(){document.getElementById("guildToolsPanel").classList.toggle("open");}</script>
+</body>
+</html>
