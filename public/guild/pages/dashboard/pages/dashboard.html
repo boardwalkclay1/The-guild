@@ -7,7 +7,7 @@
 
   <!-- SOCIAL PREVIEW -->
   <meta property="og:title" content="Guild Market Terminal">
-  <meta property="og:description" content="Your cinematic trading command center — live BTC, NASDAQ, S&P, sentiment, earnings, and news explained.">
+  <meta property="og:description" content="Your cinematic trading command center — live BTC, indices, sentiment, and sector flow explained.">
   <meta property="og:image" content="/assets/image/the-guild.png">
   <meta property="og:type" content="website">
 
@@ -17,10 +17,10 @@
   <meta name="twitter:image" content="/assets/image/the-guild.png">
 
   <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="/assets/image/favicon.png">
-  <link rel="apple-touch-icon" href="/assets/image/favicon.png">
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png">
 
-  <!-- CSS -->
+  <!-- BASE CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
 
   <style>
@@ -33,7 +33,6 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    /* BACK BUTTON */
     .back-btn {
       background: #D4AF37;
       color: black;
@@ -49,7 +48,6 @@
     }
     .back-btn:hover { background: white; color: black; }
 
-    /* LOWERED NAV BAR */
     .guild-nav {
       width: 100%;
       background: rgba(0,0,0,0.75);
@@ -62,9 +60,7 @@
       position: relative;
       z-index: 10;
     }
-
     .guild-nav .nav-left { display: flex; gap: 14px; }
-
     .guild-nav a {
       color: #D4AF37;
       font-weight: 600;
@@ -74,12 +70,9 @@
       font-size: 0.9rem;
       padding: 4px 0;
     }
-
     .guild-nav a:hover { color: white; }
-
     .guild-logo { height: 32px; }
 
-    /* WRAPPER */
     .dashboard-wrapper {
       padding: 10px 16px 40px 16px;
       background: radial-gradient(circle at top, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
@@ -94,7 +87,6 @@
       font-size: 1.2rem;
     }
 
-    /* LIVE MARKET PANEL */
     .live-market {
       margin-top: 10px;
       padding: 20px;
@@ -116,97 +108,71 @@
       margin-bottom: 16px;
     }
 
+    .dictator-block {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(212,175,55,0.4);
+    }
+
+    .live-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .live-label {
       color: #D4AF37;
-      margin: 18px 0 6px 0;
       font-size: 1rem;
+    }
+
+    .symbol-select {
+      background: rgba(0,0,0,0.8);
+      color: #D4AF37;
+      border: 1px solid #D4AF37;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.85rem;
     }
 
     .live-chart {
       width: 100%;
-      height: 420px;
+      height: 360px;
       border: none;
       border-radius: 10px;
-      margin-bottom: 10px;
+      margin: 8px 0;
+    }
+
+    .dictator-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .info-btn {
+      background: rgba(0,0,0,0.85);
+      color: #D4AF37;
+      border: 1px solid #D4AF37;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .info-btn:hover {
+      background: #D4AF37;
+      color: black;
     }
 
     .live-helper {
       font-size: 0.85rem;
       color: #ddd;
       line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    /* SENTIMENT POPUP */
-    .sentiment-popup {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.9);
-      border: 2px solid #D4AF37;
-      padding: 16px;
-      border-radius: 12px;
-      color: white;
-      width: 300px;
-      display: none;
-      z-index: 9999;
-      box-shadow: 0 0 12px rgba(0,0,0,0.6);
-    }
-
-    .sentiment-popup h3 {
-      margin: 0 0 8px 0;
-      color: #D4AF37;
-      font-size: 1rem;
-    }
-
-    .sentiment-popup p {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-
-    /* EXPLANATION DROPDOWNS */
-    .explain-box {
-      margin-top: 18px;
-      padding: 16px;
-      border: 2px solid #D4AF37;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.65);
-    }
-
-    .explain-title {
-      color: #D4AF37;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .explain-title span {
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-
-    .explain-content {
-      display: none;
-      color: white;
-      line-height: 1.6;
-      font-size: 0.9rem;
-      padding-top: 6px;
-    }
-
-    .explain-content ul {
-      padding-left: 18px;
-      margin: 6px 0;
-    }
-
-    .explain-content li {
       margin-bottom: 4px;
     }
 
-    /* TAGS */
     .tag {
       display: inline-block;
       padding: 2px 6px;
@@ -217,6 +183,26 @@
     .tag-bull { background: rgba(0,255,0,0.1); color: #7CFC00; border: 1px solid #7CFC00; }
     .tag-bear { background: rgba(255,0,0,0.1); color: #FF6B6B; border: 1px solid #FF6B6B; }
     .tag-neutral { background: rgba(255,255,255,0.05); color: #ccc; border: 1px solid #777; }
+
+    /* INFO BOX */
+    .info-panel {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 12px;
+      border: 2px solid #D4AF37;
+      background: rgba(0,0,0,0.8);
+    }
+    .info-title {
+      color: #D4AF37;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .info-body {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #eee;
+      white-space: pre-line;
+    }
   </style>
 </head>
 
@@ -248,189 +234,528 @@
     <div class="live-market">
       <div class="live-title">Live Market Overview</div>
       <div class="live-subtitle">
-        Bitcoin, NASDAQ, and S&amp;P 500 are the three main “weather maps” of risk.  
-        Watch their direction, then read the helpers below to understand what that usually means.
+        These are the main “dictators” of risk and sector flow.  
+        Use the buttons under each chart to pull up detailed explanations and heatmaps in the intel panel below.
       </div>
 
       <!-- BITCOIN -->
-      <div class="live-label">Bitcoin (BTCUSD)</div>
-      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
-      <div class="live-helper">
-        Bitcoin is the **crypto risk barometer**.  
-        <span class="tag tag-bull">BTC Up</span> → risk-on, altcoins strengthen, liquidity increases.  
-        <span class="tag tag-bear">BTC Down</span> → risk-off, miners weaken, volatility rises.
+      <div class="dictator-block" data-id="btc">
+        <div class="live-label-row">
+          <div class="live-label">Bitcoin (BTCUSD)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="BTCUSD"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('btc','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('btc','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          Bitcoin is the **crypto risk barometer**.  
+          <span class="tag tag-bull">BTC Up</span> → risk-on, altcoins strengthen, liquidity increases.  
+          <span class="tag tag-bear">BTC Down</span> → risk-off, miners weaken, volatility rises.
+        </div>
       </div>
 
-      <!-- NASDAQ (FIXED) -->
-      <div class="live-label">NASDAQ (IXIC)</div>
-      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=IXIC&interval=15&theme=dark"></iframe>
-      <div class="live-helper">
-        NASDAQ is the **tech and growth index**.  
-        <span class="tag tag-bull">NASDAQ Up</span> → tech bullish, growth stocks strengthen.  
-        <span class="tag tag-bear">NASDAQ Down</span> → rotation into safety.
+      <!-- NASDAQ (SWITCHABLE) -->
+      <div class="dictator-block" data-id="nasdaq">
+        <div class="live-label-row">
+          <div class="live-label">NASDAQ (Tech & Growth)</div>
+          <select class="symbol-select" onchange="switchSymbol('nasdaq', this.value)">
+            <option value="QQQ">QQQ (NASDAQ‑100)</option>
+            <option value="IXIC">IXIC (Composite)</option>
+          </select>
+        </div>
+        <iframe class="live-chart" data-symbol="QQQ"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('nasdaq','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('nasdaq','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          NASDAQ is the **tech and innovation engine**.  
+          <span class="tag tag-bull">NASDAQ Up</span> → tech leadership, growth appetite, risk-on rotation.  
+          <span class="tag tag-bear">NASDAQ Down</span> → rotation into safety, pressure on high‑beta names.
+        </div>
       </div>
 
       <!-- S&P 500 -->
-      <div class="live-label">S&amp;P 500 (SPX)</div>
-      <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
-      <div class="live-helper">
-        S&amp;P 500 is the **broad market scoreboard**.  
-        <span class="tag tag-bull">SPX Up</span> → broad strength, institutional confidence.  
-        <span class="tag tag-bear">SPX Down</span> → broad weakness, risk-off.
+      <div class="dictator-block" data-id="spx">
+        <div class="live-label-row">
+          <div class="live-label">S&amp;P 500 (SPX)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="SPX"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('spx','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('spx','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          The S&amp;P 500 is the **broad market scoreboard**.  
+          <span class="tag tag-bull">SPX Up</span> → broad strength, institutional confidence.  
+          <span class="tag tag-bear">SPX Down</span> → broad weakness, risk-off.
+        </div>
       </div>
+
+      <!-- DOW JONES -->
+      <div class="dictator-block" data-id="dow">
+        <div class="live-label-row">
+          <div class="live-label">Dow Jones (DJI)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="DJI"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('dow','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('dow','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          The Dow tracks **blue‑chip industrial strength** and economic backbone.
+        </div>
+      </div>
+
+      <!-- RUSSELL 2000 -->
+      <div class="dictator-block" data-id="russell">
+        <div class="live-label-row">
+          <div class="live-label">Russell 2000 (RUT)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="RUT"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('russell','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('russell','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          Russell 2000 is the **small‑cap risk gauge** — early signal for risk appetite.
+        </div>
+      </div>
+
+      <!-- VIX -->
+      <div class="dictator-block" data-id="vix">
+        <div class="live-label-row">
+          <div class="live-label">Volatility Index (VIX)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="VIX"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('vix','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('vix','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          VIX is the **fear gauge** — how violently prices are expected to move.
+        </div>
+      </div>
+
+      <!-- DXY -->
+      <div class="dictator-block" data-id="dxy">
+        <div class="live-label-row">
+          <div class="live-label">US Dollar Index (DXY)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="DXY"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('dxy','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('dxy','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          DXY is **global liquidity pressure** — strong dollar often weighs on risk assets.
+        </div>
+      </div>
+
+      <!-- 10Y YIELD -->
+      <div class="dictator-block" data-id="tnx">
+        <div class="live-label-row">
+          <div class="live-label">10‑Year Yield (TNX)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="TNX"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('tnx','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('tnx','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          The 10‑year yield is **macro gravity** — higher yields pressure growth and tech.
+        </div>
+      </div>
+
+      <!-- CRUDE OIL -->
+      <div class="dictator-block" data-id="oil">
+        <div class="live-label-row">
+          <div class="live-label">Crude Oil (CL1!)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="CL1!"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('oil','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('oil','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          Oil is **energy + inflation** — impacts transports, airlines, and consumer costs.
+        </div>
+      </div>
+
+      <!-- GOLD -->
+      <div class="dictator-block" data-id="gold">
+        <div class="live-label-row">
+          <div class="live-label">Gold (XAUUSD)</div>
+        </div>
+        <iframe class="live-chart" data-symbol="XAUUSD"></iframe>
+        <div class="dictator-actions">
+          <button class="info-btn" onclick="showInfo('gold','explanation')">Explanation</button>
+          <button class="info-btn" onclick="showInfo('gold','heatmap')">Heatmap</button>
+        </div>
+        <div class="live-helper">
+          Gold is **macro safety + inflation hedge** — reacts to fear, rates, and currency moves.
+        </div>
+      </div>
+
     </div>
 
-    <!-- SENTIMENT POPUP -->
-    <div id="sentimentPopup" class="sentiment-popup">
-      <h3>Market Sentiment</h3>
-      <p id="sentimentText">Loading...</p>
-    </div>
-
-    <!-- EXPLANATION SECTIONS -->
-    <h2 class="section-title">Core Drivers & Sentiment</h2>
-
-    <!-- BITCOIN EXPLAIN -->
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('btcExplain')">
-        Bitcoin — What It Dictates
-        <span>tap to expand</span>
-      </div>
-      <div id="btcExplain" class="explain-content">
-        Bitcoin is the **liquidity and speculation gauge** for crypto and risk assets.
-        <ul>
-          <li><strong>BTC rising:</strong> risk-on, altcoins strengthen, liquidity increases.</li>
-          <li><strong>BTC falling:</strong> risk-off, volatility rises, miners weaken.</li>
-          <li><strong>Sharp BTC moves:</strong> can trigger liquidations or sudden rallies.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- NASDAQ EXPLAIN -->
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('nasdaqExplain')">
-        NASDAQ — What It Dictates
-        <span>tap to expand</span>
-      </div>
-      <div id="nasdaqExplain" class="explain-content">
-        NASDAQ tracks **technology, growth, and innovation**.
-        <ul>
-          <li><strong>NASDAQ rising:</strong> tech bullish, growth stocks strengthen.</li>
-          <li><strong>NASDAQ falling:</strong> rotation into value or defensive sectors.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- S&P EXPLAIN -->
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('spExplain')">
-        S&amp;P 500 — What It Dictates
-        <span>tap to expand</span>
-      </div>
-      <div id="spExplain" class="explain-content">
-        The S&amp;P 500 is the **broad market benchmark**.
-        <ul>
-          <li><strong>SPX rising:</strong> broad strength, institutional confidence.</li>
-          <li><strong>SPX falling:</strong> broad weakness, risk-off behavior.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- NEWS SENTIMENT -->
-    <h2 class="section-title">News, Earnings & Sentiment — Explained</h2>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('newsExplain')">
-        News Sentiment — Bullish vs Bearish Headlines
-        <span>tap to expand</span>
-      </div>
-      <div id="newsExplain" class="explain-content">
-        News moves markets when it changes expectations.
-        <ul>
-          <li><strong>Bullish:</strong> beats, upgrades, positive guidance.</li>
-          <li><strong>Bearish:</strong> misses, downgrades, weak guidance.</li>
-          <li><strong>Key:</strong> markets trade expectations, not headlines.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('earningsExplain')">
-        Earnings — Beats, Misses & Guidance
-        <span>tap to expand</span>
-      </div>
-      <div id="earningsExplain" class="explain-content">
-        Earnings season is the market’s **report card**.
-        <ul>
-          <li><strong>Beat:</strong> better than expected.</li>
-          <li><strong>Miss:</strong> worse than expected.</li>
-          <li><strong>Guidance:</strong> future expectations — often more important than the quarter.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('macroExplain')">
-        Macro — Inflation, Fed, Jobs & Growth
-        <span>tap to expand</span>
-      </div>
-      <div id="macroExplain" class="explain-content">
-        Macro sets the **backdrop** for all risk assets.
-        <ul>
-          <li><strong>Inflation:</strong> higher = pressure; lower = relief.</li>
-          <li><strong>Fed:</strong> hikes = tightening; cuts = easing.</li>
-          <li><strong>Jobs:</strong> too hot or too cold can both cause volatility.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('riskExplain')">
-        Risk-On vs Risk-Off — Market Mood
-        <span>tap to expand</span>
-      </div>
-      <div id="riskExplain" class="explain-content">
-        Risk-on and risk-off describe the **overall mood**.
-        <ul>
-          <li><strong>Risk-On:</strong> tech, crypto, growth, small caps.</li>
-          <li><strong>Risk-Off:</strong> utilities, staples, healthcare, bonds.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('volExplain')">
-        Volatility & VIX — Calm vs Chaos
-        <span>tap to expand</span>
-      </div>
-      <div id="volExplain" class="explain-content">
-        Volatility measures **how violently prices move**.
-        <ul>
-          <li><strong>Low vol:</strong> calm, steady trends.</li>
-          <li><strong>High vol:</strong> big swings, emotional trading.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="explain-box">
-      <div class="explain-title" onclick="toggleExplain('rotationExplain')">
-        Sector Rotation — Who’s in Favor
-        <span>tap to expand</span>
-      </div>
-      <div id="rotationExplain" class="explain-content">
-        Sector rotation is **money moving between groups**.
-        <ul>
-          <li><strong>Into cyclicals:</strong> growth expectations rising.</li>
-          <li><strong>Into defensives:</strong> caution rising.</li>
-          <li><strong>Into tech:</strong> innovation and growth bets rising.</li>
-        </ul>
+    <!-- INTEL PANEL -->
+    <h2 class="section-title">Market Intel</h2>
+    <div class="info-panel">
+      <div id="infoTitle" class="info-title">Tap a button under any chart to load intel here.</div>
+      <div id="infoBody" class="info-body">
+        This panel explains what each dictator means when it is rising or falling,  
+        which sectors it is tied to, and what to watch for.
       </div>
     </div>
 
   </div>
 
   <script>
-    function toggleExplain(id) {
-      const box = document.getElementById(id);
-      box.style.display = box.style.display === "block" ? "none" : "block";
+    // --- IFRAME INITIALIZATION ---
+    function buildSrc(symbol) {
+      return "https://s.tradingview.com/widgetembed/?symbol=" + encodeURIComponent(symbol) + "&interval=15&theme=dark";
     }
 
+    document.querySelectorAll(".live-chart").forEach(frame => {
+      const sym = frame.getAttribute("data-symbol");
+      frame.src = buildSrc(sym);
+    });
+
+    function switchSymbol(id, symbol) {
+      const block = document.querySelector('.dictator-block[data-id="' + id + '"]');
+      if (!block) return;
+      const frame = block.querySelector(".live-chart");
+      frame.setAttribute("data-symbol", symbol);
+      frame.src = buildSrc(symbol);
+    }
+
+    // --- MARKET INFO DATA ---
+    const MARKET_INFO = {
+      btc: {
+        name: "Bitcoin (BTCUSD)",
+        explanation: `
+Bitcoin is the liquidity and speculation gauge for crypto and high‑beta risk.
+
+• When BTC is rising:
+  - Risk‑on tone across crypto.
+  - Altcoins and high‑beta names often follow.
+  - Liquidity is flowing into speculative assets.
+  - Often aligns with easier financial conditions or strong tech.
+
+• When BTC is falling:
+  - Risk‑off tone in crypto.
+  - Miners, altcoins, and leverage get hit first.
+  - Volatility spikes and liquidations can cascade.
+  - Can foreshadow stress in other risk assets if the move is violent.
+
+Watch for:
+  - Sharp intraday reversals (fakeouts).
+  - Divergence between BTC and NASDAQ (crypto decoupling or recoupling).
+        `,
+        heatmap: `
+BTC Heatmap — Associations
+
+• Strong BTC:
+  - Crypto: BTC, ETH, majors, altcoins.
+  - High‑beta tech: speculative growth, ARKK‑style names.
+  - Risk‑on sectors: semis, cloud, AI.
+
+• Weak BTC:
+  - Flight to safety: cash, bonds, defensives.
+  - Pressure on miners and leveraged products.
+  - Elevated funding and liquidation risk.
+        `
+      },
+      nasdaq: {
+        name: "NASDAQ (QQQ / IXIC)",
+        explanation: `
+NASDAQ represents tech, growth, and innovation.
+
+• When NASDAQ is rising:
+  - Tech leadership: semiconductors, software, cloud, AI.
+  - Growth stocks outperform value.
+  - Risk‑on tone, especially if SPX and RUT confirm.
+  - Often coincides with stable or falling yields.
+
+• When NASDAQ is falling:
+  - Rotation into value and defensives.
+  - High‑multiple names get hit first.
+  - Can signal concern about earnings, rates, or macro growth.
+
+Watch for:
+  - Divergence vs SPX (tech leading or lagging the broad market).
+  - Relationship with TNX (10‑year yield) — rising yields often pressure NASDAQ.
+        `,
+        heatmap: `
+NASDAQ Heatmap — Key Groups
+
+• Green (Strong):
+  - Semiconductors (SOX).
+  - Cloud / SaaS.
+  - AI, data centers, high‑growth tech.
+
+• Yellow (Neutral):
+  - Large‑cap platform tech (AAPL, MSFT, GOOGL).
+  - Communications (META, NFLX).
+
+• Red (Weak):
+  - Unprofitable growth.
+  - High‑multiple software.
+  - Speculative tech and story stocks.
+        `
+      },
+      spx: {
+        name: "S&P 500 (SPX)",
+        explanation: `
+The S&P 500 is the broad market benchmark.
+
+• When SPX is rising:
+  - Broad strength across sectors.
+  - Institutional accumulation and confidence.
+  - Risk‑on tone if cyclicals and small caps confirm.
+
+• When SPX is falling:
+  - Broad de‑risking.
+  - Correlations rise — “everything moves together.”
+  - Often tied to macro shocks, earnings misses, or policy fears.
+
+Watch for:
+  - Sector leadership inside SPX (tech vs defensives vs cyclicals).
+  - Whether SPX is rising with or without small caps (RUT).
+        `,
+        heatmap: `
+SPX Heatmap — Sector View
+
+• Offense (Risk‑On):
+  - Tech, Communication Services, Consumer Discretionary, Industrials.
+
+• Defense (Risk‑Off):
+  - Utilities, Consumer Staples, Healthcare.
+
+• Macro‑Sensitive:
+  - Financials, Energy, Materials, Real Estate.
+        `
+      },
+      dow: {
+        name: "Dow Jones (DJI)",
+        explanation: `
+The Dow tracks blue‑chip industrial and legacy leaders.
+
+• When the Dow is rising:
+  - Strength in industrials, manufacturing, and large‑cap value.
+  - Confidence in the real economy and demand.
+
+• When the Dow is falling:
+  - Concerns about growth, demand, or global trade.
+  - Rotation away from cyclicals into defensives or cash.
+
+Watch for:
+  - Dow strong while NASDAQ weak → rotation into value.
+  - Dow weak while NASDAQ strong → growth leading, value lagging.
+        `,
+        heatmap: `
+Dow Heatmap — Associations
+
+• Green:
+  - Industrials, machinery, transports.
+  - Financials and large‑cap value.
+
+• Red:
+  - Cyclicals under pressure.
+  - Global growth concerns.
+        `
+      },
+      russell: {
+        name: "Russell 2000 (RUT)",
+        explanation: `
+Russell 2000 tracks small‑cap risk and domestic growth.
+
+• When RUT is rising:
+  - Strong risk appetite.
+  - Confidence in domestic growth and smaller companies.
+  - Often confirms a strong bull leg when SPX and NASDAQ also rise.
+
+• When RUT is falling:
+  - Early warning of risk‑off.
+  - Credit and liquidity concerns often show here first.
+
+Watch for:
+  - RUT diverging from SPX (small caps lagging or leading).
+  - RUT vs DXY and TNX — strong dollar and high yields can hurt small caps.
+        `,
+        heatmap: `
+Russell Heatmap — Focus
+
+• Green:
+  - Small‑cap cyclicals, regional banks, domestic growth names.
+
+• Red:
+  - Highly leveraged small caps.
+  - Speculative and illiquid names.
+        `
+      },
+      vix: {
+        name: "Volatility Index (VIX)",
+        explanation: `
+VIX measures expected volatility on the S&P 500 — the “fear gauge.”
+
+• When VIX is low and stable:
+  - Calm conditions, steady trends.
+  - Options are cheaper, complacency can build.
+
+• When VIX is spiking:
+  - Fear, forced de‑risking, and large intraday swings.
+  - Often coincides with sharp SPX drops.
+
+Watch for:
+  - VIX rising while SPX is flat → hidden stress building.
+  - VIX crush after events → relief rallies and trend resumption.
+        `,
+        heatmap: `
+VIX Heatmap — Regimes
+
+• Low (10–15):
+  - Calm, grind‑up markets, low realized vol.
+
+• Medium (15–25):
+  - Normal volatility, tradable swings.
+
+• High (25+):
+  - Panic, forced selling, large gaps and reversals.
+        `
+      },
+      dxy: {
+        name: "US Dollar Index (DXY)",
+        explanation: `
+DXY tracks the strength of the US dollar versus major currencies.
+
+• When DXY is rising:
+  - Dollar strength, tighter global liquidity.
+  - Pressure on commodities, EM, and risk assets.
+  - Can hurt multinational earnings (FX headwinds).
+
+• When DXY is falling:
+  - Easier global liquidity.
+  - Supportive for commodities, EM, and risk assets.
+
+Watch for:
+  - DXY vs risk assets (SPX, BTC, EM).
+  - Strong dollar + weak risk = classic risk‑off.
+        `,
+        heatmap: `
+DXY Heatmap — Impact
+
+• Strong Dollar:
+  - Headwind for commodities, EM equities, and high‑beta FX.
+  - Support for US assets vs rest of world.
+
+• Weak Dollar:
+  - Tailwind for commodities and EM.
+  - Global risk‑on environments.
+        `
+      },
+      tnx: {
+        name: "10‑Year Yield (TNX)",
+        explanation: `
+The 10‑year yield is macro gravity — it sets the tone for rates and valuations.
+
+• When yields are rising:
+  - Pressure on long‑duration assets (growth, tech).
+  - Financials can benefit from higher rates.
+  - Signals inflation or strong growth expectations.
+
+• When yields are falling:
+  - Relief for growth and tech.
+  - Can signal slowing growth or recession fears.
+
+Watch for:
+  - TNX vs NASDAQ — rising yields often hit tech hardest.
+  - TNX vs SPX — rising yields with rising SPX can be healthy reflation.
+        `,
+        heatmap: `
+TNX Heatmap — Associations
+
+• Rising Yields:
+  - Banks, financials, value can benefit.
+  - Growth, long‑duration tech under pressure.
+
+• Falling Yields:
+  - Growth and tech benefit.
+  - Financials and cyclicals can lag.
+        `
+      },
+      oil: {
+        name: "Crude Oil (CL1!)",
+        explanation: `
+Crude oil reflects energy demand, supply shocks, and inflation pressure.
+
+• When oil is rising:
+  - Strong demand or supply constraints.
+  - Energy sector benefits.
+  - Can add inflation pressure and hurt consumers.
+
+• When oil is falling:
+  - Weaker demand or oversupply.
+  - Relief on inflation and input costs.
+  - Can signal slowing growth if drop is sharp.
+
+Watch for:
+  - Oil vs transports and airlines.
+  - Oil vs inflation expectations and yields.
+        `,
+        heatmap: `
+Oil Heatmap — Impact
+
+• High/Rising:
+  - Energy stocks strong.
+  - Pressure on transports, airlines, consumer discretionary.
+
+• Low/Falling:
+  - Relief for transports and consumers.
+  - Energy sector can weaken.
+        `
+      },
+      gold: {
+        name: "Gold (XAUUSD)",
+        explanation: `
+Gold is a macro safety and inflation hedge.
+
+• When gold is rising:
+  - Demand for safety or inflation protection.
+  - Often coincides with falling real yields or macro stress.
+
+• When gold is falling:
+  - Less demand for safety.
+  - Capital rotating into risk assets or cash.
+
+Watch for:
+  - Gold vs DXY and TNX — strong dollar and high real yields can cap gold.
+  - Gold strength during equity weakness → classic risk‑off.
+        `,
+        heatmap: `
+Gold Heatmap — Associations
+
+• Strong Gold:
+  - Safety bid, macro hedging.
+  - Pressure on risk assets if move is fear‑driven.
+
+• Weak Gold:
+  - Confidence in risk assets or strong real yields.
+        `
+      }
+    };
+
+    function showInfo(id, type) {
+      const data = MARKET_INFO[id];
+      if (!data) return;
+      const titleEl = document.getElementById("infoTitle");
+      const bodyEl = document.getElementById("infoBody");
+      titleEl.textContent = data.name + " — " + (type === "heatmap" ? "Heatmap & Associations" : "Explanation");
+      bodyEl.textContent = (type === "heatmap" ? data.heatmap : data.explanation);
+    }
+  </script>
+
+</body>
+</html>
