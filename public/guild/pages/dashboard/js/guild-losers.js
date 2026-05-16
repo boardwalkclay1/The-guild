@@ -1,15 +1,13 @@
 document.addEventListener("DOMContentLoaded", loadLosers);
 
-// Full Guild universe
 const GUILD_UNIVERSE = [
   "NVDA","AMD","PLTR","AI","MSFT","GOOGL","META","SNOW","CRWD","PATH",
   "AAL","DAL","UAL","LUV","JBLU","ALK","RYAAY","BA","HA","CPA",
   "TSLA","F","GM","RIVN","LCID","TM","HMC","NIO","XPEV","BYDDF",
   "JPM","BAC","WFC","C","GS","MS","USB","PNC","TFC","SCHW",
-  "BTCUSD","ETHUSD","SOLUSD","BNBUSD","XRPUSD","ADAUSD","DOGEUSD","AVAXUSD","LINKUSD","MATICUSD",
   "LMT","RTX","NOC","GD","HII","LHX","TXT","BWXT","AXON",
   "XOM","CVX","XLE","VLO","PSX","MPC","ENB","EPD","OKE","KMI",
-  "CL1!","NG1!","SLB","HAL","OXY","DVN","PXD","EOG",
+  "SLB","HAL","OXY","DVN","PXD","EOG",
   "JNJ","UNH","PFE","MRK","ABBV","LLY","ABT","TMO","BMY","CVS",
   "BRK.B","BX","KKR","CG","APO","BAM","ARCC","MAIN","HTGC","OWL",
   "GLD","SLV","NEM","GOLD","FCX","RIO","BHP","VALE","AA","CLF",
@@ -26,13 +24,12 @@ async function loadLosers() {
   container.innerHTML = `<div class="loading">Loading losers...</div>`;
 
   try {
-    // TradingView Screener API
     const url = "https://scanner.tradingview.com/america/scan";
+
     const body = {
-      filter: [],
-      options: { lang: "en" },
-      symbols: { query: { types: [] }, tickers: [] },
+      symbols: { tickers: [] },
       columns: [
+        "logoid",
         "name",
         "close",
         "change",
@@ -41,8 +38,17 @@ async function loadLosers() {
         "low",
         "volume"
       ],
-      sort: { sortBy: "change_percent", sortOrder: "asc" },
-      range: [0, 200]
+      filter: [
+        { left: "change_percent", operation: "ne", right: null }
+      ],
+      options: {
+        lang: "en",
+        range: [0, 200],
+        sort: {
+          sortBy: "change_percent",
+          sortOrder: "asc"
+        }
+      }
     };
 
     const res = await fetch(url, {
@@ -50,21 +56,23 @@ async function loadLosers() {
       body: JSON.stringify(body)
     });
 
-    const data = await res.json();
+    const json = await res.json();
 
-    // Filter to your universe
-    const filtered = data.data.filter(r => GUILD_UNIVERSE.includes(r.s));
+    if (!json.data) {
+      container.innerHTML = `<div class="error">No data returned.</div>`;
+      return;
+    }
 
-    // Top 5 losers
+    const filtered = json.data.filter(r => GUILD_UNIVERSE.includes(r.s));
     const losers = filtered.slice(0, 5);
 
     container.innerHTML = losers.map(l => {
       const symbol = l.s;
-      const price = l.d[1];
-      const change = l.d[3];
-      const high = l.d[4];
-      const low = l.d[5];
-      const volume = l.d[6];
+      const price = l.d[2];
+      const change = l.d[4];
+      const high = l.d[5];
+      const low = l.d[6];
+      const volume = l.d[7];
 
       return `
         <div class="info-panel" onclick="go('signals-full.html?ticker=${symbol}')">
@@ -76,7 +84,8 @@ async function loadLosers() {
       `;
     }).join("");
 
-  } catch (e) {
+  } catch (err) {
+    console.error(err);
     container.innerHTML = `<div class="error">Failed to load losers.</div>`;
   }
 }
