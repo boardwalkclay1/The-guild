@@ -203,6 +203,45 @@
       color: #eee;
       white-space: pre-line;
     }
+
+    .heatmap-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.85rem;
+    }
+    .heatmap-name {
+      flex: 1;
+    }
+    .heatmap-value {
+      width: 70px;
+      text-align: right;
+    }
+    .heatmap-badge {
+      width: 70px;
+      text-align: center;
+      border-radius: 10px;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      margin-left: 8px;
+    }
+    .hm-strong {
+      background: rgba(0,255,0,0.15);
+      color: #7CFC00;
+      border: 1px solid #7CFC00;
+    }
+    .hm-neutral {
+      background: rgba(255,255,255,0.05);
+      color: #ccc;
+      border: 1px solid #777;
+    }
+    .hm-weak {
+      background: rgba(255,0,0,0.15);
+      color: #FF6B6B;
+      border: 1px solid #FF6B6B;
+    }
   </style>
 </head>
 
@@ -235,7 +274,7 @@
       <div class="live-title">Live Market Overview</div>
       <div class="live-subtitle">
         These are the main “dictators” of risk and sector flow.  
-        Use the buttons under each chart to pull up detailed explanations and heatmaps in the intel panel below.
+        Use the buttons under each chart to pull up detailed explanations and live heatmaps in the intel panel below.
       </div>
 
       <!-- BITCOIN -->
@@ -243,13 +282,13 @@
         <div class="live-label-row">
           <div class="live-label">Bitcoin (BTCUSD)</div>
         </div>
-        <iframe class="live-chart" data-symbol="BTCUSD"></iframe>
+        <iframe class="live-chart" data-symbol="BTC-USD"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('btc','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('btc','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          Bitcoin is the **crypto risk barometer**.  
+          Bitcoin is the <strong>crypto risk barometer</strong>.  
           <span class="tag tag-bull">BTC Up</span> → risk-on, altcoins strengthen, liquidity increases.  
           <span class="tag tag-bear">BTC Down</span> → risk-off, miners weaken, volatility rises.
         </div>
@@ -261,7 +300,7 @@
           <div class="live-label">NASDAQ (Tech & Growth)</div>
           <select class="symbol-select" onchange="switchSymbol('nasdaq', this.value)">
             <option value="QQQ">QQQ (NASDAQ‑100)</option>
-            <option value="IXIC">IXIC (Composite)</option>
+            <option value="^IXIC">IXIC (Composite)</option>
           </select>
         </div>
         <iframe class="live-chart" data-symbol="QQQ"></iframe>
@@ -270,7 +309,7 @@
           <button class="info-btn" onclick="showInfo('nasdaq','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          NASDAQ is the **tech and innovation engine**.  
+          NASDAQ is the <strong>tech and innovation engine</strong>.  
           <span class="tag tag-bull">NASDAQ Up</span> → tech leadership, growth appetite, risk-on rotation.  
           <span class="tag tag-bear">NASDAQ Down</span> → rotation into safety, pressure on high‑beta names.
         </div>
@@ -281,13 +320,13 @@
         <div class="live-label-row">
           <div class="live-label">S&amp;P 500 (SPX)</div>
         </div>
-        <iframe class="live-chart" data-symbol="SPX"></iframe>
+        <iframe class="live-chart" data-symbol="^GSPC"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('spx','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('spx','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          The S&amp;P 500 is the **broad market scoreboard**.  
+          The S&amp;P 500 is the <strong>broad market scoreboard</strong>.  
           <span class="tag tag-bull">SPX Up</span> → broad strength, institutional confidence.  
           <span class="tag tag-bear">SPX Down</span> → broad weakness, risk-off.
         </div>
@@ -298,13 +337,13 @@
         <div class="live-label-row">
           <div class="live-label">Dow Jones (DJI)</div>
         </div>
-        <iframe class="live-chart" data-symbol="DJI"></iframe>
+        <iframe class="live-chart" data-symbol="^DJI"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('dow','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('dow','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          The Dow tracks **blue‑chip industrial strength** and economic backbone.
+          The Dow tracks <strong>blue‑chip industrial strength</strong> and economic backbone.
         </div>
       </div>
 
@@ -313,13 +352,13 @@
         <div class="live-label-row">
           <div class="live-label">Russell 2000 (RUT)</div>
         </div>
-        <iframe class="live-chart" data-symbol="RUT"></iframe>
+        <iframe class="live-chart" data-symbol="^RUT"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('russell','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('russell','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          Russell 2000 is the **small‑cap risk gauge** — early signal for risk appetite.
+          Russell 2000 is the <strong>small‑cap risk gauge</strong> — early signal for risk appetite.
         </div>
       </div>
 
@@ -328,13 +367,13 @@
         <div class="live-label-row">
           <div class="live-label">Volatility Index (VIX)</div>
         </div>
-        <iframe class="live-chart" data-symbol="VIX"></iframe>
+        <iframe class="live-chart" data-symbol="^VIX"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('vix','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('vix','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          VIX is the **fear gauge** — how violently prices are expected to move.
+          VIX is the <strong>fear gauge</strong> — how violently prices are expected to move.
         </div>
       </div>
 
@@ -343,13 +382,13 @@
         <div class="live-label-row">
           <div class="live-label">US Dollar Index (DXY)</div>
         </div>
-        <iframe class="live-chart" data-symbol="DXY"></iframe>
+        <iframe class="live-chart" data-symbol="DX-Y.NYB"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('dxy','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('dxy','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          DXY is **global liquidity pressure** — strong dollar often weighs on risk assets.
+          DXY is <strong>global liquidity pressure</strong> — strong dollar often weighs on risk assets.
         </div>
       </div>
 
@@ -358,43 +397,43 @@
         <div class="live-label-row">
           <div class="live-label">10‑Year Yield (TNX)</div>
         </div>
-        <iframe class="live-chart" data-symbol="TNX"></iframe>
+        <iframe class="live-chart" data-symbol="^TNX"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('tnx','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('tnx','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          The 10‑year yield is **macro gravity** — higher yields pressure growth and tech.
+          The 10‑year yield is <strong>macro gravity</strong> — higher yields pressure growth and tech.
         </div>
       </div>
 
       <!-- CRUDE OIL -->
       <div class="dictator-block" data-id="oil">
         <div class="live-label-row">
-          <div class="live-label">Crude Oil (CL1!)</div>
+          <div class="live-label">Crude Oil (CL=F)</div>
         </div>
-        <iframe class="live-chart" data-symbol="CL1!"></iframe>
+        <iframe class="live-chart" data-symbol="CL=F"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('oil','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('oil','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          Oil is **energy + inflation** — impacts transports, airlines, and consumer costs.
+          Oil is <strong>energy + inflation</strong> — impacts transports, airlines, and consumer costs.
         </div>
       </div>
 
       <!-- GOLD -->
       <div class="dictator-block" data-id="gold">
         <div class="live-label-row">
-          <div class="live-label">Gold (XAUUSD)</div>
+          <div class="live-label">Gold (XAUUSD / GC=F)</div>
         </div>
-        <iframe class="live-chart" data-symbol="XAUUSD"></iframe>
+        <iframe class="live-chart" data-symbol="GC=F"></iframe>
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('gold','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('gold','heatmap')">Heatmap</button>
         </div>
         <div class="live-helper">
-          Gold is **macro safety + inflation hedge** — reacts to fear, rates, and currency moves.
+          Gold is <strong>macro safety + inflation hedge</strong> — reacts to fear, rates, and currency moves.
         </div>
       </div>
 
@@ -413,8 +452,9 @@
   </div>
 
   <script>
-    // --- IFRAME INITIALIZATION ---
+    // --- BUILD TRADINGVIEW IFRAME SRC (still real charts) ---
     function buildSrc(symbol) {
+      // Using TradingView generic symbol mapping; many Yahoo symbols map 1:1
       return "https://s.tradingview.com/widgetembed/?symbol=" + encodeURIComponent(symbol) + "&interval=15&theme=dark";
     }
 
@@ -431,7 +471,7 @@
       frame.src = buildSrc(symbol);
     }
 
-    // --- MARKET INFO DATA ---
+    // --- STATIC EXPLANATIONS (TEXT) ---
     const MARKET_INFO = {
       btc: {
         name: "Bitcoin (BTCUSD)",
@@ -453,19 +493,6 @@ Bitcoin is the liquidity and speculation gauge for crypto and high‑beta risk.
 Watch for:
   - Sharp intraday reversals (fakeouts).
   - Divergence between BTC and NASDAQ (crypto decoupling or recoupling).
-        `,
-        heatmap: `
-BTC Heatmap — Associations
-
-• Strong BTC:
-  - Crypto: BTC, ETH, majors, altcoins.
-  - High‑beta tech: speculative growth, ARKK‑style names.
-  - Risk‑on sectors: semis, cloud, AI.
-
-• Weak BTC:
-  - Flight to safety: cash, bonds, defensives.
-  - Pressure on miners and leveraged products.
-  - Elevated funding and liquidation risk.
         `
       },
       nasdaq: {
@@ -487,23 +514,6 @@ NASDAQ represents tech, growth, and innovation.
 Watch for:
   - Divergence vs SPX (tech leading or lagging the broad market).
   - Relationship with TNX (10‑year yield) — rising yields often pressure NASDAQ.
-        `,
-        heatmap: `
-NASDAQ Heatmap — Key Groups
-
-• Green (Strong):
-  - Semiconductors (SOX).
-  - Cloud / SaaS.
-  - AI, data centers, high‑growth tech.
-
-• Yellow (Neutral):
-  - Large‑cap platform tech (AAPL, MSFT, GOOGL).
-  - Communications (META, NFLX).
-
-• Red (Weak):
-  - Unprofitable growth.
-  - High‑multiple software.
-  - Speculative tech and story stocks.
         `
       },
       spx: {
@@ -524,18 +534,6 @@ The S&P 500 is the broad market benchmark.
 Watch for:
   - Sector leadership inside SPX (tech vs defensives vs cyclicals).
   - Whether SPX is rising with or without small caps (RUT).
-        `,
-        heatmap: `
-SPX Heatmap — Sector View
-
-• Offense (Risk‑On):
-  - Tech, Communication Services, Consumer Discretionary, Industrials.
-
-• Defense (Risk‑Off):
-  - Utilities, Consumer Staples, Healthcare.
-
-• Macro‑Sensitive:
-  - Financials, Energy, Materials, Real Estate.
         `
       },
       dow: {
@@ -554,17 +552,6 @@ The Dow tracks blue‑chip industrial and legacy leaders.
 Watch for:
   - Dow strong while NASDAQ weak → rotation into value.
   - Dow weak while NASDAQ strong → growth leading, value lagging.
-        `,
-        heatmap: `
-Dow Heatmap — Associations
-
-• Green:
-  - Industrials, machinery, transports.
-  - Financials and large‑cap value.
-
-• Red:
-  - Cyclicals under pressure.
-  - Global growth concerns.
         `
       },
       russell: {
@@ -584,16 +571,6 @@ Russell 2000 tracks small‑cap risk and domestic growth.
 Watch for:
   - RUT diverging from SPX (small caps lagging or leading).
   - RUT vs DXY and TNX — strong dollar and high yields can hurt small caps.
-        `,
-        heatmap: `
-Russell Heatmap — Focus
-
-• Green:
-  - Small‑cap cyclicals, regional banks, domestic growth names.
-
-• Red:
-  - Highly leveraged small caps.
-  - Speculative and illiquid names.
         `
       },
       vix: {
@@ -612,18 +589,6 @@ VIX measures expected volatility on the S&P 500 — the “fear gauge.”
 Watch for:
   - VIX rising while SPX is flat → hidden stress building.
   - VIX crush after events → relief rallies and trend resumption.
-        `,
-        heatmap: `
-VIX Heatmap — Regimes
-
-• Low (10–15):
-  - Calm, grind‑up markets, low realized vol.
-
-• Medium (15–25):
-  - Normal volatility, tradable swings.
-
-• High (25+):
-  - Panic, forced selling, large gaps and reversals.
         `
       },
       dxy: {
@@ -643,17 +608,6 @@ DXY tracks the strength of the US dollar versus major currencies.
 Watch for:
   - DXY vs risk assets (SPX, BTC, EM).
   - Strong dollar + weak risk = classic risk‑off.
-        `,
-        heatmap: `
-DXY Heatmap — Impact
-
-• Strong Dollar:
-  - Headwind for commodities, EM equities, and high‑beta FX.
-  - Support for US assets vs rest of world.
-
-• Weak Dollar:
-  - Tailwind for commodities and EM.
-  - Global risk‑on environments.
         `
       },
       tnx: {
@@ -673,21 +627,10 @@ The 10‑year yield is macro gravity — it sets the tone for rates and valuatio
 Watch for:
   - TNX vs NASDAQ — rising yields often hit tech hardest.
   - TNX vs SPX — rising yields with rising SPX can be healthy reflation.
-        `,
-        heatmap: `
-TNX Heatmap — Associations
-
-• Rising Yields:
-  - Banks, financials, value can benefit.
-  - Growth, long‑duration tech under pressure.
-
-• Falling Yields:
-  - Growth and tech benefit.
-  - Financials and cyclicals can lag.
         `
       },
       oil: {
-        name: "Crude Oil (CL1!)",
+        name: "Crude Oil (CL=F)",
         explanation: `
 Crude oil reflects energy demand, supply shocks, and inflation pressure.
 
@@ -704,21 +647,10 @@ Crude oil reflects energy demand, supply shocks, and inflation pressure.
 Watch for:
   - Oil vs transports and airlines.
   - Oil vs inflation expectations and yields.
-        `,
-        heatmap: `
-Oil Heatmap — Impact
-
-• High/Rising:
-  - Energy stocks strong.
-  - Pressure on transports, airlines, consumer discretionary.
-
-• Low/Falling:
-  - Relief for transports and consumers.
-  - Energy sector can weaken.
         `
       },
       gold: {
-        name: "Gold (XAUUSD)",
+        name: "Gold (GC=F / XAUUSD)",
         explanation: `
 Gold is a macro safety and inflation hedge.
 
@@ -733,27 +665,103 @@ Gold is a macro safety and inflation hedge.
 Watch for:
   - Gold vs DXY and TNX — strong dollar and high real yields can cap gold.
   - Gold strength during equity weakness → classic risk‑off.
-        `,
-        heatmap: `
-Gold Heatmap — Associations
-
-• Strong Gold:
-  - Safety bid, macro hedging.
-  - Pressure on risk assets if move is fear‑driven.
-
-• Weak Gold:
-  - Confidence in risk assets or strong real yields.
         `
       }
     };
 
+    // --- REAL HEATMAP DATA (FREE YAHOO FINANCE) ---
+    // Map each dictator to a set of tickers we’ll pull % change for
+    const HEATMAP_GROUPS = {
+      btc: ["BTC-USD", "ETH-USD"],
+      nasdaq: ["QQQ", "SMH", "CLOU", "SOXX"],
+      spx: ["^GSPC", "XLF", "XLE", "XLK", "XLY", "XLP", "XLV", "XLI"],
+      dow: ["^DJI", "CAT", "UNP", "GS", "JPM"],
+      russell: ["^RUT", "IWM", "KRE"],
+      vix: ["^VIX"],
+      dxy: ["DX-Y.NYB"],
+      tnx: ["^TNX"],
+      oil: ["CL=F", "XLE"],
+      gold: ["GC=F", "GLD"]
+    };
+
+    let HEATMAP_DATA = {}; // symbol -> {price, change, changePercent}
+
+    function fetchHeatmapData() {
+      const allSymbols = new Set();
+      Object.values(HEATMAP_GROUPS).forEach(arr => arr.forEach(s => allSymbols.add(s)));
+      const symbolsParam = Array.from(allSymbols).join(",");
+
+      const url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + encodeURIComponent(symbolsParam);
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (!data || !data.quoteResponse || !data.quoteResponse.result) return;
+          const results = data.quoteResponse.result;
+          HEATMAP_DATA = {};
+          results.forEach(q => {
+            HEATMAP_DATA[q.symbol] = {
+              price: q.regularMarketPrice,
+              change: q.regularMarketChange,
+              changePercent: q.regularMarketChangePercent
+            };
+          });
+        })
+        .catch(err => {
+          console.warn("Heatmap data fetch failed:", err);
+        });
+    }
+
+    // Refresh every 60 seconds
+    fetchHeatmapData();
+    setInterval(fetchHeatmapData, 60000);
+
+    function classifyChange(pct) {
+      if (pct == null) return { label: "N/A", cls: "hm-neutral" };
+      if (pct > 0.75) return { label: "Strong", cls: "hm-strong" };
+      if (pct < -0.75) return { label: "Weak", cls: "hm-weak" };
+      return { label: "Neutral", cls: "hm-neutral" };
+    }
+
+    function formatPct(pct) {
+      if (pct == null) return "N/A";
+      return (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%";
+    }
+
+    function buildHeatmapHTML(id) {
+      const group = HEATMAP_GROUPS[id];
+      if (!group) return "No heatmap data configured.";
+
+      let html = "";
+      group.forEach(sym => {
+        const d = HEATMAP_DATA[sym] || {};
+        const pct = d.changePercent;
+        const cls = classifyChange(pct);
+        html += `
+<div class="heatmap-line">
+  <div class="heatmap-name">${sym}</div>
+  <div class="heatmap-value">${formatPct(pct)}</div>
+  <div class="heatmap-badge ${cls.cls}">${cls.label}</div>
+</div>`;
+      });
+      return html;
+    }
+
     function showInfo(id, type) {
-      const data = MARKET_INFO[id];
-      if (!data) return;
       const titleEl = document.getElementById("infoTitle");
       const bodyEl = document.getElementById("infoBody");
-      titleEl.textContent = data.name + " — " + (type === "heatmap" ? "Heatmap & Associations" : "Explanation");
-      bodyEl.textContent = (type === "heatmap" ? data.heatmap : data.explanation);
+
+      if (type === "explanation") {
+        const data = MARKET_INFO[id];
+        if (!data) return;
+        titleEl.textContent = data.name + " — Explanation";
+        bodyEl.textContent = data.explanation;
+      } else if (type === "heatmap") {
+        const data = MARKET_INFO[id];
+        titleEl.textContent = (data ? data.name : id.toUpperCase()) + " — Live Heatmap";
+        const html = buildHeatmapHTML(id);
+        bodyEl.innerHTML = html;
+      }
     }
   </script>
 
