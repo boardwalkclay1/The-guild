@@ -5,8 +5,9 @@
   <title>THE GUILD HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/png" href="/guild/assets/image/the-guild.png">
-  <link rel="apple-touch-icon" href="/guild/assets/image/the-guild.png">
+  <!-- LOGO UPDATED -->
+  <link rel="icon" type="image/png" href="/public/assets/image/the-guild.png">
+  <link rel="apple-touch-icon" href="/public/assets/image/the-guild.png">
 
   <!-- MAIN GUILD HALL CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
@@ -71,6 +72,14 @@
         font-size: 0.85rem;
       }
     }
+
+    /* TOP LEFT LOGO FIX */
+    .guild-logo-title img {
+      height: 42px;
+      width: 42px;
+      margin-right: 10px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 
@@ -90,7 +99,10 @@
   <!-- TOP NAV BAR -->
   <header class="guild-top-bar">
     <div class="guild-logo-title">
-      <span class="guild-mark">⛨</span>
+
+      <!-- ⭐ UPDATED LOGO HERE ⭐ -->
+      <img src="/public/assets/image/the-guild.png" alt="Guild Logo">
+
       <span class="guild-title">THE GUILD</span>
     </div>
 
@@ -166,7 +178,7 @@
       <button class="enter-btn" onclick="go('/guild/games/options/index.html')">ENTER</button>
     </div>
 
-    <!-- ⭐ NEW: Guild Market Terminal Dashboard -->
+    <!-- Guild Market Terminal Dashboard -->
     <div class="guild-btn" onclick="toggleDrop('dropDashboard')">
       🧭 Guild Market Terminal <span class="arrow">›</span>
     </div>
