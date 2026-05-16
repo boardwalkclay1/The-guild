@@ -1,18 +1,14 @@
-// ===============================
-// Guild Market – Biggest Gainers
-// Fully working, real data
-// ===============================
+document.addEventListener("DOMContentLoaded", loadGainers);
 
-// Your full ticker universe
+// Full Guild universe
 const GUILD_UNIVERSE = [
   "NVDA","AMD","PLTR","AI","MSFT","GOOGL","META","SNOW","CRWD","PATH",
   "AAL","DAL","UAL","LUV","JBLU","ALK","RYAAY","BA","HA","CPA",
   "TSLA","F","GM","RIVN","LCID","TM","HMC","NIO","XPEV","BYDDF",
   "JPM","BAC","WFC","C","GS","MS","USB","PNC","TFC","SCHW",
-  "BTCUSD","ETHUSD","SOLUSD","BNBUSD","XRPUSD","ADAUSD","DOGEUSD","AVAXUSD","LINKUSD","MATICUSD",
   "LMT","RTX","NOC","GD","HII","LHX","TXT","BWXT","AXON",
   "XOM","CVX","XLE","VLO","PSX","MPC","ENB","EPD","OKE","KMI",
-  "CL1!","NG1!","SLB","HAL","OXY","DVN","PXD","EOG",
+  "SLB","HAL","OXY","DVN","PXD","EOG",
   "JNJ","UNH","PFE","MRK","ABBV","LLY","ABT","TMO","BMY","CVS",
   "BRK.B","BX","KKR","CG","APO","BAM","ARCC","MAIN","HTGC","OWL",
   "GLD","SLV","NEM","GOLD","FCX","RIO","BHP","VALE","AA","CLF",
@@ -43,47 +39,92 @@ async function getEarningsDate(symbol) {
 // -------------------------------
 async function loadGainers() {
   const container = document.getElementById("gainersList");
-  container.innerHTML = `<div class="loading">Loading...</div>`;
+  if (!container) return;
 
-  const url = "https://scanner.tradingview.com/america/scan";
-  const body = {
-    filter: [],
-    options: { lang: "en" },
-    symbols: { query: { types: [] }, tickers: [] },
-    columns: ["name","close","change","change_percent"],
-    sort: { sortBy: "change_percent", sortOrder: "desc" },
-    range: [0,200]
-  };
+  container.innerHTML = `<div class="loading">Loading gainers...</div>`;
 
-  const res = await fetch(url, { method: "POST", body: JSON.stringify(body) });
-  const data = await res.json();
+  try {
+    const url = "https://scanner.tradingview.com/america/scan";
 
-  // Filter to your universe
-  const filtered = data.data.filter(r => GUILD_UNIVERSE.includes(r.s));
+    const body = {
+      symbols: { tickers: [] },
+      columns: [
+        "logoid",
+        "name",
+        "close",
+        "change",
+        "change_percent",
+        "high",
+        "low",
+        "volume"
+      ],
+      filter: [
+        { left: "change_percent", operation: "ne", right: null }
+      ],
+      options: {
+        lang: "en",
+        range: [0, 200],
+        sort: {
+          sortBy: "change_percent",
+          sortOrder: "desc"
+        }
+      }
+    };
 
-  // Top 5
-  const top5 = filtered.slice(0, 5);
+    const res = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(body)
+    });
 
-  container.innerHTML = "";
+    const json = await res.json();
 
-  for (const item of top5) {
-    const symbol = item.s;
-    const pct = item.d[3].toFixed(2);
-    const earnings = await getEarningsDate(symbol);
+    if (!json.data) {
+      container.innerHTML = `<div class="error">No data returned.</div>`;
+      return;
+    }
 
-    container.innerHTML += `
-      <div class="fullpage-card">
-        <h2>${symbol}</h2>
-        <div class="metric green">+${pct}%</div>
+    // Filter to your universe
+    const filtered = json.data.filter(r => GUILD_UNIVERSE.includes(r.s));
 
-        ${earnings ? `<div class="earnings-tag">Earnings: ${earnings}</div>` : ""}
+    // Top 5 gainers
+    const top5 = filtered.slice(0, 5);
 
-        <iframe
-          src="https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=15&theme=dark"
-          class="fullpage-chart">
-        </iframe>
-      </div>
-    `;
+    container.innerHTML = "";
+
+    for (const item of top5) {
+      const symbol = item.s;
+      const price = item.d[2];
+      const pct = item.d[4];
+      const high = item.d[5];
+      const low = item.d[6];
+      const volume = item.d[7];
+
+      const earnings = await getEarningsDate(symbol);
+
+      container.innerHTML += `
+        <div class="fullpage-card">
+          <h2>${symbol}</h2>
+          <div class="metric green">+${pct.toFixed(2)}%</div>
+
+          ${earnings ? `<div class="earnings-tag">Earnings: ${earnings}</div>` : ""}
+
+          <iframe
+            src="https://s.tradingview.com/widgetembed/?symbol=${symbol}&interval=15&theme=dark"
+            class="fullpage-chart">
+          </iframe>
+
+          <div class="extra-stats">
+            <div>Price: ${price.toFixed(2)}</div>
+            <div>High: ${high.toFixed(2)} | Low: ${low.toFixed(2)}</div>
+            <div>Volume: ${volume.toLocaleString()}</div>
+          </div>
+        </div>
+      `;
+    }
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<div class="error">Failed to load gainers.</div>`;
   }
 }
 
