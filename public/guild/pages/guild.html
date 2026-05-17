@@ -5,15 +5,14 @@
   <title>THE GUILD HALL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- LOGO UPDATED -->
+  <!-- LOGO -->
   <link rel="icon" type="image/png" href="/public/assets/image/the-guild.png">
   <link rel="apple-touch-icon" href="/public/assets/image/the-guild.png">
 
-  <!-- MAIN GUILD HALL CSS -->
+  <!-- MAIN CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
 
   <style>
-    /* --- MOBILE FIXES & RESPONSIVE STACKING --- */
     .vertical-stack {
       width: 90%;
       max-width: 500px;
@@ -35,10 +34,7 @@
       font-size: 0.95rem;
       display: none;
     }
-
-    .dropdown-panel.open {
-      display: block;
-    }
+    .dropdown-panel.open { display: block; }
 
     .enter-btn {
       width: 100%;
@@ -49,7 +45,6 @@
       cursor: pointer;
     }
 
-    /* HUD mobile scaling */
     .guild-hud {
       position: fixed;
       top: 10px;
@@ -60,25 +55,16 @@
       text-align: right;
     }
 
-    @media (max-width: 480px) {
-      .guild-title {
-        font-size: 1.4rem;
-      }
-      .guild-mark {
-        font-size: 1.4rem;
-      }
-      .nav-btn {
-        padding: 8px 10px;
-        font-size: 0.85rem;
-      }
-    }
-
-    /* TOP LEFT LOGO FIX */
     .guild-logo-title img {
       height: 42px;
       width: 42px;
       margin-right: 10px;
       border-radius: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .guild-title { font-size: 1.4rem; }
+      .nav-btn { padding: 8px 10px; font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -88,7 +74,7 @@
   background-size: cover;
 ">
 
-  <!-- GLOBAL XP + BADGE HUD -->
+  <!-- HUD -->
   <div class="guild-hud">
     <div id="guildXP">XP: 0</div>
     <div id="guildBadges"></div>
@@ -96,13 +82,10 @@
 
   <script src="/guild/xp/guild-progress.js"></script>
 
-  <!-- TOP NAV BAR -->
+  <!-- TOP NAV -->
   <header class="guild-top-bar">
     <div class="guild-logo-title">
-
-      <!-- ⭐ UPDATED LOGO HERE ⭐ -->
       <img src="/assets/image/the-guild.png" alt="Guild Logo">
-
       <span class="guild-title">THE GUILD</span>
     </div>
 
@@ -130,7 +113,7 @@
     <h1 class="scroll-title">THE GUILD HALL</h1>
   </div>
 
-  <!-- MAIN MENU STACK -->
+  <!-- MAIN MENU -->
   <div class="vertical-stack">
 
     <!-- Inside the Guild -->
@@ -138,7 +121,10 @@
       🛡️ Inside the Guild <span class="arrow">›</span>
     </div>
     <div id="drop1" class="dropdown-panel">
-      <p>The chamber where your identity is forged.</p>
+      <p>
+        This is your **identity chamber** — where you learn what it means to be Guild.
+        Your creed, your mindset, your role, and your path are defined here.
+      </p>
       <button class="enter-btn" onclick="go('/guild/pages/inside-the-guild.html')">ENTER</button>
     </div>
 
@@ -147,7 +133,11 @@
       ⚔️ Training Hall <span class="arrow">›</span>
     </div>
     <div id="drop2" class="dropdown-panel">
-      <p>Your path of mastery begins here.</p>
+      <p>
+        Your **skill‑building arena**.  
+        Every lesson, drill, and discipline exercise lives here.  
+        This is where you sharpen your edge.
+      </p>
       <button class="enter-btn" onclick="go('/guild/pages/training/training-hall.html')">ENTER</button>
     </div>
 
@@ -156,7 +146,10 @@
       🏛️ Guild Family <span class="arrow">›</span>
     </div>
     <div id="drop3" class="dropdown-panel">
-      <p>The shared hall of all members — your brothers and sisters.</p>
+      <p>
+        The **community chamber** — the hall of brothers and sisters.  
+        Shared wins, shared lessons, shared growth.
+      </p>
       <button class="enter-btn" onclick="go('/guild/pages/guild-fam.html')">ENTER</button>
     </div>
 
@@ -165,7 +158,10 @@
       📡 Guild Live Arena <span class="arrow">›</span>
     </div>
     <div id="dropLive" class="dropdown-panel">
-      <p>The live command center of the Guild — Bitcoin, flow, and real‑time movement.</p>
+      <p>
+        The **live command center** — Bitcoin, flow, movement, and real‑time market behavior.  
+        This is where you learn to read the battlefield.
+      </p>
       <button class="enter-btn" onclick="go('/guild/pages/arena/arena.html')">ENTER</button>
     </div>
 
@@ -174,17 +170,49 @@
       📈 Options Trading Simulator <span class="arrow">›</span>
     </div>
     <div id="dropOptions" class="dropdown-panel">
-      <p>Train in the Guild’s financial arena — calls, puts, volatility, and discipline.</p>
+      <p>
+        Your **financial combat simulator** — calls, puts, volatility, and discipline.  
+        Train without risk. Build mastery with repetition.
+      </p>
       <button class="enter-btn" onclick="go('/guild/games/options/index.html')">ENTER</button>
     </div>
 
-    <!-- Guild Market Terminal Dashboard -->
+    <!-- Guild Market Terminal -->
     <div class="guild-btn" onclick="toggleDrop('dropDashboard')">
       🧭 Guild Market Terminal <span class="arrow">›</span>
     </div>
     <div id="dropDashboard" class="dropdown-panel">
-      <p>The Guild’s full market command center — signals, gainers, losers, watchlists, and multi‑timeframe analysis.</p>
+      <p>
+        The **full market command center** — signals, gainers, losers, watchlists,  
+        multi‑timeframe analysis, and the Guild’s real‑time intelligence system.
+      </p>
       <button class="enter-btn" onclick="go('/guild/pages/dashboard/pages/dashboard.html')">ENTER</button>
+    </div>
+
+    <!-- Guild Hall Instructions -->
+    <div class="guild-btn" onclick="toggleDrop('dropGuide')">
+      📜 Guild Hall Guide <span class="arrow">›</span>
+    </div>
+    <div id="dropGuide" class="dropdown-panel">
+      <p>
+        **What this hall is:**  
+        Your central hub — the place you return to when you need direction, clarity, or purpose.
+      </p>
+
+      <p>
+        **Where to start:**  
+        Begin in <strong>Inside the Guild</strong> to understand your identity.  
+        Then move to the <strong>Training Hall</strong> to build your skills.  
+        Visit the <strong>Live Arena</strong> to see the real‑time battlefield.  
+        Use the <strong>Market Terminal</strong> to navigate the markets with precision.
+      </p>
+
+      <p>
+        **Your mission:**  
+        Build discipline.  
+        Build mastery.  
+        Build yourself into someone the Guild would be proud of.
+      </p>
     </div>
 
   </div>
