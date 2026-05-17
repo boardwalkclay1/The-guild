@@ -5,22 +5,6 @@
   <title>Guild Market Terminal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SOCIAL PREVIEW -->
-  <meta property="og:title" content="Guild Market Terminal">
-  <meta property="og:description" content="Your cinematic trading command center — live BTC, indices, sentiment, and sector flow explained.">
-  <meta property="og:image" content="/assets/image/the-guild.png">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Guild Market Terminal">
-  <meta name="twitter:description" content="Your cinematic trading command center — every signal and sentiment explained in plain language.">
-  <meta name="twitter:image" content="/assets/image/the-guild.png">
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/png" href="/assets/image/the-guild.png">
-  <link rel="apple-touch-icon" href="/assets/image/the-guild.png">
-
-  <!-- BASE CSS -->
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
 
   <style>
@@ -79,14 +63,6 @@
       margin-top: 10px;
     }
 
-    .section-title {
-      margin-top: 25px;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-      color: #D4AF37;
-      font-size: 1.2rem;
-    }
-
     .live-market {
       margin-top: 10px;
       padding: 20px;
@@ -102,38 +78,16 @@
       letter-spacing: 0.05em;
     }
 
-    .live-subtitle {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 16px;
-    }
-
     .dictator-block {
       margin-top: 18px;
       padding-top: 10px;
       border-top: 1px solid rgba(212,175,55,0.4);
     }
 
-    .live-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
     .live-label {
       color: #D4AF37;
       font-size: 1rem;
-    }
-
-    .symbol-select {
-      background: rgba(0,0,0,0.8);
-      color: #D4AF37;
-      border: 1px solid #D4AF37;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 0.85rem;
+      margin-bottom: 6px;
     }
 
     .live-chart {
@@ -182,9 +136,7 @@
     }
     .tag-bull { background: rgba(0,255,0,0.1); color: #7CFC00; border: 1px solid #7CFC00; }
     .tag-bear { background: rgba(255,0,0,0.1); color: #FF6B6B; border: 1px solid #FF6B6B; }
-    .tag-neutral { background: rgba(255,255,255,0.05); color: #ccc; border: 1px solid #777; }
 
-    /* INFO BOX */
     .info-panel {
       margin-top: 24px;
       padding: 16px;
@@ -203,54 +155,13 @@
       color: #eee;
       white-space: pre-line;
     }
-
-    .heatmap-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.85rem;
-    }
-    .heatmap-name {
-      flex: 1;
-    }
-    .heatmap-value {
-      width: 70px;
-      text-align: right;
-    }
-    .heatmap-badge {
-      width: 70px;
-      text-align: center;
-      border-radius: 10px;
-      padding: 2px 6px;
-      font-size: 0.75rem;
-      margin-left: 8px;
-    }
-    .hm-strong {
-      background: rgba(0,255,0,0.15);
-      color: #7CFC00;
-      border: 1px solid #7CFC00;
-    }
-    .hm-neutral {
-      background: rgba(255,255,255,0.05);
-      color: #ccc;
-      border: 1px solid #777;
-    }
-    .hm-weak {
-      background: rgba(255,0,0,0.15);
-      color: #FF6B6B;
-      border: 1px solid #FF6B6B;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- BACK BUTTON -->
   <a href="/guild/index.html" class="back-btn">← Back</a>
 
-  <!-- LOWERED NAVIGATION -->
   <div class="guild-nav">
     <div class="nav-left">
       <a href="/guild/index.html">Home</a>
@@ -266,504 +177,85 @@
     <img src="/assets/image/the-guild.png" class="guild-logo" alt="Guild Logo">
   </div>
 
-  <!-- MAIN WRAPPER -->
   <div class="dashboard-wrapper">
 
-    <!-- LIVE MARKET OVERVIEW -->
     <div class="live-market">
       <div class="live-title">Live Market Overview</div>
-      <div class="live-subtitle">
-        These are the main “dictators” of risk and sector flow.  
-        Use the buttons under each chart to pull up detailed explanations and live heatmaps in the intel panel below.
-      </div>
 
       <!-- BITCOIN -->
-      <div class="dictator-block" data-id="btc">
-        <div class="live-label-row">
-          <div class="live-label">Bitcoin (BTCUSD)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="BTC-USD"></iframe>
+      <div class="dictator-block">
+        <div class="live-label">Bitcoin (BTCUSD)</div>
+        <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
+
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('btc','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('btc','heatmap')">Heatmap</button>
         </div>
+
         <div class="live-helper">
           Bitcoin is the <strong>crypto risk barometer</strong>.  
-          <span class="tag tag-bull">BTC Up</span> → risk-on, altcoins strengthen, liquidity increases.  
-          <span class="tag tag-bear">BTC Down</span> → risk-off, miners weaken, volatility rises.
-        </div>
-      </div>
-
-      <!-- NASDAQ (SWITCHABLE) -->
-      <div class="dictator-block" data-id="nasdaq">
-        <div class="live-label-row">
-          <div class="live-label">NASDAQ (Tech & Growth)</div>
-          <select class="symbol-select" onchange="switchSymbol('nasdaq', this.value)">
-            <option value="QQQ">QQQ (NASDAQ‑100)</option>
-            <option value="^IXIC">IXIC (Composite)</option>
-          </select>
-        </div>
-        <iframe class="live-chart" data-symbol="QQQ"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('nasdaq','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('nasdaq','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          NASDAQ is the <strong>tech and innovation engine</strong>.  
-          <span class="tag tag-bull">NASDAQ Up</span> → tech leadership, growth appetite, risk-on rotation.  
-          <span class="tag tag-bear">NASDAQ Down</span> → rotation into safety, pressure on high‑beta names.
+          <span class="tag tag-bull">BTC Up</span> → risk-on, altcoins strengthen.  
+          <span class="tag tag-bear">BTC Down</span> → risk-off, volatility rises.
         </div>
       </div>
 
       <!-- S&P 500 -->
-      <div class="dictator-block" data-id="spx">
-        <div class="live-label-row">
-          <div class="live-label">S&amp;P 500 (SPX)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="^GSPC"></iframe>
+      <div class="dictator-block">
+        <div class="live-label">S&P 500 (SPX)</div>
+        <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
+
         <div class="dictator-actions">
           <button class="info-btn" onclick="showInfo('spx','explanation')">Explanation</button>
           <button class="info-btn" onclick="showInfo('spx','heatmap')">Heatmap</button>
         </div>
-        <div class="live-helper">
-          The S&amp;P 500 is the <strong>broad market scoreboard</strong>.  
-          <span class="tag tag-bull">SPX Up</span> → broad strength, institutional confidence.  
-          <span class="tag tag-bear">SPX Down</span> → broad weakness, risk-off.
-        </div>
-      </div>
 
-      <!-- DOW JONES -->
-      <div class="dictator-block" data-id="dow">
-        <div class="live-label-row">
-          <div class="live-label">Dow Jones (DJI)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="^DJI"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('dow','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('dow','heatmap')">Heatmap</button>
-        </div>
         <div class="live-helper">
-          The Dow tracks <strong>blue‑chip industrial strength</strong> and economic backbone.
-        </div>
-      </div>
-
-      <!-- RUSSELL 2000 -->
-      <div class="dictator-block" data-id="russell">
-        <div class="live-label-row">
-          <div class="live-label">Russell 2000 (RUT)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="^RUT"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('russell','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('russell','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          Russell 2000 is the <strong>small‑cap risk gauge</strong> — early signal for risk appetite.
-        </div>
-      </div>
-
-      <!-- VIX -->
-      <div class="dictator-block" data-id="vix">
-        <div class="live-label-row">
-          <div class="live-label">Volatility Index (VIX)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="^VIX"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('vix','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('vix','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          VIX is the <strong>fear gauge</strong> — how violently prices are expected to move.
-        </div>
-      </div>
-
-      <!-- DXY -->
-      <div class="dictator-block" data-id="dxy">
-        <div class="live-label-row">
-          <div class="live-label">US Dollar Index (DXY)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="DX-Y.NYB"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('dxy','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('dxy','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          DXY is <strong>global liquidity pressure</strong> — strong dollar often weighs on risk assets.
-        </div>
-      </div>
-
-      <!-- 10Y YIELD -->
-      <div class="dictator-block" data-id="tnx">
-        <div class="live-label-row">
-          <div class="live-label">10‑Year Yield (TNX)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="^TNX"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('tnx','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('tnx','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          The 10‑year yield is <strong>macro gravity</strong> — higher yields pressure growth and tech.
-        </div>
-      </div>
-
-      <!-- CRUDE OIL -->
-      <div class="dictator-block" data-id="oil">
-        <div class="live-label-row">
-          <div class="live-label">Crude Oil (CL=F)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="CL=F"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('oil','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('oil','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          Oil is <strong>energy + inflation</strong> — impacts transports, airlines, and consumer costs.
-        </div>
-      </div>
-
-      <!-- GOLD -->
-      <div class="dictator-block" data-id="gold">
-        <div class="live-label-row">
-          <div class="live-label">Gold (XAUUSD / GC=F)</div>
-        </div>
-        <iframe class="live-chart" data-symbol="GC=F"></iframe>
-        <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('gold','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('gold','heatmap')">Heatmap</button>
-        </div>
-        <div class="live-helper">
-          Gold is <strong>macro safety + inflation hedge</strong> — reacts to fear, rates, and currency moves.
+          The S&P 500 is the <strong>market health meter</strong>.  
+          <span class="tag tag-bull">SPX Up</span> → broad strength, risk-on.  
+          <span class="tag tag-bear">SPX Down</span> → rotation into defensive sectors.
         </div>
       </div>
 
     </div>
 
     <!-- INTEL PANEL -->
-    <h2 class="section-title">Market Intel</h2>
-    <div class="info-panel">
-      <div id="infoTitle" class="info-title">Tap a button under any chart to load intel here.</div>
-      <div id="infoBody" class="info-body">
-        This panel explains what each dictator means when it is rising or falling,  
-        which sectors it is tied to, and what to watch for.
-      </div>
+    <div id="intelPanel" class="info-panel" style="display:none;">
+      <div class="info-title" id="intelTitle"></div>
+      <div class="info-body" id="intelBody"></div>
     </div>
 
   </div>
 
-  <script>
-    // --- BUILD TRADINGVIEW IFRAME SRC (still real charts) ---
-    function buildSrc(symbol) {
-      // Using TradingView generic symbol mapping; many Yahoo symbols map 1:1
-      return "https://s.tradingview.com/widgetembed/?symbol=" + encodeURIComponent(symbol) + "&interval=15&theme=dark";
-    }
+<script>
+function showInfo(asset, type) {
+  const panel = document.getElementById("intelPanel");
+  const title = document.getElementById("intelTitle");
+  const body = document.getElementById("intelBody");
 
-    document.querySelectorAll(".live-chart").forEach(frame => {
-      const sym = frame.getAttribute("data-symbol");
-      frame.src = buildSrc(sym);
-    });
+  panel.style.display = "block";
 
-    function switchSymbol(id, symbol) {
-      const block = document.querySelector('.dictator-block[data-id="' + id + '"]');
-      if (!block) return;
-      const frame = block.querySelector(".live-chart");
-      frame.setAttribute("data-symbol", symbol);
-      frame.src = buildSrc(symbol);
-    }
+  if (asset === "btc" && type === "explanation") {
+    title.textContent = "Bitcoin — Market Explanation";
+    body.textContent =
+      "Bitcoin drives crypto sentiment.\n\n" +
+      "When BTC rises:\n• Risk-on increases\n• Altcoins strengthen\n• Liquidity expands\n\n" +
+      "When BTC falls:\n• Risk-off increases\n• Miners weaken\n• Volatility rises";
+  }
 
-    // --- STATIC EXPLANATIONS (TEXT) ---
-    const MARKET_INFO = {
-      btc: {
-        name: "Bitcoin (BTCUSD)",
-        explanation: `
-Bitcoin is the liquidity and speculation gauge for crypto and high‑beta risk.
+  if (asset === "spx" && type === "explanation") {
+    title.textContent = "S&P 500 — Market Explanation";
+    body.textContent =
+      "The S&P 500 is the broad market barometer.\n\n" +
+      "When SPX rises:\n• Market strength\n• Institutions buying\n• Growth sectors benefit\n\n" +
+      "When SPX falls:\n• Defensive rotation\n• Fear increases\n• Liquidity drains";
+  }
 
-• When BTC is rising:
-  - Risk‑on tone across crypto.
-  - Altcoins and high‑beta names often follow.
-  - Liquidity is flowing into speculative assets.
-  - Often aligns with easier financial conditions or strong tech.
-
-• When BTC is falling:
-  - Risk‑off tone in crypto.
-  - Miners, altcoins, and leverage get hit first.
-  - Volatility spikes and liquidations can cascade.
-  - Can foreshadow stress in other risk assets if the move is violent.
-
-Watch for:
-  - Sharp intraday reversals (fakeouts).
-  - Divergence between BTC and NASDAQ (crypto decoupling or recoupling).
-        `
-      },
-      nasdaq: {
-        name: "NASDAQ (QQQ / IXIC)",
-        explanation: `
-NASDAQ represents tech, growth, and innovation.
-
-• When NASDAQ is rising:
-  - Tech leadership: semiconductors, software, cloud, AI.
-  - Growth stocks outperform value.
-  - Risk‑on tone, especially if SPX and RUT confirm.
-  - Often coincides with stable or falling yields.
-
-• When NASDAQ is falling:
-  - Rotation into value and defensives.
-  - High‑multiple names get hit first.
-  - Can signal concern about earnings, rates, or macro growth.
-
-Watch for:
-  - Divergence vs SPX (tech leading or lagging the broad market).
-  - Relationship with TNX (10‑year yield) — rising yields often pressure NASDAQ.
-        `
-      },
-      spx: {
-        name: "S&P 500 (SPX)",
-        explanation: `
-The S&P 500 is the broad market benchmark.
-
-• When SPX is rising:
-  - Broad strength across sectors.
-  - Institutional accumulation and confidence.
-  - Risk‑on tone if cyclicals and small caps confirm.
-
-• When SPX is falling:
-  - Broad de‑risking.
-  - Correlations rise — “everything moves together.”
-  - Often tied to macro shocks, earnings misses, or policy fears.
-
-Watch for:
-  - Sector leadership inside SPX (tech vs defensives vs cyclicals).
-  - Whether SPX is rising with or without small caps (RUT).
-        `
-      },
-      dow: {
-        name: "Dow Jones (DJI)",
-        explanation: `
-The Dow tracks blue‑chip industrial and legacy leaders.
-
-• When the Dow is rising:
-  - Strength in industrials, manufacturing, and large‑cap value.
-  - Confidence in the real economy and demand.
-
-• When the Dow is falling:
-  - Concerns about growth, demand, or global trade.
-  - Rotation away from cyclicals into defensives or cash.
-
-Watch for:
-  - Dow strong while NASDAQ weak → rotation into value.
-  - Dow weak while NASDAQ strong → growth leading, value lagging.
-        `
-      },
-      russell: {
-        name: "Russell 2000 (RUT)",
-        explanation: `
-Russell 2000 tracks small‑cap risk and domestic growth.
-
-• When RUT is rising:
-  - Strong risk appetite.
-  - Confidence in domestic growth and smaller companies.
-  - Often confirms a strong bull leg when SPX and NASDAQ also rise.
-
-• When RUT is falling:
-  - Early warning of risk‑off.
-  - Credit and liquidity concerns often show here first.
-
-Watch for:
-  - RUT diverging from SPX (small caps lagging or leading).
-  - RUT vs DXY and TNX — strong dollar and high yields can hurt small caps.
-        `
-      },
-      vix: {
-        name: "Volatility Index (VIX)",
-        explanation: `
-VIX measures expected volatility on the S&P 500 — the “fear gauge.”
-
-• When VIX is low and stable:
-  - Calm conditions, steady trends.
-  - Options are cheaper, complacency can build.
-
-• When VIX is spiking:
-  - Fear, forced de‑risking, and large intraday swings.
-  - Often coincides with sharp SPX drops.
-
-Watch for:
-  - VIX rising while SPX is flat → hidden stress building.
-  - VIX crush after events → relief rallies and trend resumption.
-        `
-      },
-      dxy: {
-        name: "US Dollar Index (DXY)",
-        explanation: `
-DXY tracks the strength of the US dollar versus major currencies.
-
-• When DXY is rising:
-  - Dollar strength, tighter global liquidity.
-  - Pressure on commodities, EM, and risk assets.
-  - Can hurt multinational earnings (FX headwinds).
-
-• When DXY is falling:
-  - Easier global liquidity.
-  - Supportive for commodities, EM, and risk assets.
-
-Watch for:
-  - DXY vs risk assets (SPX, BTC, EM).
-  - Strong dollar + weak risk = classic risk‑off.
-        `
-      },
-      tnx: {
-        name: "10‑Year Yield (TNX)",
-        explanation: `
-The 10‑year yield is macro gravity — it sets the tone for rates and valuations.
-
-• When yields are rising:
-  - Pressure on long‑duration assets (growth, tech).
-  - Financials can benefit from higher rates.
-  - Signals inflation or strong growth expectations.
-
-• When yields are falling:
-  - Relief for growth and tech.
-  - Can signal slowing growth or recession fears.
-
-Watch for:
-  - TNX vs NASDAQ — rising yields often hit tech hardest.
-  - TNX vs SPX — rising yields with rising SPX can be healthy reflation.
-        `
-      },
-      oil: {
-        name: "Crude Oil (CL=F)",
-        explanation: `
-Crude oil reflects energy demand, supply shocks, and inflation pressure.
-
-• When oil is rising:
-  - Strong demand or supply constraints.
-  - Energy sector benefits.
-  - Can add inflation pressure and hurt consumers.
-
-• When oil is falling:
-  - Weaker demand or oversupply.
-  - Relief on inflation and input costs.
-  - Can signal slowing growth if drop is sharp.
-
-Watch for:
-  - Oil vs transports and airlines.
-  - Oil vs inflation expectations and yields.
-        `
-      },
-      gold: {
-        name: "Gold (GC=F / XAUUSD)",
-        explanation: `
-Gold is a macro safety and inflation hedge.
-
-• When gold is rising:
-  - Demand for safety or inflation protection.
-  - Often coincides with falling real yields or macro stress.
-
-• When gold is falling:
-  - Less demand for safety.
-  - Capital rotating into risk assets or cash.
-
-Watch for:
-  - Gold vs DXY and TNX — strong dollar and high real yields can cap gold.
-  - Gold strength during equity weakness → classic risk‑off.
-        `
-      }
-    };
-
-    // --- REAL HEATMAP DATA (FREE YAHOO FINANCE) ---
-    // Map each dictator to a set of tickers we’ll pull % change for
-    const HEATMAP_GROUPS = {
-      btc: ["BTC-USD", "ETH-USD"],
-      nasdaq: ["QQQ", "SMH", "CLOU", "SOXX"],
-      spx: ["^GSPC", "XLF", "XLE", "XLK", "XLY", "XLP", "XLV", "XLI"],
-      dow: ["^DJI", "CAT", "UNP", "GS", "JPM"],
-      russell: ["^RUT", "IWM", "KRE"],
-      vix: ["^VIX"],
-      dxy: ["DX-Y.NYB"],
-      tnx: ["^TNX"],
-      oil: ["CL=F", "XLE"],
-      gold: ["GC=F", "GLD"]
-    };
-
-    let HEATMAP_DATA = {}; // symbol -> {price, change, changePercent}
-
-    function fetchHeatmapData() {
-      const allSymbols = new Set();
-      Object.values(HEATMAP_GROUPS).forEach(arr => arr.forEach(s => allSymbols.add(s)));
-      const symbolsParam = Array.from(allSymbols).join(",");
-
-      const url = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + encodeURIComponent(symbolsParam);
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          if (!data || !data.quoteResponse || !data.quoteResponse.result) return;
-          const results = data.quoteResponse.result;
-          HEATMAP_DATA = {};
-          results.forEach(q => {
-            HEATMAP_DATA[q.symbol] = {
-              price: q.regularMarketPrice,
-              change: q.regularMarketChange,
-              changePercent: q.regularMarketChangePercent
-            };
-          });
-        })
-        .catch(err => {
-          console.warn("Heatmap data fetch failed:", err);
-        });
-    }
-
-    // Refresh every 60 seconds
-    fetchHeatmapData();
-    setInterval(fetchHeatmapData, 60000);
-
-    function classifyChange(pct) {
-      if (pct == null) return { label: "N/A", cls: "hm-neutral" };
-      if (pct > 0.75) return { label: "Strong", cls: "hm-strong" };
-      if (pct < -0.75) return { label: "Weak", cls: "hm-weak" };
-      return { label: "Neutral", cls: "hm-neutral" };
-    }
-
-    function formatPct(pct) {
-      if (pct == null) return "N/A";
-      return (pct >= 0 ? "+" : "") + pct.toFixed(2) + "%";
-    }
-
-    function buildHeatmapHTML(id) {
-      const group = HEATMAP_GROUPS[id];
-      if (!group) return "No heatmap data configured.";
-
-      let html = "";
-      group.forEach(sym => {
-        const d = HEATMAP_DATA[sym] || {};
-        const pct = d.changePercent;
-        const cls = classifyChange(pct);
-        html += `
-<div class="heatmap-line">
-  <div class="heatmap-name">${sym}</div>
-  <div class="heatmap-value">${formatPct(pct)}</div>
-  <div class="heatmap-badge ${cls.cls}">${cls.label}</div>
-</div>`;
-      });
-      return html;
-    }
-
-    function showInfo(id, type) {
-      const titleEl = document.getElementById("infoTitle");
-      const bodyEl = document.getElementById("infoBody");
-
-      if (type === "explanation") {
-        const data = MARKET_INFO[id];
-        if (!data) return;
-        titleEl.textContent = data.name + " — Explanation";
-        bodyEl.textContent = data.explanation;
-      } else if (type === "heatmap") {
-        const data = MARKET_INFO[id];
-        titleEl.textContent = (data ? data.name : id.toUpperCase()) + " — Live Heatmap";
-        const html = buildHeatmapHTML(id);
-        bodyEl.innerHTML = html;
-      }
-    }
-  </script>
+  if (type === "heatmap") {
+    title.textContent = "Heatmap (Coming Soon)";
+    body.textContent = "Sector heatmaps will appear here.";
+  }
+}
+</script>
 
 </body>
 </html>
