@@ -5,7 +5,21 @@
   <title>Guild Options Arena</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Guild Style -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- Social Preview -->
+  <meta property="og:title" content="Guild Options Arena">
+  <meta property="og:description" content="A live 30‑second options trading arena with real‑time price movement, time decay, stop losses, and Guild mentor guidance.">
+  <meta property="og:image" content="/assets/social-preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guild Options Arena">
+  <meta name="twitter:description" content="A real‑time options simulator with live price action and progressive difficulty.">
+  <meta name="twitter:image" content="/assets/social-preview.jpg">
+
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -75,7 +89,7 @@
 
     .btn-row button {
       flex:1;
-      min-width:160px;
+      min-width:140px;
     }
 
     #strategyInfo {
@@ -88,7 +102,7 @@
       text-align:left;
     }
 
-    #news, #result, #portfolio {
+    #news, #result, #portfolio, #openPositions {
       margin-top:18px;
       font-size:15px;
     }
@@ -107,7 +121,6 @@
       padding-bottom:6px;
     }
 
-    /* Guild Mentor Bubble */
     .mentor-wrap {
       position:relative;
       margin-top:30px;
@@ -190,6 +203,13 @@
       margin:6px 0 0;
       font-size:13px;
     }
+
+    .live-tag {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      color:#ff5252;
+    }
   </style>
 </head>
 
@@ -198,22 +218,23 @@
 <div class="arena-wrap">
   <h1 class="guild-title">Options Arena</h1>
   <div class="subtitle">
-    Learn how each options strategy hits your gold pouch—run scenarios, read the headlines, and watch your Guild portfolio grow or bleed.
+    Live 30‑second bouts. Real time decay. Real patterns. Real discipline.
   </div>
 
   <div class="how-to">
     <strong>How this works:</strong>
     <ul>
-      <li>Pick a <strong>strategy</strong> and a <strong>starting stock price</strong>.</li>
-      <li>Choose how wild the market feels with <strong>volatility</strong> and how long the fight lasts with <strong>time steps</strong>.</li>
-      <li>Hit <strong>Run Simulation</strong> to see price action, news events, and your final P/L.</li>
-      <li>Your <strong>Guild portfolio</strong> tracks every trade—reset anytime if you blow yourself up.</li>
+      <li>Pick a <strong>strategy focus</strong> and a <strong>starting stock price</strong>.</li>
+      <li>Choose <strong>volatility</strong>, <strong>time steps</strong>, and your <strong>stop loss</strong>.</li>
+      <li>Start a <strong>Live Round</strong> and place trades while the price moves.</li>
+      <li>Contracts decay every second — manage exits or get clipped.</li>
+      <li>Your <strong>Guild portfolio</strong> tracks every win and wound.</li>
     </ul>
   </div>
 
   <div class="grid">
     <div>
-      <label>Strategy</label>
+      <label>Strategy Focus</label>
       <select id="strategy" onchange="updateStrategyExplanation()">
         <option value="call">Buy Call</option>
         <option value="put">Buy Put</option>
@@ -233,12 +254,33 @@
         <option value="high">Full Madness</option>
       </select>
 
-      <label>Time Steps</label>
-      <input id="steps" type="number" value="20" min="5" max="60">
+      <label>Time Steps (Seconds)</label>
+      <input id="steps" type="number" value="30" min="10" max="90">
+
+      <label>Stop Loss (%)</label>
+      <input id="stopLoss" type="number" value="30" min="5" max="95">
+
+      <label>Mode</label>
+      <select id="mode">
+        <option value="live" selected>Live 30s Round</option>
+        <option value="quick">Quick One‑Shot Sim</option>
+      </select>
 
       <div class="btn-row">
-        <button class="guild-btn" onclick="startSimulation()">Run Simulation</button>
+        <button class="guild-btn" onclick="startSimulation()">
+          <span class="live-tag">▶</span> Start Round
+        </button>
         <button class="guild-btn" style="background:#800; border-color:#c33;" onclick="resetPortfolio()">Reset Portfolio</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="guild-btn" onclick="openPosition('call')">Buy Call</button>
+        <button class="guild-btn" onclick="openPosition('put')">Buy Put</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="guild-btn" onclick="openPosition('straddle')">Buy Straddle</button>
+        <button class="guild-btn" style="background:#444;" onclick="closeAllPositions()">Close All</button>
       </div>
     </div>
 
@@ -253,6 +295,7 @@
   <h2 class="section-title">Market Headlines & Result</h2>
   <div id="news"></div>
   <div id="result"></div>
+  <div id="openPositions"></div>
 
   <h2 class="section-title">Stock Path</h2>
   <canvas id="payoffChart" height="260"></canvas>
@@ -265,253 +308,14 @@
     <div class="mentor-bubble" id="mentorBubble">
       <div class="mentor-label">Guild Mentor</div>
       <div class="mentor-text" id="mentorText">
-        Welcome to the Options Arena. Run a few sims, watch the charts, and don’t marry any one strategy.
+        Welcome to the Arena. Stay sharp. Stay disciplined.
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  const strikePrice = 100;
-  const premium = 5;
-  const upperStrike = 110;
-  const lowerStrike = 90;
-
-  let portfolioBalance = 10000;
-  let tradeHistory = [10000];
-
-  const newsEvents = [
-    { text: "Fed hints at surprise rate move.", effect: -3 },
-    { text: "Earnings crush expectations, volume spikes.", effect: 4 },
-    { text: "Macro data spooks the whole market.", effect: -4 },
-    { text: "AI sector catches a fresh upgrade wave.", effect: 3 },
-    { text: "Volatility index jumps—fear creeping in.", effect: -2 },
-    { text: "GDP print comes in hotter than forecast.", effect: 2 },
-    { text: "Unemployment drops, risk-on mood builds.", effect: 3 },
-    { text: "Geopolitical headline hits the tape.", effect: -3 }
-  ];
-
-  const strategyDescriptions = {
-    call: `<strong>📘 Buy Call:</strong><br>- You’re betting the stock rips higher.<br>- Upside is open, downside is just the premium.<br>- Great when you expect a strong move up, not a slow grind.`,
-    put: `<strong>📘 Buy Put:</strong><br>- You’re betting the stock gets smoked.<br>- Profit when price dives below strike.<br>- Clean way to short without blowing up on margin.`,
-    straddle: `<strong>📘 Straddle:</strong><br>- Buy a call and a put at the same strike.<br>- You don’t care which way it moves—just that it moves big.<br>- Dies slowly if the stock goes nowhere and time decay eats you.`,
-    collar: `<strong>📘 Collar:</strong><br>- Own stock, buy a put, sell a call on top.<br>- You cap your upside and your downside on purpose.<br>- Classic “protect the bag” move when you’re already in the name.`,
-    sell_call: `<strong>📘 Sell Call:</strong><br>- You’re renting out your upside for premium.<br>- Great if you think price chills or drifts down.<br>- Dangerous if the stock moons—you’re on the hook.`,
-    sell_put: `<strong>📘 Sell Put:</strong><br>- You’re getting paid to promise you’ll buy lower.<br>- Works if price holds or drifts up.<br>- If it nukes, you’re catching the falling knife by contract.`
-  };
-
-  const mentorLines = [
-    "Every click is a rep. Don’t chase perfection—chase understanding.",
-    "Watch how volatility changes the path. That’s where options really live.",
-    "If you don’t know your max loss, you’re not trading—you’re gambling.",
-    "Straddles love chaos. If nothing happens, they quietly bleed out.",
-    "Selling options feels like free money—until it doesn’t. Respect the risk.",
-    "Your first job isn’t to win big. It’s to stay in the game.",
-    "Collars are boring on purpose. Boring keeps portfolios alive.",
-    "If a move surprises you, log it. Patterns show up faster than you think.",
-    "Don’t fall in love with green numbers. They can vanish in one candle.",
-    "Red trades are tuition. Just don’t pay the same lesson twice.",
-    "High volatility is like a storm—beautiful, but it doesn’t care about you.",
-    "If you’re guessing, size small. If you’re convicted, still size small.",
-    "The chart is the arena. Your emotions are the real opponent.",
-    "Premium is the price of a seat at the table. Use it wisely.",
-    "You don’t need to trade every setup. You need to crush the right ones.",
-    "When in doubt, slow down. Rushed trades are usually donations.",
-    "Track your portfolio curve, not just single trades. That’s the real score.",
-    "If a strategy confuses you, don’t size it—study it.",
-    "The Guild doesn’t reward recklessness. It rewards discipline and reps.",
-    "You’re not behind. You’re just earlier in the grind than you think."
-  ];
-
-  const mentorImages = [
-    "/market/img/gmi-1.jpg",
-    "/market/img/gmi-2.jpg",
-    "/market/img/gmi-3.jpg",
-    "/market/img/gmi-4.jpg",
-    "/market/img/gmi-5.jpg"
-  ];
-
-  let mentorIndex = 0;
-  let simCount = 0;
-
-  function rotateMentorLine() {
-    simCount++;
-    const lineIndex = simCount % mentorLines.length;
-    const imgIndex = Math.floor(lineIndex / 4) % mentorImages.length;
-
-    const mentorTextEl = document.getElementById("mentorText");
-    const mentorImgEl = document.getElementById("mentorImg");
-    const mentorBubble = document.getElementById("mentorBubble");
-
-    mentorTextEl.innerText = mentorLines[lineIndex];
-    mentorImgEl.style.backgroundImage = `url('${mentorImages[imgIndex]}')`;
-
-    mentorBubble.classList.remove("fade-in-mentor");
-    void mentorBubble.offsetWidth;
-    mentorBubble.classList.add("fade-in-mentor");
-  }
-
-  function updateStrategyExplanation() {
-    const strategy = document.getElementById("strategy").value;
-    document.getElementById("strategyInfo").innerHTML = strategyDescriptions[strategy];
-  }
-
-  function getVolatilityRange(level) {
-    return { low: 1.0, medium: 2.5, high: 5.0 }[level] || 2.5;
-  }
-
-  function getRandomMovement(volatility) {
-    return (Math.random() - 0.5) * 2 * volatility;
-  }
-
-  function simulateStockPath(startPrice, steps, volatility) {
-    let price = startPrice;
-    const path = [price];
-    const headlines = [];
-
-    for (let i = 0; i < steps; i++) {
-      let movement = getRandomMovement(volatility);
-
-      if (Math.random() < 0.35) {
-        const news = newsEvents[Math.floor(Math.random() * newsEvents.length)];
-        movement += news.effect;
-        headlines.push(`T${i + 1}: ${news.text}`);
-      } else {
-        headlines.push(`T${i + 1}: No major headline—just order flow.`);
-      }
-
-      price += movement;
-      price = Math.max(10, Math.min(price, 500));
-      path.push(Number(price.toFixed(2)));
-    }
-
-    return { path, headlines };
-  }
-
-  function payoff(stockPrice, strategy) {
-    switch (strategy) {
-      case "call": return Math.max(stockPrice - strikePrice, 0) - premium;
-      case "put": return Math.max(strikePrice - stockPrice, 0) - premium;
-      case "straddle":
-        return Math.max(stockPrice - strikePrice, 0) +
-               Math.max(strikePrice - stockPrice, 0) - 2 * premium;
-      case "collar":
-        return Math.min(Math.max(stockPrice - lowerStrike, 0), upperStrike - lowerStrike) - premium;
-      case "sell_call":
-        return -(Math.max(stockPrice - strikePrice, 0)) + premium;
-      case "sell_put":
-        return -(Math.max(strikePrice - stockPrice, 0)) + premium;
-      default: return 0;
-    }
-  }
-
-  function initializePortfolio() {
-    const stored = localStorage.getItem('guildPortfolioBalance');
-    const history = localStorage.getItem('guildPortfolioHistory');
-    portfolioBalance = stored ? parseFloat(stored) : 10000;
-    tradeHistory = history ? JSON.parse(history) : [portfolioBalance];
-    updatePortfolioDisplay();
-    updatePortfolioChart();
-  }
-
-  function updatePortfolioDisplay() {
-    document.getElementById("portfolio").innerHTML =
-      `💼 Guild Portfolio: <strong>$${portfolioBalance.toFixed(2)}</strong>`;
-  }
-
-  function applyTradeResult(profit) {
-    portfolioBalance += profit;
-    portfolioBalance = Math.max(0, portfolioBalance);
-    tradeHistory.push(portfolioBalance);
-    localStorage.setItem('guildPortfolioBalance', portfolioBalance);
-    localStorage.setItem('guildPortfolioHistory', JSON.stringify(tradeHistory));
-    updatePortfolioDisplay();
-    updatePortfolioChart();
-  }
-
-  function resetPortfolio() {
-    portfolioBalance = 10000;
-    tradeHistory = [10000];
-    localStorage.setItem('guildPortfolioBalance', portfolioBalance);
-    localStorage.setItem('guildPortfolioHistory', JSON.stringify(tradeHistory));
-    updatePortfolioDisplay();
-    updatePortfolioChart();
-  }
-
-  let portfolioChartInstance;
-  let stockChartInstance;
-
-  function renderChart(ctxId, label, data, color, yLabel) {
-    const ctx = document.getElementById(ctxId).getContext('2d');
-
-    if (ctxId === 'portfolioChart' && portfolioChartInstance) portfolioChartInstance.destroy();
-    if (ctxId === 'payoffChart' && stockChartInstance) stockChartInstance.destroy();
-
-    const newChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: Array.from({ length: data.length }, (_, i) => i),
-        datasets: [{
-          label: label,
-          data: data,
-          borderColor: color,
-          fill: false,
-          tension: 0.2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { title: { display: false } },
-        scales: {
-          x: { title: { display: true, text: 'Time Step' } },
-          y: { title: { display: true, text: yLabel } }
-        }
-      }
-    });
-
-    if (ctxId === 'portfolioChart') portfolioChartInstance = newChart;
-    if (ctxId === 'payoffChart') stockChartInstance = newChart;
-  }
-
-  function updatePortfolioChart() {
-    renderChart('portfolioChart', 'Portfolio Growth', tradeHistory, '#28a745', 'Portfolio Value ($)');
-  }
-
-  function renderStockChart(prices, strategy) {
-    renderChart('payoffChart', `Stock Price Path (${strategy.toUpperCase()})`, prices, '#00aaff', 'Stock Price ($)');
-  }
-
-  function startSimulation() {
-    const strategy = document.getElementById("strategy").value;
-    const startPrice = parseFloat(document.getElementById("startPrice").value);
-    const steps = parseInt(document.getElementById("steps").value);
-    const volatility = getVolatilityRange(document.getElementById("volatility").value);
-
-    const { path: stockPath, headlines } = simulateStockPath(startPrice, steps, volatility);
-    const finalPrice = stockPath[stockPath.length - 1];
-    const profit = payoff(finalPrice, strategy);
-
-    document.getElementById("news").innerHTML =
-      `<h3>📰 Tape Recap</h3><ul style="text-align:left; max-width:700px; margin:8px auto 0;">` +
-      headlines.map(h => `<li>${h}</li>`).join('') +
-      `</ul>`;
-
-    document.getElementById("result").innerHTML = `
-      📊 Final Stock Price: <strong>$${finalPrice.toFixed(2)}</strong><br>
-      🧠 Strategy: <strong>${strategy.replace("_", " ").toUpperCase()}</strong><br>
-      💵 P/L on this run: <strong style="color:${profit >= 0 ? 'lime' : 'red'};">$${profit.toFixed(2)}</strong>
-    `;
-
-    renderStockChart(stockPath, strategy);
-    applyTradeResult(profit);
-    rotateMentorLine();
-  }
-
-  window.onload = function () {
-    updateStrategyExplanation();
-    initializePortfolio();
-  };
-</script>
+<!-- FULL REAL‑TIME ENGINE -->
+<script src="/arena/engine.js"></script>
 
 </body>
 </html>
