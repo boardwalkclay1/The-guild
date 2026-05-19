@@ -1,98 +1,202 @@
+<!-- /guild/pages/guild-fam.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>The Guild Family</title>
+  <title>Guild Family Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FAVICON + APP ICON -->
   <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
   <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
-
-  <!-- GLOBAL CINEMATIC CSS -->
-  <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
 
   <style>
     body {
+      background-image: url('/assets/image/guild-hall.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      position: relative;
+      color: #f5f5f5;
+      margin: 0;
+      font-family: 'Marcellus SC', serif;
     }
 
-    /* Black overlay for readability */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.65);
       z-index: -1;
-      pointer-events: none;
     }
 
-    /* Darkened pillars ONLY for this page */
-    .pillar-left,
-    .pillar-right {
-      filter: brightness(0.35) contrast(1.1);
+    .hall-wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      border-radius: 16px;
+      border: 2px solid #D4AF37;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 24px;
     }
 
-    .family-container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 120px 20px 80px;
-      color: #D4AF37;
+    .hall-header {
+      grid-column: 1 / -1;
       text-align: center;
-      line-height: 1.6;
-      position: relative;
-      z-index: 5;
+      margin-bottom: 10px;
     }
 
-    h1 {
+    .hall-header h1 {
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 25px;
-      font-size: 2rem;
-      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+      letter-spacing: 0.18em;
+      margin: 0 0 8px;
+      color: #D4AF37;
     }
 
-    p {
-      max-width: 650px;
-      margin: 0 auto 20px;
-      color: #D4AF37;
-      opacity: 0.88;
-      font-size: 1.15rem;
-      font-weight: 600;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    .hall-header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
     }
 
-    .link-button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 10px 18px;
-      background: rgba(212,175,55,0.15);
-      border: 1px solid #D4AF37;
-      border-radius: 8px;
+    .panel {
+      background: rgba(10,10,10,0.85);
+      border-radius: 12px;
+      border: 1px solid #444;
+      padding: 14px 16px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: #D4AF37;
+    }
+
+    .xp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .xp-bar-wrap {
+      width: 100%;
+      height: 10px;
+      background: #222;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #555;
+      margin-top: 6px;
+    }
+
+    .xp-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ff6a, #D4AF37);
+      transition: width 0.3s ease;
+    }
+
+    .profile-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .profile-mini img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid #D4AF37;
+      object-fit: cover;
+    }
+
+    .profile-mini div {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .profile-mini a {
+      color: #00ff6a;
       text-decoration: none;
-      font-weight: 600;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
-      transition: 0.3s ease;
     }
 
-    .link-button:hover {
+    .profile-mini a:hover {
+      text-shadow: 0 0 8px #00ff6a;
+    }
+
+    .chat-log {
+      height: 320px;
+      overflow-y: auto;
+      background: #050505;
+      border-radius: 10px;
+      border: 1px solid #333;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    .chat-message {
+      margin-bottom: 8px;
+    }
+
+    .chat-meta {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #555;
+      background: #111;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .chat-input-row button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #D4AF37;
+      background: rgba(212,175,55,0.15);
+      color: #D4AF37;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .chat-input-row button:hover {
       background: rgba(212,175,55,0.3);
       color: #fff;
-      text-shadow: 0 0 10px #D4AF37;
+    }
+
+    .system-note {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-top: 6px;
     }
 
     .back-link {
       display: inline-block;
-      margin-top: 40px;
+      margin-top: 16px;
       color: #00ff6a;
       text-decoration: none;
       font-weight: 600;
       letter-spacing: 0.08em;
-      transition: 0.3s ease;
+      font-size: 0.8rem;
     }
 
     .back-link:hover {
@@ -102,86 +206,212 @@
   </style>
 </head>
 
-<body data-bg="guild-walk.jpg">
+<body>
+  <div class="hall-wrap">
+    <div class="hall-header">
+      <h1>Guild Family Hall</h1>
+      <p>Real‑time chamber for Guild warriors — chat, track your XP, and grow together.</p>
+    </div>
 
-  <!-- CINEMATIC LAYERS -->
-  <div class="fog-layer"></div>
-  <div class="pillar pillar-left"></div>
-  <div class="pillar pillar-right"></div>
+    <!-- LEFT: PROFILE + XP -->
+    <div class="panel">
+      <h2>Your Guild Presence</h2>
 
-  <div class="family-container">
+      <div class="xp-row">
+        <span>Level <span id="guildLevel">1</span></span>
+        <span><span id="guildXP">0</span> XP</span>
+      </div>
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-fill" id="xpBarFill"></div>
+      </div>
 
-    <h1>The Guild Family</h1>
+      <div class="profile-mini">
+        <img id="profileAvatar" src="/assets/image/default-avatar.png" alt="Avatar" />
+        <div>
+          <div><strong id="profileName">@guild-warrior</strong></div>
+          <div style="opacity:0.8;" id="profileTagline">Walking the path of the Dragon.</div>
+          <a href="/guild/pages/profile.html">View Full Profile →</a>
+        </div>
+      </div>
 
-    <p>
-      This is the chamber where our bond is forged —  
-      not by accident, but by discipline, purpose, and the fire that brought you here.
-    </p>
+      <p class="system-note">
+        XP and profile are synced in real time. Every meaningful action in the Guild can grant XP.
+      </p>
 
-    <p>
-      The Guild is a family of gladiators.  
-      Warriors who sharpen each other, rise together,  
-      and prepare to face the great Market Dragon with clarity and courage.
-    </p>
+      <a class="back-link" href="/guild/pages/the-guild-family.html">← Back to Family Chamber</a>
+    </div>
 
-    <p>
-      Inside these halls you will learn the arts of the arena:  
-      reading the battlefield, mastering timing, controlling emotion,  
-      and striking with precision when opportunity reveals itself.
-    </p>
+    <!-- RIGHT: REAL‑TIME CHAT -->
+    <div class="panel">
+      <h2>Hall Conversation</h2>
 
-    <p>
-      You will gain access to one‑of‑a‑kind simulators,  
-      crafted to train your eyes, sharpen your instincts,  
-      and prepare you for real combat in the markets.  
-      These tools exist nowhere else — they were built for Guild warriors only.
-    </p>
+      <div class="chat-log" id="chatLog"></div>
 
-    <p>
-      You will explore modules that teach discipline,  
-      strategy, psychology, and the Golden Formula itself —  
-      the ancient pattern that reveals the Dragon’s weak points.
-    </p>
+      <div class="chat-input-row">
+        <input id="chatInput" type="text" placeholder="Share a thought with the Guild..." />
+        <button onclick="sendChat()">Send</button>
+      </div>
 
-    <p>
-      Here, you are not alone.  
-      You are surrounded by others walking the same path,  
-      learning the same lessons, and preparing for the same arena.
-    </p>
-
-    <p>
-      Together, we rise.  
-      Together, we learn.  
-      Together, we conquer the Dragon.
-    </p>
-
-    <!-- GUILD FAMILY HALL LINK -->
-    <a class="link-button" onclick="go('/guild/pages/guild-fam.html')">Enter the Guild Family Hall</a>
-
-    <p style="margin-top: 15px; font-size: 1rem; opacity: 0.85;">
-      The Guild Family Hall is where members gather to talk, learn, grow,  
-      share insights, and communicate with each other.  
-      It is the heart of our community — the chamber of connection.
-    </p>
-
-    <!-- BACK LINK -->
-    <a class="back-link" onclick="go('/guild/pages/index.html')">← Back to Hall</a>
-
+      <p class="system-note" id="connectionStatus">
+        Connecting to Guild Hall (Cloudflare)…
+      </p>
+    </div>
   </div>
 
-  <!-- BACKGROUND FIX -->
   <script>
-    const bg = document.body.getAttribute("data-bg");
-    if (bg) {
-      document.body.style.backgroundImage = `url('/assets/image/${bg}')`;
-    }
-  </script>
+    // --- BASIC PROFILE + XP STATE (front-end) ---
+    const XP_PER_MESSAGE = 5;
 
-  <script>
-    function go(page) {
-      window.location.href = page;
-    }
-  </script>
+    let profile = {
+      id: null,
+      username: "@guild-warrior",
+      tagline: "Walking the path of the Dragon.",
+      avatarUrl: "/assets/image/default-avatar.png",
+      xp: 0,
+      level: 1
+    };
 
+    function loadProfileFromLocal() {
+      const stored = localStorage.getItem("guildProfile");
+      if (stored) {
+        try {
+          profile = JSON.parse(stored);
+        } catch (e) {}
+      }
+      applyProfileToUI();
+    }
+
+    function saveProfileLocal() {
+      localStorage.setItem("guildProfile", JSON.stringify(profile));
+    }
+
+    function applyProfileToUI() {
+      document.getElementById("profileName").innerText = profile.username || "@guild-warrior";
+      document.getElementById("profileTagline").innerText = profile.tagline || "Walking the path of the Dragon.";
+      document.getElementById("profileAvatar").src = profile.avatarUrl || "/assets/image/default-avatar.png";
+      document.getElementById("guildXP").innerText = profile.xp || 0;
+      document.getElementById("guildLevel").innerText = profile.level || 1;
+
+      const xpForNext = profile.level * 100;
+      const pct = Math.min(100, (profile.xp / xpForNext) * 100);
+      document.getElementById("xpBarFill").style.width = pct + "%";
+    }
+
+    function gainXP(amount) {
+      profile.xp = (profile.xp || 0) + amount;
+      const xpForNext = profile.level * 100;
+      while (profile.xp >= xpForNext) {
+        profile.xp -= xpForNext;
+        profile.level += 1;
+      }
+      applyProfileToUI();
+      saveProfileLocal();
+      syncProfileToCloud();
+    }
+
+    // --- CLOUDFLARE BACKEND HOOKS (replace URLs with your Workers routes) ---
+    const API_BASE = "https://your-domain.com/api"; // Cloudflare Worker base
+
+    async function fetchProfileFromCloud() {
+      try {
+        const res = await fetch(`${API_BASE}/profile`, { credentials: "include" });
+        if (!res.ok) return;
+        const data = await res.json();
+        profile = { ...profile, ...data };
+        applyProfileToUI();
+        saveProfileLocal();
+      } catch (e) {
+        // silent fail, local profile still works
+      }
+    }
+
+    async function syncProfileToCloud() {
+      try {
+        await fetch(`${API_BASE}/profile`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(profile)
+        });
+      } catch (e) {}
+    }
+
+    // --- REAL‑TIME CHAT VIA CLOUDFLARE (WebSocket Worker endpoint) ---
+    let ws;
+    const chatLog = document.getElementById("chatLog");
+    const statusEl = document.getElementById("connectionStatus");
+
+    function appendChatMessage(msg) {
+      const div = document.createElement("div");
+      div.className = "chat-message";
+      const meta = document.createElement("div");
+      meta.className = "chat-meta";
+      meta.textContent = `${msg.username} • ${new Date(msg.timestamp).toLocaleTimeString()}`;
+      const body = document.createElement("div");
+      body.textContent = msg.text;
+      div.appendChild(meta);
+      div.appendChild(body);
+      chatLog.appendChild(div);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    function connectWS() {
+      try {
+        ws = new WebSocket("wss://your-domain.com/ws/guild-hall"); // Cloudflare WS route
+        statusEl.textContent = "Connecting to Guild Hall…";
+
+        ws.onopen = () => {
+          statusEl.textContent = "Connected to Guild Hall.";
+          ws.send(JSON.stringify({ type: "hello", username: profile.username }));
+        };
+
+        ws.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (data.type === "chat") {
+              appendChatMessage(data);
+            } else if (data.type === "xp_award" && typeof data.amount === "number") {
+              gainXP(data.amount);
+            }
+          } catch (e) {}
+        };
+
+        ws.onclose = () => {
+          statusEl.textContent = "Disconnected. Reconnecting in 3s…";
+          setTimeout(connectWS, 3000);
+        };
+
+        ws.onerror = () => {
+          statusEl.textContent = "Connection error. Reconnecting in 3s…";
+          try { ws.close(); } catch (e) {}
+        };
+      } catch (e) {
+        statusEl.textContent = "Unable to connect to Guild Hall.";
+      }
+    }
+
+    function sendChat() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = {
+        type: "chat",
+        text,
+        username: profile.username || "@guild-warrior",
+        timestamp: Date.now()
+      };
+      appendChatMessage(msg); // optimistic
+      gainXP(XP_PER_MESSAGE);
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(msg));
+      }
+      input.value = "";
+    }
+
+    // --- INIT ---
+    loadProfileFromLocal();
+    fetchProfileFromCloud();
+    connectWS();
+  </script>
 </body>
 </html>
