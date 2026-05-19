@@ -13,6 +13,14 @@
   <link rel="stylesheet" href="/guild/assets/css/guild-hall.css">
 
   <style>
+    body {
+      background: url('/assets/image/the-guild.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* MAIN STACK */
     .vertical-stack {
       width: 90%;
       max-width: 500px;
@@ -20,6 +28,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      padding-bottom: 100px;
     }
 
     .guild-btn {
@@ -27,12 +36,26 @@
       padding: 14px 18px;
       border-radius: 10px;
       cursor: pointer;
+      background: rgba(0,0,0,0.55);
+      color: #f5f5f5;
+      border: 1px solid #444;
+      backdrop-filter: blur(4px);
+      transition: 0.2s;
+    }
+    .guild-btn:hover {
+      background: rgba(255,215,0,0.15);
+      border-color: gold;
     }
 
     .dropdown-panel {
       padding: 12px;
       font-size: 0.95rem;
       display: none;
+      background: rgba(0,0,0,0.55);
+      border-radius: 8px;
+      border: 1px solid #444;
+      color: #eee;
+      backdrop-filter: blur(4px);
     }
     .dropdown-panel.open { display: block; }
 
@@ -43,8 +66,77 @@
       margin-top: 10px;
       border-radius: 8px;
       cursor: pointer;
+      background: gold;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .enter-btn:hover {
+      background: #ffea70;
     }
 
+    /* FLOATING GUILD GUIDE BUTTON */
+    .guide-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: gold;
+      color: black;
+      font-size: 2rem;
+      padding: 12px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      z-index: 9999;
+      transition: 0.2s;
+    }
+    .guide-float:hover {
+      transform: scale(1.1);
+    }
+
+    /* GUIDE PANEL */
+    .guide-panel {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid gold;
+      border-radius: 12px;
+      padding: 15px;
+      color: #f5f5f5;
+      display: none;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 0.25s ease-out;
+      z-index: 9998;
+    }
+    .guide-panel.open {
+      display: block;
+    }
+
+    .guide-section {
+      margin-bottom: 15px;
+    }
+    .guide-section h3 {
+      margin: 0 0 6px;
+      color: gold;
+      font-size: 1.1rem;
+    }
+    .guide-section p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.35rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HUD */
     .guild-hud {
       position: fixed;
       top: 10px;
@@ -53,6 +145,18 @@
       transform-origin: top right;
       z-index: 999;
       text-align: right;
+      color: white;
+    }
+
+    /* NAV */
+    .guild-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: rgba(0,0,0,0.65);
+      border-bottom: 1px solid #444;
+      backdrop-filter: blur(4px);
     }
 
     .guild-logo-title img {
@@ -62,17 +166,39 @@
       border-radius: 6px;
     }
 
+    .guild-title {
+      font-size: 1.6rem;
+      color: gold;
+      font-weight: bold;
+    }
+
+    .guild-nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid #555;
+      border-radius: 6px;
+      color: #eee;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .nav-btn:hover {
+      background: rgba(255,215,0,0.2);
+      border-color: gold;
+    }
+
     @media (max-width: 480px) {
-      .guild-title { font-size: 1.4rem; }
-      .nav-btn { padding: 8px 10px; font-size: 0.85rem; }
+      .guild-title { font-size: 1.3rem; }
+      .nav-btn { padding: 6px 8px; font-size: 0.8rem; }
     }
   </style>
 </head>
 
-<body style="
-  background: url('/assets/image/the-guild.png') no-repeat center center fixed;
-  background-size: cover;
-">
+<body>
 
   <!-- HUD -->
   <div class="guild-hud">
@@ -93,32 +219,15 @@
       <button class="nav-btn" onclick="go('/guild/pages/training/golden-rules.html')">Golden Rules</button>
       <button class="nav-btn" onclick="go('/guild/pages/training/guild-discipline.html')">Guild Discipline</button>
       <button class="nav-btn" onclick="go('/guild/pages/training/glossary.html')">Glossary</button>
-
-      <div class="nav-dropdown">
-        <button class="nav-btn formula-btn">Golden Formula ▾</button>
-        <div class="nav-dropdown-content">
-          <button onclick="go('/guild/pages/golden-formula.html')">View Formula</button>
-          <button onclick="go('/guild/pages/training/training-hall.html')">Formula Training</button>
-        </div>
-      </div>
     </nav>
   </header>
-
-  <!-- DECOR -->
-  <div class="fog-layer"></div>
-  <div class="pillar pillar-left"></div>
-  <div class="pillar pillar-right"></div>
-
-  <div class="gold-scroll open">
-    <h1 class="scroll-title">THE GUILD HALL</h1>
-  </div>
 
   <!-- MAIN MENU -->
   <div class="vertical-stack">
 
     <!-- Inside the Guild -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
-      🛡️ Inside the Guild <span class="arrow">›</span>
+      🛡️ Inside the Guild
     </div>
     <div id="drop1" class="dropdown-panel">
       <p>
@@ -130,7 +239,7 @@
 
     <!-- Training Hall -->
     <div class="guild-btn" onclick="toggleDrop('drop2')">
-      ⚔️ Training Hall <span class="arrow">›</span>
+      ⚔️ Training Hall
     </div>
     <div id="drop2" class="dropdown-panel">
       <p>
@@ -143,7 +252,7 @@
 
     <!-- Guild Family -->
     <div class="guild-btn" onclick="toggleDrop('drop3')">
-      🏛️ Guild Family <span class="arrow">›</span>
+      🏛️ Guild Family
     </div>
     <div id="drop3" class="dropdown-panel">
       <p>
@@ -155,7 +264,7 @@
 
     <!-- Guild Live Arena -->
     <div class="guild-btn" onclick="toggleDrop('dropLive')">
-      📡 Guild Live Arena <span class="arrow">›</span>
+      📡 Guild Live Arena
     </div>
     <div id="dropLive" class="dropdown-panel">
       <p>
@@ -167,7 +276,7 @@
 
     <!-- Options Trading Simulator -->
     <div class="guild-btn" onclick="toggleDrop('dropOptions')">
-      📈 Options Trading Simulator <span class="arrow">›</span>
+      📈 Options Trading Simulator
     </div>
     <div id="dropOptions" class="dropdown-panel">
       <p>
@@ -179,7 +288,7 @@
 
     <!-- Guild Market Terminal -->
     <div class="guild-btn" onclick="toggleDrop('dropDashboard')">
-      🧭 Guild Market Terminal <span class="arrow">›</span>
+      🧭 Guild Market Terminal
     </div>
     <div id="dropDashboard" class="dropdown-panel">
       <p>
@@ -189,29 +298,57 @@
       <button class="enter-btn" onclick="go('/guild/pages/dashboard/pages/dashboard.html')">ENTER</button>
     </div>
 
-    <!-- Guild Hall Instructions -->
-    <div class="guild-btn" onclick="toggleDrop('dropGuide')">
-      📜 Guild Hall Guide <span class="arrow">›</span>
+  </div>
+
+  <!-- FLOATING GUILD GUIDE -->
+  <div class="guide-float" onclick="toggleGuide()">📘</div>
+
+  <!-- GUIDE PANEL -->
+  <div id="guidePanel" class="guide-panel">
+
+    <div class="guide-section">
+      <h3>📜 What is the Guild?</h3>
+      <p>
+        A discipline‑first brotherhood.  
+        A place where traders sharpen their edge, build mastery, and grow together.
+      </p>
     </div>
-    <div id="dropGuide" class="dropdown-panel">
-      <p>
-        **What this hall is:**  
-        Your central hub — the place you return to when you need direction, clarity, or purpose.
-      </p>
 
+    <div class="guide-section">
+      <h3>🛡️ Your Identity</h3>
       <p>
-        **Where to start:**  
-        Begin in <strong>Inside the Guild</strong> to understand your identity.  
-        Then move to the <strong>Training Hall</strong> to build your skills.  
-        Visit the <strong>Live Arena</strong> to see the real‑time battlefield.  
-        Use the <strong>Market Terminal</strong> to navigate the markets with precision.
+        You are not a gambler.  
+        You are not chasing luck.  
+        You are a **Guild Trader** — a strategist, a tactician, a disciplined operator.
       </p>
+    </div>
 
+    <div class="guide-section">
+      <h3>⚔️ Your Mission</h3>
       <p>
-        **Your mission:**  
         Build discipline.  
         Build mastery.  
         Build yourself into someone the Guild would be proud of.
+      </p>
+    </div>
+
+    <div class="guide-section">
+      <h3>🧭 Where to Begin</h3>
+      <p>
+        Start in **Inside the Guild** to understand your creed.  
+        Then train in the **Training Hall**.  
+        Watch the battlefield in the **Live Arena**.  
+        Navigate markets with the **Market Terminal**.
+      </p>
+    </div>
+
+    <div class="guide-section">
+      <h3>🔥 The Guild Way</h3>
+      <p>
+        No ego.  
+        No tilt.  
+        No shortcuts.  
+        Only discipline, repetition, and growth.
       </p>
     </div>
 
@@ -221,8 +358,13 @@
     function toggleDrop(id) {
       document.getElementById(id).classList.toggle("open");
     }
+
     function go(page) {
       window.location.href = page;
+    }
+
+    function toggleGuide() {
+      document.getElementById("guidePanel").classList.toggle("open");
     }
   </script>
 
