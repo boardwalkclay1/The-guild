@@ -13,14 +13,7 @@ html, body {
   height: 100%;
   font-family: "Marcellus SC", serif;
   color: #D4AF37;
-  background: #000;
-}
-
-/* Background from data-bg */
-body {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent; /* FIX: do NOT override background image */
 }
 
 /* ===========================
