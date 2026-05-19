@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trading Notes & Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1>Trading Notes Command Center</h1>
+      <div class="header-date">
+        <span id="currentDate"></span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- DASHBOARD -->
+      <section class="panel" id="dashboardPanel">
+        <h2>Dashboard</h2>
+        <div class="dashboard-section">
+          <h3>Today’s Focus</h3>
+          <ul id="todayNotesList" class="note-list"></ul>
+        </div>
+        <div class="dashboard-section">
+          <h3>Yesterday’s Carry‑Over</h3>
+          <ul id="yesterdayNotesList" class="note-list"></ul>
+        </div>
+        <div class="dashboard-section">
+          <h3>Upcoming Alerts</h3>
+          <ul id="alertsList" class="note-list"></ul>
+        </div>
+      </section>
+
+      <!-- DAILY NOTES -->
+      <section class="panel" id="notesPanel">
+        <h2>Daily Notes</h2>
+        <form id="noteForm" class="note-form">
+          <div class="form-row">
+            <label for="noteDate">Date</label>
+            <input type="date" id="noteDate" required />
+          </div>
+
+          <div class="form-row">
+            <label for="ticker">Ticker(s)</label>
+            <input type="text" id="ticker" placeholder="e.g. SPY, AAPL" />
+          </div>
+
+          <div class="form-row">
+            <label for="noteText">Notes</label>
+            <textarea id="noteText" rows="5" placeholder="Plan, levels, thesis, risk, emotions..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="pinToDashboard">
+              <input type="checkbox" id="pinToDashboard" />
+              Pin this note to dashboard
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label for="saveDay">
+              <input type="checkbox" id="saveDay" />
+              Always save this day (even if week is deleted)
+            </label>
+          </div>
+
+          <fieldset class="form-row">
+            <legend>Reminder (time‑based)</legend>
+            <div class="form-row-inline">
+              <label for="reminderTime">Remind at</label>
+              <input type="time" id="reminderTime" />
+            </div>
+            <div class="form-row-inline">
+              <label for="reminderMessage">Message</label>
+              <input type="text" id="reminderMessage" placeholder="e.g. Check SPY 520C near VWAP" />
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn-primary">Save Note</button>
+        </form>
+
+        <h3>All Notes for Selected Date</h3>
+        <ul id="selectedDateNotesList" class="note-list"></ul>
+      </section>
+
+      <!-- CHART MARKUP -->
+      <section class="panel" id="chartPanel">
+        <h2>Chart Markup</h2>
+        <div class="form-row">
+          <label for="chartTicker">Ticker</label>
+          <input type="text" id="chartTicker" placeholder="e.g. SPY" />
+        </div>
+        <canvas id="chartCanvas" width="500" height="300"></canvas>
+        <div class="chart-controls">
+          <button id="clearChart" class="btn-secondary">Clear</button>
+          <button id="saveChart" class="btn-primary">Save Chart Snapshot</button>
+        </div>
+
+        <h3>Saved Charts</h3>
+        <div id="savedChartsContainer" class="saved-charts"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
