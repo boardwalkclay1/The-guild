@@ -35,7 +35,7 @@ async function getEarningsDate(symbol) {
 }
 
 // -------------------------------
-// Load Top 5 Gainers
+// Load Top 5 Gainers (Yahoo Finance)
 // -------------------------------
 async function loadGainers() {
   const container = document.getElementById("gainersList");
@@ -44,60 +44,29 @@ async function loadGainers() {
   container.innerHTML = `<div class="loading">Loading gainers...</div>`;
 
   try {
-    const url = "https://scanner.tradingview.com/america/scan";
+    const url =
+      "https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?count=200&scrIds=day_gainers";
 
-    const body = {
-      symbols: { tickers: [] },
-      columns: [
-        "logoid",
-        "name",
-        "close",
-        "change",
-        "change_percent",
-        "high",
-        "low",
-        "volume"
-      ],
-      filter: [
-        { left: "change_percent", operation: "ne", right: null }
-      ],
-      options: {
-        lang: "en",
-        range: [0, 200],
-        sort: {
-          sortBy: "change_percent",
-          sortOrder: "desc"
-        }
-      }
-    };
-
-    const res = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(body)
-    });
-
+    const res = await fetch(url);
     const json = await res.json();
 
-    if (!json.data) {
-      container.innerHTML = `<div class="error">No data returned.</div>`;
-      return;
-    }
+    const results = json.finance.result[0].quotes;
 
     // Filter to your universe
-    const filtered = json.data.filter(r => GUILD_UNIVERSE.includes(r.s));
+    const filtered = results.filter(q => GUILD_UNIVERSE.includes(q.symbol));
 
-    // Top 5 gainers
+    // Top 5
     const top5 = filtered.slice(0, 5);
 
     container.innerHTML = "";
 
     for (const item of top5) {
-      const symbol = item.s;
-      const price = item.d[2];
-      const pct = item.d[4];
-      const high = item.d[5];
-      const low = item.d[6];
-      const volume = item.d[7];
+      const symbol = item.symbol;
+      const price = item.regularMarketPrice;
+      const pct = item.regularMarketChangePercent;
+      const high = item.regularMarketDayHigh;
+      const low = item.regularMarketDayLow;
+      const volume = item.regularMarketVolume;
 
       const earnings = await getEarningsDate(symbol);
 
