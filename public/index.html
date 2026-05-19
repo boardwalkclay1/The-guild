@@ -13,33 +13,42 @@
   <link rel="stylesheet" href="/assets/css/index.css">
 
   <style>
-    /* FIX THE BACKGROUND — keep position, extend height */
+    /* FULL IMAGE — NEVER CUT OFF */
     body {
-      background:url('/assets/image/guild-win.jpg') center top no-repeat fixed;
-      background-size: 100% auto; /* keeps width perfect, extends height */
-      margin:0;
-      padding:0;
+      background: url('/assets/image/guild-win.jpg') top center no-repeat fixed;
+      background-size: cover; /* FIX: ensures full image always visible */
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
     }
 
-    /* Add bottom fade so the image looks naturally longer */
+    /* SMOOTH BOTTOM FADE */
     body::after {
-      content:"";
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      height:300px; /* extend more or less if needed */
-      background:linear-gradient(to bottom, transparent, #000);
-      pointer-events:none;
-      z-index:-1;
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 350px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* Black transparent block behind quick links */
+    /* ENSURE CONTENT FLOATS ABOVE FADE */
+    nav, header, section {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* BLACK TRANSPARENT BLOCK BEHIND QUICK LINKS */
     .quick-links {
-      background: rgba(0,0,0,0.65);
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+      background: rgba(0,0,0,0.55);
+      padding: 22px;
+      border-radius: 14px;
+      margin-top: 40px;
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
@@ -72,16 +81,13 @@
     </p>
   </section>
 
-  <!-- BLACK TRANSPARENT BLOCK ADDED HERE -->
   <section class="quick-links">
     <button class="login-btn" onclick="go('/pages/colosseum.html')">🏛️ The Colosseum</button>
     <button class="login-btn" onclick="go('/pages/guild-entry.html')">🜁 Inner Hall</button>
     <button class="login-btn" onclick="go('/pages/second-thoughts.html')">✨ Why Join the Guild</button>
 
-    <!-- MARKET TERMINAL BUTTON (KEEP THIS) -->
     <button class="login-btn" onclick="go('/market/index.html')">📈 Guild Market Terminal</button>
 
-    <!-- LEGAL BUTTONS -->
     <button class="login-btn" onclick="go('/guild/pages/arena/guild-live-terms-of-service.html')">📜 Terms of Service</button>
     <button class="login-btn" onclick="go('/guild/pages/arena/guild-live-privacy-agreement.html')">🔒 Privacy Policy</button>
   </section>
