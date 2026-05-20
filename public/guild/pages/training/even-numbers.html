@@ -32,6 +32,81 @@
       z-index: -1;
     }
 
+    .page-shell {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .explain-shell {
+      background: rgba(0,0,0,0.85);
+      border-radius: 18px;
+      border: 2px solid #D4AF37;
+      padding: 24px 20px 26px;
+      box-shadow: 0 0 25px rgba(212,175,55,0.4);
+      margin-bottom: 26px;
+      text-align: left;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .explain-sub {
+      font-size: 0.95rem;
+      opacity: 0.95;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .explain-section-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      color: #FDE68A;
+    }
+
+    .explain-text {
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      color: #F9F5D7;
+      margin: 4px 0;
+    }
+
+    .explain-bullet {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+      margin-left: 14px;
+      color: #F9F5D7;
+    }
+
+    .sim-launch-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 24px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      background: #D4AF37;
+      color: #000;
+      transition: 0.2s ease;
+      text-align: center;
+    }
+
+    .sim-launch-btn:hover {
+      background: #8B6B2C;
+      color: #fff;
+    }
+
     .sim-shell {
       max-width: 800px;
       margin: 0 auto;
@@ -40,17 +115,19 @@
       border: 2px solid #D4AF37;
       padding: 24px;
       box-shadow: 0 0 25px rgba(212,175,55,0.4);
+      margin-top: 26px;
+      display: none; /* hidden until user chooses to start */
     }
 
-    h1 {
+    .sim-title {
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
     }
 
     .sim-sub {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       opacity: 0.9;
       margin-bottom: 20px;
     }
@@ -153,46 +230,98 @@
 </head>
 
 <body class="fade-in">
-
-  <div class="sim-shell">
-    <h1>Even Number Strike</h1>
-    <div class="sim-sub">
-      Enter at <strong>$10.00</strong> as price falls from <strong>$10.20</strong>.  
-      Exit at <strong>$10.50</strong> after the bounce.  
-      You have a 20 second window at the top.
-    </div>
-
-    <div class="price-row">
-      <div class="price-box">
-        <div class="price-label">Current Price</div>
-        <div class="price-value" id="priceDisplay">$10.20</div>
+  <div class="page-shell">
+    <div class="explain-shell">
+      <h1>Even Numbers in the Market</h1>
+      <div class="explain-sub">
+        The Guild treats even numbers as <strong>visible psychological levels</strong> — places where the whole world is watching.
       </div>
 
-      <div class="price-box">
-        <div class="price-label">Phase</div>
-        <div class="price-value" id="phaseDisplay">Waiting for Entry</div>
+      <div class="explain-section-title">Why Even Numbers Matter</div>
+      <p class="explain-text">
+        Price is not just math — it’s human behavior. Traders, algorithms, funds, and retail all tend to cluster orders
+        around clean, simple levels: <strong>$10, $20, $50, $100</strong>. These are easy to see, easy to remember, and
+        easy to talk about.
+      </p>
+      <p class="explain-text">
+        Because of that, even numbers often become <strong>natural magnets and walls</strong>:
+      </p>
+      <p class="explain-bullet">• Price will often <strong>gravitate</strong> toward an even number.</p>
+      <p class="explain-bullet">• Once there, it may <strong>stall, bounce, or reject</strong> from that level.</p>
+      <p class="explain-bullet">• Large orders, stop losses, and take profits are frequently stacked there.</p>
+
+      <div class="explain-section-title">Most of Your Trades Will Come From Them</div>
+      <p class="explain-text">
+        As you grow in the Guild, you’ll notice a pattern: <strong>most of your best trades</strong> will start at or
+        around an even number. Not because of magic — but because that’s where <strong>liquidity, attention, and emotion</strong> pile up.
+      </p>
+      <p class="explain-text">
+        When you combine even numbers with:
+      </p>
+      <p class="explain-bullet">• Support and resistance</p>
+      <p class="explain-bullet">• Candlestick signals</p>
+      <p class="explain-bullet">• Volume and context</p>
+      <p class="explain-text">
+        …you get <strong>high‑probability strike zones</strong> that you can see even without a full chart.
+      </p>
+
+      <div class="explain-section-title">Signals You Can See Without a Chart</div>
+      <p class="explain-text">
+        If you know a stock is near <strong>$10, $20, or $50</strong>, you already know something important:
+        the next battle is likely to happen there. You don’t need ten indicators — you just need to know
+        <strong>where the crowd is waiting</strong>.
+      </p>
+      <p class="explain-text">
+        The Even Number Strike Simulator below is designed to train your eye and your timing around these levels,
+        so that when price tags an even number, you’re not guessing — you’re executing.
+      </p>
+
+      <button class="sim-launch-btn" id="launchSimBtn">
+        Start Even Number Strike Simulator
+      </button>
+    </div>
+
+    <!-- SIMULATOR (HIDDEN UNTIL LAUNCHED) -->
+    <div class="sim-shell" id="simShell">
+      <div class="sim-title">Even Number Strike Simulator</div>
+      <div class="sim-sub">
+        Enter at <strong>$10.00</strong> as price falls from <strong>$10.20</strong>.  
+        Exit at <strong>$10.50</strong> after the bounce.  
+        You have a 20 second window at the top.
       </div>
 
-      <div class="price-box">
-        <div class="price-label">Timer</div>
-        <div class="price-value" id="timerDisplay">--</div>
+      <div class="price-row">
+        <div class="price-box">
+          <div class="price-label">Current Price</div>
+          <div class="price-value" id="priceDisplay">$10.20</div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-label">Phase</div>
+          <div class="price-value" id="phaseDisplay">Waiting for Entry</div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-label">Timer</div>
+          <div class="price-value" id="timerDisplay">--</div>
+        </div>
       </div>
+
+      <div class="status" id="statusText">
+        Wait for price to touch <strong>$10.00</strong> on the way down, then hit ENTER.
+      </div>
+
+      <div class="btn-row">
+        <button class="sim-btn" id="enterBtn" disabled>Enter at $10.00</button>
+        <button class="sim-btn" id="exitBtn" disabled>Exit at $10.50</button>
+        <button class="sim-btn" id="restartBtn">Restart</button>
+      </div>
+
+      <div class="xp-banner" id="xpBanner"></div>
     </div>
 
-    <div class="status" id="statusText">
-      Wait for price to touch <strong>$10.00</strong> on the way down, then hit ENTER.
-    </div>
-
-    <div class="btn-row">
-      <button class="sim-btn" id="enterBtn" disabled>Enter at $10.00</button>
-      <button class="sim-btn" id="exitBtn" disabled>Exit at $10.50</button>
-      <button class="sim-btn" id="restartBtn">Restart</button>
-    </div>
-
-    <div class="xp-banner" id="xpBanner"></div>
+    <a class="back-link" href="/guild/pages/training/even-numbers.html">← Back to Even Numbers</a>
   </div>
-
-  <a class="back-link" href="/guild/pages/even-numbers.html">← Back to Even Numbers</a>
 
   <!-- XP + BADGES -->
   <script src="/guild/xp/xp.js"></script>
@@ -201,5 +330,14 @@
   <!-- SIM LOGIC -->
   <script src="/guild/training/js/even-number-sim.js"></script>
 
+  <script>
+    const launchBtn = document.getElementById('launchSimBtn');
+    const simShell = document.getElementById('simShell');
+
+    launchBtn.addEventListener('click', () => {
+      simShell.style.display = 'block';
+      simShell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
 </body>
 </html>
