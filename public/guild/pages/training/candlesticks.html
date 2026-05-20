@@ -109,6 +109,13 @@
       color: gold;
       text-align: center;
     }
+    .page-intro p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      line-height: 1.5rem;
+      color: #e5e5e5;
+      text-align: center;
+    }
 
     .section-label {
       margin-top: 26px;
@@ -162,7 +169,7 @@
     .candle-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.25s ease-out;
+      transition: max-height 0.25s ease-out, padding-bottom 0.25s ease-out;
       padding: 0 12px;
     }
     .candle-card.open .candle-body {
@@ -172,8 +179,11 @@
       padding-top: 6px;
       border-top: 1px solid rgba(255,255,255,0.08);
       font-size: 0.9rem;
-      line-height: 1.45rem;
+      line-height: 1.5rem;
       color: #e5e5e5;
+    }
+    .candle-body-inner p {
+      margin: 6px 0;
     }
 
     .candle-image {
@@ -225,7 +235,6 @@
 </head>
 
 <body>
-
   <div class="bg-layer"></div>
   <div class="bg-overlay"></div>
   <div class="bg-noise"></div>
@@ -249,7 +258,7 @@
     <div class="page-intro">
       <h1>🕯️ Candlestick Mastery</h1>
       <p>The Guild reads candles like language. Every wick, every body, every gap is a sentence in the story of price.</p>
-      <p>Below are the core formations you must know — not as trivia, but as signals on the battlefield.</p>
+      <p>These are not trivia patterns — they are decision tools. Each one tells you who is winning the battle: buyers or sellers.</p>
     </div>
 
     <div class="section-label">Core Single Candles</div>
@@ -268,10 +277,12 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p><strong>Structure:</strong> Small body near the top, long lower wick.</p>
-          <p><strong>Story:</strong> Sellers pushed down, buyers slammed price back up.</p>
+          <p><strong>Structure:</strong> Small body near the top with a long lower wick and little to no upper wick.</p>
+          <p><strong>Story:</strong> Sellers drove price down hard, but buyers stepped in and forced price back near the highs of the candle.  
+          That shift from heavy selling to strong buying is what makes the hammer a powerful bullish signal.</p>
+          <p><strong>Where it matters most:</strong> At or near a support level, after a down move. A hammer in the middle of nowhere is just noise — a hammer at a key level is intent.</p>
           <img src="/public/guild/pages/dashboard/img/hammer.png" class="candle-image" alt="Hammer Example">
-          <div class="callout">Guild Note: A hammer at support is a battle cry.</div>
+          <div class="callout">Guild Note: A hammer at daily support is the market whispering, “Enough selling.”</div>
         </div>
       </div>
     </div>
@@ -283,17 +294,19 @@
           <div class="candle-emoji">🌠</div>
           <div>
             <div class="candle-name">Shooting Star</div>
-            <div class="candle-tag">Bearish reversal • Buyers exhausted</div>
+            <div class="candle-tag">Bearish reversal • Buyers exhausted at the top</div>
           </div>
         </div>
         <div class="candle-arrow">›</div>
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p><strong>Structure:</strong> Small body at bottom, long upper wick.</p>
-          <p><strong>Story:</strong> Buyers tried to break out — sellers crushed them.</p>
+          <p><strong>Structure:</strong> Small body near the bottom with a long upper wick and little to no lower wick.</p>
+          <p><strong>Story:</strong> Buyers pushed price up aggressively, but sellers slammed it back down before the candle closed.  
+          That failed push higher shows exhaustion from buyers and aggression from sellers.</p>
+          <p><strong>Where it matters most:</strong> At or near resistance, especially after a strong run up. A shooting star at a major level is often the first sign that the party is over.</p>
           <img src="/public/guild/pages/dashboard/img/shootin-star.png" class="candle-image" alt="Shooting Star Example">
-          <div class="callout">Guild Note: A shooting star at resistance is a warning flare.</div>
+          <div class="callout">Guild Note: A shooting star at a key level is a flare in the sky — pay attention.</div>
         </div>
       </div>
     </div>
@@ -312,10 +325,12 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p><strong>Structure:</strong> Open ≈ Close, long wicks.</p>
-          <p><strong>Story:</strong> Neither side could dominate.</p>
+          <p><strong>Structure:</strong> Open and close are nearly the same, with wicks above and/or below.</p>
+          <p><strong>Story:</strong> Neither buyers nor sellers could take control. Price moved, but it ended right back where it started.  
+          This is the market pausing, thinking, and waiting for the next push.</p>
+          <p><strong>Where it matters most:</strong> After a strong move up or down, a doji can signal that momentum is slowing and a reversal or consolidation may be near.</p>
           <img src="/public/guild/pages/dashboard/img/doji.png" class="candle-image" alt="Doji Example">
-          <div class="callout">Guild Note: A doji is a question. The next candle is the answer.</div>
+          <div class="callout">Guild Note: A doji is a question mark. The next candle is the answer.</div>
         </div>
       </div>
     </div>
@@ -327,17 +342,18 @@
           <div class="candle-emoji">🚀</div>
           <div>
             <div class="candle-name">Marubozu</div>
-            <div class="candle-tag">Full conviction • Trend strength</div>
+            <div class="candle-tag">Full conviction • Pure momentum</div>
           </div>
         </div>
         <div class="candle-arrow">›</div>
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p><strong>Structure:</strong> Full body, no wicks.</p>
-          <p><strong>Story:</strong> One side dominated from open to close.</p>
+          <p><strong>Structure:</strong> Full body with almost no wicks — price opened at one end and closed at the other.</p>
+          <p><strong>Story:</strong> One side dominated from start to finish. A bullish marubozu shows relentless buying; a bearish marubozu shows relentless selling.</p>
+          <p><strong>Where it matters most:</strong> As a continuation candle in a strong trend, or as a breakout candle through a key level.</p>
           <img src="/public/guild/pages/dashboard/img/marubozu.png" class="candle-image" alt="Marubozu Example">
-          <div class="callout">Guild Note: Marubozu candles are momentum flags.</div>
+          <div class="callout">Guild Note: Marubozu candles are momentum flags — they tell you who is charging.</div>
         </div>
       </div>
     </div>
@@ -358,9 +374,12 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p>Green candle fully engulfs prior red candle.</p>
+          <p><strong>Structure:</strong> A small red candle followed by a large green candle that completely engulfs the prior body.</p>
+          <p><strong>Story:</strong> Sellers were in control, then buyers stepped in with enough force to erase the prior candle and close above its high.  
+          That shift in control is what makes this pattern a strong bullish reversal signal.</p>
+          <p><strong>Where it matters most:</strong> At support or after a downtrend, especially when volume increases on the engulfing candle.</p>
           <img src="/public/guild/pages/dashboard/img/bull-engulf.png" class="candle-image" alt="Bullish Engulfing Example">
-          <div class="callout">Guild Note: A power shift — respect it.</div>
+          <div class="callout">Guild Note: A bullish engulfing at a key level is the market saying, “We’re done going down.”</div>
         </div>
       </div>
     </div>
@@ -379,9 +398,12 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p>Red candle fully engulfs prior green candle.</p>
+          <p><strong>Structure:</strong> A small green candle followed by a large red candle that completely engulfs the prior body.</p>
+          <p><strong>Story:</strong> Buyers were in control, then sellers hit the market hard enough to wipe out the prior candle and close below its low.  
+          That is a clear sign that control has shifted from buyers to sellers.</p>
+          <p><strong>Where it matters most:</strong> At resistance or after an extended move up, especially when volume spikes on the engulfing candle.</p>
           <img src="/public/guild/pages/dashboard/img/bear-engulf.png" class="candle-image" alt="Bearish Engulfing Example">
-          <div class="callout">Guild Note: A ceiling forming — tighten risk.</div>
+          <div class="callout">Guild Note: A bearish engulfing at the top is the market slamming the door shut.</div>
         </div>
       </div>
     </div>
@@ -400,9 +422,59 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <p>Three‑candle bullish reversal pattern.</p>
+          <p><strong>Structure:</strong> Three candles:  
+          1) A strong red candle,  
+          2) A small candle (often a doji or small body) that gaps down,  
+          3) A strong green candle that closes into or above the first candle’s body.</p>
+          <p><strong>Story:</strong> Sellers were in full control, then momentum stalled, then buyers took over with strength.  
+          It’s the story of a downtrend losing steam and a new uptrend beginning.</p>
+          <p><strong>Where it matters most:</strong> At major support zones, especially on higher timeframes.</p>
           <img src="/public/guild/pages/dashboard/img/mornung-star.png" class="candle-image" alt="Morning Star Example">
-          <div class="callout">Guild Note: A classic bottoming pattern — powerful at support.</div>
+          <div class="callout">Guild Note: The Morning Star is the Guild’s “dawn” pattern — darkness, pause, then light.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVERSALS / BREAKOUTS (OPTIONAL VISUALS) -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">♻️</div>
+          <div>
+            <div class="candle-name">Reversal Zones</div>
+            <div class="candle-tag">Where patterns actually matter</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p>Patterns are powerful, but only when they form in the right place: support, resistance, trendlines, and key levels.  
+          This visual shows how multiple reversal patterns cluster around important zones.</p>
+          <img src="/public/guild/pages/dashboard/img/reversals.png" class="candle-image" alt="Reversal Zones Example">
+          <div class="callout">Guild Note: The pattern is the language. The level is the context. You need both.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">📈</div>
+          <div>
+            <div class="candle-name">Breakouts</div>
+            <div class="candle-tag">When candles punch through levels</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p>Breakouts happen when price finally pushes through a level that has been holding it back.  
+          Strong candles (often marubozu‑like) with volume are the Guild’s preferred breakout signals.</p>
+          <p>Look for clean closes above resistance or below support, not just quick wicks.</p>
+          <img src="/public/guild/pages/dashboard/img/breakout.png" class="candle-image" alt="Breakout Example">
+          <div class="callout">Guild Note: A real breakout is conviction, not a random spike. Watch the candle body and the volume.</div>
         </div>
       </div>
     </div>
@@ -410,5 +482,46 @@
     <!-- LIVE AMAZON CHART -->
     <div class="live-chart-box">
       <h2>📡 Live Amazon Chart</h2>
-      <p>This is LIVE — watch candlestick patterns form in real time.</p>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark
+      <p>This is LIVE — watch candlestick patterns form in real time and match what you see here with the patterns above.</p>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark"></iframe>
+    </div>
+
+  </div>
+
+  <script>
+    function go(path) {
+      window.location.href = path;
+    }
+
+    // Dropdown logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('[data-card]');
+
+      cards.forEach(card => {
+        const header = card.querySelector('.candle-header');
+        const body = card.querySelector('.candle-body');
+
+        header.addEventListener('click', () => {
+          const isOpen = card.classList.contains('open');
+
+          // Close all others
+          cards.forEach(c => {
+            c.classList.remove('open');
+            const b = c.querySelector('.candle-body');
+            if (b) b.style.maxHeight = null;
+          });
+
+          // Toggle this one
+          if (!isOpen) {
+            card.classList.add('open');
+            body.style.maxHeight = body.scrollHeight + 'px';
+          } else {
+            card.classList.remove('open');
+            body.style.maxHeight = null;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
