@@ -1,22 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Guild Signals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Guild Signals — Market Alerts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="/guild/assets/css/guild-dashboard.css">
-  <script src="js/guild-signals.js" defer></script>
+
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      font-family: "Marcellus SC", serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: #D4AF37;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    .signal-card {
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #D4AF37;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(212,175,55,0.25);
+    }
+
+    .signal-card h2 {
+      margin: 0 0 10px;
+      color: #D4AF37;
+    }
+
+    .signal-dir-up { color: #4ade80; }
+    .signal-dir-down { color: #f87171; }
+
+    .guild-lean {
+      font-weight: bold;
+      color: #D4AF37;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
-<body class="fullpage-body">
+<body>
 
-  <div class="fullpage-header">
-    <h1>Guild Signals</h1>
-    <button onclick="history.back()" class="back-btn">← Back</button>
-  </div>
+<h1>Guild Signals</h1>
+<p class="sub">Scanning all sectors for sharp moves…</p>
 
-  <div id="signalContainer" class="fullpage-container"></div>
+<div id="signalsContainer"></div>
+
+<script src="/guild/pages/dashboard/signals/signals-engine.js" defer></script>
 
 </body>
 </html>
