@@ -16,6 +16,106 @@
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
 
   <style>
+    body {
+      background-image: url('/assets/image/Arcadium.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* Fog + pillars stay behind everything */
+    .fog-layer, .pillar { z-index: 1; }
+
+    /* BURGER MENU */
+    .guild-burger {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.65);
+      border: 2px solid #D4AF37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+      backdrop-filter: blur(4px);
+    }
+
+    .guild-burger img {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* BURGER MENU PANEL */
+    .burger-panel {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0,0,0,0.92);
+      border-right: 2px solid #D4AF37;
+      padding: 20px;
+      transition: 0.35s ease;
+      z-index: 9998;
+      backdrop-filter: blur(6px);
+    }
+
+    .burger-panel.open {
+      left: 0;
+    }
+
+    .burger-panel h2 {
+      font-family: "Uncial Antiqua";
+      color: #D4AF37;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .burger-panel a {
+      display: block;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #D4AF37;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #D4AF37;
+      text-align: center;
+      background: rgba(212,175,55,0.12);
+      cursor: pointer;
+    }
+
+    .burger-panel a:hover {
+      background: rgba(212,175,55,0.25);
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      background: rgba(0,0,0,0.65);
+      border: 2px solid #D4AF37;
+      border-radius: 8px;
+      color: #D4AF37;
+      font-family: "Marcellus SC";
+      cursor: pointer;
+      z-index: 9999;
+      backdrop-filter: blur(4px);
+    }
+
+    .back-btn:hover {
+      background: rgba(212,175,55,0.25);
+    }
+
+    /* GOLDEN FORMULA TOP BAR FIX */
     @media (max-width: 600px) {
       .gf-topbar { margin-top: 80px !important; }
       .gold-scroll.open { margin-top: 60px !important; }
@@ -23,11 +123,30 @@
   </style>
 </head>
 
-<body data-bg="/assets/image/Arcadium.jpg">
+<body>
 
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
+
+  <!-- BURGER BUTTON -->
+  <div class="guild-burger" onclick="toggleBurger()">
+    <img src="/assets/image/the-guild.png">
+  </div>
+
+  <!-- BURGER MENU PANEL -->
+  <div id="burgerPanel" class="burger-panel">
+    <h2>THE GUILD</h2>
+    <a onclick="go('/index.html')">🏛 Home</a>
+    <a onclick="go('/guild/pages/training/golden-rules.html')">📜 Golden Rules</a>
+    <a onclick="go('/guild/pages/training/guild-discipline.html')">⚔️ Discipline</a>
+    <a onclick="go('/guild/pages/guild-fam.html')">👥 Guild Family Hall</a>
+    <a onclick="go('/market/index.html')">📈 Market Terminal</a>
+    <a onclick="go('/pages/colosseum.html')">🏟 The Colosseum</a>
+  </div>
+
+  <!-- BACK BUTTON -->
+  <div class="back-btn" onclick="history.back()">← Back</div>
 
   <!-- GOLDEN FORMULA TOP BAR -->
   <div class="gf-topbar" style="margin-top: 40px;">
@@ -57,141 +176,85 @@
   <!-- TRAINING MODULES -->
   <div style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
 
-    <!-- CANDLESTICKS (NEW) -->
-    <div class="guild-btn" onclick="toggleDrop('dropCandles')">
-      🕯️ Candlesticks  
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('dropCandles')">🕯️ Candlesticks <span class="arrow">›</span></div>
     <div id="dropCandles" class="dropdown-panel">
       <p>The foundation of all chart reading — learn every candle, every signal, every story.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/candlesticks.html')">ENTER</button>
     </div>
 
-    <!-- CHART PATTERNS -->
-    <div class="guild-btn" onclick="toggleDrop('drop1')">
-      📈 Chart Patterns
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop1')">📈 Chart Patterns <span class="arrow">›</span></div>
     <div id="drop1" class="dropdown-panel">
       <p>Learn the major patterns that reveal momentum, reversals, and continuation setups.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/chart-patterns.html')">ENTER</button>
     </div>
 
-    <!-- MOVING AVERAGES -->
-    <div class="guild-btn" onclick="toggleDrop('drop2')">
-      📊 Moving Averages
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop2')">📊 Moving Averages <span class="arrow">›</span></div>
     <div id="drop2" class="dropdown-panel">
       <p>Understand the 9, 20, 50, and 200 — the backbone of trend reading.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/moving-averages.html')">ENTER</button>
     </div>
 
-    <!-- SUPPORT & RESISTANCE -->
-    <div class="guild-btn" onclick="toggleDrop('drop3')">
-      🧱 Support & Resistance
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop3')">🧱 Support & Resistance <span class="arrow">›</span></div>
     <div id="drop3" class="dropdown-panel">
       <p>Master the levels where battles are won and lost.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/support-and-resistance.html')">ENTER</button>
     </div>
 
-    <!-- LOOK LEFT -->
-    <div class="guild-btn" onclick="toggleDrop('drop4')">
-      👁️ Look Left
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop4')">👁️ Look Left <span class="arrow">›</span></div>
     <div id="drop4" class="dropdown-panel">
       <p>The ancient rule of chart reading — the past reveals the future.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/look-left.html')">ENTER</button>
     </div>
 
-    <!-- EVEN NUMBERS -->
-    <div class="guild-btn" onclick="toggleDrop('drop5')">
-      🔢 Even Numbers
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop5')">🔢 Even Numbers <span class="arrow">›</span></div>
     <div id="drop5" class="dropdown-panel">
       <p>Why whole numbers act like magnets and walls in price action.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/even-numbers.html')">ENTER</button>
     </div>
 
-    <!-- MON-FRI -->
-    <div class="guild-btn" onclick="toggleDrop('drop6')">
-      📅 Mon–Fri Behavior
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop6')">📅 Mon–Fri Behavior <span class="arrow">›</span></div>
     <div id="drop6" class="dropdown-panel">
       <p>Each day of the week has its own rhythm. Learn the flow.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/mon-fri.html')">ENTER</button>
     </div>
 
-    <!-- NOT GUESSING -->
-    <div class="guild-btn" onclick="toggleDrop('drop7')">
-      🎯 Not Guessing
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop7')">🎯 Not Guessing <span class="arrow">›</span></div>
     <div id="drop7" class="dropdown-panel">
       <p>The Guild’s core philosophy — precision over prediction.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/not-guessing.html')">ENTER</button>
     </div>
 
-    <!-- OPTIONS CHAIN -->
-    <div class="guild-btn" onclick="toggleDrop('drop8')">
-      🧩 Options Chain
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop8')">🧩 Options Chain <span class="arrow">›</span></div>
     <div id="drop8" class="dropdown-panel">
       <p>Learn how to read the chain like a Guildmaster.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/options-chain.html')">ENTER</button>
     </div>
 
-    <!-- OPTIONS APPROVAL -->
-    <div class="guild-btn" onclick="toggleDrop('drop9')">
-      📝 Options Approval
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop9')">📝 Options Approval <span class="arrow">›</span></div>
     <div id="drop9" class="dropdown-panel">
       <p>Get approved for options trading the right way.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/options-approval.html')">ENTER</button>
     </div>
 
-    <!-- ACCESSING OPTIONS -->
-    <div class="guild-btn" onclick="toggleDrop('drop10')">
-      🔐 Accessing Options
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop10')">🔐 Accessing Options <span class="arrow">›</span></div>
     <div id="drop10" class="dropdown-panel">
       <p>How to unlock options trading inside your broker.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/accessing-options.html')">ENTER</button>
     </div>
 
-    <!-- BROKERS -->
-    <div class="guild-btn" onclick="toggleDrop('drop11')">
-      🏦 Brokers
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop11')">🏦 Brokers <span class="arrow">›</span></div>
     <div id="drop11" class="dropdown-panel">
       <p>Choosing the right broker for your journey.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/brokers.html')">ENTER</button>
     </div>
 
-    <!-- BROKER ACCESS SIMULATOR -->
-    <div class="guild-btn" onclick="toggleDrop('drop12')">
-      🎮 Broker Access Simulator
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop12')">🎮 Broker Access Simulator <span class="arrow">›</span></div>
     <div id="drop12" class="dropdown-panel">
       <p>Practice navigating broker menus before risking real money.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/broker-access-simulator.html')">ENTER</button>
     </div>
 
-    <!-- DEATH STRIKE -->
-    <div class="guild-btn" onclick="toggleDrop('drop13')">
-      💀 Death Strike
-      <span class="arrow">›</span>
-    </div>
+    <div class="guild-btn" onclick="toggleDrop('drop13')">💀 Death Strike <span class="arrow">›</span></div>
     <div id="drop13" class="dropdown-panel">
       <p>The advanced strike technique formerly known as the Million Dollar Move.</p>
       <button class="enter-btn" onclick="go('/guild/pages/training/death-strike.html')">ENTER</button>
@@ -220,6 +283,10 @@
     document.querySelector('.gf-btn').addEventListener('click', () => {
       document.querySelector('.gf-dropdown').classList.toggle('open');
     });
+
+    function toggleBurger() {
+      document.getElementById("burgerPanel").classList.toggle("open");
+    }
   </script>
 
 </body>
