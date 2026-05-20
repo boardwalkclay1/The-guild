@@ -22,7 +22,6 @@
       overflow-x: hidden;
     }
 
-    /* Cinematic background */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -46,7 +45,6 @@
       pointer-events: none;
     }
 
-    /* Top bar */
     .candles-topbar {
       display: flex;
       justify-content: space-between;
@@ -91,7 +89,6 @@
       background: rgba(255,215,0,0.15);
     }
 
-    /* Main layout */
     .candles-container {
       max-width: 900px;
       margin: 40px auto 80px;
@@ -112,13 +109,6 @@
       color: gold;
       text-align: center;
     }
-    .page-intro p {
-      margin: 4px 0;
-      font-size: 0.95rem;
-      line-height: 1.5rem;
-      color: #e5e5e5;
-      text-align: center;
-    }
 
     .section-label {
       margin-top: 26px;
@@ -129,7 +119,6 @@
       color: rgba(255,215,0,0.8);
     }
 
-    /* Dropdown cards */
     .candle-card {
       background: rgba(0,0,0,0.78);
       border-radius: 10px;
@@ -186,9 +175,6 @@
       line-height: 1.45rem;
       color: #e5e5e5;
     }
-    .candle-body-inner p {
-      margin: 6px 0;
-    }
 
     .candle-image {
       width: 100%;
@@ -208,7 +194,6 @@
       color: #ccfbf1;
     }
 
-    /* Amazon live chart */
     .live-chart-box {
       margin-top: 40px;
       padding: 16px;
@@ -236,11 +221,11 @@
       border-radius: 10px;
       overflow: hidden;
     }
-
   </style>
 </head>
 
 <body>
+
   <div class="bg-layer"></div>
   <div class="bg-overlay"></div>
   <div class="bg-noise"></div>
@@ -285,7 +270,7 @@
         <div class="candle-body-inner">
           <p><strong>Structure:</strong> Small body near the top, long lower wick.</p>
           <p><strong>Story:</strong> Sellers pushed down, buyers slammed price back up.</p>
-          <img src="/assets/image/candles/hammer.jpg" class="candle-image" alt="Hammer Example">
+          <img src="/public/guild/pages/dashboard/img/hammer.png" class="candle-image" alt="Hammer Example">
           <div class="callout">Guild Note: A hammer at support is a battle cry.</div>
         </div>
       </div>
@@ -307,7 +292,7 @@
         <div class="candle-body-inner">
           <p><strong>Structure:</strong> Small body at bottom, long upper wick.</p>
           <p><strong>Story:</strong> Buyers tried to break out — sellers crushed them.</p>
-          <img src="/assets/image/candles/shooting-star.jpg" class="candle-image" alt="Shooting Star Example">
+          <img src="/public/guild/pages/dashboard/img/shootin-star.png" class="candle-image" alt="Shooting Star Example">
           <div class="callout">Guild Note: A shooting star at resistance is a warning flare.</div>
         </div>
       </div>
@@ -329,7 +314,7 @@
         <div class="candle-body-inner">
           <p><strong>Structure:</strong> Open ≈ Close, long wicks.</p>
           <p><strong>Story:</strong> Neither side could dominate.</p>
-          <img src="/assets/image/candles/doji.jpg" class="candle-image" alt="Doji Example">
+          <img src="/public/guild/pages/dashboard/img/doji.png" class="candle-image" alt="Doji Example">
           <div class="callout">Guild Note: A doji is a question. The next candle is the answer.</div>
         </div>
       </div>
@@ -351,7 +336,7 @@
         <div class="candle-body-inner">
           <p><strong>Structure:</strong> Full body, no wicks.</p>
           <p><strong>Story:</strong> One side dominated from open to close.</p>
-          <img src="/assets/image/candles/marubozu.jpg" class="candle-image" alt="Marubozu Example">
+          <img src="/public/guild/pages/dashboard/img/marubozu.png" class="candle-image" alt="Marubozu Example">
           <div class="callout">Guild Note: Marubozu candles are momentum flags.</div>
         </div>
       </div>
@@ -374,7 +359,7 @@
       <div class="candle-body">
         <div class="candle-body-inner">
           <p>Green candle fully engulfs prior red candle.</p>
-          <img src="/assets/image/candles/bullish-engulfing.jpg" class="candle-image" alt="Bullish Engulfing Example">
+          <img src="/public/guild/pages/dashboard/img/bull-engulf.png" class="candle-image" alt="Bullish Engulfing Example">
           <div class="callout">Guild Note: A power shift — respect it.</div>
         </div>
       </div>
@@ -395,7 +380,7 @@
       <div class="candle-body">
         <div class="candle-body-inner">
           <p>Red candle fully engulfs prior green candle.</p>
-          <img src="/assets/image/candles/bearish-engulfing.jpg" class="candle-image" alt="Bearish Engulfing Example">
+          <img src="/public/guild/pages/dashboard/img/bear-engulf.png" class="candle-image" alt="Bearish Engulfing Example">
           <div class="callout">Guild Note: A ceiling forming — tighten risk.</div>
         </div>
       </div>
@@ -415,4 +400,15 @@
       </div>
       <div class="candle-body">
         <div class="candle-body-inner">
-          <
+          <p>Three‑candle bullish reversal pattern.</p>
+          <img src="/public/guild/pages/dashboard/img/mornung-star.png" class="candle-image" alt="Morning Star Example">
+          <div class="callout">Guild Note: A classic bottoming pattern — powerful at support.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE AMAZON CHART -->
+    <div class="live-chart-box">
+      <h2>📡 Live Amazon Chart</h2>
+      <p>This is LIVE — watch candlestick patterns form in real time.</p>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=AMZN&interval=15&theme=dark
