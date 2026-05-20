@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CANDLESTICKS – GUILD TRAINING</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="/assets/image/the-guild.png" />
+  <link rel="apple-touch-icon" href="/assets/image/the-guild.png" />
+
+  <!-- FONTS + BASE CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      color: #f5f5f5;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    /* Cinematic background */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      background: url('/assets/image/candles-cinematic.jpg') center center / cover no-repeat fixed;
+      filter: brightness(0.35) saturate(1.2);
+      z-index: -3;
+    }
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,215,0,0.25), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(0,0,0,0.9), transparent 60%);
+      z-index: -2;
+    }
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Top bar */
+    .candles-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(20,20,20,0.8));
+      border-bottom: 1px solid rgba(255,215,0,0.25);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .candles-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Marcellus SC", serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: gold;
+    }
+    .candles-title img {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+    }
+    .candles-nav a {
+      cursor: pointer;
+      color: #f5f5f5;
+      font-size: 0.9rem;
+      margin-left: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.5);
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    .candles-nav a:hover {
+      border-color: gold;
+      background: rgba(255,215,0,0.15);
+    }
+
+    /* Main layout */
+    .candles-container {
+      max-width: 900px;
+      margin: 40px auto 80px;
+      padding: 0 16px 40px;
+    }
+
+    .page-intro {
+      background: rgba(0,0,0,0.7);
+      border-radius: 12px;
+      border: 1px solid rgba(255,215,0,0.35);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+    }
+    .page-intro h1 {
+      margin: 0 0 8px;
+      font-family: "Uncial Antiqua", serif;
+      font-size: 1.8rem;
+      color: gold;
+      text-align: center;
+    }
+    .page-intro p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      line-height: 1.5rem;
+      color: #e5e5e5;
+      text-align: center;
+    }
+
+    .section-label {
+      margin-top: 26px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,215,0,0.8);
+    }
+
+    /* Dropdown cards */
+    .candle-card {
+      background: rgba(0,0,0,0.78);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 10px;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+    }
+    .candle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+    .candle-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .candle-emoji {
+      font-size: 1.3rem;
+    }
+    .candle-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+    .candle-tag {
+      font-size: 0.75rem;
+      color: #a0aec0;
+    }
+    .candle-arrow {
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+    .candle-card.open .candle-arrow {
+      transform: rotate(90deg);
+    }
+
+    .candle-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+      padding: 0 12px;
+    }
+    .candle-card.open .candle-body {
+      padding-bottom: 10px;
+    }
+    .candle-body-inner {
+      padding-top: 6px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+      line-height: 1.45rem;
+      color: #e5e5e5;
+    }
+    .candle-body-inner p {
+      margin: 6px 0;
+    }
+    .candle-bullet {
+      font-size: 0.86rem;
+      margin-left: 10px;
+      color: #cbd5f5;
+    }
+
+    .callout {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(15,118,110,0.25);
+      border: 1px solid rgba(45,212,191,0.4);
+      font-size: 0.85rem;
+      color: #ccfbf1;
+    }
+
+    /* Cinematic image strip */
+    .image-strip {
+      margin-top: 30px;
+      padding: 14px;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
+      border-radius: 14px;
+      border: 1px solid rgba(255,215,0,0.35);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    }
+    .image-strip-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255,215,0,0.9);
+      margin-bottom: 10px;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .image-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: #000;
+    }
+    .image-card img {
+      width: 100%;
+      display: block;
+      filter: saturate(1.2) contrast(1.1);
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .image-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    .image-card:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.4) contrast(1.15);
+    }
+    .image-label {
+      position: absolute;
+      left: 8px;
+      bottom: 6px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      font-size: 0.75rem;
+      color: #fef9c3;
+      border: 1px solid rgba(250,204,21,0.7);
+    }
+
+    @media (max-width: 600px) {
+      .candles-title span { font-size: 1.05rem; }
+      .candles-nav a { font-size: 0.8rem; padding: 5px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-layer"></div>
+  <div class="bg-overlay"></div>
+  <div class="bg-noise"></div>
+
+  <!-- TOP BAR -->
+  <div class="candles-topbar">
+    <div class="candles-title">
+      <img src="/assets/image/the-guild.png" alt="Guild Logo">
+      <span>GUILD CANDLESTICKS</span>
+    </div>
+    <div class="candles-nav">
+      <a onclick="go('/guild/pages/training/training-hall.html')">🏛️ Training Hall</a>
+      <a onclick="go('/guild/pages/training/golden-rules.html')">📜 Rules</a>
+      <a onclick="go('/guild/pages/training/guild-discipline.html')">⚔️ Discipline</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="candles-container">
+
+    <div class="page-intro">
+      <h1>🕯️ Candlestick Mastery</h1>
+      <p>The Guild reads candles like language. Every wick, every body, every gap is a sentence in the story of price.</p>
+      <p>Below are the core formations you must know — not as trivia, but as signals on the battlefield.</p>
+    </div>
+
+    <div class="section-label">Core Single Candles</div>
+
+    <!-- Hammer -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🔨</div>
+          <div>
+            <div class="candle-name">Hammer</div>
+            <div class="candle-tag">Bullish reversal • Buyers reclaim control after a selloff</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Small body near the top, long lower wick, little to no upper wick.</p>
+          <p><strong>Story:</strong> Sellers pushed price down, but buyers stepped in aggressively and closed price near the highs.</p>
+          <p class="candle-bullet">• Most powerful after a clear downtrend into support.</p>
+          <p class="candle-bullet">• Confirmation comes from the next candle closing higher.</p>
+          <div class="callout">
+            Guild Note: A hammer at random means nothing. A hammer at a key level is a signal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shooting Star -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🌠</div>
+          <div>
+            <div class="candle-name">Shooting Star</div>
+            <div class="candle-tag">Bearish reversal • Buyers exhausted into resistance</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Small body near the bottom, long upper wick, little to no lower wick.</p>
+          <p><strong>Story:</strong> Buyers pushed price up, but sellers slammed it back down near the open.</p>
+          <p class="candle-bullet">• Most meaningful after a strong push into resistance or an extended uptrend.</p>
+          <p class="candle-bullet">• Confirmation is a strong red candle after the star.</p>
+          <div class="callout">
+            Guild Note: A shooting star at a daily level is a warning flare — respect it.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doji -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">⚖️</div>
+          <div>
+            <div class="candle-name">Doji</div>
+            <div class="candle-tag">Indecision • Balance between buyers and sellers</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Open and close are nearly the same, with wicks above and/or below.</p>
+          <p><strong>Story:</strong> Neither side could dominate. Momentum is pausing, not yet choosing a direction.</p>
+          <p class="candle-bullet">• At the top of a trend, it can signal a potential reversal.</p>
+          <p class="candle-bullet">• In the middle of a range, it often just confirms chop.</p>
+          <div class="callout">
+            Guild Note: A doji is a question mark. The next candle is the answer.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marubozu -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🚀</div>
+          <div>
+            <div class="candle-name">Marubozu</div>
+            <div class="candle-tag">Full conviction • Strong trend candle</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Long body with almost no wicks — either full green or full red.</p>
+          <p><strong>Story:</strong> One side dominated from open to close with little opposition.</p>
+          <p class="candle-bullet">• A green marubozu in a breakout can signal strong continuation.</p>
+          <p class="candle-bullet">• A red marubozu through support can mark a breakdown.</p>
+          <div class="callout">
+            Guild Note: Marubozu candles are momentum flags — trade with them, not against them.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Multi‑Candle Formations</div>
+
+    <!-- Bullish Engulfing -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🟩🟥</div>
+          <div>
+            <div class="candle-name">Bullish Engulfing</div>
+            <div class="candle-tag">Bullish reversal • Buyers overpower prior selling</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> A small red candle followed by a larger green candle that fully engulfs the prior body.</p>
+          <p><strong>Story:</strong> Sellers had control, but buyers stepped in and erased the prior candle’s move.</p>
+          <p class="candle-bullet">• Best after a downtrend into support.</p>
+          <p class="candle-bullet">• Volume confirmation strengthens the signal.</p>
+          <div class="callout">
+            Guild Note: Engulfing patterns are power shifts. Respect the side that just took control.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bearish Engulfing -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🟥🟩</div>
+          <div>
+            <div class="candle-name">Bearish Engulfing</div>
+            <div class="candle-tag">Bearish reversal • Sellers overpower prior buying</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> A small green candle followed by a larger red candle that fully engulfs the prior body.</p>
+          <p><strong>Story:</strong> Buyers tried to push higher, but sellers crushed the move and took control.</p>
+          <p class="candle-bullet">• Best after an extended push into resistance.</p>
+          <p class="candle-bullet">• Often marks the start of a pullback or reversal.</p>
+          <div class="callout">
+            Guild Note: At daily resistance, a bearish engulfing is a serious warning.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Morning Star -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🌅</div>
+          <div>
+            <div class="candle-name">Morning Star</div>
+            <div class="candle-tag">Bullish reversal • Night gives way to dawn</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Strong red candle, then a small indecision candle, then a strong green candle.</p>
+          <p><strong>Story:</strong> Selling pressure weakens, balance appears, then buyers reclaim control.</p>
+          <p class="candle-bullet">• Most powerful at major support after a downtrend.</p>
+          <p class="candle-bullet">• The third candle closing above the midpoint of the first is key.</p>
+          <div class="callout">
+            Guild Note: The Morning Star is a classic bottoming pattern — but only at real levels.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evening Star -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🌇</div>
+          <div>
+            <div class="candle-name">Evening Star</div>
+            <div class="candle-tag">Bearish reversal • Day fades into night</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Strong green candle, then a small indecision candle, then a strong red candle.</p>
+          <p><strong>Story:</strong> Buying pressure stalls, balance appears, then sellers take over.</p>
+          <p class="candle-bullet">• Most powerful at major resistance after an uptrend.</p>
+          <p class="candle-bullet">• The third candle closing below the midpoint of the first confirms weakness.</p>
+          <div class="callout">
+            Guild Note: The Evening Star is a ceiling pattern — treat it as a warning to tighten risk.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinning Top -->
+    <div class="candle-card" data-card>
+      <div class="candle-header">
+        <div class="candle-main">
+          <div class="candle-emoji">🌀</div>
+          <div>
+            <div class="candle-name">Spinning Top</div>
+            <div class="candle-tag">Low conviction • Short‑term indecision</div>
+          </div>
+        </div>
+        <div class="candle-arrow">›</div>
+      </div>
+      <div class="candle-body">
+        <div class="candle-body-inner">
+          <p><strong>Structure:</strong> Small body with upper and lower wicks of similar length.</p>
+          <p><strong>Story:</strong> Price moved both ways, but closed near the middle — no side truly won.</p>
+          <p class="candle-bullet">• In trends, can signal a pause before continuation or reversal.</p>
+          <p class="candle-bullet">• Needs context — level, volume, and next candle.</p>
+          <div class="callout">
+            Guild Note: Spinning tops are whispers, not shouts. Listen, but don’t overreact.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE STRIP -->
+    <div class="image-strip">
+      <div class="image-strip-title">Cinematic Examples (Insert Your Images Here)</div>
+      <div class="image-grid">
+        <div class="image-card">
+          <img src="/assets/image/candles/hammer-example.jpg" alt="Hammer Example">
+          <div class="image-label">Hammer at Support</div>
+        </div>
+        <div class="image-card">
+          <img src="/assets/image/candles/shooting-star-example.jpg" alt="Shooting Star Example">
+          <div class="image-label">Shooting Star at Resistance</div>
+        </div>
+        <div class="image-card">
+          <img src="/assets/image/candles/engulfing-example.jpg" alt="Engulfing Example">
+          <div class="image-label">Bullish Engulfing Reversal</div>
+        </div>
+        <div class="image-card">
+          <img src="/assets/image/candles/morning-star-example.jpg" alt="Morning Star Example">
+          <div class="image-label">Morning Star at Daily Level</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function go(page) {
+      window.location.href = page;
+    }
+
+    // Dropdown logic
+    document.querySelectorAll('[data-card]').forEach(card => {
+      const header = card.querySelector('.candle-header');
+      const body = card.querySelector('.candle-body');
+
+      header.addEventListener('click', () => {
+        const isOpen = card.classList.contains('open');
+        if (isOpen) {
+          body.style.maxHeight = '0px';
+          card.classList.remove('open');
+        } else {
+          body.style.maxHeight = body.scrollHeight + 'px';
+          card.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
