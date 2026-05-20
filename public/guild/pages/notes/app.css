@@ -1,13 +1,32 @@
+/* ============================
+   GLOBAL GUILD MEDIEVAL THEME
+   ============================ */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #050816;
-  color: #f5f5f5;
+  font-family: "Marcellus SC", system-ui, serif;
+  background: #05040a;
+  color: #f8e7c6;
+  letter-spacing: 0.03em;
 }
+
+/* Subtle golden ember glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255,215,100,0.08), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================
+   HEADER
+   ============================ */
 
 #app {
   min-height: 100vh;
@@ -17,22 +36,29 @@ body {
 
 .app-header {
   padding: 1rem 2rem;
-  background: #0b1020;
-  border-bottom: 1px solid #22263a;
+  background: linear-gradient(to right, #0b0a10, #1a141f);
+  border-bottom: 2px solid rgba(212,175,55,0.45);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  color: #f5d98c;
+  text-shadow: 0 0 6px rgba(255,215,100,0.4);
 }
 
 .header-date {
   font-size: 0.9rem;
-  color: #a0a4c0;
+  color: #cbb88a;
 }
+
+/* ============================
+   MAIN GRID
+   ============================ */
 
 .app-main {
   display: grid;
@@ -47,20 +73,32 @@ body {
   }
 }
 
+/* ============================
+   PANELS (Guild Scroll Panels)
+   ============================ */
+
 .panel {
-  background: #0f172a;
-  border-radius: 8px;
+  background: linear-gradient(180deg, #0f0c14, #1a1622);
+  border-radius: 10px;
   padding: 1rem;
-  border: 1px solid #1f2937;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(212,175,55,0.35);
+  box-shadow:
+    0 0 12px rgba(212,175,55,0.15),
+    inset 0 0 12px rgba(0,0,0,0.6);
 }
 
 .panel h2 {
   margin-top: 0;
-  font-size: 1.1rem;
-  border-bottom: 1px solid #1f2937;
+  font-size: 1.15rem;
+  color: #f5d98c;
+  border-bottom: 1px solid rgba(212,175,55,0.25);
   padding-bottom: 0.5rem;
+  text-shadow: 0 0 4px rgba(255,215,100,0.4);
 }
+
+/* ============================
+   DASHBOARD SECTIONS
+   ============================ */
 
 .dashboard-section + .dashboard-section {
   margin-top: 1rem;
@@ -69,8 +107,13 @@ body {
 .dashboard-section h3 {
   margin: 0 0 0.5rem;
   font-size: 0.95rem;
-  color: #cbd5f5;
+  color: #e8d7a8;
+  text-shadow: 0 0 3px rgba(255,215,100,0.3);
 }
+
+/* ============================
+   FORM ELEMENTS
+   ============================ */
 
 .note-form {
   display: flex;
@@ -93,19 +136,20 @@ body {
 
 label {
   font-size: 0.85rem;
-  color: #cbd5f5;
+  color: #e8d7a8;
 }
 
 input[type="text"],
 input[type="date"],
 input[type="time"],
 textarea {
-  background: #020617;
-  border: 1px solid #1f2937;
-  border-radius: 4px;
-  padding: 0.4rem 0.5rem;
-  color: #e5e7eb;
+  background: #0a0a12;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+  color: #f8e7c6;
   font-size: 0.9rem;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
 }
 
 textarea {
@@ -117,43 +161,56 @@ input[type="checkbox"] {
 }
 
 fieldset {
-  border: 1px solid #1f2937;
-  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 6px;
   padding: 0.5rem;
 }
 
 legend {
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: #d8c48a;
 }
+
+/* ============================
+   BUTTONS
+   ============================ */
 
 .btn-primary,
 .btn-secondary {
   border: none;
-  border-radius: 4px;
-  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
   font-size: 0.9rem;
   cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: 0.2s;
 }
 
 .btn-primary {
-  background: #2563eb;
-  color: #f9fafb;
+  background: linear-gradient(180deg, #d4af37, #b38f2a);
+  color: #000;
+  box-shadow: 0 0 10px rgba(212,175,55,0.4);
 }
 
 .btn-primary:hover {
-  background: #1d4ed8;
+  background: #f5d98c;
+  color: #000;
 }
 
 .btn-secondary {
-  background: #111827;
-  color: #e5e7eb;
-  border: 1px solid #374151;
+  background: #1a1622;
+  color: #f8e7c6;
+  border: 1px solid rgba(212,175,55,0.35);
 }
 
 .btn-secondary:hover {
-  background: #020617;
+  background: #0f0c14;
 }
+
+/* ============================
+   NOTES LIST
+   ============================ */
 
 .note-list {
   list-style: none;
@@ -161,13 +218,14 @@ legend {
   margin: 0;
   max-height: 220px;
   overflow-y: auto;
-  border: 1px solid #1f2937;
-  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 6px;
+  background: rgba(10,10,16,0.6);
 }
 
 .note-item {
-  padding: 0.4rem 0.5rem;
-  border-bottom: 1px solid #111827;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
   font-size: 0.85rem;
 }
 
@@ -179,32 +237,39 @@ legend {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: #d8c48a;
   margin-bottom: 0.2rem;
 }
 
 .note-item-ticker {
-  font-weight: 600;
-  color: #fbbf24;
+  font-weight: 700;
+  color: #f5d98c;
+  text-shadow: 0 0 4px rgba(255,215,100,0.4);
 }
 
 .note-item-body {
   white-space: pre-wrap;
+  color: #f8e7c6;
 }
 
 .note-item-tags {
   margin-top: 0.2rem;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #cbb88a;
 }
 
+/* ============================
+   CHART CANVAS
+   ============================ */
+
 #chartCanvas {
-  background: #020617;
-  border-radius: 4px;
-  border: 1px solid #1f2937;
+  background: #0a0a12;
+  border-radius: 6px;
+  border: 1px solid rgba(212,175,55,0.35);
   cursor: crosshair;
   display: block;
   margin-top: 0.5rem;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
 }
 
 .chart-controls {
@@ -213,18 +278,23 @@ legend {
   gap: 0.5rem;
 }
 
+/* ============================
+   SAVED CHARTS
+   ============================ */
+
 .saved-charts {
   margin-top: 0.5rem;
   max-height: 220px;
   overflow-y: auto;
-  border: 1px solid #1f2937;
-  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 6px;
   padding: 0.4rem;
+  background: rgba(10,10,16,0.6);
 }
 
 .saved-chart-item {
   margin-bottom: 0.5rem;
-  border-bottom: 1px solid #111827;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
   padding-bottom: 0.4rem;
 }
 
@@ -234,12 +304,13 @@ legend {
 
 .saved-chart-meta {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: #d8c48a;
   margin-bottom: 0.2rem;
 }
 
 .saved-chart-img {
   max-width: 100%;
-  border-radius: 4px;
-  border: 1px solid #1f2937;
+  border-radius: 6px;
+  border: 1px solid rgba(212,175,55,0.35);
+  box-shadow: 0 0 10px rgba(212,175,55,0.2);
 }
