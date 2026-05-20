@@ -16,27 +16,20 @@
   <link rel="stylesheet" href="/guild/assets/css/guild-style.css">
 
   <style>
-    /* ⭐ MOBILE FIXES — LOWER TOP BAR + TITLE */
     @media (max-width: 600px) {
-      .gf-topbar {
-        margin-top: 80px !important; /* was 40px */
-      }
-      .gold-scroll.open {
-        margin-top: 60px !important; /* lowers TRAINING HALL title */
-      }
+      .gf-topbar { margin-top: 80px !important; }
+      .gold-scroll.open { margin-top: 60px !important; }
     }
   </style>
 </head>
 
-<!-- ARCADIUM BACKGROUND -->
 <body data-bg="/assets/image/Arcadium.jpg">
 
-  <!-- CINEMATIC LAYERS -->
   <div class="fog-layer"></div>
   <div class="pillar pillar-left"></div>
   <div class="pillar pillar-right"></div>
 
-  <!-- GOLDEN FORMULA TOP BAR (LOWERED) -->
+  <!-- GOLDEN FORMULA TOP BAR -->
   <div class="gf-topbar" style="margin-top: 40px;">
     <button class="gf-btn gold-bar">☰ Golden Formula</button>
 
@@ -50,19 +43,29 @@
     </div>
   </div>
 
-  <!-- TOP NAV — RULES + DISCIPLINE ONLY -->
+  <!-- TOP NAV -->
   <div class="top-nav">
     <a onclick="go('/guild/pages/training/golden-rules.html')">📜 Golden Rules</a>
     <a onclick="go('/guild/pages/training/guild-discipline.html')">⚔️ Discipline</a>
   </div>
 
-  <!-- PAGE TITLE -->
+  <!-- TITLE -->
   <div class="gold-scroll open">
     <h1 class="scroll-title">TRAINING HALL</h1>
   </div>
 
   <!-- TRAINING MODULES -->
   <div style="margin-top: 200px; display: flex; flex-direction: column; gap: 20px;">
+
+    <!-- CANDLESTICKS (NEW) -->
+    <div class="guild-btn" onclick="toggleDrop('dropCandles')">
+      🕯️ Candlesticks  
+      <span class="arrow">›</span>
+    </div>
+    <div id="dropCandles" class="dropdown-panel">
+      <p>The foundation of all chart reading — learn every candle, every signal, every story.</p>
+      <button class="enter-btn" onclick="go('/guild/pages/training/candlesticks.html')">ENTER</button>
+    </div>
 
     <!-- CHART PATTERNS -->
     <div class="guild-btn" onclick="toggleDrop('drop1')">
@@ -196,16 +199,10 @@
 
   </div>
 
-  <!-- BACKGROUND FIX -->
   <script>
     const bg = document.body.getAttribute("data-bg");
-    if (bg) {
-      document.body.style.backgroundImage = `url("${bg}")`;
-    }
-  </script>
+    if (bg) document.body.style.backgroundImage = `url("${bg}")`;
 
-  <!-- DROPDOWN + NAV LOGIC -->
-  <script>
     function toggleDrop(id) {
       document.getElementById(id).classList.toggle("open");
     }
