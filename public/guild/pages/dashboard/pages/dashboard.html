@@ -160,12 +160,10 @@
 
 <body>
 
-  <a href="/guild/index.html" class="back-btn">← Back</a>
+  <a href="/guild/index.html" class="back-btn">← Back to Guild Hall</a>
 
   <div class="guild-nav">
     <div class="nav-left">
-      <a href="/guild/index.html">Home</a>
-      <a href="/guild/pages/dashboard/dashboard.html">Dashboard</a>
       <a href="/guild/pages/dashboard/pages/watchlist-full.html">Watchlist</a>
       <a href="/guild/pages/dashboard/pages/signals.html">Signals</a>
       <a href="/guild/pages/dashboard/pages/gainers.html">Gainers</a>
@@ -188,8 +186,8 @@
         <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=BTCUSD&interval=15&theme=dark"></iframe>
 
         <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('btc','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('btc','heatmap')">Heatmap</button>
+          <button class="info-btn" onclick="showInfo('btc','meaning')">What It Means</button>
+          <button class="info-btn" onclick="showInfo('btc','psychology')">Psychology</button>
         </div>
 
         <div class="live-helper">
@@ -205,8 +203,9 @@
         <iframe class="live-chart" src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=15&theme=dark"></iframe>
 
         <div class="dictator-actions">
-          <button class="info-btn" onclick="showInfo('spx','explanation')">Explanation</button>
-          <button class="info-btn" onclick="showInfo('spx','heatmap')">Heatmap</button>
+          <button class="info-btn" onclick="showInfo('spx','meaning')">What It Means</button>
+          <button class="info-btn" onclick="showInfo('spx','sectors')">Sectors</button>
+          <button class="info-btn" onclick="showInfo('spx','earnings')">Earnings</button>
         </div>
 
         <div class="live-helper">
@@ -234,25 +233,89 @@ function showInfo(asset, type) {
 
   panel.style.display = "block";
 
-  if (asset === "btc" && type === "explanation") {
-    title.textContent = "Bitcoin — Market Explanation";
+  /* -------------------------
+     BITCOIN EXPLANATIONS
+     ------------------------- */
+  if (asset === "btc" && type === "meaning") {
+    title.textContent = "What It Means When Bitcoin Moves";
     body.textContent =
-      "Bitcoin drives crypto sentiment.\n\n" +
-      "When BTC rises:\n• Risk-on increases\n• Altcoins strengthen\n• Liquidity expands\n\n" +
-      "When BTC falls:\n• Risk-off increases\n• Miners weaken\n• Volatility rises";
+      "Bitcoin is the emotional heartbeat of crypto.\n\n" +
+      "When Bitcoin is UP:\n" +
+      "• Traders feel confident\n" +
+      "• Altcoins usually rise\n" +
+      "• Risk appetite increases\n" +
+      "• Liquidity flows into crypto\n\n" +
+      "When Bitcoin is DOWN:\n" +
+      "• Fear increases\n" +
+      "• Altcoins bleed harder\n" +
+      "• Traders move to cash or stablecoins\n" +
+      "• Volatility spikes\n\n" +
+      "Bitcoin sets the tone. If BTC is strong, the crypto market breathes easier.";
   }
 
-  if (asset === "spx" && type === "explanation") {
-    title.textContent = "S&P 500 — Market Explanation";
+  if (asset === "btc" && type === "psychology") {
+    title.textContent = "Bitcoin Psychology (Super Simple)";
     body.textContent =
-      "The S&P 500 is the broad market barometer.\n\n" +
-      "When SPX rises:\n• Market strength\n• Institutions buying\n• Growth sectors benefit\n\n" +
-      "When SPX falls:\n• Defensive rotation\n• Fear increases\n• Liquidity drains";
+      "Bitcoin is treated like the 'leader' of crypto.\n\n" +
+      "• When BTC pumps → people feel FOMO\n" +
+      "• When BTC dumps → people panic\n" +
+      "• When BTC goes sideways → altcoins get attention\n\n" +
+      "Bitcoin's movement is less about math and more about crowd emotion.";
   }
 
-  if (type === "heatmap") {
-    title.textContent = "Heatmap (Coming Soon)";
-    body.textContent = "Sector heatmaps will appear here.";
+  /* -------------------------
+     S&P 500 EXPLANATIONS
+     ------------------------- */
+  if (asset === "spx" && type === "meaning") {
+    title.textContent = "What It Means When the S&P 500 Moves";
+    body.textContent =
+      "The S&P 500 (SPX) is the scoreboard of the entire U.S. stock market.\n\n" +
+      "When SPX is UP:\n" +
+      "• Investors feel confident\n" +
+      "• Growth stocks strengthen\n" +
+      "• Money flows into riskier assets\n" +
+      "• Market-wide buying pressure increases\n\n" +
+      "When SPX is DOWN:\n" +
+      "• Fear rises\n" +
+      "• Investors rotate into safer stocks\n" +
+      "• Volatility increases\n" +
+      "• Many stocks fall together\n\n" +
+      "SPX tells you the overall mood of the market.";
+  }
+
+  if (asset === "spx" && type === "sectors") {
+    title.textContent = "What Is a Sector? (Super Simple)";
+    body.textContent =
+      "A sector is a group of companies that do similar things.\n\n" +
+      "Examples:\n" +
+      "• Tech → AAPL, MSFT, NVDA\n" +
+      "• Energy → XOM, CVX\n" +
+      "• Financials → JPM, BAC\n" +
+      "• Healthcare → JNJ, UNH\n\n" +
+      "Why sectors matter:\n" +
+      "• Stocks inside a sector often move together\n" +
+      "• If tech is strong, many tech stocks rise\n" +
+      "• If energy is weak, most energy stocks fall\n\n" +
+      "Sectors help you understand *why* a stock is moving.";
+  }
+
+  if (asset === "spx" && type === "earnings") {
+    title.textContent = "What Are Earnings? How Do They Affect Stocks?";
+    body.textContent =
+      "Earnings = a company's report card.\n\n" +
+      "Every 3 months, companies report:\n" +
+      "• How much money they made\n" +
+      "• How much they spent\n" +
+      "• Their future expectations\n\n" +
+      "If earnings are GOOD:\n" +
+      "• Stock may jump\n" +
+      "• Investors feel confident\n" +
+      "• Analysts raise price targets\n\n" +
+      "If earnings are BAD:\n" +
+      "• Stock may drop\n" +
+      "• Investors lose confidence\n" +
+      "• Volume spikes as people react\n\n" +
+      "Earnings can move a stock more than any indicator.";
   }
 }
 </script>
