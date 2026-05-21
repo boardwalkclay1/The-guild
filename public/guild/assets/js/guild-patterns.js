@@ -108,7 +108,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish Reversal",
     trendContext: "After a downtrend",
-    image: "/guild/assets/image/patterns/triple-bottom.png",
+    image: "/guild/training/img/triple-bottom.png",
     tags: ["bullish", "reversal"],
     description: "Price holds three times at the same support level, showing strong demand and accumulation.",
     structureRules: [
