@@ -65,6 +65,38 @@
 
   </div>
 
+  <!-- LIVE CHART SECTION -->
+  <div class="divider"></div>
+
+  <section class="live-chart-section">
+    <h2 class="live-title">Live Chart – RIOT</h2>
+    <p class="live-sub">
+      This live chart is here so Guild members can practice identifying chart patterns in real time.
+    </p>
+
+    <!-- TRADINGVIEW WIDGET -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_riot"></div>
+    </div>
+
+    <script type="text/javascript">
+      new TradingView.widget({
+        "width": "100%",
+        "height": 500,
+        "symbol": "NASDAQ:RIOT",
+        "interval": "60",
+        "timezone": "Etc/UTC",
+        "theme": "dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#000000",
+        "enable_publishing": false,
+        "allow_symbol_change": true,
+        "container_id": "tradingview_riot"
+      });
+    </script>
+  </section>
+
   <!-- BACK LINK -->
   <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
 
