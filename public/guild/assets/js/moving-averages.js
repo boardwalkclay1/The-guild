@@ -107,8 +107,8 @@ expands on the move up.
     `,
     images: [
       {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
-        alt: "Golden Cross Schematic"
+        src: "/guild/training/img/golden-cross.png",
+        alt: "Golden Cross"
       }
     ],
     notes: [
@@ -129,8 +129,8 @@ it is more meaningful after a long uptrend, especially if volume expands on the 
     `,
     images: [
       {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Moving_average_example.svg/640px-Moving_average_example.svg.png",
-        alt: "Death Cross Schematic"
+        src: "/guild/training/img/death-cross.png",
+        alt: "Death Cross"
       }
     ],
     notes: [
