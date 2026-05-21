@@ -11,6 +11,12 @@
       "password": "option",
       "role": "guild_member",
       "created": "2026-04-18T00:00:00Z"
+    },
+    {
+      "email": "AntonioTrades",
+      "password": "YOUR_PASSWORD_HERE",
+      "role": "guild_member",
+      "created": "2026-04-18T00:00:00Z"
     }
   ]
 }
