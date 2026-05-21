@@ -151,7 +151,7 @@ traders are watching and reacting.
     `,
     images: [
       {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png",
+        src: "/guild/training/img/dynamic-s&p.png
         alt: "Dynamic Support/Resistance with MAs"
       }
     ],
