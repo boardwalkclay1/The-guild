@@ -81,7 +81,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bearish Reversal",
     trendContext: "After an uptrend",
-    image: "/guild/assets/image/patterns/triple-top.png",
+    image: "/guild/training/img/triple-top.png",
     tags: ["bearish", "reversal"],
     description: "Price fails three times at the same resistance level, showing strong selling pressure and distribution.",
     structureRules: [
@@ -161,7 +161,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bearish Reversal",
     trendContext: "After an uptrend",
-    image: "/guild/assets/image/patterns/head-shoulders.png",
+    image: "/guild/training/img/head-shoulders.png",
     tags: ["bearish", "reversal", "classic"],
     description: "A peak (left shoulder), a higher peak (head), and a lower peak (right shoulder) with a neckline. It signals distribution and trend reversal.",
     structureRules: [
@@ -188,7 +188,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish Reversal",
     trendContext: "After a downtrend",
-    image: "/guild/assets/image/patterns/inverse-head-shoulders.png",
+    image: "/guild/training/img/inverse-head-shoulder.png",
     tags: ["bullish", "reversal", "classic"],
     description: "Three lows: shoulder, deeper head, and higher shoulder, with a neckline above. It signals accumulation and trend reversal upward.",
     structureRules: [
@@ -215,7 +215,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bearish (often reversal or continuation)",
     trendContext: "After an uptrend or inside a move up",
-    image: "/guild/assets/image/patterns/rising-wedge.png",
+    image: "/guild/training/img/rising-wedge.png",
     tags: ["bearish", "wedge", "momentum-loss"],
     description: "Price makes higher highs and higher lows, but the range narrows and momentum fades. Often breaks down.",
     structureRules: [
@@ -242,7 +242,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish (often reversal or continuation)",
     trendContext: "After a downtrend or inside a move down",
-    image: "/guild/assets/image/patterns/falling-wedge.png",
+    image: "/guild/training/img/falling-wedge.png",
     tags: ["bullish", "wedge", "momentum-loss"],
     description: "Price makes lower highs and lower lows, but the range narrows and selling pressure fades. Often breaks upward.",
     structureRules: [
