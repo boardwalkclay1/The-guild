@@ -269,7 +269,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish Reversal",
     trendContext: "After a prolonged decline or base",
-    image: "/guild/assets/image/patterns/rounding-bottom.png",
+    image: "/guild/training/img/rounding-bottom.png",
     tags: ["bullish", "reversal", "accumulation"],
     description: "Price slowly transitions from downtrend to uptrend with a smooth, rounded bottom. It reflects quiet accumulation over time.",
     structureRules: [
@@ -295,7 +295,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bearish Reversal",
     trendContext: "After a prolonged advance",
-    image: "/guild/assets/image/patterns/rounding-top.png",
+    image: "/guild/training/img/rounding-top.png",
     tags: ["bearish", "reversal", "distribution"],
     description: "Price slowly transitions from uptrend to downtrend with a smooth, rounded top. It reflects quiet distribution over time.",
     structureRules: [
