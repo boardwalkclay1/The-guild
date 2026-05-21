@@ -135,7 +135,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish Continuation",
     trendContext: "In an uptrend or after a base",
-    image: "/guild/assets/image/patterns/cup-handle.png",
+    image: "/guild/training/img/cup-handle.png",
     tags: ["bullish", "continuation"],
     description: "Price forms a rounded bottom (cup) followed by a smaller pullback (handle). It signals reaccumulation before continuation higher.",
     structureRules: [
