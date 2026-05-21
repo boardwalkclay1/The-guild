@@ -27,7 +27,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bullish Reversal",
     trendContext: "After a downtrend",
-    image: "/guild/assets/image/patterns/double-bottom.png",
+    image: "/guild/training/img/double-bottom.png",
     tags: ["bullish", "reversal", "foundational"],
     description: "Price makes two similar lows with a bounce in between, forming a W shape. It signals sellers are exhausted and buyers are stepping in.",
     structureRules: [
@@ -54,7 +54,7 @@ const CORE_PATTERNS = [
     level: 1,
     category: "Bearish Reversal",
     trendContext: "After an uptrend",
-    image: "/guild/assets/image/patterns/double-top.png",
+    image: "/guild/training/img/double-top.png",
     tags: ["bearish", "reversal", "foundational"],
     description: "Price makes two similar highs with a drop in between, forming an M shape. It signals buyers are failing at the same level twice.",
     structureRules: [
