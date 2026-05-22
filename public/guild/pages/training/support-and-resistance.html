@@ -46,29 +46,48 @@
       100% { transform: translateY(25px); opacity: 0.45; }
     }
 
-    #sr-hints {
-      width: 100%;
-      padding: 12px 20px;
-      background: rgba(212,175,55,0.15);
-      border-bottom: 1px solid rgba(212,175,55,0.4);
-      text-align: center;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 30px;
+    .dropdown {
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      margin: 25px auto;
+      max-width: 800px;
+      overflow: hidden;
+      transition: 0.3s;
     }
 
-    h1 {
+    .dropdown-header {
+      padding: 18px;
+      cursor: pointer;
+      font-size: 1.2rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 20px;
-      font-size: 1.9rem;
+      letter-spacing: 0.12em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    p {
-      max-width: 750px;
-      margin: 0 auto 20px;
+    .dropdown-header:hover {
+      background: rgba(212,175,55,0.2);
+    }
+
+    .dropdown-content {
+      display: none;
+      padding: 20px;
       text-align: left;
-      font-size: 1rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .example-img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(212,175,55,0.4);
+      margin-top: 15px;
     }
 
     .divider {
@@ -79,217 +98,109 @@
       margin: 40px auto;
       opacity: 0.7;
     }
-
-    .section-title {
-      font-size: 1.4rem;
-      margin-top: 40px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .example-img {
-      max-width: 100%;
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-
-    .callout {
-      background: rgba(212,175,55,0.1);
-      border: 1px solid rgba(212,175,55,0.4);
-      padding: 15px;
-      border-radius: 10px;
-      margin: 25px auto;
-      max-width: 750px;
-      text-align: left;
-    }
-
-    .callout strong {
-      color: #fff;
-    }
-
-    .simulator-links {
-      margin-top: 40px;
-      display: grid;
-      gap: 15px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .sim-btn {
-      padding: 14px;
-      border-radius: 10px;
-      border: 2px solid #D4AF37;
-      background: rgba(0,0,0,0.7);
-      color: #D4AF37;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      transition: 0.25s;
-      display: block;
-    }
-
-    .sim-btn:hover {
-      background: rgba(212,175,55,0.25);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    #sr-quiz {
-      margin-top: 50px;
-      padding: 20px;
-      background: #111;
-      border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 12px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .quiz-question {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .quiz-option {
-      display: block;
-      margin: 8px 0;
-      padding: 10px;
-      border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .quiz-option:hover {
-      background: rgba(212,175,55,0.15);
-    }
-
-    #quiz-result {
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    a.back {
-      display: block;
-      margin-top: 40px;
-      color: #D4AF37;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-
-    a.back:hover { color: #fff; }
   </style>
 </head>
 
 <body class="fade-in">
 
-  <!-- HINT BAR -->
-  <div id="sr-hints"></div>
-
   <h1>Support & Resistance</h1>
 
   <p>
-    Support and resistance are the backbone of price movement.  
-    Support is where price tends to stop falling.  
-    Resistance is where price tends to stop rising.
-  </p>
-
-  <p>
-    These levels are where decisions are made — where buyers and sellers fight.  
-    Knowing these levels gives you a map of where price is likely to react.
+    These are the **battle lines** of the market ⚔️  
+    Where buyers defend… and where sellers strike.
   </p>
 
   <div class="divider"></div>
 
-  <!-- SUPPORT SECTION -->
-  <h2 class="section-title">Support</h2>
-
-  <p>
-    Support is a price level where buyers consistently step in.  
-    When price returns to support, you are watching a battle:  
-    <strong>Will buyers defend it again, or will sellers finally break through?</strong>
-  </p>
-
-  <!-- SCHEMATIC SUPPORT IMAGE -->
-  <img class="example-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Support_and_resistance.svg/640px-Support_and_resistance.svg.png"
-       alt="Support Schematic">
-
-  <!-- REAL SUPPORT IMAGE -->
-  <img class="example-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Candlestick_chart_scheme_03-en.svg/640px-Candlestick_chart_scheme_03-en.svg.png"
-       alt="Support Real Chart">
-
-  <div class="callout">
-    <strong>Guild Master Notes:</strong><br>
-    Support is strongest when:<br>
-    • It has been tested 2–4 times<br>
-    • Volume increases on bounces<br>
-    • The level aligns with a trendline or moving average<br>
-    • The market is in an uptrend or sideways phase
+  <!-- SUPPORT -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>🟦 Support</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        Support is the **floor** beneath price — the level where buyers step in with strength.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/s&r.png" />
+    </div>
   </div>
 
-  <div class="callout">
-    <strong>Common Mistakes:</strong><br>
-    • Treating support as a perfect line instead of a zone<br>
-    • Entering before confirmation<br>
-    • Ignoring volume<br>
-    • Buying support in a strong downtrend
+  <!-- RESISTANCE -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>🟥 Resistance</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        Resistance is the **ceiling** above price — the level where sellers push back with force.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/resistance.png" />
+    </div>
   </div>
 
-  <!-- RESISTANCE SECTION -->
-  <h2 class="section-title">Resistance</h2>
+  <!-- TRENDLINE SUPPORT -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>📈 Trendline Support</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        Trendline support shows buyers stepping in **higher each time**, forming an ascending base.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/trend-support.png" />
+    </div>
+  </div>
 
-  <p>
-    Resistance is where sellers consistently overpower buyers.  
-    When price approaches resistance, you are watching for:  
-    <strong>Rejection, reversal, or a powerful breakout.</strong>
-  </p>
+  <!-- LONGTERM RESISTANCE -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>🏛️ Long‑Term Resistance</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        Long‑term resistance is a **historic ceiling** — a level the market respects for months or years.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/longterm-resist.png" />
+    </div>
+  </div>
 
-  <!-- SCHEMATIC RESISTANCE IMAGE -->
-  <img class="example-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Support_and_resistance.svg/640px-Support_and_resistance.svg.png"
-       alt="Resistance Schematic">
+  <!-- WEDGE -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>🔻 Rising Wedge (S&P)</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        A rising wedge forms when support rises but resistance stays flat — pressure builds until it breaks.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/wedge-s&p.png" />
+    </div>
+  </div>
 
-  <!-- REAL RESISTANCE IMAGE -->
-  <img class="example-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Forex_chart_example.png/640px-Forex_chart_example.png"
-       alt="Resistance Real Chart">
-
-  <div class="callout">
-    <strong>Fast Identification Checklist:</strong><br>
-    • Price stalls or rejects at the same level<br>
-    • Wicks show selling pressure<br>
-    • Volume increases on rejection<br>
-    • Breakouts require strong volume
+  <!-- RESISTANCE → SUPPORT FLIP -->
+  <div class="dropdown">
+    <div class="dropdown-header">
+      <span>🔄 Resistance → Support Flip</span>
+      <span>▼</span>
+    </div>
+    <div class="dropdown-content">
+      <p>
+        When resistance breaks, it often becomes support — a powerful confirmation of trend strength.
+      </p>
+      <img class="example-img" src="/guild/training/img/support-and-resist/r-to-s.png" />
+    </div>
   </div>
 
   <div class="divider"></div>
-
-  <!-- SIMULATORS -->
-  <h2 class="section-title">Practice Simulators</h2>
-
-  <div class="simulator-links">
-    <a class="sim-btn" href="/guild/simulators/support-test.html">Support Identification Simulator</a>
-    <a class="sim-btn" href="/guild/simulators/resistance-test.html">Resistance Identification Simulator</a>
-    <a class="sim-btn" href="/guild/simulators/sr-breakout-test.html">Breakout vs Rejection Simulator</a>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- QUIZ -->
-  <h2 class="section-title">Support & Resistance Quiz</h2>
 
   <div id="sr-quiz"></div>
   <div id="quiz-result"></div>
-
-  <a class="back" href="/guild/pages/golden-rules.html">← Back to Golden Rules</a>
+  <button id="sr-next-btn" style="display:none;">Next</button>
 
 </body>
 </html>
