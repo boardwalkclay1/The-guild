@@ -39,6 +39,44 @@
       overflow-x: hidden;
     }
 
+    /* NAVIGATION */
+    nav {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(0,0,0,0.75);
+      border-bottom: 1px solid rgba(212,175,55,0.35);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+
+    nav .nav-left {
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #D4AF37;
+      font-weight: 700;
+    }
+
+    nav .nav-right a {
+      margin-left: 20px;
+      color: #D4AF37;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    nav .nav-right a:hover {
+      color: #fff;
+    }
+
+    /* BACKGROUND EFFECTS */
     body::before {
       content: "";
       position: fixed;
@@ -108,6 +146,7 @@
       opacity: 0.7;
     }
 
+    /* DROPDOWNS */
     .dropdown {
       background: rgba(0,0,0,0.8);
       border: 1px solid rgba(212,175,55,0.5);
@@ -169,19 +208,7 @@
       margin-top: 15px;
     }
 
-    .callout {
-      background: rgba(212,175,55,0.08);
-      border: 1px solid rgba(212,175,55,0.4);
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin-top: 14px;
-      font-size: 0.95rem;
-    }
-
-    .callout strong {
-      color: #fff;
-    }
-
+    /* QUIZ */
     #sr-quiz {
       margin-top: 45px;
       padding: 22px 20px 26px;
@@ -258,6 +285,25 @@
       font-size: 0.95rem;
     }
 
+    /* LIVE CHART */
+    .chart-section {
+      margin-top: 60px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 12px;
+    }
+
+    .chart-title {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
     a.back {
       display: block;
       margin-top: 40px;
@@ -275,6 +321,16 @@
 
 <body class="fade-in">
 
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-left">THE GUILD</div>
+    <div class="nav-right">
+      <a href="/guild/training/training-hall.html">Training Hall</a>
+      <a href="/guild/training/chart-patterns.html">Patterns</a>
+      <a href="/guild/training/support-resistance.html">S&R</a>
+    </div>
+  </nav>
+
   <div id="sr-hints"></div>
 
   <h1>Support & Resistance</h1>
@@ -283,11 +339,6 @@
   <p>
     In the Guild, we do not guess where price might move — we read the **ancient levels** it respects.  
     Support and resistance are the **etched lines** where buyers and sellers have clashed for years. ⚔️
-  </p>
-
-  <p>
-    Learn these levels, and you stop trading like a wanderer.  
-    You begin trading like an **initiated member of the Order**.
   </p>
 
   <div class="divider"></div>
@@ -302,10 +353,6 @@
       <p>
         Support is the **floor** beneath price — the level where selling pressure finally exhausts and buyers step in with force.
       </p>
-      <div class="callout">
-        <strong>Guild Insight:</strong>  
-        The strongest support levels are carved by **repeated reactions** over time.
-      </div>
       <img class="example-img" src="/guild/training/img/support-and-resist/s&r.png" />
     </div>
   </div>
@@ -320,11 +367,6 @@
       <p>
         Resistance is the **ceiling** above price — the level where buyers hesitate and sellers grow bold.
       </p>
-      <div class="callout">
-        <strong>Guild Insight:</strong>  
-        A breakout without volume is a whisper.  
-        A breakout with volume is a **declaration**.
-      </div>
       <img class="example-img" src="/guild/training/img/support-and-resist/resistance.png" />
     </div>
   </div>
@@ -387,6 +429,34 @@
 
   <div class="divider"></div>
 
+  <!-- LIVE DOLLAR GENERAL CHART -->
+  <div class="chart-section">
+    <div class="chart-title">📈 Live Chart — Dollar General (DG)</div>
+
+    <div class="tradingview-widget-container">
+      <div id="tradingview_dg"></div>
+    </div>
+
+    <script type="text/javascript">
+      new TradingView.widget({
+        "width": "100%",
+        "height": 500,
+        "symbol": "NYSE:DG",
+        "interval": "60",
+        "timezone": "Etc/UTC",
+        "theme": "dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#000000",
+        "enable_publishing": false,
+        "allow_symbol_change": true,
+        "container_id": "tradingview_dg"
+      });
+    </script>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- QUIZ -->
   <div id="sr-quiz">
     <div id="sr-quiz-title">Guild Trial: Support & Resistance</div>
@@ -396,7 +466,7 @@
     <button id="sr-next-btn" style="display:none;">Next Trial</button>
   </div>
 
-  <a class="back" href="/guild/pages/golden-rules.html">← Return to the Golden Rules</a>
+  <a class="back" href="/guild/training/training-hall.html">← Return to the Training Hall</a>
 
 </body>
 </html>
