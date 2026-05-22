@@ -12,8 +12,8 @@
     body {
       background: #000;
       font-family: system-ui, sans-serif;
-      padding: 40px 20px;
-      line-height: 1.65;
+      padding: 40px 20px 80px;
+      line-height: 1.7;
       color: #D4AF37;
       text-align: center;
       position: relative;
@@ -46,161 +46,399 @@
       100% { transform: translateY(25px); opacity: 0.45; }
     }
 
+    #sr-hints {
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(212,175,55,0.12);
+      border-bottom: 1px solid rgba(212,175,55,0.4);
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 25px;
+    }
+
+    p {
+      max-width: 780px;
+      margin: 0 auto 18px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .divider {
+      width: 80%;
+      max-width: 520px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 35px auto;
+      opacity: 0.7;
+    }
+
     .dropdown {
-      background: rgba(212,175,55,0.1);
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid rgba(212,175,55,0.5);
+      border-radius: 12px;
       margin: 25px auto;
-      max-width: 800px;
+      max-width: 860px;
       overflow: hidden;
-      transition: 0.3s;
+      box-shadow: 0 0 18px rgba(0,0,0,0.7);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .dropdown.open {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(212,175,55,0.35);
     }
 
     .dropdown-header {
-      padding: 18px;
+      padding: 18px 20px;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: linear-gradient(90deg, rgba(212,175,55,0.18), transparent);
     }
 
-    .dropdown-header:hover {
-      background: rgba(212,175,55,0.2);
+    .dropdown-header span.label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dropdown-header span.icon {
+      transition: transform 0.25s ease;
+    }
+
+    .dropdown.open .dropdown-header span.icon {
+      transform: rotate(180deg);
     }
 
     .dropdown-content {
       display: none;
-      padding: 20px;
+      padding: 18px 20px 22px;
       text-align: left;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .example-img {
       width: 100%;
       border-radius: 10px;
-      border: 1px solid rgba(212,175,55,0.4);
+      border: 1px solid rgba(212,175,55,0.5);
       margin-top: 15px;
     }
 
-    .divider {
-      width: 80%;
-      max-width: 500px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 40px auto;
-      opacity: 0.7;
+    .callout {
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.4);
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 14px;
+      font-size: 0.95rem;
     }
+
+    .callout strong {
+      color: #fff;
+    }
+
+    #sr-quiz {
+      margin-top: 45px;
+      padding: 22px 20px 26px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 12px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    #sr-quiz-title {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    #sr-question {
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .quiz-option {
+      display: block;
+      margin: 8px 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .quiz-option:hover {
+      background: rgba(212,175,55,0.18);
+    }
+
+    .quiz-option.correct {
+      border-color: #4CAF50;
+      background: rgba(76,175,80,0.12);
+    }
+
+    .quiz-option.incorrect {
+      border-color: #FF5252;
+      background: rgba(255,82,82,0.12);
+    }
+
+    #sr-next-btn {
+      margin-top: 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #D4AF37;
+      background: transparent;
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #sr-next-btn:hover {
+      background: rgba(212,175,55,0.2);
+      color: #fff;
+    }
+
+    #sr-result {
+      margin-top: 12px;
+      font-weight: 600;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    a.back {
+      display: block;
+      margin-top: 40px;
+      color: #D4AF37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    a.back:hover { color: #fff; }
   </style>
 </head>
 
 <body class="fade-in">
 
+  <!-- HINT BAR -->
+  <div id="sr-hints"></div>
+
   <h1>Support & Resistance</h1>
+  <p class="subtitle">Arcane Levels of the Market</p>
 
   <p>
-    These are the **battle lines** of the market ⚔️  
-    Where buyers defend… and where sellers strike.
+    In the Guild, we do not guess where price might move — we read the **ancient levels** it respects.  
+    Support and resistance are the **etched lines** where buyers and sellers have clashed for years. ⚔️
+  </p>
+
+  <p>
+    Learn these levels, and you stop trading like a wanderer.  
+    You begin trading like an **initiated member of the Order**.
   </p>
 
   <div class="divider"></div>
 
   <!-- SUPPORT -->
-  <div class="dropdown">
+  <div class="dropdown" data-section="support">
     <div class="dropdown-header">
-      <span>🟦 Support</span>
-      <span>▼</span>
+      <span class="label">🜂 Support — The Floor of the Realm</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        Support is the **floor** beneath price — the level where buyers step in with strength.
+        Support is the **floor** beneath price — the level where selling pressure finally exhausts and buyers step in with force.  
+        Each time price returns to this level and holds, the floor becomes more **respected** by the market.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/s&r.png" />
+      <p>
+        At support, you are not just looking at candles. You are watching **defense** —  
+        traders, funds, and algorithms all choosing the same zone as a place to buy.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        The strongest support levels are not drawn by indicators — they are carved by **repeated reactions** over time.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/s&r.png"
+           alt="Support & Resistance Combined">
     </div>
   </div>
 
   <!-- RESISTANCE -->
-  <div class="dropdown">
+  <div class="dropdown" data-section="resistance">
     <div class="dropdown-header">
-      <span>🟥 Resistance</span>
-      <span>▼</span>
+      <span class="label">🜁 Resistance — The Ceiling of Pressure</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        Resistance is the **ceiling** above price — the level where sellers push back with force.
+        Resistance is the **ceiling** above price — the level where buyers begin to hesitate and sellers grow bold.  
+        Each rejection from resistance is a sign that this level is guarded by **heavy supply**.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/resistance.png" />
+      <p>
+        When price approaches resistance, you are watching for one of two outcomes:  
+        a **clean rejection** back down, or a **decisive breakout** that rewrites the structure.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        A breakout without volume is a whisper.  
+        A breakout with volume is a **declaration**.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/resistance.png"
+           alt="Resistance Example">
     </div>
   </div>
 
   <!-- TRENDLINE SUPPORT -->
-  <div class="dropdown">
+  <div class="dropdown" data-section="trend-support">
     <div class="dropdown-header">
-      <span>📈 Trendline Support</span>
-      <span>▼</span>
+      <span class="label">🜄 Trendline Support — The Rising Path</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        Trendline support shows buyers stepping in **higher each time**, forming an ascending base.
+        Trendline support is where each low forms **higher than the last**, creating a rising diagonal floor.  
+        This shows buyers are not just defending — they are **advancing**.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/trend-support.png" />
+      <p>
+        When price pulls back into a rising trendline and holds, it often becomes a **high‑probability continuation zone**.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        A trendline is not sacred on its own.  
+        It gains power when it aligns with **horizontal support** or a **key level from the past**.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/trend-support.png"
+           alt="Trendline Support Example">
     </div>
   </div>
 
-  <!-- LONGTERM RESISTANCE -->
-  <div class="dropdown">
+  <!-- LONG-TERM RESISTANCE -->
+  <div class="dropdown" data-section="longterm-resist">
     <div class="dropdown-header">
-      <span>🏛️ Long‑Term Resistance</span>
-      <span>▼</span>
+      <span class="label">🜃 Long‑Term Resistance — The Ancient Ceiling</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        Long‑term resistance is a **historic ceiling** — a level the market respects for months or years.
+        Long‑term resistance is a level that has rejected price across **months or years**.  
+        These are the levels where entire market cycles have turned.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/longterm-resist.png" />
+      <p>
+        When price returns to a long‑term resistance, you are not just trading a line —  
+        you are trading against the memory of every trader who was trapped there before.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        Long‑term resistance broken with conviction can mark the **beginning of a new era** for that asset.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/longterm-resist.png"
+           alt="Long Term Resistance Example">
     </div>
   </div>
 
   <!-- WEDGE -->
-  <div class="dropdown">
+  <div class="dropdown" data-section="wedge">
     <div class="dropdown-header">
-      <span>🔻 Rising Wedge (S&P)</span>
-      <span>▼</span>
+      <span class="label">🜏 Rising Wedge — The Squeezing Trap</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        A rising wedge forms when support rises but resistance stays flat — pressure builds until it breaks.
+        A rising wedge forms when support rises but resistance stays flat or rises slower.  
+        Price is being **squeezed** into a corner — energy builds, but space disappears.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/wedge-s&p.png" />
+      <p>
+        Many traders get comfortable inside a wedge. Guild members do not.  
+        We know wedges often resolve with a **sharp break** once the structure can no longer hold.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        In a rising wedge, watch how price behaves near the **upper boundary**.  
+        Weak pushes into resistance often foreshadow the break.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/wedge-s&p.png"
+           alt="Rising Wedge Example">
     </div>
   </div>
 
   <!-- RESISTANCE → SUPPORT FLIP -->
-  <div class="dropdown">
+  <div class="dropdown" data-section="flip">
     <div class="dropdown-header">
-      <span>🔄 Resistance → Support Flip</span>
-      <span>▼</span>
+      <span class="label">🜍 Resistance → Support Flip — The Level Ascends</span>
+      <span class="icon">▼</span>
     </div>
     <div class="dropdown-content">
       <p>
-        When resistance breaks, it often becomes support — a powerful confirmation of trend strength.
+        One of the most powerful concepts in the Guild:  
+        when resistance is broken and then **respected as support**, the level has **ascended in rank**.
       </p>
-      <img class="example-img" src="/guild/training/img/support-and-resist/r-to-s.png" />
+      <p>
+        This flip confirms that sellers have lost control of that zone, and buyers now defend it.  
+        It is a classic sign of **trend continuation**.
+      </p>
+      <div class="callout">
+        <strong>Guild Insight:</strong><br>
+        The cleanest flips often come after a breakout, a pullback, and a **calm retest** —  
+        not a wild, emotional spike.
+      </div>
+      <img class="example-img"
+           src="/guild/training/img/support-and-resist/r-to-s.png"
+           alt="Resistance to Support Flip Example">
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <div id="sr-quiz"></div>
-  <div id="quiz-result"></div>
-  <button id="sr-next-btn" style="display:none;">Next</button>
+  <!-- QUIZ -->
+  <div id="sr-quiz">
+    <div id="sr-quiz-title">Guild Trial: Support & Resistance</div>
+    <div id="sr-question"></div>
+    <div id="sr-options"></div>
+    <div id="sr-result"></div>
+    <button id="sr-next-btn" style="display:none;">Next Trial</button>
+  </div>
+
+  <a class="back" href="/guild/pages/golden-rules.html">← Return to the Golden Rules</a>
 
 </body>
 </html>
