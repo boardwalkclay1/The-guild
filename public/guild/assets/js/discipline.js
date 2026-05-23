@@ -1,110 +1,116 @@
-const content = {
-  physical: `
-    <h1>Physical Discipline</h1>
-    <p>Your body is the foundation of your trading performance. Weak body = weak execution.</p>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".discipline-item");
+  const panel = document.getElementById("disciplineContent");
 
-    <p>
-      • Wake up by <strong>9:00 AM every day</strong><br>
-      • Hydrate before touching your phone<br>
-      • Keep your workspace clean and intentional<br>
-      • No late nights before trading days<br>
-      • No alcohol or chaos during trading weeks<br>
-      • Stretch, breathe, and reset before the bell
-    </p>
+  const sections = {
+    emotional: `
+      <h1>Emotional Discipline</h1>
+      <p>Trading is not a battle against the market — it is a battle against yourself.</p>
 
-    <p>A disciplined body creates a disciplined mind.</p>
-  `,
+      <h2>Fear</h2>
+      <p>Fear appears when you lack structure. It makes you hesitate, exit too early, or avoid valid setups.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/fear.jpg">
 
-  emotional: `
-    <h1>Emotional Discipline</h1>
-    <p>The market exposes your emotions more than your strategy. Control yourself or the market will control you.</p>
+      <h2>Greed</h2>
+      <p>Greed whispers that you deserve more. It pushes you to break rules, overstay trades, and size too large.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/greed.jpg">
 
-    <p>
-      • Never chase<br>
-      • Never force trades<br>
-      • Never trade angry, tired, or emotional<br>
-      • Accept losses without spiraling<br>
-      • Follow your plan even when it’s boring<br>
-      • Detach from outcomes — focus on execution
-    </p>
+      <h2>Revenge</h2>
+      <p>Revenge trading is the emotional spiral that destroys accounts. It is the refusal to accept loss.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/revenge.jpg">
 
-    <p>Emotional mastery separates Guild members from gamblers.</p>
-  `,
+      <h2>Euphoria</h2>
+      <p>Winning feels good — too good. Euphoria is the most dangerous emotion because it makes you forget discipline.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/euphoria.jpg">
+    `,
 
-  strategic: `
-    <h1>Strategic Discipline</h1>
-    <p>Strategy is preparation. Every Guild member studies the market like a battlefield.</p>
+    phases: `
+      <h1>The Emotional Phases of a Trader</h1>
+      <p>Every trader walks the same path. Only the disciplined survive it.</p>
 
-    <p>
-      • Review your watchlist nightly<br>
-      • Study chart patterns daily<br>
-      • Track your wins and losses<br>
-      • Know your setups before the bell rings<br>
-      • Never enter a trade without a reason<br>
-      • Respect timing — entries matter more than opinions
-    </p>
+      <h2>Phase I — Awakening</h2>
+      <p>Curiosity becomes excitement. Excitement becomes overconfidence.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/awakening.jpg">
 
-    <p>Strategy is the sword. Discipline is the hand that wields it.</p>
-  `,
+      <h2>Phase II — First Losses</h2>
+      <p>Shock. Denial. Frustration. Revenge. This is where most traders fall.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/losses.jpg">
 
-  lifestyle: `
-    <h1>Lifestyle Discipline</h1>
-    <p>The Guild is a lifestyle. Your habits outside the market determine your success inside it.</p>
+      <h2>Phase III — Emotional Spiral</h2>
+      <p>Fear takes over. You hesitate. You freeze. You stop trusting yourself.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/spiral.jpg">
 
-    <p>
-      • Keep your finances organized<br>
-      • Surround yourself with disciplined people<br>
-      • Protect your mental space<br>
-      • Limit distractions<br>
-      • Build routines that support your goals<br>
-      • Remove people who don’t respect your journey
-    </p>
+      <h2>Phase IV — Breakthrough</h2>
+      <p>You begin following rules. You stop forcing trades. You see structure.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/breakthrough.jpg">
 
-    <p>Wealth is built in your lifestyle long before it shows in your account.</p>
-  `,
+      <h2>Phase V — Winning Phase</h2>
+      <p>Winning feels like mastery — but it is the most dangerous moment.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/winning.jpg">
 
-  focus: `
-    <h1>Focus & Timing</h1>
-    <p>Focus is a weapon. Timing is a skill. Together they create precision.</p>
+      <h2>Phase VI — True Discipline</h2>
+      <p>You detach from outcomes. You execute without emotion. You become consistent.</p>
+      <img class="image-callout" src="/guild/training/img/discipline/mastery.jpg">
+    `,
 
-    <p>
-      • Be on time — the market rewards punctuality<br>
-      • Study the night before so you enter the day prepared<br>
-      • Keep your mind clear before the bell<br>
-      • No distractions, no noise, no unnecessary conversations<br>
-      • Protect your attention like it’s capital<br>
-      • If your mind is scattered, you do not trade
-    </p>
+    strategic: `
+      <h1>Strategic Discipline</h1>
+      <p>Your strategy is your sword. Your rules are your armor.</p>
 
-    <p>Focus is the edge most traders never develop.</p>
-  `,
+      <h2>Risk Management</h2>
+      <p>Risk is the only thing you control. Master it or perish.</p>
 
-  mindset: `
-    <h1>Guild Mindset</h1>
-    <p>Your mindset determines your ceiling. The Guild mindset is built on clarity, discipline, and purpose.</p>
+      <h2>Position Sizing</h2>
+      <p>Small size keeps you alive. Large size kills you fast.</p>
 
-    <p>
-      • You are responsible for your results<br>
-      • You do not complain — you adjust<br>
-      • You do not compare — you improve<br>
-      • You do not seek validation — you seek mastery<br>
-      • You stay committed even when others quit<br>
-      • You stay loyal to the journey, not the emotions
-    </p>
+      <h2>Trade Journaling</h2>
+      <p>The Guild keeps records. Patterns reveal themselves only to those who track them.</p>
 
-    <p>The Guild mindset is forged, not given.</p>
-  `
-};
+      <h2>Backtesting</h2>
+      <p>Confidence comes from proof — not hope.</p>
+    `,
 
-const items = document.querySelectorAll(".discipline-item");
-const panel = document.getElementById("disciplineContent");
+    lifestyle: `
+      <h1>Lifestyle Discipline</h1>
+      <p>Your life outside the market affects your performance inside it.</p>
 
-items.forEach(item => {
-  item.addEventListener("click", () => {
-    items.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
+      <h2>Routine</h2>
+      <p>Consistency in life creates consistency in trading.</p>
 
-    const key = item.dataset.discipline;
-    panel.innerHTML = content[key];
+      <h2>Dopamine Control</h2>
+      <p>Social media, gambling, and overstimulation destroy focus.</p>
+
+      <h2>Environment</h2>
+      <p>Your trading environment must be calm, clean, and controlled.</p>
+
+      <h2>Money Habits</h2>
+      <p>Bad financial habits outside the market bleed into your trading decisions.</p>
+    `,
+
+    withdrawal: `
+      <h1>Taking Money Out of the Arena</h1>
+      <p>Withdrawing profits feels strange at first — but it is the mark of a real trader.</p>
+
+      <h2>Why It Feels Wrong</h2>
+      <p>Your brain is addicted to seeing a big balance. Removing money feels like losing power.</p>
+
+      <h2>Why It Must Be Done</h2>
+      <p>Profits are not real until they leave the arena. Withdraw regularly.</p>
+
+      <h2>The Guild Ritual</h2>
+      <p>Every week or month, withdraw a portion of your gains. This builds confidence and discipline.</p>
+
+      <img class="image-callout" src="/guild/training/img/discipline/withdraw.jpg">
+    `
+  };
+
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+
+      const key = item.getAttribute("data-discipline");
+      panel.innerHTML = sections[key];
+    });
   });
 });
