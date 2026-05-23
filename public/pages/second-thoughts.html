@@ -1,115 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Having Second Thoughts?</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>The Guild – Are You Ready for the Arena?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-<style>
-  body {
-    background: url('/assets/image/Vestry.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #D4AF37;
-    text-align: center;
-    padding: 40px 20px;
-    font-family: "Marcellus SC", serif;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  .container {
-    max-width: 700px;
-    margin: 120px auto;
-    background: rgba(0,0,0,0.75);
-    border: 2px solid #D4AF37;
-    border-radius: 14px;
-    padding: 35px;
-  }
+    body {
+      background: url('/assets/image/Vestry.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #D4AF37;
+      text-align: center;
+      padding: 40px 20px;
+      font-family: "Marcellus SC", serif;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  h1 {
-    font-family: "Uncial Antiqua", serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    letter-spacing: 0.08em;
-  }
+    /* GOLD SNOWFLAKE EFFECT */
+    .gold-snowflake {
+      position: fixed;
+      top: -10px;
+      color: #D4AF37;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
 
-  p {
-    line-height: 1.6;
-    margin-bottom: 18px;
-    font-size: 1.05rem;
-  }
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) translateX(0);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) translateX(40px);
+        opacity: 0;
+      }
+    }
 
-  .btn {
-    display: block;
-    background: rgba(212,175,55,0.15);
-    border: 1px solid #D4AF37;
-    padding: 14px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 320px;
-    border-radius: 10px;
-    color: #D4AF37;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
+    .veil {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 10%, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+      z-index: 0;
+    }
 
-  .btn:hover {
-    background: rgba(212,175,55,0.3);
-  }
-</style>
+    .container {
+      position: relative;
+      max-width: 900px;
+      margin: 80px auto 60px;
+      background: rgba(0,0,0,0.82);
+      border: 2px solid #D4AF37;
+      border-radius: 14px;
+      padding: 35px 24px 40px;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(0,0,0,0.9);
+    }
+
+    h1 {
+      font-family: "Uncial Antiqua", serif;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: "Uncial Antiqua", serif;
+      font-size: 1.5rem;
+      margin: 30px 0 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    h3 {
+      font-family: "Marcellus SC", serif;
+      font-size: 1.1rem;
+      margin: 18px 0 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    p {
+      line-height: 1.7;
+      margin-bottom: 14px;
+      font-size: 1.02rem;
+      text-align: left;
+    }
+
+    .intro-block {
+      margin-bottom: 25px;
+    }
+
+    .highlight {
+      color: #fff;
+    }
+
+    .divider {
+      width: 90%;
+      max-width: 600px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 30px auto;
+      opacity: 0.8;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid #D4AF37;
+      padding: 14px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 320px;
+      border-radius: 10px;
+      color: #D4AF37;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      background: rgba(212,175,55,0.3);
+    }
+
+    .subtle {
+      opacity: 0.85;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    .screen-card {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(212,175,55,0.5);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .screen-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .screen-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,0.4);
+      margin-bottom: 6px;
+    }
+
+    .screen-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+
+    .emphasis {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .mini-note {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 40px auto 40px;
+        padding: 25px 18px 30px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<div class="veil"></div>
+
+<!-- GOLD SNOWFLAKES -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const flakes = 40;
+    for (let i = 0; i < flakes; i++) {
+      const span = document.createElement("span");
+      span.className = "gold-snowflake";
+      span.textContent = "✶";
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = 8 + Math.random() * 10 + "s";
+      span.style.animationDelay = Math.random() * 10 + "s";
+      span.style.fontSize = (0.6 + Math.random() * 0.8) + "rem";
+      document.body.appendChild(span);
+    }
+  });
+</script>
+
 <div class="container">
 
-  <h1>Having Second Thoughts?</h1>
+  <!-- INTRO -->
+  <div class="intro-block">
+    <h1>Having Second Thoughts?</h1>
+    <p>
+      Good. That means you’re awake.  
+      Most people repeat the same year over and over — same job, same stress, same paycheck, same fear.
+    </p>
+    <p>
+      The Guild is not for the half‑asleep.  
+      It is for the ones who feel that something is wrong with the way they’ve been taught to live and earn.
+    </p>
+  </div>
 
-  <p>
-    Good.  
-    That means you’re not asleep like everyone else.  
-    Most people drift through life repeating the same year over and over —  
-    same job, same stress, same paycheck, same fear.
-  </p>
+  <div class="divider"></div>
 
-  <p>
-    The Guild is different.  
-    It was built by a trader who became a coder —  
-    someone who stepped into the arena, took real hits,  
-    and learned how to move money in ways normal people never see.
-  </p>
+  <!-- WHAT WE DO AT THE GUILD -->
+  <div class="section">
+    <h2>What We Do Inside the Guild</h2>
+    <p>
+      The Guild was built by a <span class="highlight">trader turned developer</span> —  
+      someone who stepped into the arena, took real hits, and then wrote code to fight back smarter.
+    </p>
+    <p>
+      Inside, you don’t just “learn trading.”  
+      You learn how to move in a system that was never designed for you to win —  
+      and how to use tools that most people will never even know exist.
+    </p>
+    <p>
+      We combine:
+    </p>
+    <p>
+      • <span class="highlight">Live market structure</span> training  
+      • <span class="highlight">Custom‑built tools</span> coded by someone who actually trades  
+      • <span class="highlight">Psychological discipline frameworks</span> so you don’t implode when the money gets real  
+      • A private environment where you can ask questions that would sound insane anywhere else
+    </p>
+  </div>
 
-  <p>
-    I’ve had days where I made over <strong>$20,000 in a single session</strong>.  
-    Not because I’m special — but because I learned where to stand,  
-    when to strike, and how to use systems that aren’t built for the public.
-  </p>
+  <div class="divider"></div>
 
-  <p>
-    Inside the Guild, I show you how to set up a private,  
-    fast‑moving account structure that lets you move capital  
-    in ways most people will never understand.  
-    It’s not about “knowing how to trade.”  
-    It’s about knowing <strong>where</strong> the real game is played.
-  </p>
+  <!-- TRADING & OPTIONS EXPLAINED -->
+  <div class="section">
+    <h2>What Is Trading?</h2>
+    <p>
+      Trading is the act of buying and selling financial instruments — stocks, options, futures, currencies —  
+      with the goal of profiting from price movement.
+    </p>
+    <p>
+      At its core, trading is simple:
+    </p>
+    <p>
+      • You identify where price is likely to move.  
+      • You define your risk.  
+      • You execute with discipline.
+    </p>
+    <p>
+      But in reality, it feels like stepping into an arena with a dragon that has eaten thousands before you.  
+      Every click is a swing of your sword. Every mistake has teeth.
+    </p>
 
-  <p>
-    If you’re unsure, step into the Colosseum first.  
-    See the scars.  
-    See the truth.  
-    See why this place exists.
-  </p>
+    <h2>What Are Options?</h2>
+    <p>
+      Options are contracts that give you the right — but not the obligation — to buy or sell a stock at a certain price,  
+      within a certain time.
+    </p>
+    <p>
+      In simple terms:
+    </p>
+    <p>
+      • Options let you control more value with less capital.  
+      • They can multiply gains — and losses — very quickly.  
+      • They are powerful, dangerous, and not a toy.
+    </p>
 
-  <a class="btn" href="/pages/colosseum.html">Enter the Colosseum</a>
+    <h3>How Trading and Options Connect</h3>
+    <p>
+      Trading teaches you where price is likely to move.  
+      Options give you a way to <span class="highlight">amplify</span> that move.
+    </p>
+    <p>
+      This is where the Guild lives — at the intersection of:
+    </p>
+    <p>
+      • <span class="highlight">Market structure</span> (where price wants to go)  
+      • <span class="highlight">Options mechanics</span> (how to weaponize that move)  
+      • <span class="highlight">Discipline</span> (how not to blow yourself up)
+    </p>
 
-  <p style="margin-top: 30px; opacity: 0.85;">
-    Or if you’re ready to begin your initiation:
-  </p>
+    <p class="tagline">
+      This is where you can <span class="emphasis">change your tax bracket in one day</span> —  
+      but only if you treat it like a craft, not a game.
+    </p>
+  </div>
 
-  <a class="btn" href="/pages/guild-entry.html">Begin the Guild Entry Ritual</a>
+  <div class="divider"></div>
+
+  <!-- DRAGON ARENA METAPHOR -->
+  <div class="section">
+    <h2>The Arena and the Dragon</h2>
+    <p>
+      Every time you enter the market, you are stepping into an arena with a dragon that does not care who you are.  
+      It does not care about your bills, your dreams, or your plans.
+    </p>
+    <p>
+      If you walk in unarmed, it will burn you.  
+      If you walk in arrogant, it will crush you.  
+      If you walk in disciplined, armored, and prepared — you can carve gold from its scales.
+    </p>
+    <p>
+      The Guild exists to give you:
+    </p>
+    <p>
+      • <span class="highlight">Armor</span> – risk management, emotional control, discipline  
+      • <span class="highlight">Weapons</span> – strategies, setups, and options structures  
+      • <span class="highlight">Tools</span> – custom‑built software that helps you see what others miss
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CUSTOM TOOLS SECTION -->
+  <div class="section">
+    <h2>The Rare Combination: Trader → Developer</h2>
+    <p>
+      Most educators don’t code.  
+      Most coders don’t trade.  
+      The Guild was built by someone who does both.
+    </p>
+    <p>
+      That means the tools inside are not generic indicators or copy‑paste scripts.  
+      They are built from real pain — from blown trades, missed entries, and hard‑earned breakthroughs.
+    </p>
+    <p>
+      Inside the Guild, you’ll find:
+    </p>
+    <p>
+      • <span class="highlight">Custom contract simulators</span> to test options ideas without burning real money  
+      • <span class="highlight">Pattern and level tools</span> that help you see structure faster  
+      • <span class="highlight">Guild‑specific workflows</span> that turn chaos into a repeatable process
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- INSIDE THE GUILD – SCREENSHOTS -->
+  <div class="section">
+    <h2>A Glimpse Inside the Guild</h2>
+    <p>
+      These are not stock photos. These are windows into the world you’re about to step into.
+    </p>
+
+    <div class="screenshots-grid">
+      <div class="screen-card">
+        <div class="screen-title">Guild Hall</div>
+        <img class="screen-img" src="/guild/training/img/preview/guild-hall.jpg" alt="Guild Hall Preview">
+        <div class="screen-desc">
+          The central chamber. Your hub for navigation, announcements, and the core of the Guild experience.
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-title">Training Hall</div>
+        <img class="screen-img" src="/guild/training/img/preview/training-hall.jpg" alt="Training Hall Preview">
+        <div class="screen-desc">
+          Structured lessons, drills, and frameworks that turn random knowledge into a sharpened edge.
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-title">Candlestick Mastery</div>
+        <img class="screen-img" src="/guild/training/img/preview/candlestick-mastery.jpg" alt="Candlestick Mastery Preview">
+        <div class="screen-desc">
+          Learn to read candles like language — not patterns, but intent: aggression, hesitation, exhaustion.
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-title">Guild Contract Simulator</div>
+        <img class="screen-img" src="/guild/training/img/preview/contract-simulator.jpg" alt="Contract Simulator Preview">
+        <div class="screen-desc">
+          Test options ideas, risk, and outcomes in a controlled environment before stepping into the live arena.
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-title">The Arena View</div>
+        <img class="screen-img" src="/guild/training/img/preview/arena-view.jpg" alt="Arena View Preview">
+        <div class="screen-desc">
+          Live charts, levels, and tools that let you see the dragon’s movement in real time.
+        </div>
+      </div>
+    </div>
+
+    <p class="mini-note">
+      (You can replace these preview paths with your actual screenshots — the structure is ready.)
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CALL TO ACTIONS -->
+  <div class="section">
+    <p class="subtle">
+      If you’re unsure, step into the Colosseum first.  
+      See the scars. See the truth. See why this place exists.
+    </p>
+
+    <a class="btn" href="/pages/colosseum.html">Enter the Colosseum</a>
+
+    <p class="subtle">
+      If you already know you’re meant for this:
+    </p>
+
+    <a class="btn" href="/pages/guild-entry.html">Begin the Guild Entry Ritual</a>
+  </div>
 
 </div>
 
