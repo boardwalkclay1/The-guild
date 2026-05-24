@@ -1,177 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Guild Discipline</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>Guild Discipline</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FAVICON + PWA -->
-  <link rel="icon" type="image/png" href="/assets/image/the-guild.png">
-  <link rel="apple-touch-icon" href="/assets/image/the-guild.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#000000">
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
 
-  <!-- GLOBAL CSS -->
-  <link rel="stylesheet" href="/guild/assets/css/guild-style.css" />
+<style>
+  body {
+    background: url('/assets/image/guild-toon-fight.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #D4AF37;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: "Marcellus SC", serif;
+    margin: 0;
+  }
 
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  .discipline-wrapper {
+    display: flex;
+    max-width: 1300px;
+    margin: 140px auto 100px;
+    background: rgba(0,0,0,0.65);
+    border: 2px solid #D4AF37;
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(212,175,55,0.25);
+    backdrop-filter: blur(3px);
+    overflow: hidden;
+  }
 
-  <!-- DISCIPLINE JS -->
-  <script src="/guild/assets/js/discipline.js" defer></script>
+  /* LEFT MENU */
+  .discipline-menu {
+    width: 280px;
+    border-right: 2px solid #8B6B2C;
+    padding: 20px;
+    background: rgba(0,0,0,0.55);
+  }
 
-  <style>
-    body {
-      background: url('/assets/image/guild-toon-fight.jpg') no-repeat center center fixed;
-      background-size: cover;
-      margin: 0;
-      padding: 0;
-      color: #D4AF37;
-      font-family: system-ui, sans-serif;
-    }
+  .menu-title {
+    font-family: "Uncial Antiqua", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .discipline-wrapper {
-      display: flex;
-      max-width: 1300px;
-      margin: 140px auto 100px;
-      background: rgba(0,0,0,0.65);
-      border: 2px solid #D4AF37;
-      border-radius: 14px;
-      box-shadow: 0 0 25px rgba(212,175,55,0.25);
-      backdrop-filter: blur(3px);
-      overflow: hidden;
-    }
+  .discipline-item {
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid #D4AF37;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    transition: 0.25s ease;
+  }
 
-    /* LEFT MENU */
-    .discipline-menu {
-      width: 280px;
-      border-right: 2px solid #8B6B2C;
-      padding: 20px;
-      background: rgba(0,0,0,0.55);
-    }
+  .discipline-item:hover,
+  .discipline-item.active {
+    background: rgba(212,175,55,0.25);
+    text-shadow: 0 0 10px #D4AF37;
+  }
 
-    .menu-title {
-      font-family: "Uncial Antiqua", serif;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+  /* RIGHT PANEL */
+  .discipline-content {
+    flex: 1;
+    padding: 40px 50px;
+    overflow-y: auto;
+    max-height: 80vh;
+    text-align: left;
+  }
 
-    .discipline-item {
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      border: 1px solid #D4AF37;
-      border-radius: 8px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.9rem;
-      transition: 0.25s ease;
-    }
+  h1 {
+    font-family: "Uncial Antiqua", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .discipline-item:hover,
-    .discipline-item.active {
-      background: rgba(212,175,55,0.25);
-      text-shadow: 0 0 10px #D4AF37;
-    }
+  h2 {
+    font-family: "Cinzel", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+  }
 
-    /* RIGHT CONTENT PANEL */
-    .discipline-content {
-      flex: 1;
-      padding: 40px 50px;
-      overflow-y: auto;
-      max-height: 80vh;
-    }
+  p {
+    max-width: 780px;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    opacity: 0.92;
+  }
 
-    h1 {
-      font-family: "Uncial Antiqua", serif;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+  .divider {
+    width: 80%;
+    max-width: 520px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    margin: 35px 0;
+    opacity: 0.7;
+  }
 
-    h2 {
-      font-family: "Cinzel", serif;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 40px;
-      margin-bottom: 12px;
-      font-size: 1.4rem;
-    }
+  .image-callout {
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid rgba(212,175,55,0.4);
+    border-radius: 10px;
+    margin: 20px 0;
+    opacity: 0.9;
+  }
 
-    p {
-      max-width: 780px;
-      margin-bottom: 18px;
-      font-size: 1.05rem;
-      opacity: 0.92;
-    }
+  .back {
+    display: block;
+    margin-top: 40px;
+    color: #D4AF37;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
 
-    .divider {
-      width: 80%;
-      max-width: 520px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-      margin: 35px 0;
-      opacity: 0.7;
-    }
-
-    .image-callout {
-      width: 100%;
-      max-width: 700px;
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 10px;
-      margin: 20px 0;
-      opacity: 0.9;
-    }
-
-    .back {
-      display: block;
-      margin-top: 40px;
-      color: #D4AF37;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      text-align: center;
-      transition: 0.3s ease;
-      cursor: pointer;
-    }
-
-    .back:hover {
-      color: #fff;
-      text-shadow: 0 0 10px #D4AF37;
-    }
-  </style>
+  .back:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #D4AF37;
+  }
+</style>
 </head>
 
 <body>
 
-  <div class="discipline-wrapper">
+<div class="discipline-wrapper">
 
-    <!-- LEFT MENU -->
-    <div class="discipline-menu">
-      <div class="menu-title">Discipline Pillars</div>
+  <!-- LEFT MENU -->
+  <div class="discipline-menu">
+    <div class="menu-title">Discipline Pillars</div>
 
-      <div class="discipline-item" data-discipline="emotional">Emotional Discipline</div>
-      <div class="discipline-item" data-discipline="phases">Emotional Phases of a Trader</div>
-      <div class="discipline-item" data-discipline="strategic">Strategic Discipline</div>
-      <div class="discipline-item" data-discipline="lifestyle">Lifestyle Discipline</div>
-      <div class="discipline-item" data-discipline="withdrawal">Taking Money Out of the Arena</div>
-    </div>
-
-    <!-- RIGHT PANEL -->
-    <div class="discipline-content" id="disciplineContent">
-      <h1>The Discipline Doctrine</h1>
-      <p>Select a discipline on the left to begin.</p>
-    </div>
-
+    <div class="discipline-item" data-discipline="emotional">Emotional Discipline</div>
+    <div class="discipline-item" data-discipline="phases">Emotional Phases</div>
+    <div class="discipline-item" data-discipline="strategic">Strategic Discipline</div>
+    <div class="discipline-item" data-discipline="lifestyle">Lifestyle Discipline</div>
+    <div class="discipline-item" data-discipline="withdrawal">Taking Money Out</div>
   </div>
 
-  <a class="back" onclick="window.location.href='/guild/pages/guild.html'">← Return to the Inner Hall</a>
+  <!-- RIGHT PANEL -->
+  <div class="discipline-content" id="disciplineContent">
+    <h1>The Discipline Doctrine</h1>
+    <p>Select a discipline on the left to begin.</p>
+  </div>
+
+</div>
+
+<a class="back" onclick="window.location.href='/guild/pages/guild.html'">← Return to the Inner Hall</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".discipline-item");
+  const panel = document.getElementById("disciplineContent");
+
+  const sections = {
+
+    /* DROPDOWN 1 — HAS IMAGE */
+    emotional: `
+      <h1>Emotional Discipline</h1>
+      <p>Trading is not a battle against the market — it is a battle against your own impulses.</p>
+
+      <h2>Fear</h2>
+      <p>Fear appears when you lack structure. It makes you hesitate, exit too early, or avoid valid setups.</p>
+
+      <h2>Greed</h2>
+      <p>Greed whispers that you deserve more. It pushes you to break rules and overstay trades.</p>
+
+      <h2>Revenge</h2>
+      <p>Revenge trading is the emotional spiral that destroys accounts. It is the refusal to accept loss.</p>
+
+      <img class="image-callout" src="/guild/training/img/discipline/emotional.jpg">
+    `,
+
+    /* DROPDOWN 2 — NO IMAGE */
+    phases: `
+      <h1>The Emotional Phases of a Trader</h1>
+      <p>Every trader walks the same path. Only the disciplined survive it.</p>
+
+      <h2>Phase I — Awakening</h2>
+      <p>Curiosity becomes excitement. Excitement becomes overconfidence.</p>
+
+      <h2>Phase II — First Losses</h2>
+      <p>Shock. Denial. Frustration. Revenge. This is where most traders fall.</p>
+
+      <h2>Phase III — Emotional Spiral</h2>
+      <p>Fear takes over. You hesitate. You freeze. You stop trusting yourself.</p>
+
+      <h2>Phase IV — Breakthrough</h2>
+      <p>You begin following rules. You stop forcing trades. You see structure.</p>
+
+      <h2>Phase V — Winning Phase</h2>
+      <p>Winning feels like mastery — but it is the most dangerous moment.</p>
+
+      <h2>Phase VI — True Discipline</h2>
+      <p>You detach from outcomes. You execute without emotion. You become consistent.</p>
+    `,
+
+    /* DROPDOWN 3 — HAS IMAGE */
+    strategic: `
+      <h1>Strategic Discipline</h1>
+      <p>Your strategy is your sword. Your rules are your armor.</p>
+
+      <h2>Risk Management</h2>
+      <p>Risk is the only thing you control. Master it or perish.</p>
+
+      <h2>Position Sizing</h2>
+      <p>Small size keeps you alive. Large size kills you fast.</p>
+
+      <h2>Trade Journaling</h2>
+      <p>The Guild keeps records. Patterns reveal themselves only to those who track them.</p>
+
+      <img class="image-callout" src="/guild/training/img/discipline/strategic.jpg">
+    `,
+
+    /* DROPDOWN 4 — NO IMAGE */
+    lifestyle: `
+      <h1>Lifestyle Discipline</h1>
+      <p>Your life outside the market affects your performance inside it.</p>
+
+      <h2>Routine</h2>
+      <p>Consistency in life creates consistency in trading.</p>
+
+      <h2>Dopamine Control</h2>
+      <p>Social media, gambling, and overstimulation destroy focus.</p>
+
+      <h2>Environment</h2>
+      <p>Your trading environment must be calm, clean, and controlled.</p>
+
+      <h2>Money Habits</h2>
+      <p>Bad financial habits outside the market bleed into your trading decisions.</p>
+    `,
+
+    /* DROPDOWN 5 — HAS IMAGE */
+    withdrawal: `
+      <h1>Taking Money Out of the Arena</h1>
+      <p>Withdrawing profits feels strange at first — but it is the mark of a real trader.</p>
+
+      <h2>Why It Feels Wrong</h2>
+      <p>Your brain is addicted to seeing a big balance. Removing money feels like losing power.</p>
+
+      <h2>Why It Must Be Done</h2>
+      <p>Profits are not real until they leave the arena. Withdraw regularly.</p>
+
+      <h2>The Guild Ritual</h2>
+      <p>Every week or month, withdraw a portion of your gains. This builds confidence and discipline.</p>
+
+      <img class="image-callout" src="/guild/training/img/discipline/withdraw.jpg">
+    `
+  };
+
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+
+      const key = item.getAttribute("data-discipline");
+      panel.innerHTML = sections[key];
+    });
+  });
+});
+</script>
 
 </body>
 </html>
