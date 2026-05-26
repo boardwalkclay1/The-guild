@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rules of Engagement</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    background: url('/assets/image/guild-war-room.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #D4AF37;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: "Marcellus SC", serif;
+    margin: 0;
+  }
+
+  .engagement-wrapper {
+    display: flex;
+    max-width: 1300px;
+    margin: 140px auto 100px;
+    background: rgba(0,0,0,0.68);
+    border: 2px solid #D4AF37;
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(212,175,55,0.25);
+    backdrop-filter: blur(3px);
+    overflow: hidden;
+  }
+
+  /* LEFT MENU */
+  .engagement-menu {
+    width: 280px;
+    border-right: 2px solid #8B6B2C;
+    padding: 20px;
+    background: rgba(0,0,0,0.55);
+  }
+
+  .menu-title {
+    font-family: "Uncial Antiqua", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .engagement-item {
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid #D4AF37;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    transition: 0.25s ease;
+  }
+
+  .engagement-item:hover,
+  .engagement-item.active {
+    background: rgba(212,175,55,0.25);
+    text-shadow: 0 0 10px #D4AF37;
+  }
+
+  /* RIGHT PANEL */
+  .engagement-content {
+    flex: 1;
+    padding: 40px 50px;
+    overflow-y: auto;
+    max-height: 80vh;
+    text-align: left;
+  }
+
+  h1 {
+    font-family: "Uncial Antiqua", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  h2 {
+    font-family: "Cinzel", serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+  }
+
+  p {
+    max-width: 820px;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    opacity: 0.92;
+    line-height: 1.8;
+  }
+
+  .divider {
+    width: 80%;
+    max-width: 520px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    margin: 35px 0;
+    opacity: 0.7;
+  }
+
+  .warning-box {
+    border: 1px solid rgba(212,175,55,0.4);
+    background: rgba(212,175,55,0.08);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .rule-highlight {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(212,175,55,0.6);
+    font-weight: bold;
+  }
+
+  .back {
+    display: block;
+    margin-top: 40px;
+    color: #D4AF37;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+
+  .back:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #D4AF37;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="engagement-wrapper">
+
+  <!-- LEFT MENU -->
+  <div class="engagement-menu">
+    <div class="menu-title">Rules of Engagement</div>
+
+    <div class="engagement-item" data-rule="foundation">Before Entering</div>
+    <div class="engagement-item" data-rule="cash">Cash Accounts</div>
+    <div class="engagement-item" data-rule="margin">Margin Accounts</div>
+    <div class="engagement-item" data-rule="pdt">PDT Rule</div>
+    <div class="engagement-item" data-rule="universal">Universal Laws</div>
+    <div class="engagement-item" data-rule="discipline">The Final Warning</div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="engagement-content" id="engagementContent">
+    <h1>Rules of Engagement</h1>
+
+    <p>
+      Before entering the arena, every trader must understand the laws that govern it.
+      Robinhood. Webull. ThinkorSwim. Fidelity. E*Trade.
+      The platforms may change — the rules do not.
+    </p>
+
+    <div class="divider"></div>
+
+    <p>
+      These are not suggestions.
+      These are the rules that determine whether you survive long enough
+      to become profitable.
+    </p>
+  </div>
+
+</div>
+
+<a class="back" onclick="window.location.href='/guild/pages/guild.html'">
+  ← Return to the Inner Hall
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const items = document.querySelectorAll(".engagement-item");
+  const panel = document.getElementById("engagementContent");
+
+  const sections = {
+
+    foundation: `
+      <h1>Before Entering the Arena</h1>
+
+      <p>
+        Most traders lose before they ever place their first trade.
+        Why?
+        Because they enter the battlefield without understanding the laws.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>The First Truth</h2>
+
+      <p>
+        The market does not care about emotions, hope, or desperation.
+        It rewards preparation and punishes ignorance.
+      </p>
+
+      <h2>The Second Truth</h2>
+
+      <p>
+        Every broker follows the same core regulations.
+        Robinhood, Webull, Charles Schwab, Fidelity, E*Trade —
+        the battlefield changes names, but the rules remain universal.
+      </p>
+
+      <div class="warning-box">
+        <p class="rule-highlight">
+          If you do not understand your account type,
+          you are already trading blind.
+        </p>
+      </div>
+    `,
+
+    cash: `
+      <h1>Cash Accounts</h1>
+
+      <p>
+        A cash account uses only settled funds.
+        No borrowed money.
+        No leverage.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>Unlimited Day Trades</h2>
+
+      <p>
+        In a cash account, you can technically day trade as many times as you want —
+        IF your cash has settled.
+      </p>
+
+      <h2>Settlement Rules</h2>
+
+      <ul>
+        <li>Stocks and ETFs usually settle in <span class="rule-highlight">T+1</span> (next business day).</li>
+        <li>If you use unsettled funds and sell too early, you may trigger a <span class="rule-highlight">Good Faith Violation</span>.</li>
+        <li>Too many violations can restrict your account.</li>
+      </ul>
+
+      <h2>The Advantage</h2>
+
+      <p>
+        Cash accounts protect beginners from excessive leverage and emotional overtrading.
+      </p>
+
+      <h2>The Weakness</h2>
+
+      <p>
+        Once your settled cash is used, you must wait for settlement before reusing it.
+      </p>
+    `,
+
+    margin: `
+      <h1>Margin Accounts</h1>
+
+      <p>
+        A margin account allows you to borrow buying power from the broker.
+        This increases both opportunity and danger.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>The Power</h2>
+
+      <p>
+        Margin allows instant reuse of buying power without waiting for settlement.
+      </p>
+
+      <h2>The Danger</h2>
+
+      <p>
+        Margin amplifies emotional mistakes.
+        One reckless trade can destroy weeks or months of progress.
+      </p>
+
+      <h2>Important Reality</h2>
+
+      <ul>
+        <li>Most beginner accounts on Robinhood and Webull default into margin features.</li>
+        <li>Margin accounts are subject to Pattern Day Trader rules.</li>
+        <li>Leverage can create rapid gains — and catastrophic losses.</li>
+      </ul>
+
+      <div class="warning-box">
+        <p class="rule-highlight">
+          Margin is a weapon.
+          Undisciplined traders turn it against themselves.
+        </p>
+      </div>
+    `,
+
+    pdt: `
+      <h1>The Pattern Day Trader Rule</h1>
+
+      <p>
+        The PDT Rule is one of the most important laws in the arena.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>What Triggers PDT?</h2>
+
+      <p>
+        If you make <span class="rule-highlight">4 or more day trades</span>
+        within <span class="rule-highlight">5 business days</span>
+        using a margin account,
+        you may be labeled a Pattern Day Trader.
+      </p>
+
+      <h2>The $25,000 Rule</h2>
+
+      <p>
+        Once flagged, you must maintain at least
+        <span class="rule-highlight">$25,000</span>
+        in your account to continue unrestricted day trading.
+      </p>
+
+      <h2>If You Have Less Than $25K</h2>
+
+      <ul>
+        <li>You are generally limited to 3 day trades within 5 business days.</li>
+        <li>Exceeding this can lock or restrict your account.</li>
+      </ul>
+
+      <h2>What Counts as a Day Trade?</h2>
+
+      <p>
+        Buying and selling the same stock or option on the same trading day.
+      </p>
+
+      <div class="warning-box">
+        <p class="rule-highlight">
+          Many traders discover the PDT rule AFTER violating it.
+          The Guild learns it before battle.
+        </p>
+      </div>
+    `,
+
+    universal: `
+      <h1>The Universal Laws</h1>
+
+      <p>
+        These laws apply across nearly every trading platform.
+      </p>
+
+      <div class="divider"></div>
+
+      <ul>
+        <li>Never risk money you cannot emotionally afford to lose.</li>
+
+        <li>
+          Understand whether your account is CASH or MARGIN before placing trades.
+        </li>
+
+        <li>
+          Overtrading destroys discipline faster than losing trades.
+        </li>
+
+        <li>
+          The market rewards patience more than aggression.
+        </li>
+
+        <li>
+          Your first job is survival — not becoming rich overnight.
+        </li>
+
+        <li>
+          Small consistent gains outperform emotional gambling.
+        </li>
+
+        <li>
+          The market will always be there tomorrow.
+          Your capital may not.
+        </li>
+      </ul>
+    `,
+
+    discipline: `
+      <h1>The Final Warning</h1>
+
+      <p>
+        Trading is not a game.
+        It is psychological warfare.
+      </p>
+
+      <div class="divider"></div>
+
+      <p>
+        Most traders fail because they enter the arena emotionally unprepared.
+      </p>
+
+      <p>
+        They chase.
+        They revenge trade.
+        They overleverage.
+        They ignore the rules.
+      </p>
+
+      <p>
+        Then they blame the market.
+      </p>
+
+      <div class="warning-box">
+        <p class="rule-highlight">
+          The rules are not designed to stop you.
+          They are designed to reveal whether you are disciplined enough to survive.
+        </p>
+      </div>
+
+      <h2>The Guild Doctrine</h2>
+
+      <p>
+        Learn the laws.
+        Respect risk.
+        Protect capital.
+        Master emotion.
+      </p>
+
+      <p class="rule-highlight">
+        Only then may you enter the arena.
+      </p>
+    `
+  };
+
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+
+      const key = item.getAttribute("data-rule");
+      panel.innerHTML = sections[key];
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
