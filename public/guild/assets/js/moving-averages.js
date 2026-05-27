@@ -52,6 +52,7 @@ as dynamic resistance.
       "Avoid using it alone in choppy, sideways markets."
     ]
   },
+
   "50sma": {
     title: "50 SMA – Swing Trend",
     text: `
@@ -73,6 +74,7 @@ Many traders watch this level, which makes reactions around it more meaningful.
       "Losing the 50 SMA with volume can signal trend weakening."
     ]
   },
+
   "200sma": {
     title: "200 SMA – Market Regime",
     text: `
@@ -95,6 +97,7 @@ you should prefer for higher-probability trades.
       "Best used as a bias filter, not a precise entry tool."
     ]
   },
+
   "golden": {
     title: "Golden Cross",
     text: `
@@ -117,6 +120,7 @@ expands on the move up.
       "False signals are common in choppy markets."
     ]
   },
+
   "death": {
     title: "Death Cross",
     text: `
@@ -139,6 +143,7 @@ it is more meaningful after a long uptrend, especially if volume expands on the 
       "Can whipsaw in sideways markets."
     ]
   },
+
   "dynamic": {
     title: "Dynamic Support & Resistance",
     text: `
@@ -151,7 +156,7 @@ traders are watching and reacting.
     `,
     images: [
       {
-        src: "/guild/training/img/dynamic-s&p.png"
+        src: "/guild/training/img/dynamic-s-and-p.png",
         alt: "Dynamic Support/Resistance with MAs"
       }
     ],
@@ -163,6 +168,9 @@ traders are watching and reacting.
   }
 };
 
+// =========================
+// RENDER TOPIC
+// =========================
 function renderTopic(topicKey) {
   const detailEl = document.getElementById("ma-detail");
   if (!detailEl) return;
@@ -170,10 +178,7 @@ function renderTopic(topicKey) {
   const topic = MA_TOPICS[topicKey];
   if (!topic) return;
 
-  const notesHtml = topic.notes
-    .map(n => `<li>${n}</li>`)
-    .join("");
-
+  const notesHtml = topic.notes.map(n => `<li>${n}</li>`).join("");
   const imagesHtml = topic.images
     .map(img => `<img class="example-img" src="${img.src}" alt="${img.alt}">`)
     .join("");
@@ -189,6 +194,9 @@ function renderTopic(topicKey) {
   `;
 }
 
+// =========================
+// TOPIC BUTTON INTERACTIONS
+// =========================
 function setupTopicInteractions() {
   const buttons = document.querySelectorAll(".ma-topic-btn");
   if (!buttons.length) return;
@@ -197,12 +205,10 @@ function setupTopicInteractions() {
     btn.addEventListener("click", () => {
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      const key = btn.dataset.topic;
-      renderTopic(key);
+      renderTopic(btn.dataset.topic);
     });
   });
 
-  // initial
   renderTopic("20ema");
 }
 
@@ -212,12 +218,7 @@ function setupTopicInteractions() {
 const MA_QUIZ = [
   {
     q: "Which moving average is best for short-term momentum?",
-    options: [
-      "20 EMA",
-      "50 SMA",
-      "200 SMA",
-      "9 EMA only on weekly charts"
-    ],
+    options: ["20 EMA", "50 SMA", "200 SMA", "9 EMA only on weekly charts"],
     answer: 0
   },
   {
@@ -301,19 +302,18 @@ function loadQuestion() {
 
 function nextQuestion() {
   currentQuestion++;
+
   const qBox = document.getElementById("ma-question");
   const optBox = document.getElementById("ma-options");
   const nextBtn = document.getElementById("ma-next-btn");
   const result = document.getElementById("ma-result");
 
   if (currentQuestion >= MA_QUIZ.length) {
-    if (qBox) qBox.textContent = "Quiz Complete!";
-    if (optBox) optBox.innerHTML = "";
-    if (nextBtn) nextBtn.style.display = "none";
-    if (result) {
-      result.textContent = "You’ve completed the Moving Averages quiz.";
-      result.style.color = "#D4AF37";
-    }
+    qBox.textContent = "Quiz Complete!";
+    optBox.innerHTML = "";
+    nextBtn.style.display = "none";
+    result.textContent = "You’ve completed the Moving Averages quiz.";
+    result.style.color = "#D4AF37";
     return;
   }
 
@@ -327,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startMAHints();
   setupTopicInteractions();
   loadQuestion();
+
   const nextBtn = document.getElementById("ma-next-btn");
   if (nextBtn) nextBtn.addEventListener("click", nextQuestion);
 });
