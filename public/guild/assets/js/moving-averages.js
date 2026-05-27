@@ -151,7 +151,7 @@ traders are watching and reacting.
     `,
     images: [
       {
-        src: "/guild/training/img/dynamic-s&p.png
+        src: "/guild/training/img/dynamic-s&p.png"
         alt: "Dynamic Support/Resistance with MAs"
       }
     ],
