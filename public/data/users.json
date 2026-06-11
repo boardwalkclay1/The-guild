@@ -23,6 +23,12 @@
       "password": "2828Doggie",
       "role": "guild_member",
       "created": "2026-04-18T00:00:00Z"
+    },
+    {
+      "email": "Candice",
+      "password": "nuzri",
+      "role": "guild_member",
+      "created": "2026-04-18T00:00:00Z"
     }
   ]
 }
