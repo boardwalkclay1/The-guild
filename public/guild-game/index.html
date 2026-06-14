@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guild RPG – Market Beasts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/js/main.js"></script>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div id="bg"></div>
+
+  <!-- CUTSCENE OVERLAY -->
+  <div id="cutscene" class="hidden">
+    <div id="cutscene-content">
+      <img id="cutscene-img" src="" alt="">
+      <p id="cutscene-text"></p>
+      <button id="cutscene-btn">Continue</button>
+    </div>
+  </div>
+
+  <!-- GAME UI -->
+  <div id="game-frame">
+
+    <h1 id="level-title">Guild RPG</h1>
+
+    <!-- DRAGON + PLAYER HP -->
+    <div id="battle-bars">
+      <div class="hp-box">
+        <div class="hp-label">Guild Warrior</div>
+        <div class="hp-bar"><div id="player-hp"></div></div>
+      </div>
+
+      <div class="hp-box">
+        <div class="hp-label">Market Beast</div>
+        <div class="hp-bar"><div id="dragon-hp"></div></div>
+      </div>
+    </div>
+
+    <!-- DRAGON SPRITE -->
+    <div id="dragon-container">
+      <img id="dragon-img" src="" alt="dragon">
+    </div>
+
+    <!-- STORY TEXT -->
+    <div id="story-box"></div>
+
+    <!-- ACTIONS -->
+    <div id="actions">
+
+      <!-- MID PRICE ATTACK -->
+      <div id="mid-attack-box" class="action-block">
+        <div class="action-title">Strike the Weak Point</div>
+        <div class="spread-display">
+          Flow Left: <span id="flow-left"></span> · 
+          Flow Right: <span id="flow-right"></span>
+        </div>
+        <input type="number" id="mid-input" step="0.01" placeholder="Enter strike value">
+        <button id="mid-btn">Attack</button>
+      </div>
+
+      <!-- POTIONS -->
+      <div id="potions" class="action-block">
+        <div class="action-title">Guild Potions</div>
+        <button class="potion-btn" data-type="heal">Stability Brew</button>
+        <button class="potion-btn" data-type="shield">Risk Guard</button>
+        <button class="potion-btn" data-type="boost">Momentum Surge</button>
+      </div>
+
+    </div>
+
+    <!-- FEEDBACK -->
+    <div id="feedback"></div>
+
+  </div>
+
+</body>
+</html>
