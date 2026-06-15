@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  background: #000;
+  color: #D4AF37;
+  font-family: "Marcellus SC", serif;
+  overflow: hidden;
+}
+
+/* BACKGROUND */
+#bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  filter: grayscale(40%);
+  z-index: -2;
+}
+
+/* GAME FRAME */
+#game-frame {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.65);
+  border: 2px solid #D4AF37;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(212,175,55,0.35);
+  text-align: center;
+}
+
+/* HP BARS */
+.hp-box {
+  margin: 10px 0;
+}
+
+.hp-label {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.hp-bar {
+  width: 100%;
+  height: 18px;
+  background: #222;
+  border: 1px solid #D4AF37;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#player-hp, #dragon-hp {
+  height: 100%;
+  background: #D4AF37;
+  width: 100%;
+  transition: width 0.3s ease;
+}
+
+/* DRAGON */
+#dragon-container {
+  margin: 20px 0;
+}
+
+#dragon-img {
+  max-width: 300px;
+  filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));
+}
+
+/* ACTIONS */
+.action-block {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 10px;
+}
+
+.action-title {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+input[type="number"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #D4AF37;
+  background: #000;
+  color: #D4AF37;
+  width: 160px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 2px solid #D4AF37;
+  background: #000;
+  color: #D4AF37;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #D4AF37;
+  color: #000;
+}
+
+/* FEEDBACK */
+#feedback {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* CUTSCENE */
+#cutscene {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+#cutscene.hidden {
+  display: none;
+}
+
+#cutscene-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+#cutscene-img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+#cutscene-btn {
+  margin-top: 20px;
+}
