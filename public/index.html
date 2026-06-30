@@ -16,7 +16,7 @@
     /* FULL IMAGE — NEVER CUT OFF */
     body {
       background: url('/assets/image/guild-win.jpg') top center no-repeat fixed;
-      background-size: cover; /* FIX: ensures full image always visible */
+      background-size: cover;
       margin: 0;
       padding: 0;
       position: relative;
@@ -36,7 +36,6 @@
       z-index: 0;
     }
 
-    /* ENSURE CONTENT FLOATS ABOVE FADE */
     nav, header, section {
       position: relative;
       z-index: 2;
@@ -50,13 +49,72 @@
       margin-top: 40px;
       backdrop-filter: blur(4px);
     }
+
+    /* ============================
+       GUILD LOADING SCREEN
+    ============================ */
+    #guild-loader {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(0,0,0,0.9), rgba(0,0,0,1));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: loaderFadeIn 0.4s ease-out forwards;
+    }
+
+    .guild-sigil {
+      font-size: 110px;
+      color: gold;
+      text-shadow: 0 0 25px rgba(255,215,0,0.9);
+      animation: sigilPulse 1.2s infinite ease-in-out;
+    }
+
+    .guild-loading-text {
+      margin-top: 20px;
+      font-family: 'Marcellus SC', serif;
+      font-size: 24px;
+      color: #e8d9a8;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8);
+      letter-spacing: 1px;
+    }
+
+    @keyframes sigilPulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes loaderFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fade-out {
+      animation: loaderFadeOut 0.8s forwards ease-out;
+    }
+
+    @keyframes loaderFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- ============================
+       GUILD LOADING SCREEN
+  ============================ -->
+  <div id="guild-loader">
+    <div class="guild-sigil">⚡</div>
+    <div class="guild-loading-text">Entering the Guild...</div>
+  </div>
+
   <nav class="top-nav">
-     <a onclick="go('/rules-of-engagement.html')">R.O.E</a>
+    <a onclick="go('/rules-of-engagement.html')">R.O.E</a>
     <a onclick="go('/pages/colosseum.html')">The Colosseum</a>
     <a onclick="go('/pages/guild-entry.html')">Inner Hall</a>
     <a onclick="go('/pages/second-thoughts.html')">Why Join the Guild</a>
@@ -94,6 +152,16 @@
   </section>
 
   <script src="/assets/js/index.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loader = document.getElementById("guild-loader");
+      setTimeout(() => {
+        loader.classList.add("fade-out");
+        setTimeout(() => loader.remove(), 800);
+      }, 1200);
+    });
+  </script>
 
 </body>
 </html>
