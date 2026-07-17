@@ -143,23 +143,7 @@ it is more meaningful after a long uptrend, especially if volume expands on the 
       "Can whipsaw in sideways markets."
     ]
   },
-
-  "dynamic": {
-    title: "Dynamic Support & Resistance",
-    text: `
-Moving averages can act as dynamic support and resistance. In an uptrend,
-price may repeatedly bounce off the 20 EMA or 50 SMA. In a downtrend,
-those same averages can cap rallies.
-
-The key is context: moving averages are not walls, but zones where many
-traders are watching and reacting.
-    `,
-    images: [
-      {
-        src: "/guild/training/img/dynamic-s-and-p.png",
-        alt: "Dynamic Support/Resistance with MAs"
-      }
-    ],
+  
     notes: [
       "Look for multiple touches with clear reactions.",
       "Combine with volume and structure (higher highs / lower lows).",
